@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Calculators</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 10px;
+            display: flex
+;
+    flex-direction: column;
+    align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            background-color: #0056b3;
+        }
+
+        .tab-button.active {
+            background-color: #28a745;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            min-width: 200px;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .dropdown a:hover {
+            background-color: #f8f9fa;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .calculator {
+            margin-bottom: 20px;
+        }
+
+        .calculator h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        input[type="number"], input[type="text"], select {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Financial Calculators</h1>
+<div class="container">
+<div class="tabs">
+    <div class="tab-button active" data-tab="investment-savings">
+        Investment & Savings Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="fd">Fixed Deposit (FD) Calculator</a>
+            <a href="#" data-subtab="rd">Recurring Deposit (RD) Calculator</a>
+            <a href="#" data-subtab="simple-interest">Simple Interest Calculator</a>
+            <a href="#" data-subtab="compound-interest">Compound Interest Calculator</a>
+            <a href="#" data-subtab="sip">SIP Calculator</a>
+            <a href="#" data-subtab="ppf">PPF Calculator</a>
+            <a href="#" data-subtab="epf">EPF Calculator</a>
+            <a href="#" data-subtab="nps">NPS Calculator</a>
+            <a href="#" data-subtab="mutual-fund">Mutual Fund Returns Calculator</a>
+        </div>
+    </div>
+    <div class="tab-button" data-tab="loan-credit">
+        Loan & Credit Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="emi">EMI Calculator</a>
+            <a href="#" data-subtab="home-loan">Home Loan Calculator</a>
+            <a href="#" data-subtab="car-loan">Car Loan Calculator</a>
+            <a href="#" data-subtab="personal-loan">Personal Loan Calculator</a>
+            <a href="#" data-subtab="loan-tenure">Loan Tenure Calculator</a>
+            <a href="#" data-subtab="loan-repayment">Loan Repayment Calculator</a>
+            <a href="#" data-subtab="credit-card-interest">Credit Card Interest Calculator</a>
+        </div>
+    </div>
+    <div class="tab-button" data-tab="tax-income">
+        Tax & Income Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="income-tax">Income Tax Calculator</a>
+            <a href="#" data-subtab="gst">GST Calculator</a>
+            <a href="#" data-subtab="tds">TDS Calculator</a>
+            <a href="#" data-subtab="hra">HRA Calculator</a>
+            <a href="#" data-subtab="capital-gains">Capital Gains Tax Calculator</a>
+            <a href="#" data-subtab="gratuity">Gratuity Calculator</a>
+        </div>
+    </div>
+    <div class="tab-button" data-tab="retirement-future">
+        Retirement & Future Planning Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="retirement-planning">Retirement Planning Calculator</a>
+            <a href="#" data-subtab="pension">Pension Calculator</a>
+            <a href="#" data-subtab="life-insurance">Life Insurance Premium Calculator</a>
+            <a href="#" data-subtab="term-insurance">Term Insurance Calculator</a>
+        </div>
+    </div>
+    <div class="tab-button" data-tab="salary-expense">
+        Salary & Expense Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="cagr">CAGR Calculator</a>
+            <a href="#" data-subtab="inflation">Inflation Calculator</a>
+            <a href="#" data-subtab="cost-of-living">Cost of Living Calculator</a>
+            <a href="#" data-subtab="net-salary">Net Salary Calculator</a>
+            <a href="#" data-subtab="salary-hike">Salary Hike Calculator</a>
+        </div>
+    </div>
+    <div class="tab-button" data-tab="business-economy">
+        Business & Economy Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="break-even">Break-even Point Calculator</a>
+            <a href="#" data-subtab="markup-margin">Markup & Margin Calculator</a>
+            <a href="#" data-subtab="profit-loss">Profit & Loss Calculator</a>
+            <a href="#" data-subtab="stock-market">Stock Market Investment Calculator</a>
+            <a href="#" data-subtab="forex">Forex Exchange Rate Calculator</a>
+        </div>
+    </div>
+    <div class="tab-button" data-tab="real-estate">
+        Real Estate & Property Calculators
+        <div class="dropdown">
+            <a href="#" data-subtab="stamp-duty">Stamp Duty Calculator</a>
+            <a href="#" data-subtab="property-loan">Property Loan Calculator</a>
+            <a href="#" data-subtab="rent-vs-buy">Rent vs Buy Calculator</a>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content active section" id="investment-savings">
+    <div class="calculator" id="fd">
+        <h3>Fixed Deposit (FD) Calculator</h3>
+        <input type="number" id="fdPrincipal" placeholder="Principal Amount">
+        <input type="number" id="fdRate" placeholder="Interest Rate (%)">
+        <input type="number" id="fdTime" placeholder="Time (in years)">
+        <button onclick="calculateFD()">Calculate</button>
+        <div class="result" id="fdResult"></div>
+    </div>
+    <!-- <div class="calculator" id="rd">
+        <h3>Recurring Deposit (RD) Calculator</h3>
+        <input type="number" id="rdMonthlyDeposit" placeholder="Monthly Deposit">
+        <input type="number" id="rdRate" placeholder="Interest Rate (%)">
+        <input type="number" id="rdTime" placeholder="Time (in years)">
+        <button onclick="calculateRD()">Calculate</button>
+        <div class="result" id="rdResult"></div>
+    </div> -->
+    <!-- Add other sub-calculators here -->
+</div>
+
+<div class="tab-content" id="loan-credit">
+    <div class="calculator" id="emi">
+        <h3>EMI Calculator</h3>
+        <input type="number" id="loanAmount" placeholder="Loan Amount">
+        <input type="number" id="loanRate" placeholder="Interest Rate (%)">
+        <input type="number" id="loanTenure" placeholder="Tenure (in years)">
+        <button onclick="calculateEMI()">Calculate</button>
+        <div class="result" id="emiResult"></div>
+    </div>
+    <div class="calculator" id="home-loan">
+        <h3>Home Loan Calculator</h3>
+        <input type="number" id="homeLoanAmount" placeholder="Loan Amount">
+        <input type="number" id="homeLoanRate" placeholder="Interest Rate (%)">
+        <input type="number" id="homeLoanTenure" placeholder="Tenure (in years)">
+        <button onclick="calculateHomeLoan()">Calculate</button>
+        <div class="result" id="homeLoanResult"></div>
+    </div>
+    <!-- Add other sub-calculators here -->
+</div>
+
+<div class="tab-content" id="tax-income">
+    <div class="calculator" id="income-tax">
+        <h3>Income Tax Calculator</h3>
+        <input type="number" id="income" placeholder="Annual Income">
+        <button onclick="calculateIncomeTax()">Calculate</button>
+        <div class="result" id="incomeTaxResult"></div>
+    </div>
+    <div class="calculator" id="gst">
+        <h3>GST Calculator</h3>
+        <input type="number" id="gstAmount" placeholder="Amount">
+        <input type="number" id="gstRate" placeholder="GST Rate (%)">
+        <button onclick="calculateGST()">Calculate</button>
+        <div class="result" id="gstResult"></div>
+    </div>
+    <!-- Add other sub-calculators here -->
+</div>
+
+<div class="tab-content" id="retirement-future">
+    <div class="calculator" id="retirement-planning">
+        <h3>Retirement Planning Calculator</h3>
+        <input type="number" id="currentAge" placeholder="Current Age">
+        <input type="number" id="retirementAge" placeholder="Retirement Age">
+        <input type="number" id="monthlySavings" placeholder="Monthly Savings">
+        <button onclick="calculateRetirement()">Calculate</button>
+        <div class="result" id="retirementResult"></div>
+    </div>
+    <div class="calculator" id="pension">
+        <h3>Pension Calculator</h3>
+        <input type="number" id="pensionAmount" placeholder="Pension Amount">
+        <input type="number" id="pensionRate" placeholder="Interest Rate (%)">
+        <input type="number" id="pensionTime" placeholder="Time (in years)">
+        <button onclick="calculatePension()">Calculate</button>
+        <div class="result" id="pensionResult"></div>
+    </div>
+    <!-- Add other sub-calculators here -->
+</div>
+
+<div class="tab-content" id="salary-expense">
+    <div class="calculator" id="cagr">
+        <h3>CAGR Calculator</h3>
+        <input type="number" id="initialInvestment" placeholder="Initial Investment">
+        <input type="number" id="finalValue" placeholder="Final Value">
+        <input type="number" id="timePeriod" placeholder="Time Period (in years)">
+        <button onclick="calculateCAGR()">Calculate</button>
+        <div class="result" id="cagrResult"></div>
+    </div>
+    <div class="calculator" id="inflation">
+        <h3>Inflation Calculator</h3>
+        <input type="number" id="currentAmount" placeholder="Current Amount">
+        <input type="number" id="inflationRate" placeholder="Inflation Rate (%)">
+        <input type="number" id="inflationTime" placeholder="Time (in years)">
+        <button onclick="calculateInflation()">Calculate</button>
+        <div class="result" id="inflationResult"></div>
+    </div>
+    <!-- Add other sub-calculators here -->
+</div>
+
+<div class="tab-content" id="business-economy">
+    <div class="calculator" id="break-even">
+        <h3>Break-even Point Calculator</h3>
+        <input type="number" id="fixedCosts" placeholder="Fixed Costs">
+        <input type="number" id="sellingPrice" placeholder="Selling Price per Unit">
+        <input type="number" id="variableCosts" placeholder="Variable Costs per Unit">
+        <button onclick="calculateBreakEven()">Calculate</button>
+        <div class="result" id="breakEvenResult"></div>
+    </div>
+    <div class="calculator" id="markup-margin">
+        <h3>Markup & Margin Calculator</h3>
+        <input type="number" id="costPrice" placeholder="Cost Price">
+        <input type="number" id="sellingPriceMargin" placeholder="Selling Price">
+        <button onclick="calculateMarkupMargin()">Calculate</button>
+        <div class="result" id="markupMarginResult"></div>
+    </div>
+    <!-- Add other sub-calculators here -->
+</div>
+
+<div class="tab-content" id="real-estate">
+    <div class="calculator" id="stamp-duty">
+        <h3>Stamp Duty Calculator</h3>
+        <input type="number" id="propertyValue" placeholder="Property Value">
+        <input type="number" id="stampDutyRate" placeholder="Stamp Duty Rate (%)">
+        <button onclick="calculateStampDuty()">Calculate</button>
+        <div class="result" id="stampDutyResult"></div>
+    </div>
+    <div class="calculator" id="property-loan">
+        <h3>Property Loan Calculator</h3>
+        <input type="number" id="propertyLoanAmount" placeholder="Loan Amount">
+        <input type="number" id="propertyLoanRate" placeholder="Interest Rate (%)">
+        <input type="number" id="propertyLoanTenure" placeholder="Tenure (in years)">
+        <button onclick="calculatePropertyLoan()">Calculate</button>
+        <div class="result" id="propertyLoanResult"></div>
+    </div>
+    <!-- Add other sub-calculators here -->
+</div>
+</div>
+
+<script>
+    // Tab and dropdown functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            button.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+
+        // Show dropdown on hover
+        button.addEventListener('mouseenter', () => {
+            button.querySelector('.dropdown').style.display = 'block';
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.querySelector('.dropdown').style.display = 'none';
+        });
+    });
+
+    // Sub-tab functionality
+    const dropdownLinks = document.querySelectorAll('.dropdown a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const subtabId = link.getAttribute('data-subtab');
+            const tabId = link.closest('.tab-button').getAttribute('data-tab');
+
+            // Hide all sub-calculators
+            document.querySelectorAll(`#${tabId} .calculator`).forEach(calc => {
+                calc.style.display = 'none';
+            });
+
+            // Show the selected sub-calculator
+            document.getElementById(subtabId).style.display = 'block';
+        });
+    });
+
+    // Calculator functions
+    function calculateFD() {
+        const principal = parseFloat(document.getElementById('fdPrincipal').value);
+        const rate = parseFloat(document.getElementById('fdRate').value);
+        const time = parseFloat(document.getElementById('fdTime').value);
+        const interest = (principal * rate * time) / 100;
+        document.getElementById('fdResult').innerText = `Interest: ₹${interest.toFixed(2)}`;
+    }
+
+    function calculateRD() {
+        const monthlyDeposit = parseFloat(document.getElementById('rdMonthlyDeposit').value);
+        const rate = parseFloat(document.getElementById('rdRate').value);
+        const time = parseFloat(document.getElementById('rdTime').value);
+        const totalDeposit = monthlyDeposit * time * 12;
+        const interest = (totalDeposit * rate * time) / 100;
+        document.getElementById('rdResult').innerText = `Maturity Amount: ₹${(totalDeposit + interest).toFixed(2)}`;
+    }
+
+    function calculateEMI() {
+        const amount = parseFloat(document.getElementById('loanAmount').value);
+        const rate = parseFloat(document.getElementById('loanRate').value);
+        const tenure = parseFloat(document.getElementById('loanTenure').value);
+        const monthlyRate = rate / 1200;
+        const emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, tenure * 12)) / (Math.pow(1 + monthlyRate, tenure * 12) - 1);
+        document.getElementById('emiResult').innerText = `EMI: ₹${emi.toFixed(2)}`;
+    }
+
+    function calculateHomeLoan() {
+        const amount = parseFloat(document.getElementById('homeLoanAmount').value);
+        const rate = parseFloat(document.getElementById('homeLoanRate').value);
+        const tenure = parseFloat(document.getElementById('homeLoanTenure').value);
+        const monthlyRate = rate / 1200;
+        const emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, tenure * 12)) / (Math.pow(1 + monthlyRate, tenure * 12) - 1);
+        document.getElementById('homeLoanResult').innerText = `EMI: ₹${emi.toFixed(2)}`;
+    }
+
+    function calculateIncomeTax() {
+        const income = parseFloat(document.getElementById('income').value);
+        // Add tax calculation logic here
+        document.getElementById('incomeTaxResult').innerText = `Tax: ₹${(income * 0.1).toFixed(2)}`; // Example
+    }
+
+    function calculateGST() {
+        const amount = parseFloat(document.getElementById('gstAmount').value);
+        const rate = parseFloat(document.getElementById('gstRate').value);
+        const gst = (amount * rate) / 100;
+        document.getElementById('gstResult').innerText = `GST: ₹${gst.toFixed(2)}`;
+    }
+
+    function calculateRetirement() {
+        const currentAge = parseFloat(document.getElementById('currentAge').value);
+        const retirementAge = parseFloat(document.getElementById('retirementAge').value);
+        const monthlySavings = parseFloat(document.getElementById('monthlySavings').value);
+        const yearsToRetire = retirementAge - currentAge;
+        const totalSavings = monthlySavings * 12 * yearsToRetire;
+        document.getElementById('retirementResult').innerText = `Total Savings: ₹${totalSavings.toFixed(2)}`;
+    }
+
+    function calculatePension() {
+        const amount = parseFloat(document.getElementById('pensionAmount').value);
+        const rate = parseFloat(document.getElementById('pensionRate').value);
+        const time = parseFloat(document.getElementById('pensionTime').value);
+        const interest = (amount * rate * time) / 100;
+        document.getElementById('pensionResult').innerText = `Pension: ₹${(amount + interest).toFixed(2)}`;
+    }
+
+    function calculateCAGR() {
+        const initialInvestment = parseFloat(document.getElementById('initialInvestment').value);
+        const finalValue = parseFloat(document.getElementById('finalValue').value);
+        const timePeriod = parseFloat(document.getElementById('timePeriod').value);
+        const cagr = (Math.pow(finalValue / initialInvestment, 1 / timePeriod) - 1) * 100;
+        document.getElementById('cagrResult').innerText = `CAGR: ${cagr.toFixed(2)}%`;
+    }
+
+    function calculateInflation() {
+        const currentAmount = parseFloat(document.getElementById('currentAmount').value);
+        const inflationRate = parseFloat(document.getElementById('inflationRate').value);
+        const time = parseFloat(document.getElementById('inflationTime').value);
+        const futureValue = currentAmount * Math.pow(1 + inflationRate / 100, time);
+        document.getElementById('inflationResult').innerText = `Future Value: ₹${futureValue.toFixed(2)}`;
+    }
+
+    function calculateBreakEven() {
+        const fixedCosts = parseFloat(document.getElementById('fixedCosts').value);
+        const sellingPrice = parseFloat(document.getElementById('sellingPrice').value);
+        const variableCosts = parseFloat(document.getElementById('variableCosts').value);
+        const breakEven = fixedCosts / (sellingPrice - variableCosts);
+        document.getElementById('breakEvenResult').innerText = `Break-even Point: ${breakEven.toFixed(2)} units`;
+    }
+
+    function calculateMarkupMargin() {
+        const costPrice = parseFloat(document.getElementById('costPrice').value);
+        const sellingPrice = parseFloat(document.getElementById('sellingPriceMargin').value);
+        const markup = ((sellingPrice - costPrice) / costPrice) * 100;
+        const margin = ((sellingPrice - costPrice) / sellingPrice) * 100;
+        document.getElementById('markupMarginResult').innerText = `Markup: ${markup.toFixed(2)}%, Margin: ${margin.toFixed(2)}%`;
+    }
+
+    function calculateStampDuty() {
+        const propertyValue = parseFloat(document.getElementById('propertyValue').value);
+        const stampDutyRate = parseFloat(document.getElementById('stampDutyRate').value);
+        const stampDuty = (propertyValue * stampDutyRate) / 100;
+        document.getElementById('stampDutyResult').innerText = `Stamp Duty: ₹${stampDuty.toFixed(2)}`;
+    }
+
+    function calculatePropertyLoan() {
+        const amount = parseFloat(document.getElementById('propertyLoanAmount').value);
+        const rate = parseFloat(document.getElementById('propertyLoanRate').value);
+        const tenure = parseFloat(document.getElementById('propertyLoanTenure').value);
+        const monthlyRate = rate / 1200;
+        const emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, tenure * 12)) / (Math.pow(1 + monthlyRate, tenure * 12) - 1);
+        document.getElementById('propertyLoanResult').innerText = `EMI: ₹${emi.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
