@@ -294,8 +294,14 @@
                 let row = table.insertRow();
                 row.insertCell().innerText = `₹${slab.min.toLocaleString()} - ₹${slab.max === Infinity ? '∞' : slab.max.toLocaleString()}`;
                 row.insertCell().innerText = `${slab.rate * 100}%`;
-                row.insertCell().innerText = `₹${slabAmount.toLocaleString()}`;
-                row.insertCell().innerText = `₹${slabTax.toLocaleString()}`;
+                if(totalIncome > 75000) {
+                    row.insertCell().innerText = `₹${slabAmount.toLocaleString()}`;
+                    row.insertCell().innerText = `₹${slabTax.toLocaleString()}`;
+                } else{
+                    row.insertCell().innerText = 0;
+                    row.insertCell().innerText = 0;
+                }
+                
             });
 
             let cess = tax * 0.04;
