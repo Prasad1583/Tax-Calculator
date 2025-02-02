@@ -270,6 +270,7 @@
                     </tr>
                 </table>
                 <p class="tax-summary" id="grossTaxOld"></p>
+                <p class="tax-summary" id="surCharge"></p>
                 <p class="tax-summary" id="cessOld"></p>
             </div>
         </div>
@@ -316,6 +317,24 @@
         const standardDeductionOld = 50000;
         const totalDeductionsOld = section80C + section80CCC + section80CCD1B + section80D + section80DD + section80DDB + section80E + section80EE + section80EEA + section80EEB + section80G + section80GG + section80GGA + hra + lta + section24b + standardDeductionOld;
         const netTaxableIncomeOld = annualIncome - totalDeductionsOld;
+
+        // Calculate Surcharge
+        // Calculate Tax Payable (Basic Slabs)
+        let surChargetax = 0;
+        if (netTaxableIncomeOld > 250000) {
+            if (netTaxableIncomeOld <= 500000) surChargetax = (netTaxableIncomeOld - 250000) * 0.05;
+            else if (netTaxableIncomeOld <= 1000000) surChargetax = 12500 + (netTaxableIncomeOld - 500000) * 0.2;
+            else surChargetax = 112500 + (netTaxableIncomeOld - 1000000) * 0.3;
+        }
+
+        // Apply Surcharge Based on Net Taxable Income
+        let surcharge = 0;
+        if (netTaxableIncomeOld > 50000000) surcharge = surChargetax * 0.37;
+        else if (netTaxableIncomeOld > 20000000) surcharge = surChargetax * 0.25;
+        else if (netTaxableIncomeOld > 10000000) surcharge = surChargetax * 0.15;
+        else if (netTaxableIncomeOld > 5000000) surcharge = surChargetax * 0.10;
+
+       // document.getElementById('surcharge').innerText = `₹${surcharge.toLocaleString()}`;
 
         // New Tax Regime Deductions
         const standardDeductionNew = 75000;
@@ -375,8 +394,12 @@
 
             let cess = tax * 0.04;
             let totalTax = tax + cess;
+            if(tableId === 'taxTableOld') 
+                totalTax = totalTax + surcharge;
 
             document.getElementById(grossTaxId).innerText = `Gross Tax Payable: ₹${tax.toLocaleString()}`;
+            if(tableId === 'taxTableOld' && surcharge > 0) 
+            document.getElementById("surCharge").innerText = `SurCharge: ₹${surcharge.toLocaleString()}`;
             document.getElementById(cessId).innerText = `Health & Education Cess (4%): ₹${cess.toLocaleString()}\nTotal Tax Payable: ₹${totalTax.toLocaleString()}`;
         }
 
