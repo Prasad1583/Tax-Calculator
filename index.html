@@ -178,7 +178,7 @@
             </tr>
             <tr>
                 <th>Net Taxable Income</th>
-                <td id="netTaxableIncome">₹29,25,000.00</td>
+                <td id="netTaxableIncome"></td>
             </tr>
         </table>
     </div>
@@ -224,9 +224,10 @@
         const totalIncome = annualIncome;
         const standardDeductions = 75000;
         const netTaxableIncome = totalIncome - standardDeductions;
-
-        document.getElementById('netTaxableIncome').innerText = `₹${netTaxableIncome.toLocaleString()}`;
-
+        if(totalIncome > 75000)
+            document.getElementById('netTaxableIncome').innerText = `₹${netTaxableIncome.toLocaleString()}`;
+        else
+        document.getElementById('netTaxableIncome').innerText = '';
         // Tax slabs for the current new tax regime
         const taxSlabsCurrent = [
             { min: 0, max: 300000, rate: 0 },
