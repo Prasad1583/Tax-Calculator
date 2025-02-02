@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+            color: #007bff;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 90%;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .tax-summary {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 8px;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .section h2 {
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+
+            input[type="number"], input[type="text"] {
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+
+            .tax-summary {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Income Tax Calculator</h1>
+
+<div class="container">
+    <div class="section">
+        <h2>Income Details</h2>
+        <table>
+            <tr>
+                <th>Annual Income</th>
+                <td><input type="number" id="annualIncome" placeholder="Enter Annual Income" value="" onkeyup="calculateTax()"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Deductions (Old Tax Regime)</h2>
+        <table>
+            <tr>
+                <th>Section 80C</th>
+                <td><input type="number" id="section80C" placeholder="Enter 80C Deductions (Max ₹1,50,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80CCC</th>
+                <td><input type="number" id="section80CCC" placeholder="Enter 80CCC Deductions (Max ₹1,50,000 - Combined with 80C)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80CCD(1B)</th>
+                <td><input type="number" id="section80CCD1B" placeholder="Enter NPS Contributions (Max ₹50,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80D</th>
+                <td><input type="number" id="section80D" placeholder="Enter 80D Deductions (Max ₹25,000/₹50,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80DD</th>
+                <td><input type="number" id="section80DD" placeholder="Disabled Dependent (Max ₹75,000/₹1,25,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80DDB</th>
+                <td><input type="number" id="section80DDB" placeholder="Medical Treatment (Max ₹40,000/₹1,00,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80E</th>
+                <td><input type="number" id="section80E" placeholder="Education Loan Interest (No Limit)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80EE</th>
+                <td><input type="number" id="section80EE" placeholder="Home Loan Interest (Max ₹50,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80EEA</th>
+                <td><input type="number" id="section80EEA" placeholder="Affordable Housing Loan (Max ₹1,50,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80EEB</th>
+                <td><input type="number" id="section80EEB" placeholder="Electric Vehicle Loan (Max ₹1,50,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80G</th>
+                <td><input type="number" id="section80G" placeholder="Donations (50% or 100% Deduction)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80GG</th>
+                <td><input type="number" id="section80GG" placeholder="House Rent (Max ₹60,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 80GGA</th>
+                <td><input type="number" id="section80GGA" placeholder="Scientific Research Donations (100% Deduction)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>House Rent Allowance (HRA)</th>
+                <td><input type="number" id="hra" placeholder="Enter HRA Exemption (As per rules)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Leave Travel Allowance (LTA)</th>
+                <td><input type="number" id="lta" placeholder="Enter LTA Exemption (Actual Travel Cost)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Section 24(b)</th>
+                <td><input type="number" id="section24b" placeholder="Enter Home Loan Interest (Max ₹2,00,000)"  onkeyup="calculateTax()"></td>
+            </tr>
+            <tr>
+                <th>Standard Deduction</th>
+                <td>₹50,000.00</td>
+            </tr>
+            <tr>
+                <th>Net Taxable Income (Old Regime)</th>
+                <td id="netTaxableIncomeOld"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Deductions (New Tax Regime)</h2>
+        <table>
+            <tr>
+                <th>Standard Deduction</th>
+                <td>₹75,000.00</td>
+            </tr>
+            <tr>
+                <th>Net Taxable Income (New Regime)</th>
+                <td id="netTaxableIncomeNew"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="flex-container">
+        <div class="column">
+            <div class="section">
+                <h2>Old Tax Regime</h2>
+                <table id="taxTableOld">
+                    <tr>
+                        <th>Tax Slabs</th>
+                        <th>Rate</th>
+                        <th>Slab Value</th>
+                        <th>Tax</th>
+                    </tr>
+                </table>
+                <p class="tax-summary" id="grossTaxOld"></p>
+                <p class="tax-summary" id="cessOld"></p>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="section">
+                <h2>New Tax Regime (Feb 2025)</h2>
+                <table id="taxTable2025">
+                    <tr>
+                        <th>Tax Slabs</th>
+                        <th>Rate</th>
+                        <th>Slab Value</th>
+                        <th>Tax</th>
+                    </tr>
+                </table>
+                <p class="tax-summary" id="grossTax2025"></p>
+                <p class="tax-summary" id="cess2025"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateTax() {
+        const annualIncome = parseFloat(document.getElementById('annualIncome').value);
+        const section80C = Math.min(parseFloat(document.getElementById('section80C').value) || 0, 150000);
+        const section80CCC = Math.min(parseFloat(document.getElementById('section80CCC').value) || 0, 150000);
+        const section80CCD1B = Math.min(parseFloat(document.getElementById('section80CCD1B').value) || 0, 50000);
+        const section80D = Math.min(parseFloat(document.getElementById('section80D').value) || 0, 50000);
+        const section80DD = Math.min(parseFloat(document.getElementById('section80DD').value) || 0, 125000);
+        const section80DDB = Math.min(parseFloat(document.getElementById('section80DDB').value) || 0, 100000);
+        const section80E = parseFloat(document.getElementById('section80E').value) || 0;
+        const section80EE = Math.min(parseFloat(document.getElementById('section80EE').value) || 0, 50000);
+        const section80EEA = Math.min(parseFloat(document.getElementById('section80EEA').value) || 0, 150000);
+        const section80EEB = Math.min(parseFloat(document.getElementById('section80EEB').value) || 0, 150000);
+        const section80G = parseFloat(document.getElementById('section80G').value) || 0;
+        const section80GG = Math.min(parseFloat(document.getElementById('section80GG').value) || 0, 60000);
+        const section80GGA = parseFloat(document.getElementById('section80GGA').value) || 0;
+        const hra = parseFloat(document.getElementById('hra').value) || 0;
+        const lta = parseFloat(document.getElementById('lta').value) || 0;
+        const section24b = Math.min(parseFloat(document.getElementById('section24b').value) || 0, 200000);
+
+        // Old Tax Regime Deductions
+        const standardDeductionOld = 50000;
+        const totalDeductionsOld = section80C + section80CCC + section80CCD1B + section80D + section80DD + section80DDB + section80E + section80EE + section80EEA + section80EEB + section80G + section80GG + section80GGA + hra + lta + section24b + standardDeductionOld;
+        const netTaxableIncomeOld = annualIncome - totalDeductionsOld;
+
+        // New Tax Regime Deductions
+        const standardDeductionNew = 75000;
+        const netTaxableIncomeNew = annualIncome - standardDeductionNew;
+
+        // Display Net Taxable Income
+        document.getElementById('netTaxableIncomeOld').innerText = `₹${netTaxableIncomeOld.toLocaleString()}`;
+        document.getElementById('netTaxableIncomeNew').innerText = `₹${netTaxableIncomeNew.toLocaleString()}`;
+
+        // Tax slabs for the old tax regime
+        const taxSlabsOld = [
+            { min: 0, max: 250000, rate: 0 },
+            { min: 250001, max: 500000, rate: 0.05 },
+            { min: 500001, max: 1000000, rate: 0.20 },
+            { min: 1000001, max: Infinity, rate: 0.30 }
+        ];
+
+        // Tax slabs for the new tax regime as per Feb 2025
+        const taxSlabs2025 = [
+            { min: 0, max: 400000, rate: 0 },
+            { min: 400001, max: 800000, rate: 0.05 },
+            { min: 800001, max: 1200000, rate: 0.10 },
+            { min: 1200001, max: 1600000, rate: 0.15 },
+            { min: 1600001, max: 2000000, rate: 0.20 },
+            { min: 2000001, max: 2400000, rate: 0.25 },
+            { min: 2400001, max: Infinity, rate: 0.30 }
+        ];
+
+        // Function to calculate tax for a given set of slabs
+        function calculateTaxForSlabs(slabs, tableId, grossTaxId, cessId, netTaxableIncome) {
+            let tax = 0;
+            let remainingIncome = netTaxableIncome;
+            let table = document.getElementById(tableId);
+            table.innerHTML = `
+                <tr>
+                    <th>Tax Slabs</th>
+                    <th>Rate</th>
+                    <th>Slab Value</th>
+                    <th>Tax</th>
+                </tr>
+            `;
+
+            slabs.forEach(slab => {
+                if (remainingIncome <= 0) return;
+
+                let slabAmount = Math.min(slab.max - slab.min, remainingIncome);
+                let slabTax = slabAmount * slab.rate;
+                tax += slabTax;
+                remainingIncome -= slabAmount;
+
+                let row = table.insertRow();
+                row.insertCell().innerText = `₹${slab.min.toLocaleString()} - ₹${slab.max === Infinity ? '∞' : slab.max.toLocaleString()}`;
+                row.insertCell().innerText = `${slab.rate * 100}%`;
+                row.insertCell().innerText = `₹${slabAmount.toLocaleString()}`;
+                row.insertCell().innerText = `₹${slabTax.toLocaleString()}`;
+            });
+
+            let cess = tax * 0.04;
+            let totalTax = tax + cess;
+
+            document.getElementById(grossTaxId).innerText = `Gross Tax Payable: ₹${tax.toLocaleString()}`;
+            document.getElementById(cessId).innerText = `Health & Education Cess (4%): ₹${cess.toLocaleString()}\nTotal Tax Payable: ₹${totalTax.toLocaleString()}`;
+        }
+
+        // Calculate tax for all regimes
+        calculateTaxForSlabs(taxSlabsOld, 'taxTableOld', 'grossTaxOld', 'cessOld', netTaxableIncomeOld);
+        calculateTaxForSlabs(taxSlabs2025, 'taxTable2025', 'grossTax2025', 'cess2025', netTaxableIncomeNew);
+    }
+
+    // Initial calculation on page load
+    calculateTax();
+</script>
+
+</body>
+</html>
