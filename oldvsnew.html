@@ -270,7 +270,7 @@
                     </tr>
                 </table>
                 <p class="tax-summary" id="grossTaxOld"></p>
-                <p class="tax-summary" id="surCharge"></p>
+                <p class="tax-summary" id="surChargeOld"></p>
                 <p class="tax-summary" id="cessOld"></p>
             </div>
         </div>
@@ -287,6 +287,7 @@
                     </tr>
                 </table>
                 <p class="tax-summary" id="grossTax2025"></p>
+                <p class="tax-summary" id="surChargeNew"></p>
                 <p class="tax-summary" id="cess2025"></p>
             </div>
         </div>
@@ -318,27 +319,43 @@
         const totalDeductionsOld = section80C + section80CCC + section80CCD1B + section80D + section80DD + section80DDB + section80E + section80EE + section80EEA + section80EEB + section80G + section80GG + section80GGA + hra + lta + section24b + standardDeductionOld;
         const netTaxableIncomeOld = annualIncome - totalDeductionsOld;
 
-        // Calculate Surcharge
-        // Calculate Tax Payable (Basic Slabs)
-        let surChargetax = 0;
-        if (netTaxableIncomeOld > 250000) {
-            if (netTaxableIncomeOld <= 500000) surChargetax = (netTaxableIncomeOld - 250000) * 0.05;
-            else if (netTaxableIncomeOld <= 1000000) surChargetax = 12500 + (netTaxableIncomeOld - 500000) * 0.2;
-            else surChargetax = 112500 + (netTaxableIncomeOld - 1000000) * 0.3;
-        }
-
-        // Apply Surcharge Based on Net Taxable Income
-        let surcharge = 0;
-        if (netTaxableIncomeOld > 50000000) surcharge = surChargetax * 0.37;
-        else if (netTaxableIncomeOld > 20000000) surcharge = surChargetax * 0.25;
-        else if (netTaxableIncomeOld > 10000000) surcharge = surChargetax * 0.15;
-        else if (netTaxableIncomeOld > 5000000) surcharge = surChargetax * 0.10;
-
-       // document.getElementById('surcharge').innerText = `₹${surcharge.toLocaleString()}`;
-
         // New Tax Regime Deductions
         const standardDeductionNew = 75000;
         const netTaxableIncomeNew = annualIncome - standardDeductionNew;
+
+        // Calculate Surcharge
+        // Calculate Tax Payable (Basic Slabs)
+        let oldsurChargetax = 0;
+        if (netTaxableIncomeOld > 250000) {
+            if (netTaxableIncomeOld <= 500000) oldsurChargetax = (netTaxableIncomeOld - 250000) * 0.05;
+            else if (netTaxableIncomeOld <= 1000000) oldsurChargetax = 12500 + (netTaxableIncomeOld - 500000) * 0.2;
+            else oldsurChargetax = 112500 + (netTaxableIncomeOld - 1000000) * 0.3;
+        }
+
+        // Apply Surcharge Based on Net Taxable Income (Old Regime)
+        let oldsurcharge = 0;
+        if (netTaxableIncomeOld > 50000000) oldsurcharge = oldsurChargetax * 0.37;
+        else if (netTaxableIncomeOld > 20000000) oldsurcharge = oldsurChargetax * 0.25;
+        else if (netTaxableIncomeOld > 10000000) oldsurcharge = oldsurChargetax * 0.15;
+        else if (netTaxableIncomeOld > 5000000) oldsurcharge = oldsurChargetax * 0.10;
+
+        let newsurChargetax = 0;
+        if (netTaxableIncomeNew > 400000) {
+            if (netTaxableIncomeNew <= 800000) newsurChargetax = (netTaxableIncomeNew - 400000) * 0.05;
+            else if (netTaxableIncomeNew <= 1200000) newsurChargetax = 20000 + (netTaxableIncomeNew - 800000) * 0.10;
+            else if (netTaxableIncomeNew <= 1600000) newsurChargetax = 60000 + (netTaxableIncomeNew - 1200000) * 0.15;
+            else if (netTaxableIncomeNew <= 2000000) newsurChargetax = 120000 + (netTaxableIncomeNew - 1600000) * 0.20;
+            else if (netTaxableIncomeNew <= 2400000) newsurChargetax = 200000 + (netTaxableIncomeNew - 2000000) * 0.25;
+            else newsurChargetax = 300000 + (netTaxableIncomeNew - 2400000) * 0.30;
+        }
+
+        // Apply Surcharge Based on Net Taxable Income (New Regime - Feb 2025 Update)
+        let newsurcharge = 0;
+        if (netTaxableIncomeNew > 50000000) newsurcharge = newsurChargetax * 0.25;
+        else if (netTaxableIncomeNew > 20000000) newsurcharge = newsurChargetax * 0.25;
+        else if (netTaxableIncomeNew > 10000000) newsurcharge = newsurChargetax * 0.15;
+        else if (netTaxableIncomeNew > 5000000) newsurcharge = newsurChargetax * 0.10;
+        
 
         // Display Net Taxable Income
         document.getElementById('netTaxableIncomeOld').innerText = `₹${netTaxableIncomeOld.toLocaleString()}`;
@@ -364,7 +381,7 @@
         ];
 
         // Function to calculate tax for a given set of slabs
-        function calculateTaxForSlabs(slabs, tableId, grossTaxId, cessId, netTaxableIncome) {
+        function calculateTaxForSlabs(slabs, tableId, grossTaxId, cessId, surChargeId, netTaxableIncome) {
             let tax = 0;
             let remainingIncome = netTaxableIncome;
             let table = document.getElementById(tableId);
@@ -394,18 +411,24 @@
 
             let cess = tax * 0.04;
             let totalTax = tax + cess;
-            if(tableId === 'taxTableOld') 
-                totalTax = totalTax + surcharge;
+            if(surChargeId === 'surChargeOld' && oldsurcharge > 0) 
+                totalTax = totalTax + oldsurcharge;
+
+            if(surChargeId === 'surChargeNew' && newsurcharge > 0) 
+                totalTax = totalTax + newsurcharge;
 
             document.getElementById(grossTaxId).innerText = `Gross Tax Payable: ₹${tax.toLocaleString()}`;
-            if(tableId === 'taxTableOld' && surcharge > 0) 
-            document.getElementById("surCharge").innerText = `SurCharge: ₹${surcharge.toLocaleString()}`;
+            if(surChargeId === 'surChargeOld' && oldsurcharge > 0) 
+                document.getElementById(surChargeId).innerText = `SurCharge: ₹${oldsurcharge.toLocaleString()}`;
+            if(surChargeId === 'surChargeNew' && newsurcharge > 0) 
+                document.getElementById(surChargeId).innerText = `SurCharge: ₹${newsurcharge.toLocaleString()}`;
+    
             document.getElementById(cessId).innerText = `Health & Education Cess (4%): ₹${cess.toLocaleString()}\nTotal Tax Payable: ₹${totalTax.toLocaleString()}`;
         }
 
         // Calculate tax for all regimes
-        calculateTaxForSlabs(taxSlabsOld, 'taxTableOld', 'grossTaxOld', 'cessOld', netTaxableIncomeOld);
-        calculateTaxForSlabs(taxSlabs2025, 'taxTable2025', 'grossTax2025', 'cess2025', netTaxableIncomeNew);
+        calculateTaxForSlabs(taxSlabsOld, 'taxTableOld', 'grossTaxOld', 'cessOld','surChargeOld', netTaxableIncomeOld);
+        calculateTaxForSlabs(taxSlabs2025, 'taxTable2025', 'grossTax2025', 'cess2025','surChargeNew', netTaxableIncomeNew);
     }
 
     // Initial calculation on page load
