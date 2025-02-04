@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrient Data Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --text-color: #2c3e50;
+            --background-color: #ecf0f1;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 0;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab-button {
+            padding: 12px 25px;
+            border: none;
+            background-color: #fff;
+            color: var(--text-color);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+
+        .tab-button.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .nutrient-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .nutrient-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            transform: scale(1);
+        }
+
+        .nutrient-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+
+        .nutrient-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .nutrient-card p {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌿 Nutrient Data Explorer 🍎</h1>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="changeTab('dry-seeds')">Dry Seeds 🌱</button>
+            <button class="tab-button" onclick="changeTab('dry-fruits')">Dry Fruits 🍇</button>
+            <button class="tab-button" onclick="changeTab('vegetables')">Vegetables 🥦</button>
+            <button class="tab-button" onclick="changeTab('fresh-fruits')">Fresh Fruits 🍏</button>
+        </div>
+
+        <div id="nutrient-grid" class="nutrient-grid"></div>
+    </div>
+
+    <script>
+        const nutrientData = {
+            "dry-seeds": [
+            {
+              "name": "Chia Seeds",
+              "protein": "16.5g",
+              "fat": "30.7g",
+              "carbs": "42.1g"
+            },
+            {
+              "name": "Flax Seeds",
+              "protein": "18.3g",
+              "fat": "42.2g",
+              "carbs": "28.9g"
+            },
+            {
+              "name": "Pumpkin Seeds",
+              "protein": "30.2g",
+              "fat": "49.1g",
+              "carbs": "10.7g"
+            },
+            {
+              "name": "Sunflower Seeds",
+              "protein": "20.8g",
+              "fat": "51.5g",
+              "carbs": "20.0g"
+            },
+            {
+              "name": "Sesame Seeds",
+              "protein": "17.7g",
+              "fat": "49.7g",
+              "carbs": "23.4g"
+            },
+            {
+              "name": "Hemp Seeds",
+              "protein": "31.6g",
+              "fat": "48.8g",
+              "carbs": "4.7g"
+            },
+            {
+              "name": "Quinoa Seeds",
+              "protein": "14.1g",
+              "fat": "6.1g",
+              "carbs": "64.2g"
+            },
+            {
+              "name": "Poppy Seeds",
+              "protein": "17.2g",
+              "fat": "41.6g",
+              "carbs": "28.2g"
+            },
+            {
+              "name": "Watermelon Seeds",
+              "protein": "28.3g",
+              "fat": "47.4g",
+              "carbs": "15.4g"
+            },
+            {
+              "name": "Pomegranate Seeds",
+              "protein": "3.3g",
+              "fat": "1.2g",
+              "carbs": "18.7g"
+            }
+          ],
+            "dry-fruits": [
+            {
+              "name": "Raisins",
+              "protein": "3.0g",
+              "fat": "0.5g",
+              "carbs": "79.2g"
+            },
+            {
+              "name": "Dates",
+              "protein": "2.5g",
+              "fat": "0.4g",
+              "carbs": "75.0g"
+            },
+            {
+              "name": "Dried Apricots",
+              "protein": "3.4g",
+              "fat": "0.5g",
+              "carbs": "63.2g"
+            },
+            {
+              "name": "Dried Figs",
+              "protein": "3.3g",
+              "fat": "0.9g",
+              "carbs": "64.8g"
+            },
+            {
+              "name": "Prunes",
+              "protein": "2.2g",
+              "fat": "0.4g",
+              "carbs": "64.0g"
+            },
+            {
+              "name": "Dried Cranberries",
+              "protein": "0.4g",
+              "fat": "0.5g",
+              "carbs": "82.1g"
+            },
+            {
+              "name": "Dried Cherries",
+              "protein": "1.5g",
+              "fat": "0.5g",
+              "carbs": "76.5g"
+            },
+            {
+              "name": "Dried Goji Berries",
+              "protein": "12.0g",
+              "fat": "0.4g",
+              "carbs": "77.1g"
+            },
+            {
+              "name": "Dried Mulberries",
+              "protein": "4.0g",
+              "fat": "1.4g",
+              "carbs": "70.6g"
+            },
+            {
+              "name": "Dried Mango",
+              "protein": "1.5g",
+              "fat": "0.6g",
+              "carbs": "80.0g"
+            },
+            {
+              "name": "Dried Pineapple",
+              "protein": "1.0g",
+              "fat": "0.4g",
+              "carbs": "76.5g"
+            },
+            {
+              "name": "Dried Papaya",
+              "protein": "1.6g",
+              "fat": "0.2g",
+              "carbs": "75.2g"
+            }
+          ],
+            "vegetables": [
+            {
+              "name": "Broccoli",
+              "protein": "2.8g",
+              "fat": "0.4g",
+              "carbs": "6.0g"
+            },
+            {
+              "name": "Spinach",
+              "protein": "2.9g",
+              "fat": "0.4g",
+              "carbs": "3.6g"
+            },
+            {
+              "name": "Carrots",
+              "protein": "0.9g",
+              "fat": "0.2g",
+              "carbs": "10.0g"
+            },
+            {
+              "name": "Kale",
+              "protein": "2.3g",
+              "fat": "0.5g",
+              "carbs": "8.8g"
+            },
+            {
+              "name": "Bell Peppers",
+              "protein": "1.0g",
+              "fat": "0.3g",
+              "carbs": "6.0g"
+            },
+            {
+              "name": "Cauliflower",
+              "protein": "1.9g",
+              "fat": "0.3g",
+              "carbs": "5.3g"
+            },
+            {
+              "name": "Tomatoes",
+              "protein": "0.9g",
+              "fat": "0.2g",
+              "carbs": "3.9g"
+            },
+            {
+              "name": "Cucumber",
+              "protein": "0.7g",
+              "fat": "0.2g",
+              "carbs": "3.6g"
+            },
+            {
+              "name": "Zucchini",
+              "protein": "1.2g",
+              "fat": "0.2g",
+              "carbs": "3.1g"
+            },
+            {
+              "name": "Eggplant",
+              "protein": "1.0g",
+              "fat": "0.2g",
+              "carbs": "6.0g"
+            },
+            {
+              "name": "Asparagus",
+              "protein": "2.2g",
+              "fat": "0.1g",
+              "carbs": "3.9g"
+            },
+            {
+              "name": "Brussels Sprouts",
+              "protein": "3.4g",
+              "fat": "0.3g",
+              "carbs": "8.9g"
+            },
+            {
+              "name": "Cabbage",
+              "protein": "1.3g",
+              "fat": "0.1g",
+              "carbs": "6.0g"
+            },
+            {
+              "name": "Celery",
+              "protein": "0.7g",
+              "fat": "0.2g",
+              "carbs": "3.0g"
+            },
+            {
+              "name": "Lettuce",
+              "protein": "1.4g",
+              "fat": "0.2g",
+              "carbs": "2.9g"
+            }
+          ],
+            "fresh-fruits": [
+            {
+              "name": "Apple",
+              "protein": "0.3g",
+              "fat": "0.2g",
+              "carbs": "14.0g"
+            },
+            {
+              "name": "Banana",
+              "protein": "1.1g",
+              "fat": "0.3g",
+              "carbs": "23.0g"
+            },
+            {
+              "name": "Orange",
+              "protein": "0.9g",
+              "fat": "0.2g",
+              "carbs": "12.0g"
+            },
+            {
+              "name": "Strawberries",
+              "protein": "0.7g",
+              "fat": "0.3g",
+              "carbs": "7.7g"
+            },
+            {
+              "name": "Blueberries",
+              "protein": "0.7g",
+              "fat": "0.3g",
+              "carbs": "14.5g"
+            },
+            {
+              "name": "Mango",
+              "protein": "0.8g",
+              "fat": "0.4g",
+              "carbs": "15.0g"
+            },
+            {
+              "name": "Pineapple",
+              "protein": "0.5g",
+              "fat": "0.1g",
+              "carbs": "13.0g"
+            },
+            {
+              "name": "Watermelon",
+              "protein": "0.6g",
+              "fat": "0.2g",
+              "carbs": "7.6g"
+            },
+            {
+              "name": "Grapes",
+              "protein": "0.6g",
+              "fat": "0.2g",
+              "carbs": "18.1g"
+            },
+            {
+              "name": "Kiwi",
+              "protein": "1.1g",
+              "fat": "0.5g",
+              "carbs": "15.0g"
+            },
+            {
+              "name": "Peach",
+              "protein": "0.9g",
+              "fat": "0.3g",
+              "carbs": "10.0g"
+            },
+            {
+              "name": "Pear",
+              "protein": "0.4g",
+              "fat": "0.1g",
+              "carbs": "15.0g"
+            },
+            {
+              "name": "Pomegranate",
+              "protein": "1.7g",
+              "fat": "1.2g",
+              "carbs": "19.0g"
+            },
+            {
+              "name": "Papaya",
+              "protein": "0.5g",
+              "fat": "0.3g",
+              "carbs": "10.8g"
+            },
+            {
+              "name": "Guava",
+              "protein": "2.6g",
+              "fat": "0.5g",
+              "carbs": "14.3g"
+            }
+          ]
+        };
+
+        function changeTab(category) {
+            // Update active tab button
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase().includes(category.replace('-', ' '))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Render nutrient grid
+            const grid = document.getElementById('nutrient-grid');
+            grid.innerHTML = nutrientData[category].map(item => `
+                <div class="nutrient-card">
+                    <h2>${item.name}</h2>
+                    <p><strong>Protein:</strong> ${item.protein}</p>
+                    <p><strong>Fat:</strong> ${item.fat}</p>
+                    <p><strong>Carbs:</strong> ${item.carbs}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize with dry seeds
+        changeTab('dry-seeds');
+    </script>
+</body>
+</html>
