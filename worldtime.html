@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Times for 195 Countries</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #00adb5;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            font-size: 1rem;
+            border: 2px solid #00adb5;
+            border-radius: 5px;
+            outline: none;
+            background: #1f1f1f;
+            color: #ffffff;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 10px;
+        }
+
+        /* Card Styles */
+        .clock-card {
+            background: #1f1f1f;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .clock-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .clock-card h2 {
+            font-size: 1rem;
+            color: #00adb5;
+            margin-bottom: 10px;
+        }
+
+        .clock-card p {
+            font-size: 0.9rem;
+            color: #eeeeee;
+            background: #00adb5;
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .clock-card h2 {
+                font-size: 0.9rem;
+            }
+
+            .clock-card p {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+            }
+
+            .container {
+                gap: 10px;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .clock-card h2 {
+                font-size: 0.8rem;
+            }
+
+            .clock-card p {
+                font-size: 0.7rem;
+                padding: 4px 6px;
+            }
+
+            .container {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>World Times 🌍</h1>
+
+    <div class="search-container">
+        <input type="text" id="search-box" class="search-box" placeholder="Search for a country..."
+            oninput="filterCountries()" />
+    </div>
+
+    <div class="container" id="time-container"></div>
+
+    <script>
+        // List of countries and their time zones
+        const countries = [
+            { country: "Afghanistan", timeZone: "Asia/Kabul" },
+            { country: "Albania", timeZone: "Europe/Tirane" },
+            { country: "Algeria", timeZone: "Africa/Algiers" },
+            { country: "Andorra", timeZone: "Europe/Andorra" },
+            { country: "Angola", timeZone: "Africa/Luanda" },
+            { country: "Antigua and Barbuda", timeZone: "America/Antigua" },
+            { country: "Argentina", timeZone: "America/Argentina/Buenos_Aires" },
+            { country: "Armenia", timeZone: "Asia/Yerevan" },
+            { country: "Australia", timeZone: "Australia/Sydney" },
+            { country: "Austria", timeZone: "Europe/Vienna" },
+            { country: "Azerbaijan", timeZone: "Asia/Baku" },
+            { country: "Bahamas", timeZone: "America/Nassau" },
+            { country: "Bahrain", timeZone: "Asia/Bahrain" },
+            { country: "Bangladesh", timeZone: "Asia/Dhaka" },
+            { country: "Barbados", timeZone: "America/Barbados" },
+            { country: "Belarus", timeZone: "Europe/Minsk" },
+            { country: "Belgium", timeZone: "Europe/Brussels" },
+            { country: "Belize", timeZone: "America/Belize" },
+            { country: "Benin", timeZone: "Africa/Porto-Novo" },
+            { country: "Bhutan", timeZone: "Asia/Thimphu" },
+            { country: "Bolivia", timeZone: "America/La_Paz" },
+            { country: "Bosnia and Herzegovina", timeZone: "Europe/Sarajevo" },
+            { country: "Botswana", timeZone: "Africa/Gaborone" },
+            { country: "Brazil", timeZone: "America/Sao_Paulo" },
+            { country: "Brunei", timeZone: "Asia/Brunei" },
+            { country: "Bulgaria", timeZone: "Europe/Sofia" },
+            { country: "Burkina Faso", timeZone: "Africa/Ouagadougou" },
+            { country: "Burundi", timeZone: "Africa/Bujumbura" },
+            { country: "Cabo Verde", timeZone: "Atlantic/Cape_Verde" },
+            { country: "Cambodia", timeZone: "Asia/Phnom_Penh" },
+            { country: "Cameroon", timeZone: "Africa/Douala" },
+            { country: "Canada", timeZone: "America/Toronto" },
+            { country: "Central African Republic", timeZone: "Africa/Bangui" },
+            { country: "Chad", timeZone: "Africa/Ndjamena" },
+            { country: "Chile", timeZone: "America/Santiago" },
+            { country: "China", timeZone: "Asia/Shanghai" },
+            { country: "Colombia", timeZone: "America/Bogota" },
+            { country: "Comoros", timeZone: "Indian/Comoro" },
+            { country: "Congo (Congo-Brazzaville)", timeZone: "Africa/Brazzaville" },
+            { country: "Costa Rica", timeZone: "America/Costa_Rica" },
+            { country: "Croatia", timeZone: "Europe/Zagreb" },
+            { country: "Cuba", timeZone: "America/Havana" },
+            { country: "Cyprus", timeZone: "Asia/Nicosia" },
+            { country: "Czechia (Czech Republic)", timeZone: "Europe/Prague" },
+            { country: "Denmark", timeZone: "Europe/Copenhagen" },
+            { country: "Djibouti", timeZone: "Africa/Djibouti" },
+            { country: "Dominica", timeZone: "America/Dominica" },
+            { country: "Dominican Republic", timeZone: "America/Santo_Domingo" },
+            { country: "Ecuador", timeZone: "America/Guayaquil" },
+            { country: "Egypt", timeZone: "Africa/Cairo" },
+            { country: "El Salvador", timeZone: "America/El_Salvador" },
+            { country: "Equatorial Guinea", timeZone: "Africa/Malabo" },
+            { country: "Eritrea", timeZone: "Africa/Asmara" },
+            { country: "Estonia", timeZone: "Europe/Tallinn" },
+            { country: "Eswatini (fmr. Swaziland)", timeZone: "Africa/Mbabane" },
+            { country: "Ethiopia", timeZone: "Africa/Addis_Ababa" },
+            { country: "Fiji", timeZone: "Pacific/Fiji" },
+            { country: "Finland", timeZone: "Europe/Helsinki" },
+            { country: "France", timeZone: "Europe/Paris" },
+            { country: "Gabon", timeZone: "Africa/Libreville" },
+            { country: "Gambia", timeZone: "Africa/Banjul" },
+            { country: "Georgia", timeZone: "Asia/Tbilisi" },
+            { country: "Germany", timeZone: "Europe/Berlin" },
+            { country: "Ghana", timeZone: "Africa/Accra" },
+            { country: "Greece", timeZone: "Europe/Athens" },
+            { country: "Grenada", timeZone: "America/Grenada" },
+            { country: "Guatemala", timeZone: "America/Guatemala" },
+            { country: "Guinea", timeZone: "Africa/Conakry" },
+            { country: "Guinea-Bissau", timeZone: "Africa/Bissau" },
+            { country: "Guyana", timeZone: "America/Guyana" },
+            { country: "Haiti", timeZone: "America/Port-au-Prince" },
+            { country: "Holy See", timeZone: "Europe/Vatican" },
+            { country: "Honduras", timeZone: "America/Tegucigalpa" },
+            { country: "Hungary", timeZone: "Europe/Budapest" },
+            { country: "Iceland", timeZone: "Atlantic/Reykjavik" },
+            { country: "India", timeZone: "Asia/Kolkata" },
+            { country: "Indonesia", timeZone: "Asia/Jakarta" },
+            { country: "Iran", timeZone: "Asia/Tehran" },
+            { country: "Iraq", timeZone: "Asia/Baghdad" },
+            { country: "Ireland", timeZone: "Europe/Dublin" },
+            { country: "Israel", timeZone: "Asia/Jerusalem" },
+            { country: "Italy", timeZone: "Europe/Rome" },
+            { country: "Jamaica", timeZone: "America/Jamaica" },
+            { country: "Japan", timeZone: "Asia/Tokyo" },
+            { country: "Jordan", timeZone: "Asia/Amman" },
+            { country: "Kazakhstan", timeZone: "Asia/Almaty" },
+            { country: "Kenya", timeZone: "Africa/Nairobi" },
+            { country: "Kiribati", timeZone: "Pacific/Tarawa" },
+            { country: "Kuwait", timeZone: "Asia/Kuwait" },
+            { country: "Kyrgyzstan", timeZone: "Asia/Bishkek" },
+            { country: "Laos", timeZone: "Asia/Vientiane" },
+            { country: "Latvia", timeZone: "Europe/Riga" },
+            { country: "Lebanon", timeZone: "Asia/Beirut" },
+            { country: "Lesotho", timeZone: "Africa/Maseru" },
+            { country: "Liberia", timeZone: "Africa/Monrovia" },
+            { country: "Libya", timeZone: "Africa/Tripoli" },
+            { country: "Liechtenstein", timeZone: "Europe/Vaduz" },
+            { country: "Lithuania", timeZone: "Europe/Vilnius" },
+            { country: "Luxembourg", timeZone: "Europe/Luxembourg" },
+            { country: "Madagascar", timeZone: "Indian/Antananarivo" },
+            { country: "Malawi", timeZone: "Africa/Blantyre" },
+            { country: "Malaysia", timeZone: "Asia/Kuala_Lumpur" },
+            { country: "Maldives", timeZone: "Indian/Maldives" },
+            { country: "Mali", timeZone: "Africa/Bamako" },
+            { country: "Malta", timeZone: "Europe/Malta" },
+            { country: "Marshall Islands", timeZone: "Pacific/Majuro" },
+            { country: "Mauritania", timeZone: "Africa/Nouakchott" },
+            { country: "Mauritius", timeZone: "Indian/Mauritius" },
+            { country: "Mexico", timeZone: "America/Mexico_City" },
+            { country: "Micronesia", timeZone: "Pacific/Chuuk" },
+            { country: "Moldova", timeZone: "Europe/Chisinau" },
+            { country: "Monaco", timeZone: "Europe/Monaco" },
+            { country: "Mongolia", timeZone: "Asia/Ulaanbaatar" },
+            { country: "Montenegro", timeZone: "Europe/Podgorica" },
+            { country: "Morocco", timeZone: "Africa/Casablanca" },
+            { country: "Mozambique", timeZone: "Africa/Maputo" },
+            { country: "Myanmar (Burma)", timeZone: "Asia/Yangon" },
+            { country: "Namibia", timeZone: "Africa/Windhoek" },
+            { country: "Nauru", timeZone: "Pacific/Nauru" },
+            { country: "Nepal", timeZone: "Asia/Kathmandu" },
+            { country: "Netherlands", timeZone: "Europe/Amsterdam" },
+            { country: "New Zealand", timeZone: "Pacific/Auckland" },
+            { country: "Nicaragua", timeZone: "America/Managua" },
+            { country: "Niger", timeZone: "Africa/Niamey" },
+            { country: "Nigeria", timeZone: "Africa/Lagos" },
+            { country: "North Korea", timeZone: "Asia/Pyongyang" },
+            { country: "North Macedonia", timeZone: "Europe/Skopje" },
+            { country: "Norway", timeZone: "Europe/Oslo" },
+            { country: "Oman", timeZone: "Asia/Muscat" },
+            { country: "Pakistan", timeZone: "Asia/Karachi" },
+            { country: "Palau", timeZone: "Pacific/Palau" },
+            { country: "Palestine", timeZone: "Asia/Gaza" },
+            { country: "Panama", timeZone: "America/Panama" },
+            { country: "Papua New Guinea", timeZone: "Pacific/Port_Moresby" },
+            { country: "Paraguay", timeZone: "America/Asuncion" },
+            { country: "Peru", timeZone: "America/Lima" },
+            { country: "Philippines", timeZone: "Asia/Manila" },
+            { country: "Poland", timeZone: "Europe/Warsaw" },
+            { country: "Portugal", timeZone: "Europe/Lisbon" },
+            { country: "Qatar", timeZone: "Asia/Qatar" },
+            { country: "Romania", timeZone: "Europe/Bucharest" },
+            { country: "Russia", timeZone: "Europe/Moscow" },
+            { country: "Rwanda", timeZone: "Africa/Kigali" },
+            { country: "Saint Kitts and Nevis", timeZone: "America/St_Kitts" },
+            { country: "Saint Lucia", timeZone: "America/St_Lucia" },
+            { country: "Saint Vincent and the Grenadines", timeZone: "America/St_Vincent" },
+            { country: "Samoa", timeZone: "Pacific/Apia" },
+            { country: "San Marino", timeZone: "Europe/San_Marino" },
+            { country: "Sao Tome and Principe", timeZone: "Africa/Sao_Tome" },
+            { country: "Saudi Arabia", timeZone: "Asia/Riyadh" },
+            { country: "Senegal", timeZone: "Africa/Dakar" },
+            { country: "Serbia", timeZone: "Europe/Belgrade" },
+            { country: "Seychelles", timeZone: "Indian/Mahe" },
+            { country: "Sierra Leone", timeZone: "Africa/Freetown" },
+            { country: "Singapore", timeZone: "Asia/Singapore" },
+            { country: "Slovakia", timeZone: "Europe/Bratislava" },
+            { country: "Slovenia", timeZone: "Europe/Ljubljana" },
+            { country: "Solomon Islands", timeZone: "Pacific/Guadalcanal" },
+            { country: "Somalia", timeZone: "Africa/Mogadishu" },
+            { country: "South Africa", timeZone: "Africa/Johannesburg" },
+            { country: "South Korea", timeZone: "Asia/Seoul" },
+            { country: "South Sudan", timeZone: "Africa/Juba" },
+            { country: "Spain", timeZone: "Europe/Madrid" },
+            { country: "Sri Lanka", timeZone: "Asia/Colombo" },
+            { country: "Sudan", timeZone: "Africa/Khartoum" },
+            { country: "Suriname", timeZone: "America/Paramaribo" },
+            { country: "Sweden", timeZone: "Europe/Stockholm" },
+            { country: "Switzerland", timeZone: "Europe/Zurich" },
+            { country: "Syria", timeZone: "Asia/Damascus" },
+            { country: "Taiwan", timeZone: "Asia/Taipei" },
+            { country: "Tajikistan", timeZone: "Asia/Dushanbe" },
+            { country: "Tanzania", timeZone: "Africa/Dar_es_Salaam" },
+            { country: "Thailand", timeZone: "Asia/Bangkok" },
+            { country: "Timor-Leste", timeZone: "Asia/Dili" },
+            { country: "Togo", timeZone: "Africa/Lome" },
+            { country: "Tonga", timeZone: "Pacific/Tongatapu" },
+            { country: "Trinidad and Tobago", timeZone: "America/Port_of_Spain" },
+            { country: "Tunisia", timeZone: "Africa/Tunis" },
+            { country: "Turkey", timeZone: "Europe/Istanbul" },
+            { country: "Turkmenistan", timeZone: "Asia/Ashgabat" },
+            { country: "Tuvalu", timeZone: "Pacific/Funafuti" },
+            { country: "Uganda", timeZone: "Africa/Kampala" },
+            { country: "Ukraine", timeZone: "Europe/Kiev" },
+            { country: "United Arab Emirates", timeZone: "Asia/Dubai" },
+            { country: "United Kingdom", timeZone: "Europe/London" },
+            { country: "United States", timeZone: "America/New_York" },
+            { country: "Uruguay", timeZone: "America/Montevideo" },
+            { country: "Uzbekistan", timeZone: "Asia/Tashkent" },
+            { country: "Vanuatu", timeZone: "Pacific/Efate" },
+            { country: "Vatican City", timeZone: "Europe/Vatican" },
+            { country: "Venezuela", timeZone: "America/Caracas" },
+            { country: "Vietnam", timeZone: "Asia/Ho_Chi_Minh" },
+            { country: "Yemen", timeZone: "Asia/Aden" },
+            { country: "Zambia", timeZone: "Africa/Lusaka" },
+            { country: "Zimbabwe", timeZone: "Africa/Harare" }
+        ];
+
+
+        // Function to generate time cards dynamically
+        function generateTimeCards() {
+            const container = document.getElementById("time-container");
+
+            countries.forEach((item, index) => {
+                const clockCard = document.createElement("div");
+                clockCard.className = "clock-card";
+                clockCard.id = `clock-card-${index}`;
+                clockCard.innerHTML = `
+          <h2>${item.country}</h2>
+          <p id="clock-${index}">Loading...</p>
+        `;
+                container.appendChild(clockCard);
+            });
+        }
+
+        // Function to update the time for all countries
+        function updateTimes() {
+            const now = new Date();
+
+            countries.forEach((item, index) => {
+                const time = now.toLocaleString("en-US", {
+                    timeZone: item.timeZone,
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true
+                });
+
+                document.getElementById(`clock-${index}`).textContent = time;
+            });
+        }
+
+        // Function to filter countries based on search
+        function filterCountries() {
+            const query = document.getElementById("search-box").value.toLowerCase();
+            const cards = document.getElementsByClassName("clock-card");
+
+            countries.forEach((item, index) => {
+                const card = cards[index];
+                if (item.country.toLowerCase().includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Generate time cards and update times every second
+        generateTimeCards();
+        setInterval(updateTimes, 1000);
+        updateTimes();
+    </script>
+</body>
+
+</html>
