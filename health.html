@@ -115,24 +115,19 @@
         @media (max-width: 768px) {
             .tabs {
                 display: flex;
-                overflow-x: auto; /* Enable horizontal scrolling */
-                white-space: nowrap; /* Prevent breaking into multiple lines */
+                flex-direction: column; /* Stack tabs vertically */
+                align-items: center; /* Center align */
                 gap: 10px;
-                padding-bottom: 10px;
-                scrollbar-width: none; /* Hide scrollbar for Firefox */
-                -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-            }
-        
-            .tabs::-webkit-scrollbar {
-                display: none; /* Hide scrollbar for Chrome, Safari */
             }
         
             .tab-button {
-                flex: 0 0 auto; /* Prevent shrinking */
-                font-size: 14px; /* Reduce font size */
-                padding: 10px 15px; /* Adjust padding */
+                width: 80%; /* Make buttons wider for better touch support */
+                text-align: center;
+                padding: 12px 20px; /* Adjust padding */
+                font-size: 16px; /* Slightly larger text for better readability */
             }
         }
+        
     </style>
 </head>
 <body>
@@ -142,8 +137,8 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="changeTab('dry-seeds')">Dry Seeds 🌾</button>
-            <button class="tab-button active" onclick="changeTab('dry-nuts')">Dry Nuts 🥜</button>
+            <button class="tab-button active" onclick="changeTab('dry-seeds')">Seeds 🌾</button>
+            <button class="tab-button active" onclick="changeTab('dry-nuts')">Nuts 🥜</button>
             <button class="tab-button" onclick="changeTab('dry-fruits')">Dry Fruits 🍑</button>
             <button class="tab-button" onclick="changeTab('vegetables')">Vegetables 🥦</button>
             <button class="tab-button" onclick="changeTab('fresh-fruits')">Fresh Fruits 🍏</button>
