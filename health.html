@@ -137,8 +137,8 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="changeTab('dry-seeds')">Seeds 🌾</button>
-            <button class="tab-button active" onclick="changeTab('dry-nuts')">Nuts 🥜</button>
+            <button class="tab-button active" onclick="changeTab('seeds')">Seeds 🌾</button>
+            <button class="tab-button" onclick="changeTab('nuts')">Nuts 🥜</button>
             <button class="tab-button" onclick="changeTab('dry-fruits')">Dry Fruits 🍑</button>
             <button class="tab-button" onclick="changeTab('vegetables')">Vegetables 🥦</button>
             <button class="tab-button" onclick="changeTab('fresh-fruits')">Fresh Fruits 🍏</button>
@@ -149,7 +149,7 @@
 
     <script>
         const nutrientData = {
-            "dry-seeds": [
+            "seeds": [
             {
               "name": "Chia Seeds",
               "protein": "16.5g",
@@ -210,7 +210,7 @@
               "fat": "1.2g",
               "carbs": "18.7g"
             }
-          ],"dry-nuts": [
+          ],"nuts": [
             {
             "name": "Cashews",
             "protein": "18.2g",
@@ -536,7 +536,7 @@
         }
 
         // Initialize with dry seeds
-        changeTab('dry-seeds');
+        changeTab('seeds');
     </script>
 </body>
 </html>
