@@ -112,6 +112,27 @@
             color: var(--text-color);
             opacity: 0.8;
         }
+        @media (max-width: 768px) {
+            .tabs {
+                display: flex;
+                overflow-x: auto; /* Enable horizontal scrolling */
+                white-space: nowrap; /* Prevent breaking into multiple lines */
+                gap: 10px;
+                padding-bottom: 10px;
+                scrollbar-width: none; /* Hide scrollbar for Firefox */
+                -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+            }
+        
+            .tabs::-webkit-scrollbar {
+                display: none; /* Hide scrollbar for Chrome, Safari */
+            }
+        
+            .tab-button {
+                flex: 0 0 auto; /* Prevent shrinking */
+                font-size: 14px; /* Reduce font size */
+                padding: 10px 15px; /* Adjust padding */
+            }
+        }
     </style>
 </head>
 <body>
