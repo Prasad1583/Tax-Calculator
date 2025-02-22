@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material UI Tabs & Sidebar</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #FAFAFA;
+            padding: 20px;
+        }
+
+        /* Tabs Section */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab {
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 30px;
+            border: none;
+            background: #E0E0E0;
+            color: #424242;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: #1976D2;
+            color: white;
+            box-shadow: 0 2px 10px rgba(25, 118, 210, 0.3);
+        }
+
+        .tab:hover {
+            background: #1565C0;
+            color: white;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 85%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar - Scrollable */
+        .sidebar {
+            width: 20%;
+            background: #F5F5F5;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid #E0E0E0;
+            overflow-y: auto;
+            /* Enables vertical scrolling */
+            max-height: 80vh;
+            /* Ensures sidebar scrolls if content exceeds this height */
+        }
+
+        /* Custom scrollbar for sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background-color: #888;
+        }
+
+        /* Content remains static */
+        .content {
+            width: 100%;
+            padding: 30px;
+            text-align: center;
+            overflow: hidden;
+            /* Prevents unnecessary scrolling */
+        }
+
+
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #424242;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            width: 100%;
+            padding: 0;
+        }
+
+        .sidebar li {
+            padding: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 8px;
+            background: white;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+        .sidebar li:hover,
+        .sidebar li.selected {
+            background: #1976D2;
+            color: white;
+            box-shadow: 0 3px 8px rgba(25, 118, 210, 0.3);
+        }
+
+        .content h2 {
+            font-size: 22px;
+            font-weight: 500;
+            color: #1976D2;
+        }
+
+        .content p {
+            margin-top: 8px;
+            color: #616161;
+            font-size: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #E0E0E0;
+            }
+
+            .content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('role')">By Role</button>
+        <button class="tab" onclick="switchTab('feature')">By Feature</button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 id="sidebar-title">Roles</h3>
+            <ul id="sidebar-list"></ul>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <h2>Selected: <span id="selected-item">None</span></h2>
+            <p id="item-description">Please select an item from the side menu.</p>
+        </div>
+    </div>
+
+    <script>
+        // Data for Roles and Features
+        const roles = [
+            "Admin", "Manager", "Employee", "Guest", "Supervisor", "HR", "Accountant", "Engineer", "Developer", "Designer",
+            "Consultant", "Analyst", "Technician", "Operator", "Executive", "Coordinator", "Trainer", "Intern", "Director", "CEO",
+            "CTO", "CFO", "Product Manager", "Marketing Manager", "Sales Executive", "Support Specialist", "Security Officer", "IT Manager", "Project Lead", "Researcher"
+        ];
+
+        const features = [
+            "Dashboard", "Reports", "Settings", "User Management", "Billing", "Notifications", "Analytics", "Audit Logs", "Access Control", "API Integrations",
+            "Email Automation", "File Upload", "Live Chat", "Workflow Management", "Payment Processing", "Scheduling", "Task Management", "CRM Integration", "Data Export", "User Roles",
+            "Mobile Access", "Theme Customization", "Email Notifications", "Real-time Monitoring", "Feedback System", "Multi-language Support", "Auto Backup", "Search & Filters", "Profile Management", "Performance Tracking"
+        ];
+
+
+        let activeTab = "role"; // Default tab
+        let selectedItem = null;
+
+        // Function to switch tabs
+        function switchTab(tab) {
+            activeTab = tab;
+
+            // Update UI for active tab
+            document.querySelectorAll(".tab").forEach(button => button.classList.remove("active"));
+            document.querySelector(`.tab:nth-child(${tab === "role" ? 1 : 2})`).classList.add("active");
+
+            // Update sidebar items
+            updateSidebar();
+        }
+
+        // Function to update sidebar content
+        function updateSidebar() {
+            const sidebarTitle = document.getElementById("sidebar-title");
+            const sidebarList = document.getElementById("sidebar-list");
+
+            // Clear previous list
+            sidebarList.innerHTML = "";
+
+            // Update title and items based on active tab
+            const items = activeTab === "role" ? roles : features;
+            sidebarTitle.innerText = activeTab === "role" ? "Roles" : "Features";
+
+            items.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                li.onclick = () => selectItem(item, li);
+                sidebarList.appendChild(li);
+            });
+        }
+
+        // Function to handle item selection
+        function selectItem(item, element) {
+            selectedItem = item;
+
+            // Remove previous selection highlight
+            document.querySelectorAll(".sidebar li").forEach(li => li.classList.remove("selected"));
+            element.classList.add("selected");
+
+            // Update content area
+            document.getElementById("selected-item").innerText = item;
+            document.getElementById("item-description").innerText = `You have selected ${item}.`;
+        }
+
+        // Initialize sidebar on page load
+        updateSidebar();
+    </script>
+
+</body>
+
+</html>
