@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Flashcards for Kids</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #E3F2FD;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #category-dropdown {
+            position: absolute;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            outline: none;
+            top: 17%;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #636363;
+            margin-bottom: 20px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flashcard-container {
+            width: 90%;
+            max-width: 350px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #333;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 26px;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.5s ease, background 0.5s ease;
+        }
+
+        #progress {
+            font-size: 16px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .bottom-controls {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 320px;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-weight: 500;
+            font-size: 14px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .input-group input {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            outline: none;
+            background: #fff;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+
+        button {
+            width: 45%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play { background: #FFC107; color: #333; }
+        .stop { background: #FF5252; color: #fff; }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .flashcard-container {
+                font-size: 24px;
+                height: 220px;
+            }
+
+            .input-group input {
+                width: 70px;
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Vocabulary App</h1>
+    </div>
+
+    <select id="category-dropdown" onchange="showWords()">
+      <option value="">Select a Category</option>
+    </select>
+
+    <div class="app-container">
+        <div class="flashcard-container" id="flashcard">Loading...</div>
+
+        <p id="progress">Word 1 of 7</p>
+
+        <div class="bottom-controls">
+            <div class="input-group">
+                <label for="index">Go to Word:</label>
+                <input type="number" id="index" min="1" value="1" onchange="jumpToIndex(this.value)">
+            </div>
+
+            <div class="input-group">
+                <label for="speed">Speed (Seconds):</label>
+                <input type="number" id="speed" min="1" value="2" onchange="adjustSpeed(this.value)">
+            </div>
+
+            <div class="button-group">
+                <button class="play" onclick="startAutoPlay()">Play</button>
+                <button class="stop" onclick="stopAutoPlay()">Stop</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let words = [];
+        let autoPlayInterval = null;
+        let autoPlaySpeed = 2000; // Default speed 2 seconds
+
+        const flashcard = document.getElementById("flashcard");
+
+        const wordData = {
+            "Arts & Entertainment": [
+              "act", "perform", "sing", "dance", "direct", "play", "paint", "draw", "compose", "rehearse", "audition", "create", 
+              "design", "sculpt", "record", "write", "produce", "photograph", "illustrate", "edit", "choreograph", "broadcast", 
+              "enact", "stage", "depict", "present", "interpret", "arrange", "animate", "coordinate", "feature", "play", 
+              "express", "improvise", "synchronize", "exhibit", "model", "convey", "perform", "create", "innovate", "inspire", 
+              "compose", "lead", "collaborate", "curate", "embellish", "reproduce", "envision", "collage", "fabricate"
+            ],
+            "Business & Finance": [
+              "invest", "negotiate", "analyze", "budget", "hire", "fire", "save", "spend", "borrow", "lend", "manage", "trade", 
+              "market", "advertise", "audit", "forecast", "plan", "launch", "strategize", "purchase", "sell", "offer", 
+              "restructure", "expand", "collaborate", "streamline", "negotiate", "renegotiate", "value", "assess", "create", 
+              "acquire", "merge", "divest", "investigate", "regulate", "brand", "promote", "cost", "reduce", "enhance", 
+              "improve", "account", "calculate", "reconcile", "balance", "secure", "validate", "expand", "develop", 
+              "borrow", "reinvest", "forecast", "sponsor", "raise", "merge", "lead", "coordinate", "diversify", "capitalize", 
+              "leverage", "integrate", "compete", "differentiate", "liquidate", "monetize", "reinvest", "cost-cut", "sponsor", 
+              "fund", "operate", "scale", "collaborate", "serve", "measure", "track", "audit", "negotiate", "reorganize"
+            ],
+            "Clothing & Fashion": [
+              "wear", "dress", "button", "zip", "tailor", "fit", "sew", "unzip", "embroider", "alter", "design", 
+              "stitch", "iron", "fold", "hem", "clean", "press", "dry", "wash", "dye", "paint", "create", "style", 
+              "accessorize", "button", "cut", "snip", "attach", "embroider", "fit", "pattern", "customize", "decorate", 
+              "fashion", "shop", "choose", "select", "pair", "mix", "match", "model", "display", "wear", "launch", 
+              "advertise", "promote", "trend", "run", "design", "redecorate", "adjust", "fit", "alter", "invent", "wear"
+            ],
+            "Colors": [
+              "color", "shade", "paint", "dye", "blend", "mix", "combine", "tint", "stain", "highlight", "accentuate",
+              "contrast", "wash", "reflect", "shade", "brighten", "darken", "lighten", "enhance", "overlap", "match",
+              "choose", "apply", "adjust", "saturate", "create", "transform", "gradate", "tone", "gradient", "fade",
+              "fade", "change", "decorate", "colorize", "recolor", "splash", "spray", "streak", "splatter", "fill",
+              "tone", "highlight", "flush", "glow", "dim"
+            ],
+            "Communication & Media": [
+              "speak", "talk", "listen", "broadcast", "record", "transmit", "write", "report", "interview", "discuss", 
+              "announce", "inform", "comment", "publish", "share", "explain", "debate", "articulate", "express", "clarify", 
+              "convey", "respond", "interact", "dialogue", "converse", "introduce", "present", "publish", "notify", 
+              "summarize", "question", "elaborate", "translate", "describe", "distribute", "press", "advertise", "promote", 
+              "announce", "editorialize", "anchor", "script", "edit", "report", "interview", "disseminate", "post", 
+              "commentate", "review", "pitch", "direct", "highlight", "read", "voice", "narrate", "edit", "share", "respond",
+              "broadcast", "voice", "write", "speak up", "chat", "gossip", "warn", "confirm", "inquire", "update", 
+              "describe", "forecast", "translate", "reveal", "declare"
+            ],
+            "Countries & Nationalities": [
+              "immigrate", "emigrate", "reside", "visit", "travel", "settle", "arrive", "leave", "migrate", "relocate", 
+              "explore", "return", "discover", "move", "tour", "study", "work", "seek asylum", "deport", "return", 
+              "apply for citizenship", "join", "adapt", "contribute", "assist", "immigrate", "expatriate", "cross", 
+              "enter", "depart", "re-enter", "apply", "adapt", "experience", "exile", "naturalize", "obtain residency", 
+              "apply for a visa", "get a passport", "resettle", "adjust", "travel abroad", "return home", "enter", "explore", 
+              "leave the country", "build a life", "move abroad", "study abroad", "work abroad", "find a job", "participate in", 
+              "discover", "follow", "seek", "visit temporarily", "create a life", "leave for"
+            ],
+            "Culture & Society": [
+              "celebrate", "observe", "perform", "participate", "belong", "adapt", "organize", "represent", "engage", 
+              "express", "share", "collaborate", "promote", "integrate", "reform", "educate", "innovate", "create", "support", 
+              "assist", "connect", "encourage", "question", "influence", "discuss", "empower", "inspire", "debate", 
+              "contribute", "reflect", "learn", "teach", "communicate", "respect", "convey", "appreciate", "support", 
+              "embrace", "distinguish", "affirm", "reconcile", "unite", "challenge", "value", "evolve", "preserve", 
+              "advance", "revive", "distribute", "question", "honor", "defend", "oppose", "preserve", "revolutionize", 
+              "act", "involve", "elevate", "defend", "unite", "recognize", "criticize", "help", "advance", "transform"
+            ],
+            "Education & Learning": [
+              "learn", "teach", "study", "read", "write", "graduate", "research", "explore", "understand", "examine", 
+              "train", "enroll", "practice", "review", "analyze", "memorize", "attend", "observe", "apply", "assess", 
+              "discover", "clarify", "educate", "quiz", "prepare", "interact", "collaborate", "guide", "participate", 
+              "prepare", "resolve", "solve", "question", "debate", "discuss", "summarize", "present", "evaluate", 
+              "test", "critique", "improve", "advance", "expand", "explain", "assist", "share", "participate", 
+              "introduce", "facilitate", "illustrate", "mentor", "stimulate", "challenge", "contribute", "build", 
+              "reflect", "rehearse", "connect", "apply", "draft", "interpret", "formulate", "write up", "revise"
+            ],
+            "Emotion & Feeling": [
+              "love", "hate", "feel", "enjoy", "fear", "worry", "hope", "believe", "empathize", "care", "resent", 
+              "cherish", "miss", "angry", "appreciate", "delight", "dread", "desire", "regret", "adore", "trust", 
+              "envy", "jealous", "sadden", "comfort", "frustrate", "relieve", "excite", "pleasure", "confuse", 
+              "embarrass", "sympathize", "rejoice", "mourn", "panic", "calm", "apprehend", "grieve", "amuse", "distress",
+              "upset", "irritate", "depress", "satisfy", "inspire", "despair", "grateful", "mourn", "long", "suffer", 
+              "love dearly", "feel sorry", "disturb", "attract", "blame", "rejoice", "cheer", "shock", "embolden", 
+              "vex", "worry about", "comfort", "console", "treasure", "feel guilty", "be happy", "be sad", "bewilder"
+            ],
+            "Environment & Nature": [
+              "pollute", "clean", "recycle", "grow", "protect", "preserve", "plant", "conserve", "reforest", "harm", 
+              "destroy", "develop", "degrade", "restore", "maintain", "sustain", "regenerate", "reduce", "compost", 
+              "protect", "transform", "refurbish", "manage", "eradicate", "cleanse", "reclaim", "revive", "capture", 
+              "capture", "restore", "enhance", "preserve", "compensate", "reintroduce", "recycle", "mitigate", 
+              "combat", "adapt", "reduce", "fertilize", "manage", "evolve", "expand", "generate", "clean up", 
+              "tolerate", "experiment", "pollute", "reclaim", "monitor", "distribute", "balance", "implement", 
+              "eradicate", "pollution", "abate", "stimulate", "regulate", "dismantle", "offset", "recondition", 
+              "rescue", "integrate", "increase", "shift", "diversify"
+            ],
+            "Food & Drink": [
+              "eat", "drink", "cook", "bake", "boil", "fry", "serve", "prepare", "taste", "season", "savor", "order", 
+              "consume", "grill", "steam", "roast", "stir", "whisk", "mash", "blend", "chop", "slice", "dice", "peel", 
+              "marinate", "mix", "stir-fry", "smoke", "braise", "carve", "scramble", "boil", "toast", "heat", "cool", 
+              "refrigerate", "chill", "pickle", "decorate", "garnish", "measure", "pour", "serve", "invite", "taste-test", 
+              "reheat", "consume", "dip", "spread", "bottle", "ferment", "brew", "squeeze", "filter", "ferment", 
+              "decant", "chew", "swallow", "slurp", "sip", "gulp", "devour", "snack", "chew", "lick", "enjoy", "indulge", 
+              "sample", "devour", "scald", "scissor", "scoop"
+            ],
+            "Geography & Locations": [
+              "travel", "explore", "navigate", "discover", "arrive", "depart", "locate", "map", "name", "climb", "cross", 
+              "explore", "chart", "find", "visit", "wander", "roam", "trek", "hike", "ascend", "descend", "survey", 
+              "reach", "identify", "mark", "trace", "situate", "trace", "retrace", "move", "journey", "commute", 
+              "transit", "wander", "backtrack", "set off", "return", "leave", "return", "shift", "transport", "connect", 
+              "bound", "settle", "inhabit", "discover", "survey", "map out", "head", "arrange", "estimate", "relocate", 
+              "find out", "enter", "go to", "advance", "expand", "take the path", "follow", "zoom in", "escape", 
+              "retreat", "detour", "turn", "navigate through"
+            ],
+            "Health & Medicine": [
+              "treat", "heal", "diagnose", "prescribe", "cure", "test", "surgery", "vaccinate", "recover", "hurt", "sick", 
+              "nurse", "medicate", "consult", "inoculate", "examine", "operate", "remedy", "rehabilitate", "relieve", 
+              "manage", "prevent", "treat", "check", "monitor", "administer", "detect", "analyze", "prescribe", "intervene", 
+              "assist", "recover", "alleviate", "symptomatize", "remedy", "disinfect", "sterilize", "sanitize", "isolate", 
+              "vaccinate", "treat symptoms", "comfort", "rejuvenate", "care for", "support", "manage", "restore", 
+              "relieve pain", "preserve", "diagnose illness", "advise", "follow-up", "detoxify", "manage care", 
+              "recommend", "check-up", "aid", "stabilize", "perform surgery", "administer drugs", "alleviate symptoms", 
+              "recover from", "resuscitate", "aid recovery", "care for", "help", "heal wounds", "monitor progress"
+            ],
+            "Housing & Accommodation": [
+              "live", "stay", "rent", "buy", "sell", "move", "build", "design", "decorate", "construct", "maintain", "repair", 
+              "renovate", "lease", "occupy", "vacate", "organize", "arrange", "furnish", "remodel", "expand", "alter", "redecorate", 
+              "refurbish", "upgrade", "insure", "broker", "settle", "reside", "pay rent", "evict", "sublet", "relocate", 
+              "inspect", "arrange", "secure", "unpack", "pack", "unload", "secure", "renovate", "modify", "improve", "construct", 
+              "move in", "move out", "transfer", "clear", "prepare", "redecorate", "restyle", "reorganize", "resettle", 
+              "designate", "insulate", "expand", "expand", "upgrade", "accessorize", "decorate", "maintain", "adjust"
+            ],
+            "Jobs & Occupations": [
+              "work", "employ", "hire", "fire", "interview", "train", "manage", "lead", "serve", "assist", "negotiate", "recruit", 
+              "operate", "consult", "advise", "coordinate", "supervise", "delegate", "develop", "motivate", "coach", "assign", 
+              "organize", "communicate", "collaborate", "specialize", "evaluate", "hire", "fire", "promote", "retire", 
+              "resign", "perform", "contract", "negotiate", "represent", "apply", "succeed", "fail", "train", "accomplish", 
+              "achieve", "earn", "assist", "help", "serve", "expand", "grow", "implement", "innovate", "create", "produce", 
+              "contribute", "establish", "execute", "research", "analyze", "design", "plan", "provide", "build", "collaborate", 
+              "consult", "advocate", "present", "deliver", "achieve", "organize", "prepare", "train", "mentor", "strategize", 
+              "expand", "solve", "reflect", "improve", "optimize", "succeed", "maintain"
+            ],
+            "Law & Government": [
+              "govern", "regulate", "enforce", "draft", "propose", "debate", "pass", "ban", "defend", "appeal", "sue", 
+              "arrest", "sentence", "investigate", "prosecute", "represent", "appeal", "judge", "punish", "convict", 
+              "acquit", "detain", "impose", "reform", "lobby", "legislate", "ratify", "authorize", "appoint", 
+              "elect", "interrogate", "question", "repeal", "issue", "amend", "negotiate", "intervene", "mediate", 
+              "create law", "abrogate", "examine", "petition", "overrule", "sanction", "compensate", "revoke", 
+              "reinforce", "appeal", "reaffirm", "invoke", "legislate", "implement", "proclaim", "uphold", 
+              "maintain law", "establish", "enforce rules", "insist", "rule", "control", "empower", "clarify"
+            ],
+            "Life & Living": [
+              "live", "survive", "exist", "grow", "develop", "thrive", "age", "procreate", "relax", "breathe", "rest", 
+              "flourish", "adapt", "evolve", "multiply", "reproduce", "transform", "mature", "progress", "stretch", 
+              "sustain", "consume", "nourish", "heal", "recover", "live on", "persist", "endure", "expand", "bloom", 
+              "prosper", "breathe in", "breathe out", "renew", "rejuvenate", "encourage", "awaken", "discover", "reflect", 
+              "strengthen", "maintain", "connect", "refresh", "explore", "realize", "become", "rest", "create", "embrace", 
+              "escape", "achieve", "adjust", "balance", "seek", "enjoy", "protect", "preserve", "transform", "simplify", 
+              "inspire", "experience", "observe", "engage", "improve", "expand"
+            ],
+            "Money & Economics": [
+              "save", "spend", "invest", "borrow", "lend", "afford", "tax", "charge", "balance", "economize", "profit", 
+              "budget", "wage", "purchase", "purchase", "calculate", "price", "calculate", "evaluate", "assess", "offer", 
+              "trade", "sell", "buy", "cut costs", "raise", "reduce", "exchange", "secure", "save up", "pay", "earn", 
+              "charge", "value", "estimate", "settle", "contribute", "withhold", "distribute", "share", "manage", 
+              "allocate", "acquire", "expand", "investigate", "reinvest", "compensate", "collect", "offset", "deposit", 
+              "withdraw", "transfer", "default", "risk", "loan", "finance", "insure", "speculate", "capital", "liquidate", 
+              "restructure", "maximize", "minimize", "negotiate", "distribute", "trade", "account", "audit", "diversify", 
+              "hedge", "forfeit", "recession", "evaluate"
+            ],
+            "Movement & Transport": [
+              "move", "walk", "run", "drive", "fly", "ride", "travel", "navigate", "transport", "commute", "deliver", 
+              "ship", "cycle", "go", "arrive", "depart", "travel by", "drive", "march", "stroll", "hike", "sail", 
+              "float", "glide", "pedal", "zoom", "race", "trolley", "drift", "push", "pull", "tow", "carry", 
+              "pack", "unpack", "load", "unload", "guide", "escort", "pick up", "drop off", "haul", "transport by", 
+              "shift", "accelerate", "decelerate", "veer", "turn", "backpedal", "overtake", "dodge", "dismount", 
+              "board", "disembark", "connect", "launch", "scoot", "skate", "jump", "leap", "board", "travel across", 
+              "whiz", "bounce", "take off", "land", "zoom"
+            ],
+            "People & Relationships": [
+              "meet", "greet", "help", "support", "love", "hate", "marry", "divorce", "befriend", "communicate", 
+              "understand", "connect", "care", "listen", "trust", "discuss", "argue", "agree", "disagree", "advise", 
+              "comfort", "celebrate", "confront", "discuss", "share", "tease", "encourage", "embrace", "forgive", 
+              "apologize", "consult", "confide", "express", "impress", "criticize", "insult", "respect", "teach", 
+              "mentor", "educate", "cooperate", "relate", "help out", "console", "chide", "belong", "invite", "meet up", 
+              "reconcile", "fight", "quarrel", "associate", "disturb", "reject", "invite over", "approach", "discuss", 
+              "exclude", "introduce", "inform", "connect with", "date", "argue with", "socialize", "engage", "negotiate", 
+              "bond", "interact", "share ideas", "rely", "contribute", "live with", "attend", "recognize", "support"
+            ],
+            "Personal Development": [
+              "learn", "grow", "improve", "adapt", "develop", "reflect", "achieve", "build", "expand", "manage", "focus", 
+              "create", "empower", "enhance", "motivate", "inspire", "cultivate", "transform", "evolve", "organize", 
+              "evaluate", "overcome", "discipline", "challenge", "master", "discover", "progress", "elevate", "educate", 
+              "practice", "strengthen", "balance", "expand", "reinvent", "realize", "empower", "visualize", "visualize", 
+              "rejuvenate", "upgrade", "take action", "take initiative", "imagine", "establish", "innovate", "refine", 
+              "adjust", "commit", "align", "engage", "resist", "set goals", "prioritize", "work hard", "form habits", 
+              "simplify", "explore", "reinforce", "reset", "evaluate", "regain", "refocus", "excel", "empower", 
+              "reflect on", "reinforce", "mentorship", "challenge yourself", "pursue", "maximize", "adjust", 
+              "understand", "conquer", "reset"
+            ],
+            "Places & Buildings": [
+              "build", "construct", "design", "renovate", "decorate", "house", "live", "stay", "move", "rebuild", 
+              "demolish", "develop", "expand", "remodel", "furnish", "restore", "maintain", "repair", "install", 
+              "clean", "arrange", "organize", "fit", "prepare", "move in", "move out", "settle", "inhabit", 
+              "vacate", "occupy", "expand", "renovate", "restore", "refurbish", "upgrade", "unpack", "pack", 
+              "decorate", "light", "clear", "maintain", "inspect", "redecorate", "secure", "arrange", "allocate", 
+              "reorganize", "designate", "alter", "modify", "convert", "adapt", "enlarge", "reorganize", "divide", 
+              "fence", "construct", "secure", "clear", "restore", "transform", "expand", "propose", "erect", "install"
+            ],
+            "Politics & Government": [
+              "govern", "rule", "elect", "debate", "campaign", "vote", "appoint", "legislate", "regulate", "enforce", 
+              "discuss", "represent", "amend", "pass", "propose", "reform", "defend", "advocate", "oppose", "prosecute", 
+              "investigate", "legislate", "establish", "implement", "approve", "reject", "impeach", "advise", "consult", 
+              "monitor", "clarify", "challenge", "authorize", "determine", "sanction", "oversee", "dissolve", "ratify", 
+              "abolish", "appoint", "elect", "negotiate", "affirm", "enact", "object", "declare", "preside", "mediate", 
+              "lobby", "overrule", "revoke", "intervene", "inspect", "subsidize", "interrogate", "comply", "respond", 
+              "confirm", "announce", "review", "consult", "petition", "defend", "impose", "block", "convince", "suspend", 
+              "alter", "appeal", "empower", "invest", "oversee", "organize", "collaborate", "regulate", "propose"
+            ],
+            "Science & Technology": [
+              "innovate", "discover", "create", "research", "develop", "program", "test", "engineer", "calculate", 
+              "experiment", "measure", "analyze", "design", "build", "evaluate", "simulate", "theorize", "apply", 
+              "produce", "model", "synthesize", "predict", "calculate", "observe", "formulate", "research", "invent", 
+              "implement", "optimize", "program", "debug", "compile", "construct", "prototype", "configure", 
+              "solve", "refine", "integrate", "visualize", "measure", "adjust", "program", "test", "develop", 
+              "apply", "improve", "calculate", "study", "verify", "assess", "validate", "record", "construct", 
+              "encode", "simulate", "experiment with", "streamline", "adapt", "enhance", "refactor", "engineer", 
+              "breakthrough", "advance", "create prototypes", "explore", "review", "compute", "program", "implement"
+            ],
+            "Shopping & Products": [
+              "buy", "sell", "purchase", "shop", "exchange", "choose", "offer", "bargain", "discount", "compare", 
+              "select", "order", "pay", "browse", "shop around", "refund", "return", "reorder", "stock", "deliver", 
+              "ship", "wrap", "market", "promote", "advertise", "organize", "arrange", "pick", "collect", "reserve", 
+              "receive", "sell out", "barter", "negotiate", "supply", "market", "try on", "search", "find", "load", 
+              "unload", "organize", "select", "recommend", "offer", "customize", "exchange", "review", "sample", 
+              "choose from", "evaluate", "scan", "sign", "pay for", "cash", "credit", "offer", "consume", "rate", 
+              "label", "present", "import", "export", "inspect", "sell at a discount", "upgrade", "convey", 
+              "recycle", "brand", "design"
+            ],
+            "Social Issues & Welfare": [
+              "help", "support", "donate", "advocate", "care", "provide", "assist", "improve", "protect", "defend", 
+              "organize", "volunteer", "empower", "nurture", "uplift", "restore", "reinforce", "raise awareness", 
+              "rescue", "assist", "fund", "mobilize", "educate", "mentor", "distribute", "address", "sponsor", 
+              "encourage", "celebrate", "enlighten", "alleviate", "advocate for", "encourage", "collaborate", 
+              "combat", "fight for", "reform", "resist", "help out", "serve", "donate to", "contribute", "heal", 
+              "improve lives", "restore dignity", "defend rights", "empower communities", "organize campaigns", 
+              "rebuild", "repair", "negotiate", "facilitate", "join forces", "fundraise", "educate on", "unite", 
+              "offer support", "champion", "bring change", "disseminate", "advise", "lobby", "help raise", "give"
+            ],
+            "Sports & Recreation": [
+              "play", "run", "train", "compete", "score", "exercise", "participate", "swim", "cycle", "kick", 
+              "hit", "jump", "sprint", "stretch", "practice", "work out", "hike", "climb", "lift", "row", "box", 
+              "shoot", "dribble", "pass", "serve", "punt", "block", "dodge", "chase", "dive", "balance", "skate", 
+              "snowboard", "surf", "kick off", "race", "tackle", "bounce", "catch", "throw", "swim laps", "train for", 
+              "cheer", "celebrate", "score a goal", "train hard", "warm up", "recover", "rest", "rebound", "hit a target", 
+              "skip", "compete in", "participate in", "team up", "rehearse", "take a break", "focus", "stretch out", 
+              "set up", "referee", "coach", "perform", "dominate", "engage", "work on", "prepare for", "execute", 
+              "join in", "compete against", "train up", "warm up", "rest"
+            ],
+            "Time & Seasons": [
+              "wait", "pass", "arrive", "celebrate", "schedule", "count", "expect", "season", "change", "expire", 
+              "start", "begin", "end", "delay", "advance", "recur", "repeat", "pause", "halt", "track", "measure", 
+              "timing", "spend", "age", "grow", "progress", "continue", "finish", "mark", "interrupt", "elapse", 
+              "expire", "predict", "forecast", "adjust", "set", "reschedule", "postpone", "organize", "manage", 
+              "cycle", "regulate", "schedule", "delay", "pass by", "come", "go", "arrive on time", "be late", "wait for", 
+              "celebrate", "prepare for", "look forward to", "reorganize", "jump ahead", "wind down", "turn back", 
+              "count down", "pass over", "change over", "revisit", "reach", "dawn", "spring up", "move forward"
+            ],
+            "Travel & Tourism": [
+              "travel", "explore", "visit", "stay", "arrive", "leave", "plan", "book", "discover", "tour", "guide", 
+              "sightsee", "commute", "navigate", "fly", "drive", "ride", "book", "check in", "check out", "wander", 
+              "relax", "recharge", "rest", "adventure", "journey", "hike", "camp", "backpack", "cruise", "embark", 
+              "arrange", "vacation", "experience", "stay at", "research", "guide", "tour around", "revisit", "reconnect", 
+              "return", "escape", "seek", "taste", "sample", "photograph", "document", "plan ahead", "pack", "unpack", 
+              "take off", "land", "transfer", "explore the sights", "enjoy", "experience local culture", "travel abroad", 
+              "discover new places", "take a trip", "stay over", "rest at", "get away", "arrange a tour", "rent", "sail"
+            ],
+            "Weather & Climate": [
+              "rain", "snow", "shine", "freeze", "melt", "storm", "breeze", "hail", "wind", "cloud", "clear", 
+              "thunder", "lightning", "pour", "drizzle", "blow", "gust", "fog", "freeze over", "sleet", "overcast", 
+              "warm up", "cool down", "heat up", "chill", "flood", "drought", "humidify", "freeze up", "blow over", 
+              "clear up", "drift", "subside", "grow colder", "become foggy", "rain down", "soak", "drop", 
+              "weather", "turn", "flare up", "calm down", "churn", "evaporate", "cloud over", "whip", "recede", 
+              "mist", "boil over", "shower", "accumulate", "drain", "blaze", "bake", "glow", "beam", "radiate", 
+              "thaw", "simmer", "explode", "set in", "break", "flare", "freeze solid", "squall", "spit", "burst"
+            ]
+          };
+
+        function createCategoryDropdown() {
+            const dropdown = document.getElementById('category-dropdown');
+            for (const category in wordData) {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                dropdown.appendChild(option);
+            }
+        }
+
+        function showWords() {
+            const selectedCategory = document.getElementById('category-dropdown').value;
+            if (!selectedCategory) return;
+            words = wordData[selectedCategory];
+            currentIndex = 0;
+            updateFlashcard();
+            startAutoPlay();
+        }
+
+        function updateFlashcard() {
+            flashcard.innerHTML = words[currentIndex];
+            document.getElementById("progress").innerText = `Word ${currentIndex + 1} of ${words.length}`;
+            document.getElementById("index").value = currentIndex + 1;
+        }
+
+        function jumpToIndex(index) {
+            let newIndex = parseInt(index) - 1;
+            if (newIndex >= 0 && newIndex < words.length) {
+                currentIndex = newIndex;
+                updateFlashcard();
+            }
+        }
+
+        function adjustSpeed(speed) {
+            autoPlaySpeed = parseInt(speed) * 1000;
+        }
+
+        function startAutoPlay() {
+            if (autoPlayInterval) return;
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % words.length;
+                updateFlashcard();
+            }, autoPlaySpeed);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+
+        createCategoryDropdown();
+    </script>
+
+</body>
+</html>
