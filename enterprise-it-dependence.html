@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Industries & IT Tools</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .industry {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .industry h2 {
+            margin-top: 0;
+            color: #1a73e8;
+        }
+
+        .industry p {
+            margin: 0.5rem 0;
+        }
+
+        .tools {
+            margin-top: 0.5rem;
+        }
+
+        .tools span {
+            display: inline-block;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 5px;
+            padding: 0.3rem 0.7rem;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Industries & Their Dependence on IT Tools</h1>
+    </header>
+    <div class="container" id="industriesContainer">
+        <!-- Industry cards will be injected here -->
+    </div>
+    <script>
+        const toolsData = {
+            "industries": [
+                {
+                    "name": "Banking & Financial Services",
+                    "description": "Handles core banking, digital payments, compliance, fraud detection, and customer service.",
+                    "tools": ["Finacle", "Temenos", "Salesforce FSI", "Actimize", "FIS", "Oracle FLEXCUBE"]
+                },
+                {
+                    "name": "Insurance",
+                    "description": "Manages claims, underwriting, agent portals, customer servicing, and risk assessment.",
+                    "tools": ["Guidewire", "Duck Creek", "Salesforce Insurance Cloud", "Majesco", "Insurity"]
+                },
+                {
+                    "name": "Healthcare",
+                    "description": "Supports EHRs, patient care, medical imaging, telemedicine, and pharmacy systems.",
+                    "tools": ["Epic", "Cerner", "Allscripts", "Athenahealth", "Salesforce Health Cloud"]
+                },
+                {
+                    "name": "Pharmaceuticals",
+                    "description": "Enables clinical trials, regulatory compliance, R&D, and pharma sales automation.",
+                    "tools": ["Veeva Systems", "Medidata", "MasterControl", "Oracle Argus", "SAP Life Sciences"]
+                },
+                {
+                    "name": "Manufacturing",
+                    "description": "Drives ERP, supply chain, MES, predictive maintenance, and industrial IoT.",
+                    "tools": ["SAP", "Oracle ERP", "Siemens Teamcenter", "PTC Windchill", "Rockwell Automation"]
+                },
+                {
+                    "name": "Retail & E-commerce",
+                    "description": "Powers online stores, inventory, logistics, personalization, and customer engagement.",
+                    "tools": ["Shopify", "Magento", "Salesforce Commerce Cloud", "BigCommerce", "NetSuite"]
+                },
+                {
+                    "name": "Government & Public Sector",
+                    "description": "Delivers citizen services, defense systems, digital governance, and compliance.",
+                    "tools": ["ServiceNow", "Oracle Cloud", "IBM Watson", "Microsoft 365", "Tyler Technologies"]
+                },
+                {
+                    "name": "Education",
+                    "description": "Supports e-learning, virtual classrooms, student portals, and assessments.",
+                    "tools": ["Google Classroom", "Moodle", "Blackboard", "Zoom", "Canvas LMS"]
+                },
+                {
+                    "name": "Travel & Hospitality",
+                    "description": "Manages reservations, pricing, guest engagement, and travel logistics.",
+                    "tools": ["Amadeus", "Sabre", "Oracle Hospitality", "Cloudbeds", "Booking.com APIs"]
+                },
+                {
+                    "name": "Construction & Real Estate",
+                    "description": "Uses digital blueprints, BIM, project management, and cost control tools.",
+                    "tools": ["Procore", "AutoCAD", "PlanGrid", "Revit", "Buildertrend"]
+                },
+                {
+                    "name": "Media & Entertainment",
+                    "description": "Creates and delivers digital content, streaming, editing, and subscriptions.",
+                    "tools": ["Adobe Creative Cloud", "Avid", "Final Cut Pro", "YouTube Studio", "Netflix CMS"]
+                },
+                {
+                    "name": "Telecommunications",
+                    "description": "Runs service provisioning, billing, customer management, and 5G infrastructure.",
+                    "tools": ["Amdocs", "Netcracker", "Ericsson OSS", "Cisco", "Huawei Telco Cloud"]
+                },
+                {
+                    "name": "Logistics & Transportation",
+                    "description": "Manages fleets, warehousing, route optimization, and real-time tracking.",
+                    "tools": ["SAP TM", "Oracle SCM", "FourKites", "Fleet Complete", "Project44"]
+                },
+                {
+                    "name": "Cybersecurity & Defense",
+                    "description": "Secures data, detects threats, and supports national or enterprise defense.",
+                    "tools": ["CrowdStrike", "Splunk", "Palo Alto", "Fortinet", "Darktrace"]
+                },
+                {
+                    "name": "Energy & Utilities",
+                    "description": "Optimizes grid performance, energy trading, smart metering, and outage response.",
+                    "tools": ["OSIsoft PI System", "GE Grid Solutions", "SAP IS-U", "Oracle Utilities", "Siemens Energy"]
+                },
+                {
+                    "name": "Legal & Compliance",
+                    "description": "Handles case management, legal research, eDiscovery, and contract workflows.",
+                    "tools": ["Clio", "Relativity", "LexisNexis", "iManage", "DocuSign CLM"]
+                },
+                {
+                    "name": "Gaming & Esports",
+                    "description": "Runs game engines, multiplayer platforms, and streaming tools.",
+                    "tools": ["Unity", "Unreal Engine", "Twitch", "Discord", "Steamworks"]
+                },
+                {
+                    "name": "Aviation & Aerospace",
+                    "description": "Uses flight systems, simulations, MRO, and safety-critical systems.",
+                    "tools": ["Boeing Toolbox", "Ramco Aviation", "AeroDocs", "Siemens NX", "MATLAB"]
+                },
+                {
+                    "name": "Agriculture / Agritech",
+                    "description": "Applies precision farming, IoT, drones, weather models, and yield analytics.",
+                    "tools": ["John Deere Ops Center", "AgriWebb", "Cropio", "Trimble Ag Software", "Climate FieldView"]
+                },
+                {
+                    "name": "Oil & Gas",
+                    "description": "Supports exploration, pipeline monitoring, asset tracking, and digital twins.",
+                    "tools": ["AVEVA", "AspenTech", "Emerson DeltaV", "IBM Maximo", "Honeywell Forge"]
+                },
+                {
+                    "name": "Fintech & DeFi",
+                    "description": "Powers digital wallets, blockchain, robo-advisors, and algorithmic trading.",
+                    "tools": ["Stripe", "Plaid", "MetaMask", "Ethereum", "Robinhood APIs"]
+                }
+            ]
+        };
+        const container = document.getElementById('industriesContainer');
+        toolsData.industries.forEach(industry => {
+            const industryDiv = document.createElement('div');
+            industryDiv.classList.add('industry');
+            industryDiv.innerHTML = `
+          <h2>${industry.name}</h2>
+          <p>${industry.description}</p>
+          <div class="tools">
+            ${industry.tools.map(tool => `<span>${tool}</span>`).join('')}
+          </div>
+        `;
+            container.appendChild(industryDiv);
+        });
+    </script>
+</body>
+
+</html>
