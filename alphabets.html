@@ -95,149 +95,18 @@
 <div id="alphabetContainer" class="alphabet-grid"></div>
 
 <script>
-    const alphabetData = {
-        "english": [
-        { "letter": "A", "word": "Apple", "image": "https://example.com/images/english/apple.png" },
-        { "letter": "B", "word": "Ball", "image": "https://example.com/images/english/ball.png" },
-        { "letter": "C", "word": "Cat", "image": "https://example.com/images/english/cat.png" },
-        { "letter": "D", "word": "Dog", "image": "https://example.com/images/english/dog.png" },
-        { "letter": "E", "word": "Elephant", "image": "https://example.com/images/english/elephant.png" },
-        { "letter": "F", "word": "Fish", "image": "https://example.com/images/english/fish.png" },
-        { "letter": "G", "word": "Grapes", "image": "https://example.com/images/english/grapes.png" },
-        { "letter": "H", "word": "Hat", "image": "https://example.com/images/english/hat.png" },
-        { "letter": "I", "word": "Ice cream", "image": "https://example.com/images/english/ice_cream.png" },
-        { "letter": "J", "word": "Jug", "image": "https://example.com/images/english/jug.png" },
-        { "letter": "K", "word": "Kite", "image": "https://example.com/images/english/kite.png" },
-        { "letter": "L", "word": "Lion", "image": "https://example.com/images/english/lion.png" },
-        { "letter": "M", "word": "Mango", "image": "https://example.com/images/english/mango.png" },
-        { "letter": "N", "word": "Nest", "image": "https://example.com/images/english/nest.png" },
-        { "letter": "O", "word": "Orange", "image": "https://example.com/images/english/orange.png" },
-        { "letter": "P", "word": "Parrot", "image": "https://example.com/images/english/parrot.png" },
-        { "letter": "Q", "word": "Queen", "image": "https://example.com/images/english/queen.png" },
-        { "letter": "R", "word": "Rabbit", "image": "https://example.com/images/english/rabbit.png" },
-        { "letter": "S", "word": "Sun", "image": "https://example.com/images/english/sun.png" },
-        { "letter": "T", "word": "Tiger", "image": "https://example.com/images/english/tiger.png" },
-        { "letter": "U", "word": "Umbrella", "image": "https://example.com/images/english/umbrella.png" },
-        { "letter": "V", "word": "Van", "image": "https://example.com/images/english/van.png" },
-        { "letter": "W", "word": "Watch", "image": "https://example.com/images/english/watch.png" },
-        { "letter": "X", "word": "Xylophone", "image": "https://example.com/images/english/xylophone.png" },
-        { "letter": "Y", "word": "Yak", "image": "https://example.com/images/english/yak.png" },
-        { "letter": "Z", "word": "Zebra", "image": "https://example.com/images/english/zebra.png" }
-      ],
-        "hindi": [
-        { "letter": "अ", "word": "अनार", "image": "https://example.com/images/hindi/anaar.png" },
-        { "letter": "आ", "word": "आम", "image": "https://example.com/images/hindi/aam.png" },
-        { "letter": "इ", "word": "इमली", "image": "https://example.com/images/hindi/imli.png" },
-        { "letter": "ई", "word": "ईख", "image": "https://example.com/images/hindi/eekh.png" },
-        { "letter": "उ", "word": "उल्लू", "image": "https://example.com/images/hindi/ullu.png" },
-        { "letter": "ऊ", "word": "ऊन", "image": "https://example.com/images/hindi/oon.png" },
-        { "letter": "ऋ", "word": "ऋषि", "image": "https://example.com/images/hindi/rishi.png" },
-        { "letter": "ए", "word": "एक", "image": "https://example.com/images/hindi/ek.png" },
-        { "letter": "ऐ", "word": "ऐनक", "image": "https://example.com/images/hindi/ainak.png" },
-        { "letter": "ओ", "word": "ओखली", "image": "https://example.com/images/hindi/okhli.png" },
-        { "letter": "औ", "word": "औरत", "image": "https://example.com/images/hindi/aurat.png" },
-        { "letter": "अं", "word": "अंगूर", "image": "https://example.com/images/hindi/angoor.png" },
-        { "letter": "अः", "word": "अः", "image": "https://example.com/images/hindi/ah.png" },
-    
-        { "letter": "क", "word": "कबूतर", "image": "https://example.com/images/hindi/kabootar.png" },
-        { "letter": "ख", "word": "खरगोश", "image": "https://example.com/images/hindi/khargosh.png" },
-        { "letter": "ग", "word": "गमला", "image": "https://example.com/images/hindi/gamla.png" },
-        { "letter": "घ", "word": "घड़ी", "image": "https://example.com/images/hindi/ghadi.png" },
-        { "letter": "ङ", "word": "अंगूर", "image": "https://example.com/images/hindi/angoor.png" },
-        
-        { "letter": "च", "word": "चमच", "image": "https://example.com/images/hindi/chamach.png" },
-        { "letter": "छ", "word": "छाता", "image": "https://example.com/images/hindi/chhata.png" },
-        { "letter": "ज", "word": "जग", "image": "https://example.com/images/hindi/jug.png" },
-        { "letter": "झ", "word": "झंडा", "image": "https://example.com/images/hindi/jhanda.png" },
-        { "letter": "ञ", "word": "ज्ञान", "image": "https://example.com/images/hindi/gyan.png" },
-    
-        { "letter": "ट", "word": "टमाटर", "image": "https://example.com/images/hindi/tamatar.png" },
-        { "letter": "ठ", "word": "ठेला", "image": "https://example.com/images/hindi/thela.png" },
-        { "letter": "ड", "word": "डमरू", "image": "https://example.com/images/hindi/damru.png" },
-        { "letter": "ढ", "word": "ढोलक", "image": "https://example.com/images/hindi/dholak.png" },
-        { "letter": "ण", "word": "कर्ण", "image": "https://example.com/images/hindi/karn.png" },
-    
-        { "letter": "त", "word": "तरबूज", "image": "https://example.com/images/hindi/tarbooj.png" },
-        { "letter": "थ", "word": "थाली", "image": "https://example.com/images/hindi/thali.png" },
-        { "letter": "द", "word": "दरवाजा", "image": "https://example.com/images/hindi/darwaza.png" },
-        { "letter": "ध", "word": "धनुष", "image": "https://example.com/images/hindi/dhanush.png" },
-        { "letter": "न", "word": "नल", "image": "https://example.com/images/hindi/nal.png" },
-    
-        { "letter": "प", "word": "पतंग", "image": "https://example.com/images/hindi/patang.png" },
-        { "letter": "फ", "word": "फल", "image": "https://example.com/images/hindi/phal.png" },
-        { "letter": "ब", "word": "बिल्ली", "image": "https://example.com/images/hindi/billi.png" },
-        { "letter": "भ", "word": "भालू", "image": "https://example.com/images/hindi/bhalu.png" },
-        { "letter": "म", "word": "मछली", "image": "https://example.com/images/hindi/machhli.png" },
-    
-        { "letter": "य", "word": "यज्ञ", "image": "https://example.com/images/hindi/yagya.png" },
-        { "letter": "र", "word": "रस्सी", "image": "https://example.com/images/hindi/rassi.png" },
-        { "letter": "ल", "word": "लड्डू", "image": "https://example.com/images/hindi/ladoo.png" },
-        { "letter": "व", "word": "वृक्ष", "image": "https://example.com/images/hindi/vriksh.png" },
-        { "letter": "श", "word": "शंख", "image": "https://example.com/images/hindi/shankh.png" },
-        { "letter": "ष", "word": "षट्कोण", "image": "https://example.com/images/hindi/shatkon.png" },
-        { "letter": "स", "word": "सूरज", "image": "https://example.com/images/hindi/sooraj.png" },
-        { "letter": "ह", "word": "हाथी", "image": "https://example.com/images/hindi/haathi.png" }
-      ],
-        "telugu": [
-        { "letter": "అ", "word": "అమ్మ", "image": "https://example.com/images/telugu/amma.png" },
-        { "letter": "ఆ", "word": "ఆవు", "image": "https://example.com/images/telugu/aavu.png" },
-        { "letter": "ఇ", "word": "ఇల్లు", "image": "https://example.com/images/telugu/illu.png" },
-        { "letter": "ఈ", "word": "ఈగ", "image": "https://example.com/images/telugu/eega.png" },
-        { "letter": "ఉ", "word": "ఉడుత", "image": "https://example.com/images/telugu/uduta.png" },
-        { "letter": "ఊ", "word": "ఊయల", "image": "https://example.com/images/telugu/ooyala.png" },
-        { "letter": "ఋ", "word": "ఋషి", "image": "https://example.com/images/telugu/rushi.png" },
-        { "letter": "ఎ", "word": "ఎలుక", "image": "https://example.com/images/telugu/eluka.png" },
-        { "letter": "ఏ", "word": "ఏనుగు", "image": "https://example.com/images/telugu/enugu.png" },
-        { "letter": "ఐ", "word": "ఐదు", "image": "https://example.com/images/telugu/aidu.png" },
-        { "letter": "ఒ", "word": "ఒంటె", "image": "https://example.com/images/telugu/onte.png" },
-        { "letter": "ఓ", "word": "ఓడ", "image": "https://example.com/images/telugu/oda.png" },
-        { "letter": "ఔ", "word": "ఔషధం", "image": "https://example.com/images/telugu/aushadham.png" },
-        
-        { "letter": "క", "word": "కమలం", "image": "https://example.com/images/telugu/kamalam.png" },
-        { "letter": "ఖ", "word": "ఖడ్గం", "image": "https://example.com/images/telugu/khadgam.png" },
-        { "letter": "గ", "word": "గడియారం", "image": "https://example.com/images/telugu/gadiyaram.png" },
-        { "letter": "ఘ", "word": "ఘంట", "image": "https://example.com/images/telugu/ghanta.png" },
-        { "letter": "ఙ", "word": "ఙానము", "image": "https://example.com/images/telugu/gnanam.png" },
-        
-        { "letter": "చ", "word": "చెట్టు", "image": "https://example.com/images/telugu/chettu.png" },
-        { "letter": "ఛ", "word": "ఛత్రం", "image": "https://example.com/images/telugu/chatram.png" },
-        { "letter": "జ", "word": "జలము", "image": "https://example.com/images/telugu/jalamu.png" },
-        { "letter": "ఝ", "word": "ఝషము", "image": "https://example.com/images/telugu/jhashamu.png" },
-        { "letter": "ఞ", "word": "ఞానము", "image": "https://example.com/images/telugu/gnanam.png" },
-    
-        { "letter": "ట", "word": "టమాట", "image": "https://example.com/images/telugu/tamata.png" },
-        { "letter": "ఠ", "word": "ఠాకూర్", "image": "https://example.com/images/telugu/thakur.png" },
-        { "letter": "డ", "word": "డమ్ము", "image": "https://example.com/images/telugu/dammu.png" },
-        { "letter": "ఢ", "word": "ఢోల్కి", "image": "https://example.com/images/telugu/dholki.png" },
-        { "letter": "ణ", "word": "కణం", "image": "https://example.com/images/telugu/kanam.png" },
-    
-        { "letter": "త", "word": "తవ్వ", "image": "https://example.com/images/telugu/tavva.png" },
-        { "letter": "థ", "word": "థర్మోస్", "image": "https://example.com/images/telugu/thermos.png" },
-        { "letter": "ద", "word": "దీపం", "image": "https://example.com/images/telugu/deepam.png" },
-        { "letter": "ధ", "word": "ధనుస్సు", "image": "https://example.com/images/telugu/dhanussu.png" },
-        { "letter": "న", "word": "నక్షత్రం", "image": "https://example.com/images/telugu/nakshatram.png" },
-    
-        { "letter": "ప", "word": "పలుకుబడి", "image": "https://example.com/images/telugu/palukubadi.png" },
-        { "letter": "ఫ", "word": "ఫలము", "image": "https://example.com/images/telugu/phalamu.png" },
-        { "letter": "బ", "word": "బల్ల", "image": "https://example.com/images/telugu/balla.png" },
-        { "letter": "భ", "word": "భారతం", "image": "https://example.com/images/telugu/bharatam.png" },
-        { "letter": "మ", "word": "మంచు", "image": "https://example.com/images/telugu/manchu.png" },
-    
-        { "letter": "య", "word": "యజ్ఞం", "image": "https://example.com/images/telugu/yagnyam.png" },
-        { "letter": "ర", "word": "రథం", "image": "https://example.com/images/telugu/ratham.png" },
-        { "letter": "ల", "word": "లేఖ", "image": "https://example.com/images/telugu/leka.png" },
-        { "letter": "వ", "word": "వాన", "image": "https://example.com/images/telugu/vaana.png" },
-        { "letter": "శ", "word": "శక్తి", "image": "https://example.com/images/telugu/shakti.png" },
-        { "letter": "ష", "word": "షట్కోణం", "image": "https://example.com/images/telugu/shatkonam.png" },
-        { "letter": "స", "word": "సింహం", "image": "https://example.com/images/telugu/simham.png" },
-        { "letter": "హ", "word": "హంస", "image": "https://example.com/images/telugu/hamsa.png" },
-        { "letter": "ళ", "word": "పులి", "image": "https://example.com/images/telugu/puli.png" },
-        { "letter": "క్ష", "word": "క్షీరము", "image": "https://example.com/images/telugu/kshiram.png" },
-        { "letter": "ఱ", "word": "ఱాటు పత్రిక", "image": "https://example.com/images/telugu/ratupatrika.png" }
-      ]
-      };
+    const alphabetData = {};
       
-
+      // Load data from JSON file hosted online (e.g., GitHub, Firebase, etc.)
+    fetch("https://ornate-frangollo-d46c3a.netlify.app/alphabet-data.json")
+    .then(response => response.json())
+    .then(data => {
+    alphabetData = data;
+    switchLanguage('english', document.querySelector('.tabs button.active'));
+    })
+    .catch(error => {
+    console.error("Failed to load alphabet data:", error);
+    });
       function switchLanguage(lang, btn) {
         document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
