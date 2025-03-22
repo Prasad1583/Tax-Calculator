@@ -95,45 +95,49 @@
 <div id="alphabetContainer" class="alphabet-grid"></div>
 
 <script>
-    const alphabetData = {};
-      
-      // Load data from JSON file hosted online (e.g., GitHub, Firebase, etc.)
-    fetch("https://ornate-frangollo-d46c3a.netlify.app/alphabet-data.json")
+  let alphabetData = {}; // Changed to let so we can reassign later
+
+  fetch("https://ornate-frangollo-d46c3a.netlify.app/alphabet-data.json")
     .then(response => response.json())
     .then(data => {
-    alphabetData = data;
-    switchLanguage('english', document.querySelector('.tabs button.active'));
+      alphabetData = data;
+      switchLanguage('english', document.querySelector('.tabs button.active'));
     })
     .catch(error => {
-    console.error("Failed to load alphabet data:", error);
+      console.error("Failed to load alphabet data:", error);
+      document.getElementById('alphabetContainer').innerHTML = "<p>⚠️ Failed to load data. Please try again later.</p>";
     });
-      function switchLanguage(lang, btn) {
-        document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-    
-        const container = document.getElementById('alphabetContainer');
-        container.innerHTML = "";
-    
-        alphabetData[lang].forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'card';
-    
-          const letter = document.createElement('div');
-          letter.className = 'letter';
-          letter.textContent = item.letter;
-    
-          const word = document.createElement('div');
-          word.className = 'word';
-          word.textContent = item.word;
-    
-          card.appendChild(letter);
-          card.appendChild(word);
-          container.appendChild(card);
-        });
-      }
-    
-      switchLanguage('english', document.querySelector('.tabs button.active'));
-    </script>
-    
-    </body>
-    </html>
+
+  function switchLanguage(lang, btn) {
+    document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const container = document.getElementById('alphabetContainer');
+    container.innerHTML = "";
+
+    if (!alphabetData[lang]) {
+      container.innerHTML = `<p>No data available for <strong>${lang}</strong>.</p>`;
+      return;
+    }
+
+    alphabetData[lang].forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const letter = document.createElement('div');
+      letter.className = 'letter';
+      letter.textContent = item.letter;
+
+      const word = document.createElement('div');
+      word.className = 'word';
+      word.textContent = item.word;
+
+      card.appendChild(letter);
+      card.appendChild(word);
+      container.appendChild(card);
+    });
+  }
+</script>
+
+</body>
+</html>
