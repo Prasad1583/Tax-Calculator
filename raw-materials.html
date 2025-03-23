@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Raw Materials</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans p-4">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8">🌍 Raw Materials</h1>
+
+    <!-- Template for one category -->
+    <div id="materials-container" class="space-y-6">
+      <!-- Categories will be injected here -->
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      "Metals": [ "Steel", "Aluminum", "Copper", "Brass", "Zinc", "Iron Ore", "Nickel", "Lead", "Tin", "Cobalt", "Chromium", "Manganese", "Titanium", "Magnesium", "Tungsten", "Molybdenum", "Vanadium", "Palladium", "Platinum", "Gold", "Silver" ],
+      "Plastics & Polymers": [ "Polyethylene (PE)", "Polypropylene (PP)", "Polyvinyl Chloride (PVC)", "Polystyrene (PS)", "Polycarbonate (PC)", "Acrylonitrile Butadiene Styrene (ABS)", "Nylon (PA)", "Polyester Resin", "Polyurethane (PU)", "Polyethylene Terephthalate (PET)", "Thermoplastic Elastomers (TPE)", "Polylactic Acid (PLA)", "High Impact Polystyrene (HIPS)", "Ethylene Vinyl Acetate (EVA)" ],
+      "Chemicals": [ "Sulfuric Acid", "Nitric Acid", "Ammonia", "Sodium Hydroxide (Caustic Soda)", "Hydrochloric Acid", "Methanol", "Ethanol", "Acetone", "Toluene", "Formaldehyde", "Acetic Acid", "Isopropyl Alcohol", "Benzene", "Chlorine", "Phosphoric Acid", "Sodium Bicarbonate", "Urea", "Lime", "Potassium Chloride" ],
+      "Construction Materials": [ "Cement", "Sand", "Gravel", "Bricks", "Clay", "Limestone", "Rebar", "Gypsum", "Bitumen", "Asphalt", "Glass", "Ceramic Tiles", "Steel Rods", "PVC Pipes", "Adhesives", "Sealants" ],
+      "Textiles & Fibers": [ "Cotton", "Wool", "Silk", "Polyester Fiber", "Nylon Fiber", "Rayon", "Acrylic Fiber", "Spandex", "Hemp", "Linen", "Bamboo Fiber", "Jute", "Cashmere", "Alpaca Fiber" ],
+      "Wood & Paper": [ "Plywood", "MDF (Medium-Density Fiberboard)", "Hardwood", "Softwood", "Wood Chips", "Cardboard", "Pulp", "Paper Rolls", "Newsprint", "Kraft Paper", "Particle Board", "Veneer Sheets" ],
+      "Food Ingredients": [ "Wheat", "Corn", "Rice", "Soybean", "Sugar", "Salt", "Vegetable Oil", "Milk Powder", "Gelatin", "Flavoring Agents", "Starch", "Cocoa Powder", "Citric Acid", "Vinegar", "Yeast", "Spices", "Palm Oil" ],
+      "Minerals & Natural Resources": [ "Coal", "Crude Oil", "Natural Gas", "Silica", "Bauxite", "Phosphate Rock", "Quartz", "Graphite", "Limestone", "Kaolin Clay", "Feldspar", "Gypsum Rock", "Barite", "Talc", "Rare Earth Elements" ],
+      "Packaging Materials": [ "Plastic Film", "Glass Bottles", "Aluminum Foil", "Metal Cans", "Corrugated Boxes", "PET Bottles", "Shrink Wrap", "Bubble Wrap", "Labels", "Caps & Closures", "Tetra Packs", "Drums", "Sachets", "Paper Bags" ],
+      "Electronics Components": [ "Silicon Wafers", "PCB (Printed Circuit Boards)", "Copper Wire", "Lithium", "Capacitors", "Resistors", "Transistors", "LEDs", "Microcontrollers", "IC Chips", "Sensors", "Diodes", "Quartz Crystals", "Ferrite Cores" ],
+      "Agricultural Raw Materials": [ "Seeds", "Fertilizers", "Pesticides", "Compost", "Animal Feed", "Mulch", "Manure", "Irrigation Pipes", "Neem Oil", "Agrochemicals" ],
+      "Pharmaceutical Raw Materials (APIs)": [ "Paracetamol", "Ibuprofen", "Ciprofloxacin", "Amoxicillin", "Metformin", "Lactose Monohydrate", "Microcrystalline Cellulose", "Magnesium Stearate", "Talcum", "Sodium Starch Glycolate", "Gelatin Capsules", "Colorants" ]
+    };
+
+    fetch("https://ornate-frangollo-d46c3a.netlify.app/raw-materials.json")
+      .then(response => response.json())
+      .then(data => {
+        data = data;
+      })
+      .catch(error => {
+        console.error("Failed to load alphabet data:", error);
+        document.getElementById('materials-container').innerHTML = "<p>⚠️ Failed to load data. Please try again later.</p>";
+      });
+
+    const container = document.getElementById('materials-container');
+
+    for (const [category, items] of Object.entries(data)) {
+      const section = document.createElement('div');
+      section.className = "bg-white rounded-2xl shadow-md p-6";
+
+      const title = document.createElement('h2');
+      title.className = "text-2xl font-semibold mb-4 text-indigo-700";
+      title.innerText = category;
+
+      const list = document.createElement('ul');
+      list.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 text-sm text-gray-700";
+
+      items.forEach(item => {
+        const li = document.createElement('li');
+        li.className = "bg-indigo-50 hover:bg-indigo-100 rounded px-2 py-1";
+        li.innerText = item;
+        list.appendChild(li);
+      });
+
+      section.appendChild(title);
+      section.appendChild(list);
+      container.appendChild(section);
+    }
+  </script>
+</body>
+</html>
