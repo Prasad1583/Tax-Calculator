@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostel Management System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e3a8a',
+            accent: '#10b981'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <header class="mb-6">
+      <h1 class="text-4xl font-bold text-primary text-center">🏨 Hostel Management System</h1>
+    </header>
+    
+    <!-- Tabs -->
+    <div class="flex justify-center space-x-2 mt-8 mb-8">
+      <button class="tab-btn px-4 py-2 rounded-md bg-primary text-white font-medium shadow" onclick="showTab('dashboard')">Dashboard</button>
+      <button class="tab-btn px-4 py-2 rounded-md bg-white border text-gray-700 hover:bg-gray-100" onclick="showTab('tenants')">Tenants</button>
+      <button class="tab-btn px-4 py-2 rounded-md bg-white border text-gray-700 hover:bg-gray-100" onclick="showTab('staff')">Staff</button>
+      <button class="tab-btn px-4 py-2 rounded-md bg-white border text-gray-700 hover:bg-gray-100" onclick="showTab('expenses')">Expenses</button>
+      <button class="tab-btn px-4 py-2 rounded-md bg-white border text-gray-700 hover:bg-gray-100" onclick="showTab('reports')">Reports</button>
+    </div>
+
+    <!-- Content Panels -->
+    <section id="dashboard" class="tab-content">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-2xl font-semibold mb-2">📊 Dashboard</h2>
+        <p class="text-gray-600">Overview of tenants, staff, expenses and reports.</p>
+      </div>
+    </section>
+
+    <!-- Tenants -->
+    <section id="tenants" class="tab-content hidden">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold">👥 Tenants</h2>
+          <button class="bg-accent text-white px-4 py-2 rounded hover:bg-emerald-600">+ Add Tenant</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm text-left text-gray-600">
+            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+              <tr>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Room</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y">
+              <tr>
+                <td class="px-4 py-2">Ravi Kumar</td>
+                <td class="px-4 py-2">101</td>
+                <td class="px-4 py-2"><span class="inline-block px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span></td>
+                <td class="px-4 py-2 space-x-2">
+                  <button class="text-blue-600 hover:underline">View</button>
+                  <button class="text-yellow-600 hover:underline">Edit</button>
+                  <button class="text-red-600 hover:underline">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Staff -->
+    <section id="staff" class="tab-content hidden">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold">🧑‍🔧 Staff</h2>
+          <button class="bg-accent text-white px-4 py-2 rounded hover:bg-emerald-600">+ Add Staff</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm text-left text-gray-600">
+            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+              <tr>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Role</th>
+                <th class="px-4 py-2">Contact</th>
+                <th class="px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y">
+              <tr>
+                <td class="px-4 py-2">Sunil Das</td>
+                <td class="px-4 py-2">Cook</td>
+                <td class="px-4 py-2">9876543210</td>
+                <td class="px-4 py-2 space-x-2">
+                  <button class="text-blue-600 hover:underline">View</button>
+                  <button class="text-yellow-600 hover:underline">Edit</button>
+                  <button class="text-red-600 hover:underline">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expenses -->
+    <section id="expenses" class="tab-content hidden">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold">💸 Expenses</h2>
+          <button class="bg-accent text-white px-4 py-2 rounded hover:bg-emerald-600">+ Add Expense</button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm text-left text-gray-600">
+            <thead class="text-xs uppercase bg-gray-100 text-gray-700">
+              <tr>
+                <th class="px-4 py-2">Item</th>
+                <th class="px-4 py-2">Amount</th>
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y">
+              <tr>
+                <td class="px-4 py-2">Groceries</td>
+                <td class="px-4 py-2">₹2500</td>
+                <td class="px-4 py-2">2025-03-20</td>
+                <td class="px-4 py-2 space-x-2">
+                  <button class="text-blue-600 hover:underline">View</button>
+                  <button class="text-yellow-600 hover:underline">Edit</button>
+                  <button class="text-red-600 hover:underline">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reports -->
+    <section id="reports" class="tab-content hidden">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-2xl font-semibold mb-3">📑 Reports</h2>
+        <p class="text-gray-600">Generate and export reports for tenant activity, staff, and monthly expenses.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      const tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('bg-white', 'text-gray-700');
+      });
+
+      event.target.classList.remove('bg-white', 'text-gray-700');
+      event.target.classList.add('bg-primary', 'text-white');
+    }
+  </script>
+
+</body>
+</html>
