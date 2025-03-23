@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hostel Business Model Mind Map</title>
+  <script src="
+  https://cdn.jsdelivr.net/npm/jsmind@0.8.7/js-legacy/jsmind.min.js
+  "></script>
+  <link href="
+  https://cdn.jsdelivr.net/npm/jsmind@0.8.7/style/jsmind.min.css
+  " rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+    }
+    #jsmind_container {
+      width: 100%;
+      height: 100vh;
+      background: #ffffff;
+      border-left: 4px solid #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <div id="jsmind_container"></div>
+
+  <script>
+    const mindData = {
+      "meta": {
+        "name": "hostel-management-map",
+        "author": "share360",
+        "version": "1.0"
+      },
+      "format": "node_tree",
+      "data": {
+        "id": "root",
+        "topic": "🏨 Hostel Business Model",
+        "children": [
+          {
+            "id": "hostelApp",
+            "topic": "📱 HostelManagement App (Owners)",
+            "children": [
+              { "id": "dash", "topic": "Dashboard" },
+              { "id": "setup", "topic": "Hostel Setup", "children": [
+                { "id": "rooms", "topic": "Rooms & Beds" },
+                { "id": "facilities", "topic": "Facilities" }
+              ]},
+              { "id": "tenants", "topic": "Tenant Management" },
+              { "id": "payments", "topic": "Rent & Invoicing" },
+              { "id": "staff", "topic": "Staff/Wardens" },
+              { "id": "complaints", "topic": "Complaints & Maintenance" },
+              { "id": "reports", "topic": "Reports" },
+              { "id": "roles", "topic": "Access: Owner, Manager, Warden" }
+            ]
+          },
+          {
+            "id": "tenantSite",
+            "topic": "🌐 HyderabadHostels Website (Tenants)",
+            "children": [
+              { "id": "browse", "topic": "Browse Hostels" },
+              { "id": "details", "topic": "Hostel Details Page" },
+              { "id": "availability", "topic": "Availability Checker" },
+              { "id": "booking", "topic": "Online Booking" },
+              { "id": "reviews", "topic": "Ratings & Reviews" },
+              { "id": "profile", "topic": "Tenant Dashboard" },
+              { "id": "support", "topic": "Support & Contact" }
+            ]
+          },
+          {
+            "id": "infra",
+            "topic": "🔧 Shared Infrastructure",
+            "children": [
+              { "id": "api", "topic": "APIs & Database" },
+              { "id": "security", "topic": "Security (JWT, Roles)" },
+              { "id": "notif", "topic": "Notifications (SMS/Email)" },
+              { "id": "payment", "topic": "Payment Gateway" }
+            ]
+          },
+          {
+            "id": "revenue",
+            "topic": "💸 Revenue Streams",
+            "children": [
+              { "id": "subs", "topic": "Subscriptions (SaaS)" },
+              { "id": "commission", "topic": "Booking Commissions" },
+              { "id": "ads", "topic": "Ads & Promotions" },
+              { "id": "addons", "topic": "Value Add-ons" }
+            ]
+          }
+        ]
+      }
+    };
+
+    const options = {
+      container: 'jsmind_container',
+      editable: false,
+      theme: 'primary'
+    };
+
+    jsMind.show(options, mindData);
+  </script>
+</body>
+</html>
