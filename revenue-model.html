@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="=" en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Revenue Model Types</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <header class="bg-blue-600 text-white p-6 shadow-md">
+        <h1 class="text-3xl font-bold text-center">🌍 Global Revenue Model Types</h1>
+        <p class="text-center text-sm mt-1">Explore how businesses around the world generate revenue</p>
+    </header>
+
+    <main class="p-6 max-w-7xl mx-auto">
+        <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </main>
+
+    <script>
+        const revenueModels = [
+            {
+                "type": "Product Sales",
+                "description": "Selling physical or digital goods outright.",
+                "examples": ["Amazon", "Apple", "Flipkart"]
+            },
+            {
+                "type": "Subscription",
+                "description": "Recurring payments (monthly/yearly) for access to products/services.",
+                "examples": ["Netflix", "Spotify", "Adobe", "Salesforce"]
+            },
+            {
+                "type": "Freemium",
+                "description": "Basic version free; premium features require payment.",
+                "examples": ["Zoom", "LinkedIn", "Canva"]
+            },
+            {
+                "type": "Commission (Marketplace)",
+                "description": "Earn a percentage or fee from transactions between two parties.",
+                "examples": ["Uber", "Zomato", "eBay", "Airbnb"]
+            },
+            {
+                "type": "Advertising (Ad-based)",
+                "description": "Revenue from displaying or promoting ads to users.",
+                "examples": ["Facebook", "Google", "YouTube"]
+            },
+            {
+                "type": "Licensing",
+                "description": "Selling the right to use software, IP, patents, etc.",
+                "examples": ["Microsoft Office", "Oracle"]
+            },
+            {
+                "type": "Affiliate Marketing",
+                "description": "Earn commissions for promoting and referring other products.",
+                "examples": ["Bloggers", "Influencers", "Amazon Associates"]
+            },
+            {
+                "type": "Pay-Per-Use / Usage-based",
+                "description": "Charges based on consumption level.",
+                "examples": ["AWS", "Azure", "Twilio", "Cloudflare"]
+            },
+            {
+                "type": "Data Monetization",
+                "description": "Selling or analyzing aggregated user data.",
+                "examples": ["Google Ads", "Meta", "Nielsen"]
+            },
+            {
+                "type": "Leasing / Rental",
+                "description": "Temporarily leasing physical assets/services.",
+                "examples": ["Ola", "Hertz", "Zoomcar", "Airbnb"]
+            },
+            {
+                "type": "Franchise",
+                "description": "Allowing others to operate your brand for a fee/royalty.",
+                "examples": ["McDonald's", "Subway", "Anytime Fitness"]
+            },
+            {
+                "type": "Razor & Blade Model",
+                "description": "Sell base product cheap; profit from consumables/add-ons.",
+                "examples": ["Gillette", "Printers", "Xbox + Games"]
+            },
+            {
+                "type": "Crowdsourcing / Donation",
+                "description": "Voluntary contributions from users or patrons.",
+                "examples": ["Wikipedia", "Patreon", "Kickstarter"]
+            },
+            {
+                "type": "Bundling / Unbundling",
+                "description": "Selling multiple services/products together or separately.",
+                "examples": ["Cable TV", "Microsoft 365"]
+            },
+            {
+                "type": "Broker / Agent Fees",
+                "description": "Earn fees for connecting buyers and sellers.",
+                "examples": ["Real estate agents", "Booking.com"]
+            },
+            {
+                "type": "Dynamic Pricing",
+                "description": "Pricing based on demand, time, or user behavior.",
+                "examples": ["Uber", "Airlines", "Hotel Bookings"]
+            },
+            {
+                "type": "White-label / OEM",
+                "description": "Sell unbranded product/service for rebranding by others.",
+                "examples": ["Payment gateways", "Private-label products"]
+            },
+            {
+                "type": "B2B SaaS",
+                "description": "Delivering software on a subscription basis for businesses.",
+                "examples": ["HubSpot", "Slack", "Atlassian"]
+            },
+            {
+                "type": "Licensing IP / Royalty",
+                "description": "Earn via licensing intellectual property, trademarks, etc.",
+                "examples": ["Disney", "Marvel", "Pharma companies"]
+            },
+            {
+                "type": "Transaction Fee (Fintech)",
+                "description": "Take a small fee from financial transactions or wallet usage.",
+                "examples": ["PayPal", "Stripe", "PhonePe", "Paytm"]
+            },
+            {
+                "type": "Installation/Setup Fee",
+                "description": "One-time charges to set up or onboard a service/product.",
+                "examples": ["CRM software", "Solar installations"]
+            },
+            {
+                "type": "Value-added Services (VAS)",
+                "description": "Extra features offered for a premium.",
+                "examples": ["Telcos", "Cloud storage upsells"]
+            },
+            {
+                "type": "Insurance & Warranty Add-ons",
+                "description": "Revenue from offering coverage beyond core product.",
+                "examples": ["Phone insurance", "Travel insurance"]
+            },
+            {
+                "type": "Professional Services / Consulting",
+                "description": "Revenue from training, consulting, audits, or custom setup.",
+                "examples": ["Accenture", "Deloitte", "IBM Consulting"]
+            },
+            {
+                "type": "API Monetization",
+                "description": "Charging developers for access to APIs based on usage or tier.",
+                "examples": ["Stripe", "Google Maps API", "OpenAI API"]
+            }
+        ];
+
+        const container = document.getElementById("cardGrid");
+
+        revenueModels.forEach(model => {
+            const card = document.createElement("div");
+            card.className = "bg-white rounded-xl shadow-md p-5 hover:shadow-xl transition-all";
+
+            const title = `<h2 class="text-xl font-semibold text-blue-600 mb-2">${model.type}</h2>`;
+            const desc = `<p class="text-sm text-gray-700 mb-3">${model.description}</p>`;
+            const examples = `<div class="text-xs text-gray-500"><strong>Examples:</strong> ${model.examples.join(", ")}</div>`;
+
+            card.innerHTML = title + desc + examples;
+            container.appendChild(card);
+        });
+    </script>
+
+</body>
+
+</html>
