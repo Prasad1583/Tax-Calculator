@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>💰 All Income Streams to an Individual</title>
+  <script src="https://cdn.jsdelivr.net/npm/jsmind@0.8.7/js-legacy/jsmind.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/jsmind@0.8.7/style/jsmind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+    }
+    header {
+      padding: 1rem 2rem;
+      background: #0f172a;
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    #container-wrapper {
+      height: calc(100% - 72px);
+      padding: 1rem;
+    }
+    #jsmind_container {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      border-radius: 10px;
+      border: 2px solid #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
+  </style>
+</head>
+<body>
+  <header>📈 All Income Streams to an Individual</header>
+  <div id="container-wrapper">
+    <div id="jsmind_container"></div>
+  </div>
+
+  <script>
+    const mindData = {
+      "meta": {
+        "name": "income-flow-person",
+        "author": "share360",
+        "version": "1.0"
+      },
+      "format": "node_tree",
+      "data": {
+        "id": "root",
+        "topic": "🧑 Income Sources",
+        "children": [
+          {
+            "id": "employment",
+            "topic": "💼 Employment",
+            "children": [
+              { "id": "salary", "topic": "👨‍💼 Salary / Wages" },
+              { "id": "bonus", "topic": "🎁 Bonuses / Incentives" },
+              { "id": "freelance", "topic": "🧑‍💻 Freelancing" },
+              { "id": "contract", "topic": "📄 Contractual Work" },
+              { "id": "gig", "topic": "🛵 Gig Jobs (Delivery, Cab, etc.)" }
+            ]
+          },
+          {
+            "id": "business",
+            "topic": "🏪 Business / Self-Employment",
+            "children": [
+              { "id": "trade", "topic": "🛒 Product Sales" },
+              { "id": "services", "topic": "🧰 Service Charges" },
+              { "id": "ecom", "topic": "📦 E-commerce Revenue" },
+              { "id": "app", "topic": "📱 App or SaaS Revenue" }
+            ]
+          },
+          {
+            "id": "passive",
+            "topic": "🛏️ Passive Income",
+            "children": [
+              { "id": "rent", "topic": "🏠 Rental Income" },
+              { "id": "dividend", "topic": "📈 Dividends (Stocks, MF)" },
+              { "id": "interest", "topic": "🏦 Interest (FD, RD, PPF)" },
+              { "id": "royalty", "topic": "📚 Royalties (Books, IP)" },
+              { "id": "ytblog", "topic": "🎥 Content Revenue (YouTube/Blog)" }
+            ]
+          },
+          {
+            "id": "invest",
+            "topic": "📈 Investment Income",
+            "children": [
+              { "id": "capital", "topic": "💹 Capital Gains (Stocks, Crypto)" },
+              { "id": "mf", "topic": "📊 Mutual Fund Profits" },
+              { "id": "reit", "topic": "🏢 REIT or Property Gains" }
+            ]
+          },
+          {
+            "id": "gov",
+            "topic": "🏛️ Government Income",
+            "children": [
+              { "id": "pension", "topic": "👴 Pension" },
+              { "id": "scheme", "topic": "📋 Govt. Schemes/Subsidies" },
+              { "id": "scholar", "topic": "🎓 Scholarship / Fellowship" },
+              { "id": "ubi", "topic": "💸 Universal Basic Income (UBI)" }
+            ]
+          },
+          {
+            "id": "global",
+            "topic": "🌍 Remittances",
+            "children": [
+              { "id": "nri", "topic": "💵 NRI Family Remittance" },
+              { "id": "globalpay", "topic": "🌐 Foreign Clients / Platforms" }
+            ]
+          },
+          {
+            "id": "crowd",
+            "topic": "🌐 Platform / Donation Based",
+            "children": [
+              { "id": "patreon", "topic": "👥 Patreon / Supporters" },
+              { "id": "donation", "topic": "🤝 Public Donations" },
+              { "id": "kick", "topic": "🚀 Crowdfunding Projects" }
+            ]
+          },
+          {
+            "id": "award",
+            "topic": "🏆 Prizes & Awards",
+            "children": [
+              { "id": "awardcash", "topic": "🎖️ Award Prize Money" },
+              { "id": "contest", "topic": "🎮 Contest Winnings" }
+            ]
+          }
+        ]
+      }
+    };
+
+    const options = {
+      container: 'jsmind_container',
+      editable: false,
+      theme: 'asphalt'
+    };
+
+    jsMind.show(options, mindData);
+  </script>
+</body>
+</html>
