@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shops - Product vs Service</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6 text-gray-800">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-4xl font-bold text-center text-green-700 mb-10">
+      🛍️ Shops - Product vs Service
+    </h1>
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Product-Based Shops -->
+      <div>
+        <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">🛒 Product-Based Shops</h2>
+        <div id="product-shops" class="space-y-6"></div>
+      </div>
+
+      <!-- Service-Based Shops -->
+      <div>
+        <h2 class="text-2xl font-bold text-pink-700 mb-4 text-center">🛠️ Service-Based Shops</h2>
+        <div id="service-shops" class="space-y-6"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const categorizedShops = {
+      "Product-Based Shops": {
+        "Retail & Specialty Stores": [
+          "Grocery Shop", "General Store", "Clothing Store", "Clothing Boutique", "Footwear Store",
+          "Book Store", "Stationery Store", "Jewelry Shop", "Gold Shop", "Fancy Store",
+          "Gift Shop", "Hardware Shop", "Electric Shop", "Electronics Shop", "Mobile Shop",
+          "Mobile Accessories Shop", "Plastic and Household Store", "Paint Shop", "Sanitary Ware Shop",
+          "Utensils Shop", "Mattress and Bedding Shop", "Toy Shop", "Sweet Shop", "Agarbatti Shop",
+          "Coconut Shop", "Pet Shop", "Flower Shop", "Kitchenware Store", "Luggage and Bags Store"
+        ],
+        "Food & Beverage Stores": [
+          "Bakery", "Cake Shop", "Ice Cream Parlour", "Milk Booth", "Meat Shop",
+          "Fish Market", "Egg Center", "Cold Storage Shop"
+        ],
+        "Healthcare & Wellness (Products)": [
+          "Medical Store", "Pharmacy", "Ayurveda / Homeopathy Store",
+          "Health & Wellness Store", "Optical Store"
+        ],
+        "Automotive (Products)": [
+          "Automobile Parts Store", "Motorbike and Car Showroom", "Oil & Lubricant Store"
+        ],
+        "Agriculture & Livestock (Products)": [
+          "Agricultural Supply Store", "Fertilizer & Pesticide Shop", "Fish Feed Shop",
+          "Poultry Shop", "Cattle Feed Shop", "Dairy Product Outlet"
+        ],
+        "Industrial & Construction Supplies": [
+          "Cement & Building Material Store", "Iron & Steel Store", "Tiles & Granite Shop",
+          "Sand & Brick Supplier", "Construction Tools & Equipment Store"
+        ],
+        "Seasonal & Festival Vendors (Products)": [
+          "Fireworks Shop", "Kite Shop", "Rakhi & Pooja Items Shop",
+          "Golu Dolls Shop", "Clay Ganesha Vendor"
+        ]
+      },
+
+      "Service-Based Shops": {
+        "Food & Beverage Services": [
+          "Juice Center", "Tea Stall", "Pan Shop", "Tiffin Center / Mess",
+          "Hotel", "Restaurant", "Street Food Vendor", "Ice Cream Cycle Vendor"
+        ],
+        "Healthcare & Wellness (Services)": [
+          "Medical Lab", "Diagnostic Center", "Dental Clinic",
+          "Veterinary Clinic", "Physiotherapy Clinic"
+        ],
+        "Repair & Maintenance Services": [
+          "Bike Repair Shop", "Car Repair Shop", "Cycle Repair Shop", "Computer Repair Shop",
+          "Mobile Repair Shop", "TV Repair Shop", "Electrician Service", "Mechanic Shop",
+          "Welding Shop", "Water Purifier Service", "AC Repair and Service",
+          "Solar Equipment Service", "Furniture Repair Shop", "Cycle Tyre Puncture Repair"
+        ],
+        "Professional & Financial Services": [
+          "Courier Service", "Internet Cafe", "E-Service Center (MeeSeva, Aadhaar, PAN, etc.)",
+          "Travel Agency", "Money Transfer & Recharge Shop", "Banking Correspondent (BC Point)",
+          "Insurance Agent Office", "Chartered Accountant Office", "Legal/Notary Services",
+          "Real Estate Agency"
+        ],
+        "Beauty & Personal Care": [
+          "Beauty Parlour", "Salon", "Tattoo Studio"
+        ],
+        "Education & Learning Services": [
+          "Coaching Center", "Computer Training Institute",
+          "Music / Dance School", "Art & Craft Class"
+        ],
+        "Automotive Services": [
+          "Automobile Washing Center", "Gas Agency", "Petrol Station"
+        ],
+        "Agriculture & Livestock Services": [
+          "Agri Equipment Rental"
+        ],
+        "Events & Rentals": [
+          "Tent House & Furniture Rental", "DJ Sound & Lighting Service",
+          "Party Decoration Store", "Event Planner Office", "Flower & Garland Maker"
+        ],
+        "Tech & Digital Services": [
+          "Cyber Cafe + Xerox", "Photography / Videography Studio",
+          "CCTV & Security Equipment Dealer", "Computer Sales & Accessories Shop",
+          "Online Service Center (Govt Services)", "E-Waste Collection Center"
+        ],
+        "Self-Employed / Microservices": [
+          "Tailor", "Cobbler", "Key Maker", "Ironing Service (Presswala)",
+          "Barber", "Push Cart Vegetable Vendor", "Balloon Seller", "Banana Leaf Seller",
+          "Bangle Seller", "Earthen Pot Maker", "Knife/Scissor Sharpener"
+        ]
+      }
+    };
+
+    function renderShops(category, containerId) {
+      const container = document.getElementById(containerId);
+      for (const subCategory in categorizedShops[category]) {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-xl shadow p-4";
+
+        const title = document.createElement("h3");
+        title.className = "text-lg font-semibold text-indigo-600 mb-2";
+        title.textContent = subCategory;
+        card.appendChild(title);
+
+        const list = document.createElement("ul");
+        list.className = "list-disc pl-5 space-y-1 text-gray-700";
+        categorizedShops[category][subCategory].forEach(shop => {
+          const item = document.createElement("li");
+          item.textContent = shop;
+          list.appendChild(item);
+        });
+
+        card.appendChild(list);
+        container.appendChild(card);
+      }
+    }
+
+    renderShops("Product-Based Shops", "product-shops");
+    renderShops("Service-Based Shops", "service-shops");
+  </script>
+</body>
+</html>
