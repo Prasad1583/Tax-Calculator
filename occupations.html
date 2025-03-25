@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Occupations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-white min-h-screen p-6 font-sans">
+
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center text-blue-700 mb-10 drop-shadow-lg">
+      🏬 Occupations in Rural & Urban India
+    </h1>
+
+    <div id="shop-container" class="space-y-6"></div>
+  </div>
+
+  <script>
+    const categoryIcons = {
+      "Agriculture & Allied Activities": "🌾",
+      "Animal Husbandry & Livestock": "🐄",
+      "Handicrafts & Cottage Industries": "🎨",
+      "Construction & Infrastructure": "🏗️",
+      "Education": "📚",
+      "Healthcare & Medical": "🏥",
+      "Retail & Trade": "🛍️",
+      "Transportation & Logistics": "🚚",
+      "Manufacturing & Industry": "🏭",
+      "IT & Digital Services": "💻",
+      "Hospitality & Tourism": "🏨",
+      "Government & Administrative Services": "🏛️",
+      "Financial & Banking Services": "💰",
+      "Beauty & Wellness": "💇",
+      "Arts, Culture & Entertainment": "🎭",
+      "Home-Based & Domestic Work": "🏠",
+      "Security & Safety": "🛡️",
+      "Environmental & Green Jobs": "🌱",
+      "Legal & Advocacy": "⚖️",
+      "Media & Communication": "🗞️",
+      "Skilled Trades & Technical Services": "🛠️"
+    };
+
+    const occupationData = {
+      "Agriculture & Allied Activities": [
+        "Farmer", "Dairy Farmer", "Poultry Farmer", "Beekeeper", "Fisherman",
+        "Agricultural Labourer", "Horticulturist", "Irrigation Technician",
+        "Sericulturist", "Nursery Worker"
+      ],
+      "Animal Husbandry & Livestock": [
+        "Veterinary Doctor", "Cattle Raiser", "Shepherd", "Goat/Sheep Farmer",
+        "Pig Rearer", "Poultry Caretaker", "Livestock Inspector"
+      ],
+      "Handicrafts & Cottage Industries": [
+        "Weaver", "Potter", "Blacksmith", "Carpenter", "Goldsmith",
+        "Silversmith", "Basket Maker", "Bamboo Craftsman", "Handloom Worker", "Toy Maker"
+      ],
+      "Construction & Infrastructure": [
+        "Civil Engineer", "Construction Laborer", "Mason", "Electrician", "Plumber",
+        "Site Supervisor", "Crane Operator", "Carpenter", "Tiles Worker", "Welder"
+      ],
+      "Education": [
+        "School Teacher", "College Professor", "Tutor/Private Teacher", "Anganwadi Worker",
+        "Special Educator", "Librarian", "Education Counselor"
+      ],
+      "Healthcare & Medical": [
+        "Doctor (MBBS)", "Nurse", "ASHA Worker", "Pharmacist", "Lab Technician",
+        "Ayurvedic Doctor", "Homeopathy Practitioner", "Physiotherapist", "Radiologist", "Medical Assistant"
+      ],
+      "Retail & Trade": [
+        "Shopkeeper", "Street Vendor", "Grocery Store Owner", "Cloth Merchant",
+        "Fruit/Vegetable Vendor", "Kirana Store Worker", "Supermarket Cashier",
+        "Mobile Shop Owner", "Stationery Seller", "Fair Price Shop Operator"
+      ],
+      "Transportation & Logistics": [
+        "Truck Driver", "Auto Rickshaw Driver", "Taxi Driver", "Delivery Executive",
+        "Courier Agent", "Transport Company Owner", "Loader", "E-Rickshaw Driver",
+        "Tempo Driver", "Bus Conductor"
+      ],
+      "Manufacturing & Industry": [
+        "Factory Worker", "Machine Operator", "Textile Worker", "Packager",
+        "Production Supervisor", "Quality Inspector", "Industrial Painter", "Welding Technician"
+      ],
+      "IT & Digital Services": [
+        "Software Engineer", "Web Developer", "Graphic Designer", "BPO Executive",
+        "Data Entry Operator", "Digital Marketer", "UI/UX Designer",
+        "Tech Support Executive", "Cyber Cafe Operator"
+      ],
+      "Hospitality & Tourism": [
+        "Hotel Manager", "Receptionist", "Waiter", "Chef", "Housekeeping Staff",
+        "Tour Guide", "Travel Agent", "Homestay Owner", "Event Manager"
+      ],
+      "Government & Administrative Services": [
+        "Panchayat Secretary", "Revenue Officer", "Police Constable",
+        "Village Administrative Officer", "Block Development Officer",
+        "Municipal Worker", "Postman", "RTO Officer", "Forest Guard"
+      ],
+      "Financial & Banking Services": [
+        "Bank Manager", "Loan Officer", "Bank Clerk", "ATM Operator",
+        "Insurance Agent", "Mutual Fund Distributor", "Microfinance Field Officer",
+        "Self Help Group Leader"
+      ],
+      "Beauty & Wellness": [
+        "Beautician", "Barber", "Makeup Artist", "Spa Therapist",
+        "Hair Stylist", "Salon Owner", "Mehndi Artist", "Pedicurist/Manicurist"
+      ],
+      "Arts, Culture & Entertainment": [
+        "Musician", "Folk Artist", "Street Performer", "Dancer", "Actor",
+        "Film Editor", "Photographer", "Painter", "Sound Engineer"
+      ],
+      "Home-Based & Domestic Work": [
+        "Housemaid", "Cook", "Home Tutor", "Baby Sitter", "Caregiver",
+        "Laundry Worker", "Home Tailor"
+      ],
+      "Security & Safety": [
+        "Watchman", "Security Guard", "Firefighter", "Disaster Relief Worker", "Rescue Team Member"
+      ],
+      "Environmental & Green Jobs": [
+        "Tree Planter", "Organic Farmer", "Compost Maker", "Solar Technician",
+        "Waste Picker", "Water Resource Manager"
+      ],
+      "Legal & Advocacy": [
+        "Lawyer", "Legal Advisor", "NGO Worker", "Social Activist", "Human Rights Advocate"
+      ],
+      "Media & Communication": [
+        "Journalist", "News Reporter", "Radio Jockey", "Content Creator",
+        "Social Media Influencer", "Copywriter", "TV Anchor"
+      ],
+      "Skilled Trades & Technical Services": [
+        "Electrician", "Mechanic", "Tailor", "Cobbler", "Blacksmith",
+        "Welder", "Motor Rewinder", "Repair Technician"
+      ]
+    };
+
+    const container = document.getElementById("shop-container");
+
+    for (let category in occupationData) {
+      const section = document.createElement("div");
+      section.className = "bg-white shadow-md rounded-xl p-6 border border-blue-100";
+
+      const heading = document.createElement("h2");
+      heading.innerHTML = `${categoryIcons[category] || "🔹"} ${category}`;
+      heading.className = "text-xl font-semibold text-blue-600 mb-4";
+      section.appendChild(heading);
+
+      const ul = document.createElement("ul");
+      ul.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-gray-700";
+      occupationData[category].forEach(occupation => {
+        const li = document.createElement("li");
+        li.className = "bg-blue-50 px-3 py-2 rounded-md shadow-sm hover:bg-blue-100 transition";
+        li.textContent = "🔹 " + occupation;
+        ul.appendChild(li);
+      });
+
+      section.appendChild(ul);
+      container.appendChild(section);
+    }
+  </script>
+</body>
+</html>
