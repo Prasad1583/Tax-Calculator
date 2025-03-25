@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shops in a Town</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-white min-h-screen p-6 font-sans">
+
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold text-center text-blue-700 mb-10 drop-shadow-lg">
+      🏬 Shops in a Town
+    </h1>
+
+    <div id="shop-container" class="space-y-6"></div>
+  </div>
+
+  <script>
+    const shopData = {
+        "Retail & Specialty Stores": [
+          "Grocery Shop",
+          "General Store",
+          "Clothing Store",
+          "Clothing Boutique",
+          "Footwear Store",
+          "Book Store",
+          "Stationery Store",
+          "Jewelry Shop",
+          "Gold Shop",
+          "Fancy Store",
+          "Gift Shop",
+          "Hardware Shop",
+          "Electric Shop",
+          "Electronics Shop",
+          "Mobile Shop",
+          "Mobile Accessories Shop",
+          "Plastic and Household Store",
+          "Paint Shop",
+          "Sanitary Ware Shop",
+          "Utensils Shop",
+          "Mattress and Bedding Shop",
+          "Tailor Shop",
+          "Toy Shop",
+          "Sweet Shop",
+          "Agarbatti Shop",
+          "Coconut Shop",
+          "Pet Shop",
+          "Flower Shop",
+          "Kitchenware Store",
+          "Luggage and Bags Store"
+        ],
+        "Food & Beverage Services": [
+          "Bakery",
+          "Cake Shop",
+          "Juice Center",
+          "Tea Stall",
+          "Pan Shop",
+          "Ice Cream Parlour",
+          "Tiffin Center / Mess",
+          "Hotel",
+          "Restaurant",
+          "Milk Booth",
+          "Meat Shop",
+          "Fish Market",
+          "Egg Center",
+          "Cold Storage Shop"
+        ],
+        "Healthcare & Wellness": [
+          "Medical Store",
+          "Pharmacy",
+          "Medical Lab",
+          "Diagnostic Center",
+          "Dental Clinic",
+          "Ayurveda / Homeopathy Store",
+          "Optical Store",
+          "Veterinary Clinic",
+          "Physiotherapy Clinic",
+          "Health & Wellness Store"
+        ],
+        "Repair & Maintenance": [
+          "Bike Repair Shop",
+          "Car Repair Shop",
+          "Cycle Repair Shop",
+          "Computer Repair Shop",
+          "Mobile Repair Shop",
+          "TV Repair Shop",
+          "Electrician Service",
+          "Mechanic Shop",
+          "Welding Shop",
+          "Water Purifier Service",
+          "AC Repair and Service",
+          "Solar Equipment Service",
+          "Furniture Repair Shop"
+        ],
+        "Professional & Financial Services": [
+          "Courier Service",
+          "Internet Cafe",
+          "E-Service Center (MeeSeva, Aadhaar, PAN, etc.)",
+          "Travel Agency",
+          "Money Transfer & Recharge Shop",
+          "Banking Correspondent (BC Point)",
+          "Insurance Agent Office",
+          "Chartered Accountant Office",
+          "Legal/Notary Services",
+          "Real Estate Agency"
+        ],
+        "Beauty & Personal Care": [
+          "Beauty Parlour",
+          "Salon",
+          "Tattoo Studio"
+        ],
+        "Education & Learning": [
+          "Coaching Center",
+          "Computer Training Institute",
+          "Music / Dance School",
+          "Art & Craft Class",
+          "Book Binding & Lamination Shop"
+        ],
+        "Automotive": [
+          "Automobile Parts Store",
+          "Automobile Washing Center",
+          "Motorbike and Car Showroom",
+          "Gas Agency",
+          "Petrol Station",
+          "Oil & Lubricant Store"
+        ],
+        "Agriculture & Livestock": [
+          "Agricultural Supply Store",
+          "Fertilizer & Pesticide Shop",
+          "Fish Feed Shop",
+          "Poultry Shop",
+          "Cattle Feed Shop",
+          "Dairy Product Outlet",
+          "Agri Equipment Rental"
+        ],
+        "Industrial & Construction Supplies": [
+          "Cement & Building Material Store",
+          "Iron & Steel Store",
+          "Tiles & Granite Shop",
+          "Sand & Brick Supplier",
+          "Construction Tools & Equipment Store"
+        ],
+        "Events & Rentals": [
+          "Tent House & Furniture Rental",
+          "DJ Sound & Lighting Service",
+          "Party Decoration Store",
+          "Event Planner Office",
+          "Flower & Garland Maker"
+        ],
+        "Tech & Digital Services": [
+          "Cyber Cafe + Xerox",
+          "Photography / Videography Studio",
+          "CCTV & Security Equipment Dealer",
+          "Computer Sales & Accessories Shop",
+          "Online Service Center (Govt Services)",
+          "E-Waste Collection Center"
+        ],
+        "Seasonal & Festival Vendors": [
+          "Fireworks Shop",
+          "Kite Shop",
+          "Rakhi & Pooja Items Shop",
+          "Golu Dolls Shop",
+          "Clay Ganesha Vendor"
+        ],
+        "Self-Employed / Microservices": [
+          "Tailor",
+          "Cobbler",
+          "Key Maker",
+          "Ironing Service (Presswala)",
+          "Barber",
+          "Street Food Vendor",
+          "Push Cart Vegetable Vendor",
+          "Ice Cream Cycle Vendor",
+          "Balloon Seller",
+          "Banana Leaf Seller",
+          "Bangle Seller",
+          "Earthen Pot Maker",
+          "Mobile Recharge Booth",
+          "Knife/Scissor Sharpener",
+          "Cycle Tyre Puncture Repair"
+        ]
+      }
+      ;
+
+    const container = document.getElementById("shop-container");
+
+    for (let category in shopData) {
+      const section = document.createElement("div");
+      section.className = "bg-white shadow-md rounded-xl p-6 border border-blue-100";
+
+      const heading = document.createElement("h2");
+      heading.textContent = category;
+      heading.className = "text-xl font-semibold text-blue-600 mb-4";
+      section.appendChild(heading);
+
+      const ul = document.createElement("ul");
+      ul.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-gray-700";
+      shopData[category].forEach(shop => {
+        const li = document.createElement("li");
+        li.className = "bg-blue-50 px-3 py-2 rounded-md shadow-sm hover:bg-blue-100 transition";
+        li.textContent = "🔹 " + shop;
+        ul.appendChild(li);
+      });
+
+      section.appendChild(ul);
+      container.appendChild(section);
+    }
+  </script>
+</body>
+</html>
