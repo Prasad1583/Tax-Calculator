@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📚 100 Key Book Takeaways</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-4xl font-bold text-center text-blue-700 mb-10">📚 100 Key Takeaways from the Best Books</h1>
+    <div id="bookContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+
+  <script>
+    const takeaways = [
+    {
+      "id": 1,
+      "takeaway": "Snap decisions can be surprisingly accurate.",
+      "book": "Daring Greatly by Bren\u00e9 Brown"
+    },
+    {
+      "id": 2,
+      "takeaway": "The poor work for money, the rich make money work for them.",
+      "book": "Outliers by Malcolm Gladwell"
+    },
+    {
+      "id": 3,
+      "takeaway": "Extraordinary success comes from unique opportunity + effort.",
+      "book": "The Compound Effect by Darren Hardy"
+    },
+    {
+      "id": 4,
+      "takeaway": "Focus on the one thing that matters most.",
+      "book": "Grit by Angela Duckworth"
+    },
+    {
+      "id": 5,
+      "takeaway": "Be impeccable with your word.",
+      "book": "Tools of Titans by Tim Ferriss"
+    },
+    {
+      "id": 6,
+      "takeaway": "Discipline starts with making your bed.",
+      "book": "The Subtle Art of Not Giving a F*ck by Mark Manson"
+    },
+    {
+      "id": 7,
+      "takeaway": "A growth mindset leads to success.",
+      "book": "Zero to One by Peter Thiel"
+    },
+    {
+      "id": 8,
+      "takeaway": "Control your mind or it will control you.",
+      "book": "Atomic Habits by James Clear"
+    },
+    {
+      "id": 9,
+      "takeaway": "When you want something, the universe conspires to help you achieve it.",
+      "book": "The 5 AM Club by Robin Sharma"
+    },
+    {
+      "id": 10,
+      "takeaway": "Silence your ego to grow.",
+      "book": "Mindset by Carol S. Dweck"
+    },
+    {
+      "id": 11,
+      "takeaway": "People don't buy what you do, they buy why you do it.",
+      "book": "The War of Art by Steven Pressfield"
+    },
+    {
+      "id": 12,
+      "takeaway": "Be impeccable with your word.",
+      "book": "Man's Search for Meaning by Viktor E. Frankl"
+    },
+    {
+      "id": 13,
+      "takeaway": "Be proactive rather than reactive in life.",
+      "book": "Tools of Titans by Tim Ferriss"
+    },
+    {
+      "id": 14,
+      "takeaway": "Purpose gives meaning to suffering.",
+      "book": "Deep Work by Cal Newport"
+    },
+    {
+      "id": 15,
+      "takeaway": "Obstacles are opportunities in disguise.",
+      "book": "Make Your Bed by Admiral William H. McRaven"
+    },
+    {
+      "id": 16,
+      "takeaway": "You can push past pain and achieve greatness.",
+      "book": "Daring Greatly by Bren\u00e9 Brown"
+    },
+    {
+      "id": 17,
+      "takeaway": "When you want something, the universe conspires to help you achieve it.",
+      "book": "Rich Dad Poor Dad by Robert Kiyosaki"
+    },
+    {
+      "id": 18,
+      "takeaway": "Be impeccable with your word.",
+      "book": "The Art of Happiness by Dalai Lama"
+    },
+    {
+      "id": 19,
+      "takeaway": "Resistance is the enemy of creativity.",
+      "book": "Outliers by Malcolm Gladwell"
+    },
+    {
+      "id": 20,
+      "takeaway": "Learn from the habits of successful people.",
+      "book": "Blink by Malcolm Gladwell"
+    },
+    {
+      "id": 21,
+      "takeaway": "Resistance is the enemy of creativity.",
+      "book": "Essentialism by Greg McKeown"
+    },
+    {
+      "id": 22,
+      "takeaway": "Obstacles are opportunities in disguise.",
+      "book": "Essentialism by Greg McKeown"
+    },
+    {
+      "id": 23,
+      "takeaway": "Purpose gives meaning to suffering.",
+      "book": "Zero to One by Peter Thiel"
+    },
+    {
+      "id": 24,
+      "takeaway": "Radical transparency drives excellence.",
+      "book": "The One Thing by Gary Keller"
+    },
+    {
+      "id": 25,
+      "takeaway": "Show genuine interest in others to build relationships.",
+      "book": "The 5 AM Club by Robin Sharma"
+    },
+    {
+      "id": 26,
+      "takeaway": "Tiny choices create big outcomes over time.",
+      "book": "Zero to One by Peter Thiel"
+    },
+    {
+      "id": 27,
+      "takeaway": "Eliminate the non-essential.",
+      "book": "The Compound Effect by Darren Hardy"
+    },
+    {
+      "id": 28,
+      "takeaway": "Control your mind or it will control you.",
+      "book": "The Obstacle is the Way by Ryan Holiday"
+    },
+    {
+      "id": 29,
+      "takeaway": "Control your mind or it will control you.",
+      "book": "Deep Work by Cal Newport"
+    },
+    {
+      "id": 30,
+      "takeaway": "Monopoly creates lasting value in startups.",
+      "book": "The Tipping Point by Malcolm Gladwell"
+    },
+    {
+      "id": 31,
+      "takeaway": "Deep focus creates high-value work.",
+      "book": "Atomic Habits by James Clear"
+    },
+    {
+      "id": 32,
+      "takeaway": "Human history is shaped more by storytelling than fact.",
+      "book": "Tools of Titans by Tim Ferriss"
+    },
+    {
+      "id": 33,
+      "takeaway": "Small consistent actions lead to remarkable results.",
+      "book": "Blink by Malcolm Gladwell"
+    },
+    {
+      "id": 34,
+      "takeaway": "Motivation comes from autonomy, mastery, and purpose.",
+      "book": "The Alchemist by Paulo Coelho"
+    },
+    {
+      "id": 35,
+      "takeaway": "A growth mindset leads to success.",
+      "book": "Blink by Malcolm Gladwell"
+    },
+    {
+      "id": 36,
+      "takeaway": "Everything is interconnected in systems.",
+      "book": "The One Thing by Gary Keller"
+    },
+    {
+      "id": 37,
+      "takeaway": "The poor work for money, the rich make money work for them.",
+      "book": "Deep Work by Cal Newport"
+    },
+    {
+      "id": 38,
+      "takeaway": "Eliminate the non-essential.",
+      "book": "Thinking, Fast and Slow by Daniel Kahneman"
+    },
+    {
+      "id": 39,
+      "takeaway": "Fail fast, learn faster.",
+      "book": "The Obstacle is the Way by Ryan Holiday"
+    },
+    {
+      "id": 40,
+      "takeaway": "Happiness comes from solving meaningful problems.",
+      "book": "Principles by Ray Dalio"
+    },
+    {
+      "id": 41,
+      "takeaway": "Silence your ego to grow.",
+      "book": "The Alchemist by Paulo Coelho"
+    },
+    {
+      "id": 42,
+      "takeaway": "Eliminate the non-essential.",
+      "book": "Man's Search for Meaning by Viktor E. Frankl"
+    },
+    {
+      "id": 43,
+      "takeaway": "True peace is found in the present moment.",
+      "book": "Start With Why by Simon Sinek"
+    },
+    {
+      "id": 44,
+      "takeaway": "Vulnerability is the key to courage.",
+      "book": "The Four Agreements by Don Miguel Ruiz"
+    },
+    {
+      "id": 45,
+      "takeaway": "Happiness comes from solving meaningful problems.",
+      "book": "Rich Dad Poor Dad by Robert Kiyosaki"
+    },
+    {
+      "id": 46,
+      "takeaway": "Obstacles are opportunities in disguise.",
+      "book": "The One Thing by Gary Keller"
+    },
+    {
+      "id": 47,
+      "takeaway": "Effort counts more than talent in the long run.",
+      "book": "Thinking, Fast and Slow by Daniel Kahneman"
+    },
+    {
+      "id": 48,
+      "takeaway": "Small consistent actions lead to remarkable results.",
+      "book": "Essentialism by Greg McKeown"
+    },
+    {
+      "id": 49,
+      "takeaway": "Small consistent actions lead to remarkable results.",
+      "book": "Sapiens by Yuval Noah Harari"
+    },
+    {
+      "id": 50,
+      "takeaway": "Learn from the habits of successful people.",
+      "book": "Principles by Ray Dalio"
+    },
+    {
+      "id": 51,
+      "takeaway": "Monopoly creates lasting value in startups.",
+      "book": "The Art of Happiness by Dalai Lama"
+    },
+    {
+      "id": 52,
+      "takeaway": "Silence your ego to grow.",
+      "book": "The Lean Startup by Eric Ries"
+    },
+    {
+      "id": 53,
+      "takeaway": "People don't buy what you do, they buy why you do it.",
+      "book": "Quiet by Susan Cain"
+    },
+    {
+      "id": 54,
+      "takeaway": "Everything is interconnected in systems.",
+      "book": "Grit by Angela Duckworth"
+    },
+    {
+      "id": 55,
+      "takeaway": "Fail fast, learn faster.",
+      "book": "The 7 Habits of Highly Effective People by Stephen R. Covey"
+    },
+    {
+      "id": 56,
+      "takeaway": "Effort counts more than talent in the long run.",
+      "book": "Grit by Angela Duckworth"
+    },
+    {
+      "id": 57,
+      "takeaway": "Happiness comes from solving meaningful problems.",
+      "book": "Deep Work by Cal Newport"
+    },
+    {
+      "id": 58,
+      "takeaway": "Purpose gives meaning to suffering.",
+      "book": "Blink by Malcolm Gladwell"
+    },
+    {
+      "id": 59,
+      "takeaway": "Tiny choices create big outcomes over time.",
+      "book": "Outliers by Malcolm Gladwell"
+    },
+    {
+      "id": 60,
+      "takeaway": "Pursue happiness actively and intentionally.",
+      "book": "Sapiens by Yuval Noah Harari"
+    },
+    {
+      "id": 61,
+      "takeaway": "Monopoly creates lasting value in startups.",
+      "book": "The Lean Startup by Eric Ries"
+    },
+    {
+      "id": 62,
+      "takeaway": "Everything is interconnected in systems.",
+      "book": "The 7 Habits of Highly Effective People by Stephen R. Covey"
+    },
+    {
+      "id": 63,
+      "takeaway": "Radical transparency drives excellence.",
+      "book": "The War of Art by Steven Pressfield"
+    },
+    {
+      "id": 64,
+      "takeaway": "Purpose gives meaning to suffering.",
+      "book": "Sapiens by Yuval Noah Harari"
+    },
+    {
+      "id": 65,
+      "takeaway": "Snap decisions can be surprisingly accurate.",
+      "book": "The Lean Startup by Eric Ries"
+    },
+    {
+      "id": 66,
+      "takeaway": "People don't buy what you do, they buy why you do it.",
+      "book": "Start With Why by Simon Sinek"
+    },
+    {
+      "id": 67,
+      "takeaway": "Pursue happiness actively and intentionally.",
+      "book": "Tools of Titans by Tim Ferriss"
+    },
+    {
+      "id": 68,
+      "takeaway": "Obstacles are opportunities in disguise.",
+      "book": "How to Win Friends and Influence People by Dale Carnegie"
+    },
+    {
+      "id": 69,
+      "takeaway": "Social proof heavily influences decision making.",
+      "book": "The Happiness Project by Gretchen Rubin"
+    },
+    {
+      "id": 70,
+      "takeaway": "Show genuine interest in others to build relationships.",
+      "book": "Drive by Daniel H. Pink"
+    },
+    {
+      "id": 71,
+      "takeaway": "Show genuine interest in others to build relationships.",
+      "book": "The Alchemist by Paulo Coelho"
+    },
+    {
+      "id": 72,
+      "takeaway": "Introverts have powerful inner lives.",
+      "book": "Can\u2019t Hurt Me by David Goggins"
+    },
+    {
+      "id": 73,
+      "takeaway": "People don't buy what you do, they buy why you do it.",
+      "book": "The Tipping Point by Malcolm Gladwell"
+    },
+    {
+      "id": 74,
+      "takeaway": "Control your mind or it will control you.",
+      "book": "Grit by Angela Duckworth"
+    },
+    {
+      "id": 75,
+      "takeaway": "The poor work for money, the rich make money work for them.",
+      "book": "Principles by Ray Dalio"
+    },
+    {
+      "id": 76,
+      "takeaway": "Radical transparency drives excellence.",
+      "book": "Ego is the Enemy by Ryan Holiday"
+    },
+    {
+      "id": 77,
+      "takeaway": "Resistance is the enemy of creativity.",
+      "book": "Thinking in Systems by Donella Meadows"
+    },
+    {
+      "id": 78,
+      "takeaway": "Silence your ego to grow.",
+      "book": "The Power of Now by Eckhart Tolle"
+    },
+    {
+      "id": 79,
+      "takeaway": "People don't buy what you do, they buy why you do it.",
+      "book": "How to Win Friends and Influence People by Dale Carnegie"
+    },
+    {
+      "id": 80,
+      "takeaway": "Introverts have powerful inner lives.",
+      "book": "Quiet by Susan Cain"
+    },
+    {
+      "id": 81,
+      "takeaway": "You can push past pain and achieve greatness.",
+      "book": "The 5 AM Club by Robin Sharma"
+    },
+    {
+      "id": 82,
+      "takeaway": "Happiness is a skill you can train.",
+      "book": "Mindset by Carol S. Dweck"
+    },
+    {
+      "id": 83,
+      "takeaway": "Eliminate the non-essential.",
+      "book": "Grit by Angela Duckworth"
+    },
+    {
+      "id": 84,
+      "takeaway": "Tiny choices create big outcomes over time.",
+      "book": "Start With Why by Simon Sinek"
+    },
+    {
+      "id": 85,
+      "takeaway": "Obstacles are opportunities in disguise.",
+      "book": "Outliers by Malcolm Gladwell"
+    },
+    {
+      "id": 86,
+      "takeaway": "Everything is interconnected in systems.",
+      "book": "Daring Greatly by Bren\u00e9 Brown"
+    },
+    {
+      "id": 87,
+      "takeaway": "Our brains use two systems of thinking: fast and intuitive, slow and analytical.",
+      "book": "Influence by Robert B. Cialdini"
+    },
+    {
+      "id": 88,
+      "takeaway": "Learn from the habits of successful people.",
+      "book": "Mindset by Carol S. Dweck"
+    },
+    {
+      "id": 89,
+      "takeaway": "Introverts have powerful inner lives.",
+      "book": "The 7 Habits of Highly Effective People by Stephen R. Covey"
+    },
+    {
+      "id": 90,
+      "takeaway": "Focus on the one thing that matters most.",
+      "book": "The Four Agreements by Don Miguel Ruiz"
+    },
+    {
+      "id": 91,
+      "takeaway": "Pursue happiness actively and intentionally.",
+      "book": "Man's Search for Meaning by Viktor E. Frankl"
+    },
+    {
+      "id": 92,
+      "takeaway": "Radical transparency drives excellence.",
+      "book": "Can\u2019t Hurt Me by David Goggins"
+    },
+    {
+      "id": 93,
+      "takeaway": "Resistance is the enemy of creativity.",
+      "book": "Daring Greatly by Bren\u00e9 Brown"
+    },
+    {
+      "id": 94,
+      "takeaway": "Vulnerability is the key to courage.",
+      "book": "The 5 AM Club by Robin Sharma"
+    },
+    {
+      "id": 95,
+      "takeaway": "Pursue happiness actively and intentionally.",
+      "book": "The Four Agreements by Don Miguel Ruiz"
+    },
+    {
+      "id": 96,
+      "takeaway": "Be impeccable with your word.",
+      "book": "The Four Agreements by Don Miguel Ruiz"
+    },
+    {
+      "id": 97,
+      "takeaway": "The poor work for money, the rich make money work for them.",
+      "book": "The One Thing by Gary Keller"
+    },
+    {
+      "id": 98,
+      "takeaway": "Control your mind or it will control you.",
+      "book": "Zero to One by Peter Thiel"
+    },
+    {
+      "id": 99,
+      "takeaway": "Deep focus creates high-value work.",
+      "book": "Thinking, Fast and Slow by Daniel Kahneman"
+    },
+    {
+      "id": 100,
+      "takeaway": "Eliminate the non-essential.",
+      "book": "The Art of Happiness by Dalai Lama"
+    }
+  ];
+
+  const container = document.getElementById("bookContainer");
+
+  takeaways.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "bg-white p-6 rounded-2xl shadow-md border border-gray-200 hover:shadow-xl transition duration-300";
+
+    card.innerHTML = `
+      <h2 class="text-lg font-semibold text-blue-600 mb-2">📌 ${item.takeaway}</h2>
+      <p class="text-sm text-gray-600 italic">— ${item.book}</p>
+    `;
+
+    container.appendChild(card);
+  });
+  </script>
+</body>
+</html>
