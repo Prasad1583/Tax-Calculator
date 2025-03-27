@@ -1,89 +1,330 @@
 {
-    "Nature 🌿": {
-      "Animals": ["mammal", "reptile", "bird", "fish", "insect"],
-      "Plants": ["tree", "flower", "grass", "bush", "vine"],
-      "Weather": ["rain", "sunshine", "storm", "snow", "fog"]
-    },
-    "Science & Technology 🧪": {
-      "Physics": ["force", "energy", "motion", "gravity", "friction"],
-      "Chemistry": ["atom", "molecule", "reaction", "acid", "base"],
-      "AI & ML": ["algorithm", "model", "training", "neural network", "inference"]
-    },
-    "Emotions 😊": {
-      "Positive": ["happiness", "love", "joy", "excitement", "gratitude"],
-      "Negative": ["anger", "fear", "sadness", "jealousy", "regret"]
-    },
-    "Actions 🚶‍♂️": {
-      "Movement": ["walk", "run", "jump", "swim", "climb"],
-      "Speech": ["talk", "whisper", "shout", "mumble", "yell"],
-      "Thought": ["think", "imagine", "remember", "plan", "analyze"]
-    },
-    "Time 🕒": {
-      "Units": ["second", "minute", "hour", "day", "year"],
-      "Periods": ["morning", "afternoon", "evening", "night", "dawn"]
-    },
-    "Places 🌍": {
-      "Geography": ["continent", "country", "city", "village", "region"],
-      "Structures": ["house", "bridge", "skyscraper", "road", "dam"]
-    },
-    "People & Relationships 🧑‍🤝‍🧑": {
-      "Family": ["mother", "father", "sibling", "child", "cousin"],
-      "Social": ["friend", "colleague", "neighbor", "stranger", "acquaintance"]
-    },
-    "Objects 🧰": {
-      "Tools": ["hammer", "wrench", "screwdriver", "drill", "saw"],
-      "Electronics": ["phone", "laptop", "tablet", "camera", "television"]
-    },
-    "Finance & Economy 💰": {
-      "Currencies": ["dollar", "euro", "yen", "rupee", "pound"],
-      "Investments": ["stocks", "bonds", "mutual funds", "real estate", "crypto"]
-    },
-    "Health & Fitness 🧘‍♂️": {
-      "Body Parts": ["head", "arm", "leg", "heart", "liver"],
-      "Exercise": ["running", "yoga", "weightlifting", "swimming", "cycling"]
-    },
-    "Food & Drink 🍎": {
-      "Fruits": ["apple", "banana", "orange", "grape", "mango"],
-      "Vegetables": ["carrot", "broccoli", "spinach", "potato", "tomato"],
-      "Beverages": ["water", "coffee", "tea", "juice", "soda"]
-    },
-    "Colors 🎨": {
-      "Primary": ["red", "blue", "yellow"],
-      "Secondary": ["green", "orange", "purple"],
-      "Shades": ["light", "dark", "pale", "bright", "vivid"]
-    },
-    "Language ✍️": {
-      "Parts of Speech": ["noun", "verb", "adjective", "adverb", "preposition"],
-      "Grammar": ["tense", "plural", "conjugation", "syntax", "morphology"]
-    },
-    "Occupations & Professions 👩‍⚕️": {
-      "Jobs": ["doctor", "engineer", "teacher", "lawyer", "artist"]
-    },
-    "Transportation 🚗": {
-      "Modes": ["car", "bus", "train", "bicycle", "airplane"]
-    },
-    "Clothing & Fashion 👗": {
-      "Apparel": ["shirt", "pants", "dress", "jacket", "hat"]
-    },
-    "Entertainment & Media 🎬": {
-      "Leisure": ["movie", "music", "book", "game", "show"]
-    },
-    "Feelings & States 🤒": {
-      "Conditions": ["tired", "hungry", "thirsty", "sick", "bored"]
-    },
-    "Education & Learning 🎓": {
-      "School": ["school", "class", "exam", "homework", "teacher"]
-    },
-    "Law & Government ⚖️": {
-      "Public": ["law", "court", "rule", "tax", "vote"]
-    },
-    "Environment 🌱": {
-      "Topics": ["pollution", "recycle", "climate", "ecosystem", "conservation"]
-    },
-    "Mythology & Fantasy 🐉": {
-      "Fantasy": ["dragon", "wizard", "magic", "sword", "castle"]
-    },
-    "Measurements & Quantities 📏": {
-      "Units": ["meter", "kilogram", "liter", "inch", "mile"]
-    }
+  "Nature 🌿": {
+    "Animals": [
+      "mammal", "reptile", "bird", "fish", "insect", "amphibian", "crustacean", "mollusk", "rodent", "canine",
+      "feline", "primate", "marsupial", "arachnid", "arthropod", "herbivore", "carnivore", "omnivore", "predator", "prey",
+      "endangered", "extinct", "nocturnal", "diurnal", "migratory", "domestic", "wild", "invertebrate", "vertebrate", "poultry",
+      "ruminant", "scavenger", "parasite", "pollinator", "cetacean", "pinniped", "ungulate", "raptor", "songbird", "waterfowl",
+      "reptilian", "amphibious", "colony", "pack", "herd", "flock", "swarm", "school", "pride", "troop"
+    ],
+    "Plants": [
+      "tree", "flower", "grass", "bush", "vine", "shrub", "herb", "fern", "moss", "algae",
+      "fungus", "lichen", "root", "stem", "leaf", "seed", "fruit", "vegetable", "bloom", "bud",
+      "pollination", "petal", "stamen", "pistil", "sap", "thorn", "bark", "branch", "twig", "trunk",
+      "canopy", "understory", "deciduous", "evergreen", "conifer", "succulent", "cactus", "palm", "bamboo", "kelp",
+      "spore", "germination", "photosynthesis", "chlorophyll", "xylem", "phloem", "taproot", "fibrous", "tendril", "tuber"
+    ],
+    "Weather": [
+      "rain", "sunshine", "storm", "snow", "fog", "wind", "thunder", "lightning", "hail", "hurricane",
+      "tornado", "typhoon", "cyclone", "blizzard", "drought", "monsoon", "cloud", "drizzle", "shower", "downpour",
+      "humidity", "dew", "frost", "ice", "sleet", "freeze", "heatwave", "cold front", "warm front", "barometer",
+      "anemometer", "hygrometer", "forecast", "climate", "atmosphere", "precipitation", "evaporation", "condensation", "cumulus", "stratus",
+      "cirrus", "nimbus", "overcast", "clear", "breeze", "gale", "squall", "whirlwind", "sandstorm", "avalanche"
+    ]
+  },
+  "Science & Technology 🧪": {
+    "Physics": [
+      "force", "energy", "motion", "gravity", "friction", "acceleration", "velocity", "speed", "mass", "weight",
+      "momentum", "inertia", "magnetism", "electricity", "charge", "current", "voltage", "resistance", "circuit", "conductor",
+      "insulator", "semiconductor", "wave", "wavelength", "frequency", "amplitude", "particle", "atom", "electron", "proton",
+      "neutron", "quantum", "relativity", "thermodynamics", "entropy", "work", "power", "pressure", "density", "buoyancy",
+      "viscosity", "elasticity", "optics", "refraction", "reflection", "diffraction", "interference", "polarization", "nuclear", "fusion"
+    ],
+    "Chemistry": [
+      "atom", "molecule", "compound", "element", "ion", "isotope", "proton", "neutron", "electron", "nucleus",
+      "bond", "covalent", "ionic", "metallic", "hydrogen", "valence", "shell", "orbital", "reaction", "synthesis",
+      "decomposition", "combustion", "oxidation", "reduction", "acid", "base", "pH", "salt", "solvent", "solute",
+      "solution", "mixture", "alloy", "catalyst", "enzyme", "polymer", "monomer", "organic", "inorganic", "stoichiometry",
+      "equilibrium", "entropy", "enthalpy", "exothermic", "endothermic", "precipitate", "titration", "distillation", "chromatography", "spectroscopy"
+    ],
+    "AI & ML": [
+      "algorithm", "model", "training", "inference", "dataset", "feature", "label", "supervised", "unsupervised", "reinforcement",
+      "neural network", "deep learning", "convolutional", "recurrent", "transformer", "attention", "backpropagation", "gradient", "loss", "optimizer",
+      "epoch", "batch", "validation", "overfitting", "regularization", "dropout", "activation", "sigmoid", "ReLU", "softmax",
+      "embedding", "tokenization", "encoder", "decoder", "generative", "discriminative", "classification", "regression", "clustering", "dimensionality",
+      "bias", "variance", "precision", "recall", "F1", "ROC", "AUC", "NLP", "CV", "RL"
+    ]
+  },
+  "Emotions 😊": {
+    "Positive": [
+      "happy", "joy", "love", "excitement", "gratitude", "hope", "pride", "amusement", "contentment", "optimism",
+      "inspiration", "relief", "affection", "peace", "cheerfulness", "delight", "enthusiasm", "satisfaction", "euphoria", "bliss",
+      "serenity", "compassion", "confidence", "admiration", "appreciation", "empathy", "fulfillment", "glee", "jubilation", "reverence",
+      "triumph", "zest", "ecstasy", "elation", "fondness", "harmony", "infatuation", "passion", "rapture", "thankfulness",
+      "wonder", "zeal", "calm", "eagerness", "gladness", "humor", "kindness", "laughter", "mirth", "pleasure"
+    ],
+    "Negative": [
+      "anger", "fear", "sadness", "jealousy", "regret", "guilt", "anxiety", "frustration", "loneliness", "resentment",
+      "despair", "shame", "grief", "envy", "bitterness", "stress", "worry", "disgust", "melancholy", "embarrassment",
+      "agony", "anguish", "annoyance", "apathy", "contempt", "depression", "dread", "fury", "gloom", "heartbreak",
+      "hostility", "insecurity", "irritation", "misery", "nervousness", "panic", "rage", "remorse", "sorrow", "terror",
+      "torment", "unease", "unhappiness", "vengefulness", "vulnerability", "agitation", "alienation", "betrayal", "dejection", "disappointment"
+    ]
+  },
+  "Actions 🚶‍♂️": {
+    "Movement": [
+      "walk", "run", "jump", "swim", "climb", "crawl", "slide", "skip", "hop", "dance",
+      "sprint", "jog", "stroll", "gallop", "leap", "march", "tiptoe", "dash", "ride", "wander",
+      "hike", "trot", "glide", "paddle", "row", "pedal", "skate", "sail", "surf", "parachute",
+      "vault", "flip", "twirl", "spin", "bounce", "shuffle", "stagger", "lunge", "crouch", "sneak",
+      "scurry", "scamper", "meander", "saunter", "amble", "strut", "waddle", "limp", "flee", "retreat"
+    ],
+    "Speech": [
+      "talk", "whisper", "shout", "mumble", "yell", "speak", "announce", "question", "argue", "reply",
+      "complain", "explain", "discuss", "sing", "debate", "state", "report", "comment", "recite", "laugh",
+      "mutter", "stutter", "babble", "chatter", "gossip", "lecture", "present", "persuade", "negotiate", "interrupt",
+      "pronounce", "utter", "declare", "proclaim", "mention", "remark", "respond", "acknowledge", "confess", "apologize",
+      "boast", "threaten", "insult", "flatter", "tease", "mock", "imitate", "quote", "translate", "summarize"
+    ],
+    "Thought": [
+      "think", "imagine", "remember", "plan", "analyze", "dream", "consider", "decide", "realize", "notice",
+      "ponder", "assume", "guess", "focus", "predict", "reflect", "evaluate", "meditate", "conclude", "understand",
+      "visualize", "fantasize", "recall", "memorize", "calculate", "estimate", "compare", "contrast", "classify", "organize",
+      "invent", "create", "design", "solve", "judge", "criticize", "appreciate", "wonder", "doubt", "believe",
+      "suspect", "trust", "distrust", "expect", "anticipate", "foresee", "intend", "desire", "wish", "hope"
+    ]
+  },
+  "Time 🕒": {
+    "Units": [
+      "second", "minute", "hour", "day", "week", "month", "year", "decade", "century", "millennium",
+      "millisecond", "microsecond", "nanosecond", "fortnight", "quarter", "semester", "trimester", "eon", "epoch", "era",
+      "age", "generation", "lifetime", "moment", "instant", "interval", "duration", "span", "period", "phase",
+      "term", "session", "cycle", "rotation", "revolution", "orbit", "calendar", "schedule", "timetable", "stopwatch",
+      "hourglass", "sundial", "chronology", "timeline", "deadline", "countdown", "timezone", "daylight", "midnight", "noon"
+    ],
+    "Periods": [
+      "morning", "afternoon", "evening", "night", "dawn", "dusk", "sunrise", "sunset", "midnight", "noon",
+      "daybreak", "twilight", "weekday", "weekend", "holiday", "vacation", "break", "recess", "intermission", "hiatus",
+      "sabbatical", "season", "spring", "summer", "autumn", "winter", "monsoon", "dry season", "wet season", "harvest",
+      "planting", "festival", "celebration", "anniversary", "birthday", "term", "semester", "quarter", "session", "phase",
+      "peak", "off-peak", "rush hour", "downtime", "overtime", "bedtime", "mealtime", "workday", "weeknight", "holiday"
+    ]
+  },
+  "Places 🌍": {
+    "Geography": [
+      "continent", "country", "nation", "state", "province", "county", "city", "town", "village", "hamlet",
+      "metropolis", "capital", "region", "district", "territory", "colony", "settlement", "municipality", "borough", "prefecture",
+      "island", "archipelago", "peninsula", "isthmus", "cape", "bay", "gulf", "strait", "channel", "fjord",
+      "delta", "estuary", "lagoon", "atoll", "oasis", "desert", "savanna", "prairie", "grassland", "tundra",
+      "jungle", "rainforest", "wetland", "marsh", "swamp", "mountain", "hill", "valley", "canyon", "plateau"
+    ],
+    "Structures": [
+      "house", "apartment", "condo", "mansion", "cabin", "hut", "igloo", "tent", "skyscraper", "tower",
+      "bridge", "tunnel", "dam", "canal", "aqueduct", "road", "highway", "freeway", "street", "alley",
+      "boulevard", "avenue", "sidewalk", "park", "garden", "farm", "barn", "silo", "lighthouse", "windmill",
+      "factory", "warehouse", "mall", "market", "stadium", "arena", "theater", "cinema", "museum", "library",
+      "school", "university", "hospital", "clinic", "pharmacy", "church", "temple", "mosque", "synagogue", "shrine"
+    ]
+  },
+  "People & Relationships 🧑‍🤝‍🧑": {
+    "Family": [
+      "mother", "father", "parent", "son", "daughter", "child", "sibling", "brother", "sister", "twin",
+      "grandmother", "grandfather", "grandparent", "grandson", "granddaughter", "aunt", "uncle", "niece", "nephew", "cousin",
+      "stepmother", "stepfather", "stepparent", "stepson", "stepdaughter", "stepsibling", "half-brother", "half-sister", "mother-in-law", "father-in-law",
+      "son-in-law", "daughter-in-law", "brother-in-law", "sister-in-law", "godmother", "godfather", "godparent", "godson", "goddaughter", "foster parent",
+      "foster child", "adoptive parent", "adopted child", "ancestor", "descendant", "relative", "kin", "family", "clan", "tribe"
+    ],
+    "Social": [
+      "friend", "best friend", "acquaintance", "colleague", "coworker", "classmate", "teammate", "roommate", "neighbor", "stranger",
+      "ally", "companion", "partner", "spouse", "husband", "wife", "fiancé", "fiancée", "boyfriend", "girlfriend",
+      "sweetheart", "crush", "date", "lover", "ex", "mentor", "mentee", "protégé", "apprentice", "tutor",
+      "student", "teacher", "leader", "follower", "boss", "employee", "supervisor", "subordinate", "peer", "equal",
+      "rival", "competitor", "opponent", "enemy", "adversary", "nemesis", "bully", "victim", "hero", "villain"
+    ]
+  },
+  "Objects 🧰": {
+    "Tools": [
+      "hammer", "nail", "screw", "screwdriver", "wrench", "pliers", "vise", "clamp", "chisel", "file",
+      "saw", "drill", "auger", "level", "ruler", "tape measure", "square", "protractor", "compass", "caliper",
+      "anvil", "forge", "welder", "soldering iron", "blowtorch", "axe", "hatchet", "machete", "knife", "scissors",
+      "shears", "sickle", "hoe", "rake", "shovel", "spade", "trowel", "pickaxe", "crowbar", "pry bar",
+      "mallet", "sledgehammer", "jack", "pulley", "winch", "lever", "wedge", "wheel", "axle", "gear"
+    ],
+    "Electronics": [
+      "computer", "laptop", "tablet", "smartphone", "monitor", "keyboard", "mouse", "printer", "scanner", "projector",
+      "router", "modem", "server", "hard drive", "SSD", "USB", "cable", "charger", "battery", "adapter",
+      "headphones", "earphones", "microphone", "speaker", "amplifier", "camera", "lens", "tripod", "flash", "drone",
+      "smartwatch", "fitness tracker", "VR headset", "game console", "controller", "joystick", "remote", "thermostat", "GPS", "radar",
+      "satellite", "telescope", "microscope", "oscilloscope", "multimeter", "soldering iron", "circuit board", "transistor", "capacitor", "resistor"
+    ]
+  },
+  "Finance & Economy 💰": {
+    "Currencies": [
+      "dollar", "euro", "yen", "pound", "franc", "rupee", "yuan", "ruble", "real", "rand",
+      "lira", "won", "dong", "ringgit", "baht", "peso", "dinar", "dirham", "shekel", "krone",
+      "krona", "forint", "zloty", "leu", "lev", "kuna", "hrivna", "tenge", "som", "taka",
+      "rial", "riyal", "afghani", "lek", "kwanza", "birr", "cedi", "dalasi", "gourde", "kina",
+      "lilangeni", "loti", "nakfa", "ngultrum", "ouguiya", "pa'anga", "pula", "quetzal", "tala", "vatu"
+    ],
+    "Investments": [
+      "stocks", "bonds", "mutual funds", "ETFs", "index funds", "REITs", "commodities", "futures", "options", "derivatives",
+      "forex", "cryptocurrency", "bitcoin", "ethereum", "NFTs", "gold", "silver", "platinum", "palladium", "copper",
+      "oil", "gas", "real estate", "land", "property", "mortgage", "annuity", "pension", "IRA", "401k",
+      "hedge fund", "private equity", "venture capital", "angel investor", "crowdfunding", "IPO", "dividends", "capital gains", "interest", "yield",
+      "portfolio", "diversification", "asset allocation", "risk tolerance", "liquidity", "volatility", "bear market", "bull market", "recession", "inflation"
+    ]
+  },
+  "Health & Fitness 🧘‍♂️": {
+    "Body Parts": [
+      "head", "neck", "shoulder", "arm", "elbow", "forearm", "wrist", "hand", "finger", "thumb",
+      "chest", "back", "spine", "abdomen", "stomach", "waist", "hip", "thigh", "knee", "calf",
+      "ankle", "foot", "toe", "heel", "brain", "heart", "lung", "liver", "kidney", "stomach",
+      "intestine", "pancreas", "spleen", "bladder", "muscle", "bone", "joint", "tendon", "ligament", "nerve",
+      "vein", "artery", "skin", "hair", "nail", "eye", "ear", "nose", "mouth", "tongue"
+    ],
+    "Exercise": [
+      "running", "jogging", "sprinting", "walking", "hiking", "climbing", "swimming", "cycling", "biking", "skating",
+      "skiing", "snowboarding", "surfing", "rowing", "kayaking", "canoeing", "diving", "jumping", "skipping", "dancing",
+      "yoga", "pilates", "stretching", "gymnastics", "calisthenics", "weightlifting", "bodybuilding", "powerlifting", "crossfit", "HIIT",
+      "aerobics", "zumba", "kickboxing", "boxing", "wrestling", "martial arts", "taekwondo", "karate", "judo", "fencing",
+      "archery", "golf", "tennis", "badminton", "squash", "volleyball", "basketball", "soccer", "football", "rugby"
+    ]
+  },
+  "Food & Drink 🍎": {
+    "Fruits": [
+      "apple", "banana", "orange", "grape", "strawberry", "blueberry", "raspberry", "blackberry", "melon", "watermelon",
+      "pineapple", "mango", "peach", "pear", "plum", "apricot", "cherry", "kiwi", "pomegranate", "fig",
+      "date", "persimmon", "guava", "papaya", "lychee", "passion fruit", "dragon fruit", "star fruit", "coconut", "olive",
+      "avocado", "tomato", "eggplant", "pepper", "cucumber", "pumpkin", "squash", "zucchini", "lemon", "lime",
+      "grapefruit", "tangerine", "clementine", "mandarin", "kumquat", "boysenberry", "cranberry", "currant", "gooseberry", "elderberry"
+    ],
+    "Vegetables": [
+      "carrot", "broccoli", "cauliflower", "cabbage", "lettuce", "spinach", "kale", "arugula", "bok choy", "brussels sprouts",
+      "asparagus", "celery", "green bean", "pea", "snow pea", "snap pea", "corn", "potato", "sweet potato", "yam",
+      "onion", "garlic", "leek", "shallot", "ginger", "turnip", "radish", "beet", "parsnip", "rutabaga",
+      "artichoke", "eggplant", "zucchini", "pumpkin", "squash", "cucumber", "pepper", "chili", "jalapeño", "habanero",
+      "mushroom", "truffle", "bean", "lentil", "chickpea", "soybean", "tofu", "tempeh", "seaweed", "nori"
+    ],
+    "Beverages": [
+      "water", "sparkling water", "mineral water", "soda", "cola", "lemonade", "iced tea", "juice", "apple juice", "orange juice",
+      "grape juice", "cranberry juice", "tomato juice", "vegetable juice", "smoothie", "milkshake", "coffee", "espresso", "latte", "cappuccino",
+      "americano", "macchiato", "mocha", "tea", "green tea", "black tea", "herbal tea", "chai", "hot chocolate", "cocoa",
+      "milk", "almond milk", "soy milk", "oat milk", "coconut milk", "rice milk", "energy drink", "sports drink", "electrolyte drink", "protein shake",
+      "wine", "red wine", "white wine", "rosé", "champagne", "beer", "ale", "lager", "stout", "cider"
+    ]
+  },
+  "Colors 🎨": {
+    "Primary": ["red", "blue", "yellow"],
+    "Secondary": ["green", "orange", "purple"],
+    "Tertiary": [
+      "red-orange", "yellow-orange", "yellow-green", "blue-green", "blue-purple", "red-purple"
+    ],
+    "Shades": [
+      "light", "dark", "pale", "bright", "vivid", "pastel", "neon", "dull", "faded", "rich",
+      "deep", "soft", "bold", "subtle", "intense", "warm", "cool", "neutral", "muted", "glowing",
+      "matte", "glossy", "shiny", "metallic", "pearlescent", "iridescent", "fluorescent", "transparent", "opaque", "translucent",
+      "monochrome", "grayscale", "sepia", "ombre", "gradient", "hue", "tint", "tone", "shade", "value"
+    ],
+    "Specific Colors": [
+      "scarlet", "crimson", "maroon", "burgundy", "pink", "rose", "fuchsia", "magenta", "salmon", "coral",
+      "vermilion", "ruby", "amber", "gold", "yellow", "lemon", "mustard", "chartreuse", "lime", "olive",
+      "emerald", "jade", "teal", "turquoise", "cyan", "aqua", "sky blue", "navy", "indigo", "violet",
+      "lavender", "lilac", "amethyst", "plum", "mauve", "taupe", "beige", "ivory", "cream", "white",
+      "silver", "gray", "charcoal", "black", "ebony", "brown", "tan", "copper", "bronze", "rust"
+    ]
+  },
+  "Occupations & Professions 👩‍⚕️": {
+    "Jobs": [
+      "doctor", "nurse", "surgeon", "engineer", "architect", "teacher", "professor", "lawyer", "judge", "artist", 
+      "musician", "actor", "chef", "baker", "farmer", "pilot", "astronaut", "firefighter", "police officer", "soldier", 
+      "journalist", "writer", "photographer", "accountant", "dentist", "pharmacist", "psychologist", "therapist", "plumber", 
+      "electrician", "carpenter", "tailor", "mechanic", "barber", "hairdresser", "scientist", "biologist", "chemist", 
+      "physicist", "veterinarian", "librarian", "translator", "receptionist", "salesman", "manager", "CEO", "diplomat", 
+      "miner", "fisherman", "athlete", "coach"
+    ]
+  },
+  "Transportation 🚗": {
+    "Modes": [
+      "car", "bus", "train", "bicycle", "motorcycle", "airplane", "helicopter", "boat", "ship", "submarine", 
+      "taxi", "tram", "subway", "scooter", "skateboard", "Segway", "rocket", "spaceship", "carriage", "horse", 
+      "camel", "sled", "ferry", "yacht", "jet ski", "bulldozer", "tractor", "ambulance", "firetruck", "police car", 
+      "limousine", "RV", "van", "truck", "forklift", "hot air balloon", "hang glider", "unicycle", "rickshaw", "gondola", 
+      "cable car", "monorail"
+    ]
+  },
+  "Clothing & Fashion 👗": {
+    "Apparel": [
+      "shirt", "pants", "dress", "jacket", "hat", "coat", "sweater", "hoodie", "t-shirt", "jeans", 
+      "skirt", "shorts", "socks", "shoes", "boots", "sandals", "sneakers", "scarf", "gloves", "mittens", 
+      "tie", "bowtie", "suit", "blazer", "vest", "pajamas", "robe", "underwear", "bra", "swimsuit", 
+      "bikini", "trunks", "overalls", "leggings", "tights", "uniform", "costume", "cape", "veil", "turban", 
+      "hijab", "kimono", "sari", "poncho", "flip-flops", "high heels", "loafers", "suspenders", "belt", "earmuffs", 
+      "sunglasses", "watch", "jewelry", "necklace", "bracelet", "ring", "earrings"
+    ]
+  },
+  "Entertainment & Media 🎬": {
+    "Leisure": [
+      "movie", "film", "music", "song", "album", "book", "novel", "magazine", "comic", "game", 
+      "video game", "board game", "card game", "show", "TV series", "play", "theater", "concert", "opera", "ballet", 
+      "circus", "podcast", "radio", "streaming", "YouTube", "TikTok", "Instagram", "painting", "sculpture", "photography", 
+      "dance", "stand-up comedy", "magic show", "crossword", "puzzle", "karaoke", "festival", "fair", "amusement park", "casino", 
+      "sports event"
+    ]
+  },
+  "Feelings & States 🤒": {
+    "Conditions": [
+      "tired", "exhausted", "hungry", "thirsty", "sick", "ill", "bored", "happy", "sad", "angry", 
+      "excited", "scared", "afraid", "nervous", "anxious", "jealous", "proud", "ashamed", "guilty", "lonely", 
+      "loved", "confused", "surprised", "disappointed", "hopeful", "relaxed", "stressed", "worried", "curious", "embarrassed", 
+      "frustrated", "annoyed", "satisfied", "grateful", "miserable", "delighted", "overwhelmed", "calm", "energetic", "lazy", 
+      "sleepy", "awake", "dizzy", "nauseous", "itchy", "sore", "cold", "hot", "warm", "chilly", 
+      "numb"
+    ]
+  },
+  "Education & Learning 🎓": {
+    "School": [
+      "school", "classroom", "university", "college", "lecture", "teacher", "professor", "student", "principal", "homework", 
+      "assignment", "project", "exam", "test", "quiz", "grade", "diploma", "degree", "certificate", "textbook", 
+      "notebook", "pencil", "pen", "ruler", "calculator", "backpack", "locker", "blackboard", "whiteboard", "marker", 
+      "chalk", "eraser", "desk", "chair", "lab", "experiment", "research", "thesis", "dissertation", "scholarship", 
+      "tuition", "recess", "break", "graduation", "valedictorian", "dropout", "tutor", "counselor", "librarian", "cafeteria", 
+      "gym", "sports", "art class", "music class", "math", "science", "history", "geography", "language", "literature"
+    ]
+  },
+  "Law & Government ⚖️": {
+    "Public": [
+      "law", "court", "judge", "jury", "lawyer", "attorney", "police", "crime", "punishment", "prison", 
+      "jail", "arrest", "trial", "verdict", "sentence", "fine", "tax", "vote", "election", "president", 
+      "prime minister", "mayor", "governor", "senator", "congress", "parliament", "democracy", "dictatorship", "constitution", "amendment", 
+      "policy", "treaty", "diplomacy", "war", "peace", "army", "navy", "air force", "border", "immigration", 
+      "citizenship", "passport", "visa", "human rights", "freedom", "justice", "corruption", "protest", "riot", "rebellion", 
+      "treason", "espionage", "censorship", "surveillance", "welfare", "budget", "economy"
+    ]
+  },
+  "Environment 🌱": {
+    "Topics": [
+      "pollution", "air pollution", "water pollution", "noise pollution", "recycle", "recycling", "compost", "climate", "climate change", "global warming", 
+      "ecosystem", "biodiversity", "conservation", "deforestation", "reforestation", "wildlife", "endangered species", "habitat", "ocean", "forest", 
+      "desert", "mountain", "river", "lake", "glacier", "renewable energy", "solar power", "wind power", "hydroelectric", "fossil fuels", 
+      "carbon footprint", "greenhouse gases", "ozone layer", "smog", "acid rain", "sustainability", "eco-friendly", "organic", "biodegradable", "landfill", 
+      "waste management", "drought", "flood", "earthquake", "tsunami", "hurricane", "tornado", "wildfire", "conservationist", "environmentalist", 
+      "activist", "green technology", "carbon offset", "emissions", "sustainable development"
+    ]
+  },
+  "Mythology & Fantasy 🐉": {
+    "Fantasy": [
+      "dragon", "unicorn", "phoenix", "wizard", "witch", "sorcerer", "mage", "fairy", "elf", "dwarf", 
+      "troll", "goblin", "orc", "vampire", "werewolf", "zombie", "ghost", "demon", "angel", "mermaid", 
+      "centaur", "minotaur", "griffin", "hydra", "kraken", "leviathan", "yeti", "sphinx", "chimera", "Pegasus", 
+      "cyclops", "genie", "necromancer", "warlock", "paladin", "knight", "king", "queen", "princess", "prince", 
+      "castle", "fortress", "dungeon", "tower", "magic", "spell", "potion", "wand", "staff", "sword", 
+      "shield", "bow", "arrow", "axe", "dagger", "armor", "helmet", "crown", "treasure", "gold", 
+      "gemstone", "crystal", "amulet", "talisman", "curse", "prophecy", "quest", "adventure", "realm", "dimension", 
+      "portal", "enchanted forest", "underworld", "heaven", "hell", "mythology", "legend", "folklore"
+    ]
+  },
+  "Measurements & Quantities 📏": {
+    "Units": [
+      "meter", "kilometer", "centimeter", "millimeter", "mile", "yard", "foot", "inch", "nanometer", "light-year", 
+      "kilogram", "gram", "milligram", "ton", "pound", "ounce", "liter", "milliliter", "gallon", "quart", 
+      "pint", "cup", "tablespoon", "teaspoon", "fluid ounce", "second", "minute", "hour", "day", "week", 
+      "month", "year", "decade", "century", "millennium", "Celsius", "Fahrenheit", "Kelvin", "degree", "radian", 
+      "watt", "joule", "volt", "ampere", "ohm", "newton", "pascal", "hertz", "decibel", "lumen", 
+      "candela", "mole", "bit", "byte", "kilobit", "megabyte", "gigabyte", "terabyte", "pixel", "percentage", 
+      "ratio", "frequency", "velocity", "acceleration", "density", "pressure", "torque", "horsepower", "calorie", "kilocalorie", 
+      "electronvolt", "atomic mass unit", "solar mass", "parsec", "angstrom", "barrel", "bushel", "cord", "fathom", "knot", 
+      "league", "nautical mile", "furlong", "stone", "carat", "karat", "troy ounce", "grain", "dram", "scruple", 
+      "pennyweight", "solar luminosity", "Planck length", "astronomical unit"
+    ]
   }
+}
