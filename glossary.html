@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>📚 Glossary Study App</title>
+  <title>📚 Glossary Reader</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .highlight {
+      background-color: #c7d2fe;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen">
 
-  <!-- Header -->
   <header class="bg-indigo-700 text-white text-center py-6 shadow-md">
-    <h1 class="text-2xl sm:text-3xl font-bold">📚 Glossary Explorer</h1>
-    <p class="text-indigo-200 text-sm mt-1">Study categories and words visually</p>
+    <h1 class="text-2xl sm:text-3xl font-bold">📚 Glossary Reader</h1>
+    <p class="text-indigo-200 text-sm mt-1">Auto highlight & speech with scrolling</p>
   </header>
 
-  <!-- Main Content -->
   <main class="max-w-4xl mx-auto px-4 py-8 space-y-6">
-    <!-- Category Selector -->
     <div class="text-center">
       <select id="categorySelect"
               class="w-full sm:w-auto px-4 py-3 rounded-lg border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-sm sm:text-base">
@@ -24,16 +28,13 @@
       </select>
     </div>
 
-    <!-- Subcategories & Words -->
-    <div id="glossaryContent" class="space-y-6"></div>
+    <div id="glossaryContent" class="space-y-6 max-h-[65vh] overflow-y-auto scroll-smooth p-2 bg-white rounded-xl border border-gray-200 shadow-inner"></div>
   </main>
 
-  <!-- Footer -->
   <footer class="text-center text-xs sm:text-sm text-gray-500 py-6 border-t mt-10">
-    © 2025 Glossary Study App | Learn visually and effectively 📘
+    © 2025 Glossary Reader | Learn by listening and reading 👂📖
   </footer>
 
-  <!-- Script -->
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
       const response = await fetch('https://ornate-frangollo-d46c3a.netlify.app/glossary.json');
@@ -41,9 +42,13 @@
       const select = document.getElementById('categorySelect');
       const content = document.getElementById('glossaryContent');
 
-      const categories = Object.keys(glossary);
+      let scrollInterval = null;
+      let userHasInteracted = false;
 
-      // Populate dropdown
+      // Required for mobile speech
+      document.body.addEventListener('click', () => userHasInteracted = true, { once: true });
+
+      const categories = Object.keys(glossary);
       categories.forEach((cat, index) => {
         const opt = document.createElement('option');
         opt.value = cat;
@@ -52,14 +57,26 @@
         select.appendChild(opt);
       });
 
-      // Function to load content
+      function speak(text) {
+        if ('speechSynthesis' in window && userHasInteracted) {
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'en-US';
+          utter.rate = 0.9;
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(utter);
+        }
+      }
+
       function loadCategory(category) {
-        const selected = glossary[category];
+        clearInterval(scrollInterval);
+        window.speechSynthesis.cancel();
         content.innerHTML = '';
+
+        const selected = glossary[category];
+        const wordElements = [];
 
         for (const sub in selected) {
           const section = document.createElement('section');
-
           const title = document.createElement('h2');
           title.className = 'text-lg sm:text-xl font-semibold text-indigo-600 mb-2';
           title.textContent = sub;
@@ -67,23 +84,40 @@
           const grid = document.createElement('div');
           grid.className = 'grid grid-cols-2 sm:grid-cols-3 gap-3';
 
-          selected[sub].forEach(word => {
+          selected[sub].forEach((word, i) => {
             const box = document.createElement('div');
-            box.className = 'bg-white p-3 rounded-lg shadow text-sm sm:text-base text-center';
+            box.id = `word-${wordElements.length}`;
+            box.className = 'bg-gray-50 px-4 py-3 text-sm sm:text-base rounded-lg shadow-sm text-center';
             box.textContent = word;
             grid.appendChild(box);
+            wordElements.push(box);
           });
 
           section.appendChild(title);
           section.appendChild(grid);
           content.appendChild(section);
         }
+
+        // Auto-highlight, scroll & speak
+        let index = 0;
+        scrollInterval = setInterval(() => {
+          wordElements.forEach(el => el.classList.remove('highlight'));
+          const current = wordElements[index];
+          if (current) {
+            current.classList.add('highlight');
+            current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            speak(current.textContent);
+            index++;
+          }
+          if (index >= wordElements.length) {
+            clearInterval(scrollInterval);
+          }
+        }, 3000);
       }
 
-      // Initial load of the first category
+      // Initial load
       loadCategory(categories[0]);
 
-      // Load on change
       select.addEventListener('change', () => {
         loadCategory(select.value);
       });
