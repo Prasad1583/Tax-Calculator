@@ -2,80 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>English Phrases (Tabbed)</title>
+  <title>English Phrases (Auto Reader)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .highlight {
+      background-color: #c7d2fe;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
 
   <!-- Header -->
   <header class="bg-indigo-700 text-white text-center py-6 shadow-md">
     <h1 class="text-3xl font-bold">📘 English Phrasebook</h1>
-    <p class="text-indigo-200 text-sm mt-1">Learn by category</p>
+    <p class="text-indigo-200 text-sm mt-1">Auto-highlight for immersive reading</p>
   </header>
 
-  <!-- Main -->
-  <main class="max-w-6xl mx-auto px-4 py-10">
-    <!-- Tab Buttons -->
-    <div id="tabs" class="flex flex-wrap gap-2 mb-6 justify-center"></div>
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-10 space-y-6">
 
-    <!-- Phrase Cards -->
-    <div id="tabContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+    <!-- Dropdown -->
+    <div class="flex justify-center">
+      <select id="categorySelect" class="p-2 rounded border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-indigo-400">
+        <option disabled selected>Select a category</option>
+      </select>
+    </div>
+
+    <!-- Phrase List -->
+    <div id="phraseList" class="space-y-3 max-h-[65vh] overflow-y-auto p-2 bg-white rounded-xl shadow-inner border border-gray-100"></div>
   </main>
 
   <!-- Footer -->
   <footer class="text-center text-sm text-gray-600 py-6 border-t">
-    © 2025 English Phrase Tabs | Speak better, faster 💬
+    © 2025 English Phrasebook Reader | One phrase at a time ✨
   </footer>
 
   <!-- Script -->
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      const tabs = document.getElementById('tabs');
-      const content = document.getElementById('tabContent');
+      const select = document.getElementById('categorySelect');
+      const phraseList = document.getElementById('phraseList');
+      let scrollInterval = null;
 
       try {
         const response = await fetch('https://ornate-frangollo-d46c3a.netlify.app/phrases.json');
-        const phrases = await response.json();
+        const data = await response.json();
 
-        let activeTab = null;
-
-        function showCategory(category, button) {
-          // Reset all tab styles
-          [...tabs.children].forEach(btn => {
-            btn.classList.remove('bg-indigo-700', 'text-white', 'font-bold');
-            btn.classList.add('bg-white', 'text-gray-700');
-          });
-
-          // Activate current tab
-          button.classList.add('bg-indigo-700', 'text-white', 'font-bold');
-
-          // Render phrase cards
-          content.innerHTML = '';
-          phrases[category].forEach(phrase => {
-            const div = document.createElement('div');
-            div.className = 'bg-white p-4 rounded-xl shadow hover:bg-indigo-50 transition text-sm';
-            div.textContent = phrase;
-            content.appendChild(div);
-          });
+        // Populate dropdown
+        for (const category in data) {
+          const option = document.createElement('option');
+          option.value = category;
+          option.textContent = category;
+          select.appendChild(option);
         }
 
-        function createTabs() {
-          Object.keys(phrases).forEach((category, index) => {
-            const button = document.createElement('button');
-            button.textContent = category;
-            button.className = `px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 shadow-sm hover:bg-indigo-100 transition`;
-            button.onclick = () => showCategory(category, button);
-            tabs.appendChild(button);
+        // Handle selection
+        select.addEventListener('change', () => {
+          loadPhrases(data[select.value]);
+        });
 
-            if (index === 0) showCategory(category, button); // Auto load first tab
+        // Load and scroll through phrases
+        function loadPhrases(phrases) {
+          clearInterval(scrollInterval);
+          phraseList.innerHTML = '';
+
+          phrases.forEach((phrase, i) => {
+            const p = document.createElement('div');
+            p.className = 'p-4 text-sm bg-gray-50 rounded shadow-sm transition';
+            p.textContent = phrase;
+            p.id = 'phrase-' + i;
+            phraseList.appendChild(p);
           });
-        }
 
-        createTabs();
-      } catch (error) {
-        content.innerHTML = '<p class="text-red-600">Failed to load phrases. Please try again later.</p>';
-        console.error('Error loading phrases:', error);
+          let index = 0;
+          scrollInterval = setInterval(() => {
+            const allPhrases = document.querySelectorAll('#phraseList > div');
+            allPhrases.forEach(p => p.classList.remove('highlight'));
+
+            const current = document.getElementById('phrase-' + index);
+            if (current) {
+              current.classList.add('highlight');
+              current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              index++;
+              if (index >= allPhrases.length) clearInterval(scrollInterval);
+            }
+          }, 2500); // change every 2.5 seconds
+        }
+      } catch (err) {
+        phraseList.innerHTML = `<p class="text-red-600 text-center">Error loading phrases. Try again later.</p>`;
+        console.error(err);
       }
     });
   </script>
