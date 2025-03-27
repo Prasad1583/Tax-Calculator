@@ -2,38 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>English Phrases (Auto Reader)</title>
+  <title>📘 English Phrasebook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .highlight {
       background-color: #c7d2fe;
-      font-weight: bold;
+      font-weight: 600;
+      transition: background 0.3s ease;
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen">
 
   <!-- Header -->
   <header class="bg-indigo-700 text-white text-center py-6 shadow-md">
-    <h1 class="text-3xl font-bold">📘 English Phrasebook</h1>
-    <p class="text-indigo-200 text-sm mt-1">Auto-highlight for immersive reading</p>
+    <h1 class="text-2xl sm:text-3xl font-bold">📘 English Phrasebook</h1>
+    <p class="text-indigo-200 text-sm mt-1">Auto-read with visual highlight</p>
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-4 py-10 space-y-6">
+  <main class="max-w-xl mx-auto px-4 sm:px-6 py-8 space-y-6">
 
-    <!-- Dropdown -->
+    <!-- Category Dropdown -->
     <div class="flex justify-center">
-      <select id="categorySelect" class="p-2 rounded border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-indigo-400">
+      <select id="categorySelect"
+              class="w-full sm:w-auto px-4 py-3 rounded-lg border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-sm sm:text-base">
         <option disabled selected>Select a category</option>
       </select>
     </div>
 
-    <!-- Phrase List -->
-    <div id="phraseList" class="space-y-3 max-h-[65vh] overflow-y-auto p-2 bg-white rounded-xl shadow-inner border border-gray-100"></div>
+    <!-- Phrase List Container -->
+    <div id="phraseList"
+         class="max-h-[65vh] overflow-y-auto space-y-2 p-4 bg-white rounded-xl shadow border border-gray-200 sm:scroll-smooth scroll-auto">
+    </div>
   </main>
 
+  <!-- Footer -->
+  <footer class="text-center text-xs sm:text-sm text-gray-500 py-6 border-t mt-10">
+    © 2025 English Auto-Reader | Built for smooth learning 💬
+  </footer>
 
   <!-- Script -->
   <script>
@@ -47,31 +55,32 @@
         const data = await response.json();
 
         // Populate dropdown
-        for (const category in data) {
+        Object.keys(data).forEach(category => {
           const option = document.createElement('option');
           option.value = category;
           option.textContent = category;
           select.appendChild(option);
-        }
+        });
 
-        // Handle selection
+        // Handle category change
         select.addEventListener('change', () => {
           loadPhrases(data[select.value]);
         });
 
-        // Load and scroll through phrases
         function loadPhrases(phrases) {
           clearInterval(scrollInterval);
           phraseList.innerHTML = '';
 
+          // Build phrase cards
           phrases.forEach((phrase, i) => {
-            const p = document.createElement('div');
-            p.className = 'p-4 text-sm bg-gray-50 rounded shadow-sm transition';
-            p.textContent = phrase;
-            p.id = 'phrase-' + i;
-            phraseList.appendChild(p);
+            const div = document.createElement('div');
+            div.id = 'phrase-' + i;
+            div.className = 'bg-gray-50 px-4 py-3 text-sm sm:text-base rounded-lg shadow-sm';
+            div.textContent = phrase;
+            phraseList.appendChild(div);
           });
 
+          // Auto-highlight & scroll
           let index = 0;
           scrollInterval = setInterval(() => {
             const allPhrases = document.querySelectorAll('#phraseList > div');
@@ -84,13 +93,14 @@
               index++;
               if (index >= allPhrases.length) clearInterval(scrollInterval);
             }
-          }, 2500); // change every 2.5 seconds
+          }, 2500);
         }
       } catch (err) {
-        phraseList.innerHTML = `<p class="text-red-600 text-center">Error loading phrases. Try again later.</p>`;
+        phraseList.innerHTML = `<p class="text-red-600 text-center">Failed to load phrases. Please try again later.</p>`;
         console.error(err);
       }
     });
   </script>
+
 </body>
 </html>
