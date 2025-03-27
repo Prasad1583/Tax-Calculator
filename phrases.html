@@ -26,8 +26,8 @@
   </footer>
 
   <script>
-    const response = await fetch('phrases.json');
-    const data = await response.json();
+    const response = await fetch('https://ornate-frangollo-d46c3a.netlify.app/phrases.json');
+    const phrases = await response.json();
 
     const tabs = document.getElementById('tabs');
     const content = document.getElementById('tabContent');
