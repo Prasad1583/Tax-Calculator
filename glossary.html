@@ -20,7 +20,7 @@
     <div class="text-center">
       <select id="categorySelect"
               class="w-full sm:w-auto px-4 py-3 rounded-lg border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white text-sm sm:text-base">
-        <option disabled selected>Select a glossary category</option>
+        <option disabled>Select a glossary category</option>
       </select>
     </div>
 
@@ -35,45 +35,58 @@
 
   <!-- Script -->
   <script>
-    const response = await fetch('https://ornate-frangollo-d46c3a.netlify.app/glossary.json');
-    const glossary = await response.json();
-    const select = document.getElementById('categorySelect');
-    const content = document.getElementById('glossaryContent');
+    document.addEventListener("DOMContentLoaded", async () => {
+      const response = await fetch('https://ornate-frangollo-d46c3a.netlify.app/glossary.json');
+      const glossary = await response.json();
+      const select = document.getElementById('categorySelect');
+      const content = document.getElementById('glossaryContent');
 
-    // Populate dropdown
-    Object.keys(glossary).forEach(cat => {
-      const opt = document.createElement('option');
-      opt.value = cat;
-      opt.textContent = cat;
-      select.appendChild(opt);
-    });
+      const categories = Object.keys(glossary);
 
-    // On category change
-    select.addEventListener('change', () => {
-      const selected = glossary[select.value];
-      content.innerHTML = '';
+      // Populate dropdown
+      categories.forEach((cat, index) => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        if (index === 0) opt.selected = true;
+        select.appendChild(opt);
+      });
 
-      for (const sub in selected) {
-        const section = document.createElement('section');
+      // Function to load content
+      function loadCategory(category) {
+        const selected = glossary[category];
+        content.innerHTML = '';
 
-        const title = document.createElement('h2');
-        title.className = 'text-lg sm:text-xl font-semibold text-indigo-600 mb-2';
-        title.textContent = sub;
+        for (const sub in selected) {
+          const section = document.createElement('section');
 
-        const grid = document.createElement('div');
-        grid.className = 'grid grid-cols-2 sm:grid-cols-3 gap-3';
+          const title = document.createElement('h2');
+          title.className = 'text-lg sm:text-xl font-semibold text-indigo-600 mb-2';
+          title.textContent = sub;
 
-        selected[sub].forEach(word => {
-          const box = document.createElement('div');
-          box.className = 'bg-white p-3 rounded-lg shadow text-sm sm:text-base text-center';
-          box.textContent = word;
-          grid.appendChild(box);
-        });
+          const grid = document.createElement('div');
+          grid.className = 'grid grid-cols-2 sm:grid-cols-3 gap-3';
 
-        section.appendChild(title);
-        section.appendChild(grid);
-        content.appendChild(section);
+          selected[sub].forEach(word => {
+            const box = document.createElement('div');
+            box.className = 'bg-white p-3 rounded-lg shadow text-sm sm:text-base text-center';
+            box.textContent = word;
+            grid.appendChild(box);
+          });
+
+          section.appendChild(title);
+          section.appendChild(grid);
+          content.appendChild(section);
+        }
       }
+
+      // Initial load of the first category
+      loadCategory(categories[0]);
+
+      // Load on change
+      select.addEventListener('change', () => {
+        loadCategory(select.value);
+      });
     });
   </script>
 
