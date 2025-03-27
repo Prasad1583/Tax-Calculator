@@ -1,0 +1,89 @@
+{
+    "Nature 🌿": {
+      "Animals": ["mammal", "reptile", "bird", "fish", "insect"],
+      "Plants": ["tree", "flower", "grass", "bush", "vine"],
+      "Weather": ["rain", "sunshine", "storm", "snow", "fog"]
+    },
+    "Science & Technology 🧪": {
+      "Physics": ["force", "energy", "motion", "gravity", "friction"],
+      "Chemistry": ["atom", "molecule", "reaction", "acid", "base"],
+      "AI & ML": ["algorithm", "model", "training", "neural network", "inference"]
+    },
+    "Emotions 😊": {
+      "Positive": ["happiness", "love", "joy", "excitement", "gratitude"],
+      "Negative": ["anger", "fear", "sadness", "jealousy", "regret"]
+    },
+    "Actions 🚶‍♂️": {
+      "Movement": ["walk", "run", "jump", "swim", "climb"],
+      "Speech": ["talk", "whisper", "shout", "mumble", "yell"],
+      "Thought": ["think", "imagine", "remember", "plan", "analyze"]
+    },
+    "Time 🕒": {
+      "Units": ["second", "minute", "hour", "day", "year"],
+      "Periods": ["morning", "afternoon", "evening", "night", "dawn"]
+    },
+    "Places 🌍": {
+      "Geography": ["continent", "country", "city", "village", "region"],
+      "Structures": ["house", "bridge", "skyscraper", "road", "dam"]
+    },
+    "People & Relationships 🧑‍🤝‍🧑": {
+      "Family": ["mother", "father", "sibling", "child", "cousin"],
+      "Social": ["friend", "colleague", "neighbor", "stranger", "acquaintance"]
+    },
+    "Objects 🧰": {
+      "Tools": ["hammer", "wrench", "screwdriver", "drill", "saw"],
+      "Electronics": ["phone", "laptop", "tablet", "camera", "television"]
+    },
+    "Finance & Economy 💰": {
+      "Currencies": ["dollar", "euro", "yen", "rupee", "pound"],
+      "Investments": ["stocks", "bonds", "mutual funds", "real estate", "crypto"]
+    },
+    "Health & Fitness 🧘‍♂️": {
+      "Body Parts": ["head", "arm", "leg", "heart", "liver"],
+      "Exercise": ["running", "yoga", "weightlifting", "swimming", "cycling"]
+    },
+    "Food & Drink 🍎": {
+      "Fruits": ["apple", "banana", "orange", "grape", "mango"],
+      "Vegetables": ["carrot", "broccoli", "spinach", "potato", "tomato"],
+      "Beverages": ["water", "coffee", "tea", "juice", "soda"]
+    },
+    "Colors 🎨": {
+      "Primary": ["red", "blue", "yellow"],
+      "Secondary": ["green", "orange", "purple"],
+      "Shades": ["light", "dark", "pale", "bright", "vivid"]
+    },
+    "Language ✍️": {
+      "Parts of Speech": ["noun", "verb", "adjective", "adverb", "preposition"],
+      "Grammar": ["tense", "plural", "conjugation", "syntax", "morphology"]
+    },
+    "Occupations & Professions 👩‍⚕️": {
+      "Jobs": ["doctor", "engineer", "teacher", "lawyer", "artist"]
+    },
+    "Transportation 🚗": {
+      "Modes": ["car", "bus", "train", "bicycle", "airplane"]
+    },
+    "Clothing & Fashion 👗": {
+      "Apparel": ["shirt", "pants", "dress", "jacket", "hat"]
+    },
+    "Entertainment & Media 🎬": {
+      "Leisure": ["movie", "music", "book", "game", "show"]
+    },
+    "Feelings & States 🤒": {
+      "Conditions": ["tired", "hungry", "thirsty", "sick", "bored"]
+    },
+    "Education & Learning 🎓": {
+      "School": ["school", "class", "exam", "homework", "teacher"]
+    },
+    "Law & Government ⚖️": {
+      "Public": ["law", "court", "rule", "tax", "vote"]
+    },
+    "Environment 🌱": {
+      "Topics": ["pollution", "recycle", "climate", "ecosystem", "conservation"]
+    },
+    "Mythology & Fantasy 🐉": {
+      "Fantasy": ["dragon", "wizard", "magic", "sword", "castle"]
+    },
+    "Measurements & Quantities 📏": {
+      "Units": ["meter", "kilogram", "liter", "inch", "mile"]
+    }
+  }
