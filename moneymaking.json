@@ -1,67 +1,67 @@
 {
     "MoneyMakingFields": {
-      "Technology & Digital": [
-        "Software Development",
-        "Web & App Development",
-        "AI & Machine Learning",
-        "Data Science & Analytics",
-        "UI/UX & Product Design",
-        "Cybersecurity",
-        "SaaS Businesses",
-        "E-commerce",
-        "Digital Products (Courses, Templates)"
+      "💻 Technology & Digital": [
+        "👨‍💻 Software Development",
+        "🌐 Web & App Development",
+        "🤖 AI & Machine Learning",
+        "📊 Data Science & Analytics",
+        "🎨 UI/UX & Product Design",
+        "🔐 Cybersecurity",
+        "💼 SaaS Businesses",
+        "🛒 E-commerce",
+        "📦 Digital Products (Courses, Templates)"
       ],
-      "Finance & Investments": [
-        "Stock Market",
-        "Real Estate",
-        "Mutual Funds / Index Funds",
-        "Cryptocurrency & Blockchain",
-        "Financial Consulting",
-        "Derivatives & Options",
-        "Portfolio Management"
+      "💰 Finance & Investments": [
+        "📈 Stock Market",
+        "🏠 Real Estate",
+        "📉 Mutual Funds / Index Funds",
+        "🪙 Cryptocurrency & Blockchain",
+        "📊 Financial Consulting",
+        "💹 Derivatives & Options",
+        "💼 Portfolio Management"
       ],
-      "Online & Creator Economy": [
-        "YouTube Monetization",
-        "Online Courses & Coaching",
-        "Blogging & Affiliate Marketing",
-        "Podcasting",
-        "Instagram & Influencer Marketing",
-        "Newsletters",
-        "Freelancing (Upwork, Fiverr)"
+      "📸 Online & Creator Economy": [
+        "🎥 YouTube Monetization",
+        "🎓 Online Courses & Coaching",
+        "📝 Blogging & Affiliate Marketing",
+        "🎙️ Podcasting",
+        "📸 Instagram & Influencer Marketing",
+        "📬 Newsletters",
+        "💻 Freelancing (Upwork, Fiverr)"
       ],
-      "Business & Entrepreneurship": [
-        "Startups (Tech, SaaS, EdTech)",
-        "Franchising",
-        "Consulting & Advisory",
-        "Import/Export",
-        "Publishing",
-        "Productized Services"
+      "🏢 Business & Entrepreneurship": [
+        "🚀 Startups (Tech, SaaS, EdTech)",
+        "🏪 Franchising",
+        "📈 Consulting & Advisory",
+        "🌍 Import/Export",
+        "📚 Publishing",
+        "🛠️ Productized Services"
       ],
-      "Real-World & Offline": [
-        "Construction & Contracting",
-        "Logistics & Supply Chain",
-        "Agribusiness",
-        "Healthcare Services",
-        "Education Institutes",
-        "Skilled Trades"
+      "🏗️ Real-World & Offline": [
+        "🧱 Construction & Contracting",
+        "🚚 Logistics & Supply Chain",
+        "🌾 Agribusiness",
+        "🏥 Healthcare Services",
+        "🏫 Education Institutes",
+        "🔧 Skilled Trades"
       ],
-      "High-Income Careers": [
-        "Doctors & Surgeons",
-        "Lawyers",
-        "Investment Bankers",
-        "University Professors",
-        "Civil Engineers",
-        "Pilots",
-        "Tech Architects"
+      "💼 High-Income Careers": [
+        "🩺 Doctors & Surgeons",
+        "⚖️ Lawyers",
+        "🏦 Investment Bankers",
+        "🎓 University Professors",
+        "🏗️ Civil Engineers",
+        "✈️ Pilots",
+        "🧠 Tech Architects"
       ],
-      "Emerging Fields": [
-        "Green Tech",
-        "Biotech",
-        "SpaceTech",
-        "Game Development",
-        "Web3 / NFTs / DAOs",
-        "Wellness Tech",
-        "LegalTech / FinTech / InsurTech"
+      "🚀 Emerging Fields": [
+        "🌱 Green Tech",
+        "🧬 Biotech",
+        "🛰️ SpaceTech",
+        "🎮 Game Development",
+        "🪙 Web3 / NFTs / DAOs",
+        "🧘 Wellness Tech",
+        "📜 LegalTech / FinTech / InsurTech"
       ]
     }
   }
