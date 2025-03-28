@@ -1,0 +1,76 @@
+{
+    "EconomySectors": {
+      "Primary Sector": {
+        "description": "Extraction and use of natural resources.",
+        "sectors": [
+          "Agriculture",
+          "Animal Husbandry",
+          "Fisheries",
+          "Forestry & Logging",
+          "Mining & Quarrying",
+          "Water Resources"
+        ]
+      },
+      "Secondary Sector": {
+        "description": "Manufacturing and industrial transformation of raw materials.",
+        "sectors": [
+          "Manufacturing",
+          "Construction & Infrastructure",
+          "Engineering & Heavy Industry",
+          "Energy Production",
+          "Real Estate Development"
+        ]
+      },
+      "Tertiary Sector": {
+        "description": "Services and support for businesses and consumers.",
+        "sectors": [
+          "Finance & Banking",
+          "Logistics & Transportation",
+          "Healthcare & Wellness",
+          "Education & Training",
+          "IT Services & BPO",
+          "Tourism & Hospitality",
+          "Media & Entertainment",
+          "Legal & Consulting",
+          "Telecom",
+          "Retail & E-commerce"
+        ]
+      },
+      "Quaternary Sector": {
+        "description": "Knowledge, data, research, and technology-driven services.",
+        "sectors": [
+          "Data Science & Analytics",
+          "Research & Development (R&D)",
+          "Software & AI",
+          "Knowledge Process Outsourcing (KPO)",
+          "Biotechnology & Life Sciences"
+        ]
+      },
+      "Quinary Sector": {
+        "description": "High-level decisions, policy-making, leadership, and innovation.",
+        "sectors": [
+          "Executive Leadership (CEOs, CXOs)",
+          "Government Officials & Policy Makers",
+          "International Organizations",
+          "Scientific & Academic Leadership",
+          "Think Tanks & Strategy"
+        ]
+      },
+      "Emerging & Cross-cutting Domains": {
+        "description": "New and interdisciplinary sectors shaping the future.",
+        "sectors": [
+          "Digital Economy",
+          "Circular Economy & Sustainability",
+          "Aerospace & Defense",
+          "Life Sciences & Pharma",
+          "Crypto & Blockchain",
+          "Automation & Robotics",
+          "Climate Tech",
+          "Waste Management",
+          "Green Energy & Clean Tech",
+          "Skilled Trades & Vocational Services"
+        ]
+      }
+    }
+  }
+  

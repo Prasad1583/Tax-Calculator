@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📊 Key Sectors of the Economy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+  <header class="bg-green-700 text-white py-6 shadow-md text-center">
+    <h1 class="text-3xl font-bold">📊 Key Sectors of the Economy</h1>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8" id="dashboardContainer">
+    <div class="text-center text-gray-500" id="loading">Loading sectors...</div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const container = document.getElementById("dashboardContainer");
+      const loading = document.getElementById("loading");
+
+      try {
+        // 👉 Replace with your actual API URL
+        const response = await fetch("https://ornate-frangollo-d46c3a.netlify.app/keysectors.json");
+        const result = await response.json();
+        const economySectors = result?.EconomySectors;
+
+        if (!economySectors) {
+          throw new Error("Invalid or missing data format");
+        }
+
+        loading.style.display = "none";
+
+        Object.entries(economySectors).forEach(([category, data]) => {
+          const section = document.createElement("section");
+          section.className = "mb-10";
+
+          const header = document.createElement("div");
+          header.className = "mb-4";
+          header.innerHTML = `
+            <h2 class="text-2xl font-bold text-green-700">${category}</h2>
+            <p class="text-sm text-gray-600 mt-1">${data.description}</p>
+          `;
+          section.appendChild(header);
+
+          const grid = document.createElement("div");
+          grid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
+
+          data.sectors.forEach(sector => {
+            const card = document.createElement("div");
+            card.className =
+              "bg-white border border-gray-200 shadow-sm rounded-lg p-4 hover:shadow-lg transition";
+            card.innerHTML = `<p class="text-md font-medium text-gray-700">${sector}</p>`;
+            grid.appendChild(card);
+          });
+
+          section.appendChild(grid);
+          container.appendChild(section);
+        });
+      } catch (error) {
+        loading.textContent = "⚠️ Failed to load sectors. Please try again.";
+        console.error("Error fetching data:", error);
+      }
+    });
+  </script>
+
+</body>
+</html>
