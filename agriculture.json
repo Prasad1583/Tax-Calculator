@@ -1,0 +1,79 @@
+{
+    "Agriculture": {
+      "Crops": {
+        "Cereal Crops": ["Wheat", "Rice", "Maize", "Barley", "Millets", "Sorghum"],
+        "Pulses/Legumes": ["Lentils", "Chickpeas", "Pigeon Pea", "Green Gram", "Black Gram"],
+        "Oilseeds": ["Soybean", "Mustard", "Sunflower", "Groundnut", "Sesame"],
+        "Fruits": ["Apple", "Banana", "Mango", "Orange", "Grapes", "Papaya", "Pineapple"],
+        "Vegetables": ["Potato", "Tomato", "Onion", "Carrot", "Cabbage", "Cauliflower", "Spinach"],
+        "Spices": ["Turmeric", "Black Pepper", "Cardamom", "Coriander", "Chili", "Clove"],
+        "Cash Crops": ["Cotton", "Sugarcane", "Tobacco", "Coffee", "Tea", "Rubber"],
+        "Fiber Crops": ["Cotton", "Jute", "Hemp", "Flax"],
+        "Forage Crops": ["Alfalfa", "Berseem", "Napier Grass"]
+      },
+      "Farming Types": {
+        "Arable Farming": ["Field Crops", "Grains"],
+        "Horticulture": ["Fruit Farming", "Vegetable Farming", "Ornamental Plants"],
+        "Organic Farming": ["Natural Inputs", "Compost Use", "Non-GMO Seeds"],
+        "Hydroponics": ["Soilless Cultivation", "Nutrient-Rich Water"],
+        "Aquaponics": ["Hydroponics + Fish Farming"],
+        "Agroforestry": ["Trees + Crops + Livestock"],
+        "Precision Farming": ["GPS", "Sensors", "Data Analytics"],
+        "Permaculture": ["Sustainable Farming Ecosystems"],
+        "Vertical Farming": ["Indoor Stacked Crop Production"]
+      },
+      "Livestock": {
+        "Dairy": ["Cows", "Buffaloes", "Goats"],
+        "Poultry": ["Chicken", "Ducks", "Turkeys", "Quail"],
+        "Meat Animals": ["Sheep", "Goats", "Pigs", "Cattle"],
+        "Aquaculture": ["Fish Farming", "Shrimp", "Shellfish"],
+        "Apiculture": ["Beekeeping", "Honey Production"],
+        "Sericulture": ["Silkworm Rearing", "Silk Production"]
+      },
+      "Agricultural Inputs": {
+        "Seeds": ["Hybrid Seeds", "Heirloom Seeds", "GMO Seeds"],
+        "Fertilizers": ["Urea", "DAP", "NPK", "Compost", "Vermicompost"],
+        "Pesticides": ["Herbicides", "Insecticides", "Fungicides", "Biopesticides"],
+        "Irrigation": ["Drip", "Sprinkler", "Canal", "Rain-fed"],
+        "Farm Equipment": ["Tractor", "Plough", "Seeder", "Harvester", "Sprayer"]
+      },
+      "Post-Harvest": {
+        "Storage": ["Cold Storage", "Silos", "Warehouses"],
+        "Processing": ["Rice Mills", "Oil Extraction", "Dairy Processing"],
+        "Packaging": ["Vacuum Packing", "Crates", "Labeling"],
+        "Distribution": ["Wholesale Markets", "Mandis", "Retail Supply Chain"]
+      },
+      "Agri-Economy": {
+        "Subsidies": ["Fertilizer Subsidy", "Irrigation Subsidy"],
+        "Crop Insurance": ["PMFBY", "Weather Insurance", "Pest Risk Coverage"],
+        "Credit/Loans": ["Kisan Credit Card", "Agri Loans", "Microfinance"],
+        "MSP (Minimum Support Price)": ["Government Procurement"],
+        "Exports": ["Agri Export Zones", "Commodity Trade"]
+      },
+      "Agri-Tech": {
+        "IoT & Sensors": ["Soil Sensors", "Weather Stations"],
+        "Drones": ["Aerial Survey", "Crop Spraying"],
+        "Mobile Apps": ["Crop Advisory", "Market Prices", "Weather Forecast"],
+        "Blockchain": ["Traceability", "Smart Contracts"],
+        "AI & Machine Learning": ["Yield Prediction", "Disease Detection"]
+      },
+      "Sustainable Practices": {
+        "Crop Rotation": ["Maize → Beans", "Wheat → Mustard"],
+        "Cover Cropping": ["Clover", "Mustard"],
+        "Mulching": ["Straw", "Plastic"],
+        "Composting": ["Manure", "Kitchen Waste"],
+        "Natural Pest Control": ["Neem Oil", "Ladybugs", "Trap Crops"]
+      },
+      "Government & Policy": {
+        "Schemes": ["PM-KISAN", "PMFBY", "RKVY", "E-NAM"],
+        "Departments": ["ICAR", "Ministry of Agriculture", "NABARD"],
+        "Agri Laws": ["Land Leasing Acts", "Essential Commodities Act"]
+      },
+      "Education & Research": {
+        "Agri Universities": ["IARI", "TNAU", "GBPUAT"],
+        "Research Bodies": ["ICAR", "CIMMYT", "IRRI"],
+        "Farmer Training": ["KVKs", "ATMA", "Agri Clinics"]
+      }
+    }
+  }
+  
