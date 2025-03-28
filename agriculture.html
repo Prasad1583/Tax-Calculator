@@ -69,11 +69,18 @@
           const ul = document.createElement('ul');
           ul.className = "list-disc list-inside space-y-1 text-sm text-gray-700";
 
-          crops[sub].forEach(item => {
+          const data = crops[sub];
+          if (Array.isArray(data)) {
+            data.forEach(item => {
+              const li = document.createElement('li');
+              li.textContent = item;
+              ul.appendChild(li);
+            });
+          } else {
             const li = document.createElement('li');
-            li.textContent = item;
+            li.textContent = typeof data === 'object' ? JSON.stringify(data) : data;
             ul.appendChild(li);
-          });
+          }
 
           card.appendChild(ul);
           subGrid.appendChild(card);
