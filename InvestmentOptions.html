@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 Investment Options</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-sky-50 to-white min-h-screen p-6 font-sans">
+    <header class="text-center py-8">
+        <h1 class="text-4xl font-bold text-blue-700">💸 Grow Your Wealth - Investment Options</h1>
+        <p class="text-gray-600 text-lg mt-2">Select an interest rate to estimate potential returns instantly!</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6" id="investmentGrid">
+        <!-- Investment cards will be injected here -->
+    </main>
+
+    <script>
+        const investments = [
+            {
+                "id": "fd",
+                "name": "📦 Fixed Deposit (FD)",
+                "description": "Safe investment with fixed returns, offered by banks and NBFCs.",
+                "color": "blue",
+                "minRate": 4.0,
+                "maxRate": 8.5,
+                "step": 0.1,
+                "defaultRate": 6.5
+            },
+            {
+                "id": "rd",
+                "name": "📁 Recurring Deposit (RD)",
+                "description": "Monthly deposit plan with assured returns.",
+                "color": "sky",
+                "minRate": 4.0,
+                "maxRate": 7.5,
+                "step": 0.1,
+                "defaultRate": 6.2
+            },
+            {
+                "id": "ppf",
+                "name": "🏛️ Public Provident Fund (PPF)",
+                "description": "Government-backed, tax-saving investment with long lock-in.",
+                "color": "indigo",
+                "minRate": 7.1,
+                "maxRate": 7.1,
+                "step": 0,
+                "defaultRate": 7.1
+            },
+            {
+                "id": "nsc",
+                "name": "📜 National Savings Certificate (NSC)",
+                "description": "Safe government scheme with fixed maturity.",
+                "color": "violet",
+                "minRate": 7.7,
+                "maxRate": 7.7,
+                "step": 0,
+                "defaultRate": 7.7
+            },
+            {
+                "id": "sip",
+                "name": "📊 Mutual Funds (SIP)",
+                "description": "Market-linked returns via monthly investments.",
+                "color": "green",
+                "minRate": 8,
+                "maxRate": 18,
+                "step": 0.5,
+                "defaultRate": 12
+            },
+            {
+                "id": "lumpsum",
+                "name": "💰 Mutual Funds (Lumpsum)",
+                "description": "One-time investment in diversified market instruments.",
+                "color": "emerald",
+                "minRate": 8,
+                "maxRate": 16,
+                "step": 0.5,
+                "defaultRate": 11
+            },
+            {
+                "id": "nps",
+                "name": "🛡️ National Pension System (NPS)",
+                "description": "Retirement-focused long-term investment with tax benefits.",
+                "color": "orange",
+                "minRate": 8,
+                "maxRate": 10,
+                "step": 0.1,
+                "defaultRate": 9
+            },
+            {
+                "id": "elss",
+                "name": "🔐 Equity Linked Saving Scheme (ELSS)",
+                "description": "Tax-saving mutual fund with 3-year lock-in.",
+                "color": "rose",
+                "minRate": 10,
+                "maxRate": 18,
+                "step": 0.5,
+                "defaultRate": 12
+            },
+            {
+                "id": "stocks",
+                "name": "📈 Direct Stocks",
+                "description": "High risk, high reward equity investments.",
+                "color": "red",
+                "minRate": -5,
+                "maxRate": 25,
+                "step": 0.5,
+                "defaultRate": 14
+            },
+            {
+                "id": "re",
+                "name": "🏠 Real Estate",
+                "description": "Property investment for capital appreciation or rental income.",
+                "color": "amber",
+                "minRate": 6,
+                "maxRate": 12,
+                "step": 0.5,
+                "defaultRate": 9
+            },
+            {
+                "id": "gold",
+                "name": "🪙 Gold (Digital/Sovereign/ETF)",
+                "description": "Hedge against inflation, can be held digitally.",
+                "color": "yellow",
+                "minRate": 6,
+                "maxRate": 12,
+                "step": 0.5,
+                "defaultRate": 8
+            },
+            {
+                "id": "crypto",
+                "name": "🧬 Cryptocurrency",
+                "description": "Highly volatile, speculative digital assets.",
+                "color": "pink",
+                "minRate": -30,
+                "maxRate": 100,
+                "step": 5,
+                "defaultRate": 20
+            },
+            {
+                "id": "bonds",
+                "name": "📉 Government Bonds (G-Sec)",
+                "description": "Low-risk, medium-to-long term instruments.",
+                "color": "gray",
+                "minRate": 6.5,
+                "maxRate": 8,
+                "step": 0.1,
+                "defaultRate": 7
+            }
+        ];
+
+        function formatINR(value) {
+            return value.toLocaleString("en-IN", { style: "currency", currency: "INR" });
+        }
+
+        function calculateCompound(principal, rate, time) {
+            return Math.round(principal * Math.pow((1 + rate / 100), time));
+        }
+
+        const container = document.getElementById('investmentGrid');
+
+        investments.forEach(item => {
+            const card = document.createElement('div');
+            card.className = `bg-white rounded-xl shadow-md p-6 border border-${item.color}-100`;
+
+            card.innerHTML = `
+        <h2 class="text-2xl font-semibold text-${item.color}-700 mb-2">${item.name}</h2>
+        <p class="text-gray-600 mb-4">${item.description}</p>
+        <div class="flex items-center gap-4">
+          <label for="${item.id}Rate" class="text-sm font-medium">Rate of Interest:</label>
+          <input id="${item.id}Rate" type="range" min="${item.minRate}" max="${item.maxRate}" step="${item.step}" value="${item.defaultRate}" class="w-full">
+          <span id="${item.id}Value" class="font-bold text-${item.color}-600">${item.defaultRate}%</span>
+        </div>
+        <p class="mt-4 text-sm text-gray-700">Estimated Return on ₹1,00,000 in 5 years: <span class="font-semibold" id="${item.id}Return">${formatINR(calculateCompound(100000, item.defaultRate, 5))}</span></p>
+      `;
+
+            container.appendChild(card);
+
+            const rateInput = card.querySelector(`#${item.id}Rate`);
+            const valueDisplay = card.querySelector(`#${item.id}Value`);
+            const returnDisplay = card.querySelector(`#${item.id}Return`);
+
+            rateInput.addEventListener('input', () => {
+                const rate = parseFloat(rateInput.value);
+                valueDisplay.textContent = rate + '%';
+                returnDisplay.textContent = formatINR(calculateCompound(100000, rate, 5));
+            });
+        });
+    </script>
+</body>
+
+</html>
