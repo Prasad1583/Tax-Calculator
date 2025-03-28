@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌱 Agriculture World</title>
+  <title>🌾 Agriculture - Crops Category</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
@@ -19,18 +19,18 @@
 
   <header class="bg-green-700 text-white py-6 shadow-md text-center">
     <h1 class="text-3xl font-bold flex justify-center items-center gap-2">
-      <i class="ph ph-plant-duotone text-lime-200"></i>
-      Agriculture World - Structured Categories
+      <i class="ph ph-seedling-duotone text-lime-200"></i>
+      Agriculture - Crops Category
     </h1>
   </header>
 
-  <main class="max-w-7xl mx-auto p-6" id="agricultureData">
-    <div class="text-center text-gray-500" id="loading">Loading data...</div>
+  <main class="max-w-6xl mx-auto p-6" id="cropsContainer">
+    <div class="text-center text-gray-500" id="loading">Loading Crops...</div>
   </main>
 
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      const container = document.getElementById("agricultureData");
+      const container = document.getElementById("cropsContainer");
       const loading = document.getElementById("loading");
 
       try {
@@ -39,43 +39,48 @@
 
         loading.style.display = 'none';
 
-        for (const category in agricultureJSON) {
-          const section = document.createElement('section');
-          section.className = "mb-10 bg-white rounded-xl shadow-lg border border-green-200 p-6 transition duration-300 hover:shadow-2xl";
+        const crops = agricultureJSON?.Agriculture?.Crops;
 
-          const title = document.createElement('h2');
-          title.className = "text-2xl font-bold text-green-800 flex items-center gap-2 mb-4";
-          title.innerHTML = `<i class="ph ph-leaf-duotone text-green-600"></i> ${category}`;
-          section.appendChild(title);
-
-          const subGrid = document.createElement('div');
-          subGrid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
-
-          for (const sub in agricultureJSON[category]) {
-            const card = document.createElement('div');
-            card.className = "bg-green-50 border border-green-100 rounded-lg p-4 hover:bg-green-100 transition duration-200 shadow-sm";
-
-            const subhead = document.createElement('h3');
-            subhead.className = "text-lg font-semibold text-green-700 mb-2";
-            subhead.textContent = sub;
-            card.appendChild(subhead);
-
-            const ul = document.createElement('ul');
-            ul.className = "list-disc list-inside space-y-1 text-sm text-gray-700";
-
-            agricultureJSON[category][sub].forEach(item => {
-              const li = document.createElement('li');
-              li.textContent = item;
-              ul.appendChild(li);
-            });
-
-            card.appendChild(ul);
-            subGrid.appendChild(card);
-          }
-
-          section.appendChild(subGrid);
-          container.appendChild(section);
+        if (!crops) {
+          container.innerHTML = `<div class="text-red-600 text-center font-semibold">⚠️ Crops data not found.</div>`;
+          return;
         }
+
+        const section = document.createElement('section');
+        section.className = "mb-10 bg-white rounded-xl shadow-lg border border-green-200 p-6";
+
+        const title = document.createElement('h2');
+        title.className = "text-2xl font-bold text-green-800 flex items-center gap-2 mb-4";
+        title.innerHTML = `<i class="ph ph-leaf-duotone text-green-600"></i> Crop Categories`;
+        section.appendChild(title);
+
+        const subGrid = document.createElement('div');
+        subGrid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
+
+        for (const sub in crops) {
+          const card = document.createElement('div');
+          card.className = "bg-green-50 border border-green-100 rounded-lg p-4 hover:bg-green-100 transition duration-200 shadow-sm";
+
+          const subhead = document.createElement('h3');
+          subhead.className = "text-lg font-semibold text-green-700 mb-2";
+          subhead.textContent = sub;
+          card.appendChild(subhead);
+
+          const ul = document.createElement('ul');
+          ul.className = "list-disc list-inside space-y-1 text-sm text-gray-700";
+
+          crops[sub].forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            ul.appendChild(li);
+          });
+
+          card.appendChild(ul);
+          subGrid.appendChild(card);
+        }
+
+        section.appendChild(subGrid);
+        container.appendChild(section);
       } catch (error) {
         loading.textContent = "⚠️ Failed to load data. Please check the JSON URL.";
         console.error("Error fetching JSON:", error);
