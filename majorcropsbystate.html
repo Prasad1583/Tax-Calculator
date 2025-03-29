@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Crop Specialization by State</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-blue-50 text-gray-900 min-h-screen">
+  <div class="container mx-auto p-6">
+    <h1 class="text-4xl font-extrabold mb-8 text-center text-green-800 drop-shadow">🌾 Indian States & Their Major Crops</h1>
+    <div id="crop-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+  </div>
+
+  <script>
+    const cropData = {
+        "Andhra Pradesh": ["Rice", "Maize", "Groundnut", "Cotton", "Sugarcane", "Turmeric", "Mango"],
+        "Arunachal Pradesh": ["Rice", "Maize", "Millets", "Oranges", "Ginger"],
+        "Assam": ["Rice", "Tea", "Jute", "Sugarcane", "Mustard", "Ginger"],
+        "Bihar": ["Rice", "Wheat", "Maize", "Pulses", "Sugarcane", "Jute", "Potato"],
+        "Chhattisgarh": ["Rice", "Maize", "Pulses", "Oilseeds", "Sugarcane"],
+        "Goa": ["Rice", "Coconut", "Cashew", "Areca nut"],
+        "Gujarat": ["Cotton", "Groundnut", "Wheat", "Bajra", "Sesame", "Sugarcane", "Cumin"],
+        "Haryana": ["Wheat", "Rice", "Sugarcane", "Cotton", "Barley", "Mustard"],
+        "Himachal Pradesh": ["Apple", "Barley", "Wheat", "Maize", "Potato", "Vegetables"],
+        "Jharkhand": ["Rice", "Maize", "Pulses", "Oilseeds", "Vegetables"],
+        "Karnataka": ["Rice", "Ragi", "Tur", "Cotton", "Sugarcane", "Coffee", "Areca nut", "Spices"],
+        "Kerala": ["Rice", "Rubber", "Coconut", "Pepper", "Cardamom", "Banana", "Tea", "Coffee"],
+        "Madhya Pradesh": ["Wheat", "Soybean", "Gram", "Pulses", "Cotton", "Maize"],
+        "Maharashtra": ["Sugarcane", "Cotton", "Soybean", "Tur", "Jowar", "Grapes", "Onion"],
+        "Manipur": ["Rice", "Maize", "Pineapple", "Cabbage", "Ginger"],
+        "Meghalaya": ["Rice", "Maize", "Potato", "Ginger", "Turmeric", "Oranges"],
+        "Mizoram": ["Rice", "Maize", "Banana", "Ginger", "Pineapple"],
+        "Nagaland": ["Rice", "Maize", "Millets", "Ginger", "Oranges"],
+        "Odisha": ["Rice", "Pulses", "Oilseeds", "Vegetables", "Turmeric", "Sugarcane"],
+        "Punjab": ["Wheat", "Rice", "Sugarcane", "Cotton", "Maize"],
+        "Rajasthan": ["Bajra", "Wheat", "Barley", "Mustard", "Moong", "Cumin", "Guar"],
+        "Sikkim": ["Cardamom", "Maize", "Potato", "Ginger", "Orange"],
+        "Tamil Nadu": ["Rice", "Sugarcane", "Groundnut", "Millets", "Cotton", "Banana", "Turmeric"],
+        "Telangana": ["Rice", "Cotton", "Maize", "Turmeric", "Groundnut", "Chili"],
+        "Tripura": ["Rice", "Pineapple", "Rubber", "Potato", "Jackfruit"],
+        "Uttar Pradesh": ["Wheat", "Rice", "Sugarcane", "Potato", "Maize", "Mango", "Pulses"],
+        "Uttarakhand": ["Rice", "Wheat", "Barley", "Pulses", "Fruits", "Vegetables"],
+        "West Bengal": ["Rice", "Jute", "Potato", "Tea", "Sugarcane", "Pulses", "Mustard"],
+        "Andaman and Nicobar Islands": ["Coconut", "Banana", "Pineapple"],
+        "Chandigarh": ["Wheat", "Rice"],
+        "Dadra and Nagar Haveli and Daman and Diu": ["Rice", "Nagli", "Tur", "Groundnut"],
+        "Delhi": ["Wheat", "Vegetables", "Fruits"],
+        "Jammu and Kashmir": ["Apple", "Saffron", "Wheat", "Barley", "Maize", "Walnut"],
+        "Ladakh": ["Barley", "Wheat", "Peas", "Vegetables"],
+        "Lakshadweep": ["Coconut"],
+        "Puducherry": ["Rice", "Sugarcane", "Groundnut", "Banana"]
+      };
+
+    const container = document.getElementById("crop-list");
+
+    Object.entries(cropData).forEach(([state, crops]) => {
+      const card = document.createElement("div");
+      card.className = "bg-white rounded-2xl shadow-xl p-6 hover:scale-105 transition transform duration-300 ease-in-out border-t-4 border-green-400";
+
+      const title = document.createElement("h2");
+      title.className = "text-xl font-bold mb-3 text-green-700";
+      title.textContent = state;
+
+      const list = document.createElement("ul");
+      list.className = "list-disc ml-5 text-sm text-gray-800 space-y-1";
+
+      crops.forEach(crop => {
+        const li = document.createElement("li");
+        li.textContent = crop;
+        list.appendChild(li);
+      });
+
+      card.appendChild(title);
+      card.appendChild(list);
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
