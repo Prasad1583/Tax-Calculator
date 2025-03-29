@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧠 CS Reference Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-white to-blue-100 min-h-screen font-sans">
+  <div class="container mx-auto px-4 py-10">
+    <h1 class="text-5xl font-extrabold text-center text-indigo-700 mb-12 drop-shadow-md">💻 Ultimate CS Software, Frameworks & Tools Guide</h1>
+    <div id="cs-data" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"></div>
+  </div>
+
+  <script>
+    const csReferenceData = {
+        "Operating Systems 🖥️": [
+          "🪟 Windows",
+          "🍎 macOS",
+          "🐧 Linux",
+          "🟠 Ubuntu",
+          "🌌 Fedora",
+          "📱 Android",
+          "🍏 iOS"
+        ],
+        "Programming Languages 🧑‍💻": [
+          "🐍 Python",
+          "☕ Java",
+          "💠 C++",
+          "🌐 JavaScript",
+          "🚀 Go",
+          "🦀 Rust",
+          "🧵 Kotlin",
+          "💎 Ruby",
+          "🐘 PHP",
+          "🔤 TypeScript"
+        ],
+        "Frontend Frameworks 🎨": [
+          "⚛️ React",
+          "🖼️ Vue.js",
+          "📐 Angular",
+          "🌟 Svelte",
+          "⏭️ Next.js"
+        ],
+        "Backend Frameworks 🧰": [
+          "🚂 Express.js",
+          "🌱 Spring Boot",
+          "🌐 Django",
+          "💎 Ruby on Rails",
+          "🛤️ Laravel",
+          "⚡ FastAPI",
+          "📘 ASP.NET Core"
+        ],
+        "Mobile Frameworks 📱": [
+          "⚛️ React Native",
+          "🧚 Flutter",
+          "🍎 SwiftUI",
+          "🧵 Kotlin Multiplatform"
+        ],
+        "Database Systems 🗃️": [
+          "🐬 MySQL",
+          "🐘 PostgreSQL",
+          "🍃 MongoDB",
+          "📦 SQLite",
+          "🔥 Firebase",
+          "🧠 Redis",
+          "🪵 Cassandra",
+          "🔵 Oracle DB"
+        ],
+        "Cloud Platforms ☁️": [
+          "☁️ AWS",
+          "🔵 Azure",
+          "🌐 Google Cloud",
+          "🚀 Heroku",
+          "🌊 DigitalOcean",
+          "🧠 IBM Cloud",
+          "🌀 Vercel",
+          "📦 Netlify"
+        ],
+        "DevOps Tools ⚙️": [
+          "🐳 Docker",
+          "☸️ Kubernetes",
+          "🌍 Terraform",
+          "🧪 Ansible",
+          "🧰 Jenkins",
+          "🤖 GitHub Actions",
+          "📦 Travis CI",
+          "🌀 CircleCI"
+        ],
+        "Version Control 🧬": [
+          "🔧 Git",
+          "🐱 GitHub",
+          "🦊 GitLab",
+          "💼 Bitbucket"
+        ],
+        "AI & Machine Learning 🤖": [
+          "🔬 TensorFlow",
+          "🔥 PyTorch",
+          "📈 Scikit-learn",
+          "🧠 Keras",
+          "📊 XGBoost",
+          "🤗 Hugging Face"
+        ],
+        "Data Visualization 📊": [
+          "📉 Matplotlib",
+          "📈 Seaborn",
+          "📊 D3.js",
+          "📉 Chart.js",
+          "📈 Plotly"
+        ],
+        "Cybersecurity Tools 🔐": [
+          "🔍 Wireshark",
+          "🗺️ Nmap",
+          "🧨 Metasploit",
+          "🛡️ Burp Suite",
+          "🔐 Nessus"
+        ],
+        "IDEs & Code Editors 🛠️": [
+          "🧠 Visual Studio Code",
+          "☕ IntelliJ IDEA",
+          "🐍 PyCharm",
+          "🔷 Eclipse",
+          "🌐 NetBeans",
+          "🍎 Xcode",
+          "📝 Sublime Text",
+          "🧾 Atom"
+        ],
+        "Project & Team Management 📋": [
+          "📌 Jira",
+          "🧱 Trello",
+          "✅ Asana",
+          "⚡ ClickUp",
+          "🧠 Notion",
+          "📅 Monday.com"
+        ],
+        "UI/UX Design Tools 🎨": [
+          "🎨 Figma",
+          "🧑‍🎨 Adobe XD",
+          "🖼️ Canva",
+          "🧩 Sketch",
+          "🖌️ InVision"
+        ],
+        "Testing Frameworks 🧪": [
+          "🧫 Jest",
+          "🧬 Mocha",
+          "🧪 JUnit",
+          "🕷️ Selenium",
+          "🧿 Cypress",
+          "🐵 Monkey Test",
+          "📦 Playwright"
+        ],
+        "Container & Serverless ⚡": [
+          "🐳 Docker",
+          "☸️ Kubernetes",
+          "🚀 AWS Lambda",
+          "🌩️ Google Cloud Functions",
+          "🌀 Azure Functions"
+        ],
+        "Game Development 🎮": [
+          "🎮 Unity",
+          "🧱 Unreal Engine",
+          "🕹️ Godot",
+          "⚙️ CryEngine"
+        ],
+        "Simulation & CAD 🏗️": [
+          "📐 AutoCAD",
+          "🔧 SolidWorks",
+          "📊 MATLAB",
+          "📈 Simulink",
+          "🌀 ANSYS"
+        ],
+        "E-commerce Platforms 🛒": [
+          "🛍️ Shopify",
+          "🧰 Magento",
+          "🔌 WooCommerce",
+          "🌐 BigCommerce",
+          "🎨 Wix eCommerce"
+        ],
+        "Password Managers 🔑": [
+          "🔐 LastPass",
+          "🔏 1Password",
+          "🗝️ Bitwarden",
+          "🧰 Dashlane",
+          "🛡️ Keeper"
+        ],
+        "Analytics & Monitoring 📡": [
+          "📈 Google Analytics",
+          "🪁 Datadog",
+          "📡 New Relic",
+          "📊 Grafana",
+          "📉 Prometheus"
+        ]
+      };
+
+    const container = document.getElementById("cs-data");
+
+    Object.entries(csReferenceData).forEach(([category, items]) => {
+      const card = document.createElement("div");
+      card.className = "bg-white border border-indigo-100 rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all";
+
+      const title = document.createElement("h2");
+      title.className = "text-lg font-bold text-indigo-700 mb-4 text-center";
+      title.textContent = category;
+
+      const list = document.createElement("ul");
+      list.className = "list-disc ml-6 text-gray-800 text-sm space-y-1";
+
+      items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        list.appendChild(li);
+      });
+
+      card.appendChild(title);
+      card.appendChild(list);
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
