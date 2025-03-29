@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Daily Productivity App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div id="app" class="max-w-6xl mx-auto py-8 px-4" v-cloak>
+    <h1 class="text-4xl font-bold text-center text-indigo-700 mb-4">🚀 Daily Productivity Tracker</h1>
+    
+    <!-- Current Date, Time, Time Left & Greeting -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 text-gray-700 bg-white p-4 rounded-xl shadow mb-6">
+        <div class="text-center">
+          <p class="text-lg font-semibold">📅 {{ currentDateTime }}</p>
+        </div>
+        <div class="text-center">
+          <p class="text-lg">⏳ {{ timeLeftToday }} hours left today</p>
+        </div>
+        <div class="text-center">
+          <p class="text-lg">🌤️ Good {{ timeOfDay }}!</p>
+        </div>
+      </div>
+
+     <!-- Motivational Quote with Navigation -->
+    <div class="flex justify-center items-center text-lg text-gray-600 italic mb-8">
+      <!-- <button @click="changeDay(-1)" class="mr-4 text-2xl">⬅️</button> -->
+      <div class="text-center w-full">"{{ quote }}"</div>
+      <!-- <button @click="changeDay(1)" class="ml-4 text-2xl">➡️</button> -->
+    </div>
+
+    <!-- Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- 📝 To-Do List -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-xl font-semibold mb-4">✅ To-Do List</h2>
+        <input v-model="newTodo.text" type="text" placeholder="Task description" class="w-full p-2 mb-2 border rounded">
+        <select v-model="newTodo.category" class="w-full p-2 mb-2 border rounded">
+          <option disabled value="">Select Category</option>
+          <option>Work</option>
+          <option>Personal</option>
+          <option>Urgent</option>
+        </select>
+        <select v-model="newTodo.priority" class="w-full p-2 mb-2 border rounded">
+          <option disabled value="">Select Priority</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+        <button @click="addTodo" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Add Task</button>
+
+        <ul class="mt-4 space-y-2 text-sm">
+          <li v-for="(todo, index) in todos" :key="index" class="flex items-center justify-between p-2 rounded bg-gray-100">
+            <div class="flex items-center space-x-2">
+              <input type="checkbox" v-model="todo.done" @change="saveTodos">
+              <span :class="{ 'line-through text-gray-400': todo.done }">{{ todo.text }} ({{ todo.category }})</span>
+            </div>
+            <span :class="priorityColor(todo.priority)">{{ todo.priority }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 🎯 Daily Goals -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-xl font-semibold mb-4">🎯 Daily Focus Goals</h2>
+        <input v-model="newGoal" type="text" placeholder="Goal description" class="w-full p-2 mb-2 border rounded">
+        <button @click="addGoal" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Add Goal</button>
+        <ul class="mt-4 space-y-2">
+          <li v-for="(goal, i) in goals" :key="i" class="flex items-center space-x-2">
+            <input type="checkbox" v-model="goal.done" @change="saveGoals">
+            <span :class="{ 'line-through text-gray-400': goal.done }">{{ goal.text }}</span>
+          </li>
+        </ul>
+        <div class="mt-4 h-2 bg-gray-200 rounded">
+          <div class="h-full bg-green-500 rounded" :style="{ width: goalProgress + '%' }"></div>
+        </div>
+      </div>
+
+      <!-- 🗓️ Habit Tracker (Daily) -->
+        <div class="bg-white p-6 rounded-xl shadow">
+            <h2 class="text-xl font-semibold mb-4">📆 Daily Habit Tracker</h2>
+            <div v-for="(habit, i) in habits" :key="i" class="flex justify-between items-center mb-2">
+            <p class="font-medium">{{ habit.name }}</p>
+            <input type="checkbox" v-model="habit.done" @change="saveHabits" class="form-checkbox h-5 w-5 text-indigo-600">
+            </div>
+        </div>
+  
+
+      <!-- ⏱️ Pomodoro Timer (Basic) -->
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-xl font-semibold mb-4">⏱️ Pomodoro Timer</h2>
+        <div class="text-4xl font-bold text-center mb-4">{{ minutes }}:{{ seconds }}</div>
+        <div class="flex justify-center space-x-4">
+          <button @click="startTimer" class="bg-green-600 text-white px-4 py-2 rounded">Start</button>
+          <button @click="resetTimer" class="bg-red-600 text-white px-4 py-2 rounded">Reset</button>
+        </div>
+      </div>
+
+      <!-- 🗒️ Daily Journal -->
+      <div class="bg-white p-6 rounded-xl shadow md:col-span-2">
+        <h2 class="text-xl font-semibold mb-4">🗒️ Daily Journal</h2>
+        <textarea v-model="journal" rows="8" class="w-full p-2 border rounded" placeholder="Reflect on your day..."></textarea>
+        <button @click="saveJournal" class="w-full mt-3 bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Save Entry</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          quote: 'You don’t have to be great to start, but you have to start to be great.',
+          newTodo: { text: '', category: '', priority: '', done: false },
+          todos: JSON.parse(localStorage.getItem('todos') || '[]'),
+          newGoal: '',
+          goals: JSON.parse(localStorage.getItem('goals') || '[]'),
+          habits: JSON.parse(localStorage.getItem('habits') || JSON.stringify([
+          { name: 'Exercise', done: false },
+          { name: 'Read', done: false },
+          { name: 'Meditate', done: false },
+          { name: 'Drink Water', done: false },
+          { name: 'Sleep Early', done: false },
+          { name: 'Eat Healthy', done: false },
+          { name: 'Limit Screen Time', done: false },
+          { name: 'Practice Gratitude', done: false },
+          { name: 'Learn Something New', done: false },
+          { name: 'Spend Time with Family', done: false }
+        ])),
+          timeLeft: 1500,
+          timer: null,
+          journal: localStorage.getItem('journal') || '',
+          currentDateTime: '',
+          timeLeftToday: '',
+          timeOfDay: ''
+        };
+      },
+      computed: {
+        minutes() {
+          return String(Math.floor(this.timeLeft / 60)).padStart(2, '0');
+        },
+        seconds() {
+          return String(this.timeLeft % 60).padStart(2, '0');
+        },
+        goalProgress() {
+          const total = this.goals.length;
+          const done = this.goals.filter(g => g.done).length;
+          return total ? (done / total) * 100 : 0;
+        }
+      },
+      methods: {
+        saveHabits() {
+            localStorage.setItem('habits', JSON.stringify(this.habits));
+          },
+        addTodo() {
+          if (this.newTodo.text) {
+            this.todos.push({ ...this.newTodo, done: false });
+            this.newTodo = { text: '', category: '', priority: '', done: false };
+            this.saveTodos();
+          }
+        },
+        saveTodos() {
+          localStorage.setItem('todos', JSON.stringify(this.todos));
+        },
+        addGoal() {
+          if (this.newGoal) {
+            this.goals.push({ text: this.newGoal, done: false });
+            this.newGoal = '';
+            this.saveGoals();
+          }
+        },
+        saveGoals() {
+          localStorage.setItem('goals', JSON.stringify(this.goals));
+        },
+        startTimer() {
+          if (this.timer) return;
+          this.timer = setInterval(() => {
+            if (this.timeLeft > 0) this.timeLeft--;
+            else this.resetTimer();
+          }, 1000);
+        },
+        resetTimer() {
+          clearInterval(this.timer);
+          this.timer = null;
+          this.timeLeft = 1500;
+        },
+        saveJournal() {
+          localStorage.setItem('journal', this.journal);
+        },
+        priorityColor(priority) {
+          return {
+            'High': 'text-red-500 font-semibold',
+            'Medium': 'text-yellow-500 font-semibold',
+            'Low': 'text-green-500 font-semibold'
+          }[priority] || 'text-gray-500';
+        },
+        updateDateTime() {
+          const now = new Date();
+          this.currentDateTime = now.toLocaleString();
+
+          const totalMinutesInDay = 24 * 60;
+          const minutesPassed = now.getHours() * 60 + now.getMinutes();
+          const minutesLeft = totalMinutesInDay - minutesPassed;
+          this.timeLeftToday = (minutesLeft / 60).toFixed(2);
+
+          const hour = now.getHours();
+          if (hour >= 5 && hour < 12) this.timeOfDay = 'Morning';
+          else if (hour >= 12 && hour < 17) this.timeOfDay = 'Afternoon';
+          else if (hour >= 17 && hour < 21) this.timeOfDay = 'Evening';
+          else this.timeOfDay = 'Night';
+        }
+      },
+      mounted() {
+        this.updateDateTime();
+        setInterval(this.updateDateTime, 1000);
+      },
+      watch: {
+        habits: {
+          handler(newVal) {
+            localStorage.setItem('habits', JSON.stringify(newVal));
+          },
+          deep: true
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
