@@ -207,18 +207,22 @@
         updateDateTime() {
           const now = new Date();
           this.currentDateTime = now.toLocaleString();
-
+        
           const totalMinutesInDay = 24 * 60;
           const minutesPassed = now.getHours() * 60 + now.getMinutes();
           const minutesLeft = totalMinutesInDay - minutesPassed;
-          this.timeLeftToday = (minutesLeft / 60).toFixed(2);
-
+        
+          // Convert to HH hours MM minutes format
+          const hours = Math.floor(minutesLeft / 60);
+          const minutes = minutesLeft % 60;
+          this.timeLeftToday = `${hours} hours ${minutes} minutes`;
+        
           const hour = now.getHours();
           if (hour >= 5 && hour < 12) this.timeOfDay = 'Morning';
           else if (hour >= 12 && hour < 17) this.timeOfDay = 'Afternoon';
           else if (hour >= 17 && hour < 21) this.timeOfDay = 'Evening';
           else this.timeOfDay = 'Night';
-        }
+        }        
       },
       mounted() {
         this.updateDateTime();
