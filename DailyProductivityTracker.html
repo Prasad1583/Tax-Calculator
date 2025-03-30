@@ -115,10 +115,10 @@
         return {
           quote: 'You don’t have to be great to start, but you have to start to be great.',
           newTodo: { text: '', category: '', priority: '', done: false },
-          todos: JSON.parse(localStorage.getItem('todos') || '[]'),
+          todos: JSON.parse(localStorage.getItem('todos_' + this.todayKey) || '[]'),
           newGoal: '',
-          goals: JSON.parse(localStorage.getItem('goals') || '[]'),
-          habits: JSON.parse(localStorage.getItem('habits') || JSON.stringify([
+          goals: JSON.parse(localStorage.getItem('goals_' + this.todayKey) || '[]'),
+          habits: JSON.parse(localStorage.getItem('habits_' + this.todayKey) || JSON.stringify([
           { name: 'Exercise', done: false },
           { name: 'Read', done: false },
           { name: 'Meditate', done: false },
@@ -132,7 +132,8 @@
         ])),
           timeLeft: 1500,
           timer: null,
-          journal: localStorage.getItem('journal') || '',
+          todayKey: new Date().toISOString().split('T')[0],
+          journal: localStorage.getItem('journal_' + this.todayKey) || '',
           currentDateTime: '',
           timeLeftToday: '',
           timeOfDay: ''
@@ -153,7 +154,7 @@
       },
       methods: {
         saveHabits() {
-            localStorage.setItem('habits', JSON.stringify(this.habits));
+            localStorage.setItem('habits_' + this.todayKey, JSON.stringify(this.habits));
           },
         addTodo() {
           if (this.newTodo.text) {
@@ -163,7 +164,7 @@
           }
         },
         saveTodos() {
-          localStorage.setItem('todos', JSON.stringify(this.todos));
+          localStorage.setItem('todos_' + this.todayKey, JSON.stringify(this.todos));
         },
         addGoal() {
           if (this.newGoal) {
@@ -173,7 +174,7 @@
           }
         },
         saveGoals() {
-          localStorage.setItem('goals', JSON.stringify(this.goals));
+          localStorage.setItem('goals_' + this.todayKey, JSON.stringify(this.goals));
         },
         startTimer() {
           if (this.timer) return;
@@ -188,7 +189,7 @@
           this.timeLeft = 1500;
         },
         saveJournal() {
-          localStorage.setItem('journal', this.journal);
+          localStorage.setItem('journal_' + this.todayKey, this.journal);
         },
         priorityColor(priority) {
           return {
@@ -220,7 +221,7 @@
       watch: {
         habits: {
           handler(newVal) {
-            localStorage.setItem('habits', JSON.stringify(newVal));
+            localStorage.setItem('habits_' + this.todayKey, JSON.stringify(newVal));
           },
           deep: true
         }
