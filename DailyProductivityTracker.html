@@ -113,13 +113,25 @@
     createApp({
       data() {
         return {
-          todayKey: new Date().toISOString().split('T')[0],
           quote: 'You don’t have to be great to start, but you have to start to be great.',
           newTodo: { text: '', category: '', priority: '', done: false },
-          todos: JSON.parse(localStorage.getItem('todos_' + this.todayKey) || '[]'),
           newGoal: '',
-          goals: JSON.parse(localStorage.getItem('goals_' + this.todayKey) || '[]'),
-          habits: JSON.parse(localStorage.getItem('habits_' + this.todayKey) || JSON.stringify([
+          timeLeft: 1500,
+          timer: null,
+          todayKey: new Date().toISOString().split('T')[0],
+          todos: [],
+          goals: [],
+          habits: [],
+          journal: '',
+          currentDateTime: '',
+          timeLeftToday: '',
+          timeOfDay: ''
+        };
+      },
+      created() {
+        this.todos = JSON.parse(localStorage.getItem('todos_' + this.todayKey) || '[]');
+        this.goals = JSON.parse(localStorage.getItem('goals_' + this.todayKey) || '[]');
+        this.habits = JSON.parse(localStorage.getItem('habits_' + this.todayKey) || JSON.stringify([
           { name: 'Exercise', done: false },
           { name: 'Read', done: false },
           { name: 'Meditate', done: false },
@@ -130,14 +142,8 @@
           { name: 'Practice Gratitude', done: false },
           { name: 'Learn Something New', done: false },
           { name: 'Spend Time with Family', done: false }
-        ])),
-          timeLeft: 1500,
-          timer: null,
-          journal: localStorage.getItem('journal_' + this.todayKey) || '',
-          currentDateTime: '',
-          timeLeftToday: '',
-          timeOfDay: ''
-        };
+        ]));
+        this.journal = localStorage.getItem('journal_' + this.todayKey) || '';
       },
       computed: {
         minutes() {
