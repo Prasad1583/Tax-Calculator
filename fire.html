@@ -117,16 +117,20 @@
       data() {
         return {
           // FIRE
-          monthlyExpenses: '',
+          monthlyExpenses: '66670',
           withdrawalRate: 4,
           fireNumber: null,
   
           // SWP
-          corpus: '',
+          corpus: '20000000',
           swpReturn: 7,
-          swpYears: 25,
+          swpYears: 40,
           swpMonthly: null
         };
+      },
+      mounted() {
+        this.calculateFIRE();
+        this.calculateSWP();
       },
       computed: {
         formattedFireNumber() {
