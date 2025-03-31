@@ -36,7 +36,7 @@
                 <div v-for="metric in section.metrics" :key="metric.name"
                     class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-gray-200 backdrop-blur-md">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold text-gray-900">{{ metric.name }}</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">{{ metric.symbol }} {{ metric.name }}</h3>
                         <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Ideal</span>
                     </div>
                     <p class="mt-3 text-lg text-green-600 font-bold">{{ metric.ideal }}</p>
@@ -52,118 +52,97 @@
     <!-- Vue App Script -->
     <script>
         const metricsData = [
-            {
-                "category": "Blood Tests",
-                "metrics": [
-                    { "name": "TSH (Thyroid)", "ideal": "0.4 – 4.0 µIU/mL" },
-                    { "name": "T3", "ideal": "80 – 200 ng/dL" },
-                    { "name": "T4", "ideal": "5.0 – 12.0 µg/dL" },
-                    { "name": "Blood Glucose (Fasting)", "ideal": "70 – 99 mg/dL" },
-                    { "name": "HbA1c", "ideal": "< 5.7%" },
-                    { "name": "Cholesterol (Total)", "ideal": "< 200 mg/dL" },
-                    { "name": "HDL", "ideal": "> 40 mg/dL (men), > 50 mg/dL (women)" },
-                    { "name": "LDL", "ideal": "< 100 mg/dL" },
-                    { "name": "Triglycerides", "ideal": "< 150 mg/dL" },
-                    { "name": "Vitamin D", "ideal": "30 – 60 ng/mL" },
-                    { "name": "Vitamin B12", "ideal": "200 – 900 pg/mL" },
-                    { "name": "Hemoglobin", "ideal": "13–17 g/dL (men), 12–15 g/dL (women)" },
-                    { "name": "Calcium", "ideal": "8.5 – 10.2 mg/dL" },
-                    { "name": "Uric Acid", "ideal": "3.4 – 7.0 mg/dL" },
-                    { "name": "Creatinine", "ideal": "0.7 – 1.3 mg/dL" },
-                    { "name": "WBC Count", "ideal": "4,000 – 11,000 cells/µL" },
-                    { "name": "Platelet Count", "ideal": "150,000 – 450,000 /µL" },
-                    { "name": "RBC Count", "ideal": "4.7 – 6.1 million/µL (men), 4.2 – 5.4 (women)" }
-                ]
-            },
-            {
-                "category": "Physical Metrics",
-                "metrics": [
-                    { "name": "Height", "ideal": "Static per individual" },
-                    { "name": "Weight", "ideal": "Depends on BMI" },
-                    { "name": "BMI", "ideal": "18.5 – 24.9" },
-                    { "name": "Waist Circumference", "ideal": "< 90 cm (men), < 80 cm (women)" },
-                    { "name": "Resting Heart Rate", "ideal": "60 – 80 bpm" },
-                    { "name": "Blood Pressure", "ideal": "~120/80 mmHg" },
-                    { "name": "Body Fat %", "ideal": "10–20% (men), 18–28% (women)" },
-                    { "name": "VO2 Max", "ideal": "Higher = Better (varies by age)" },
-                    { "name": "BMR (Basal Metabolic Rate)", "ideal": "Varies by weight, age, gender" },
-                    { "name": "Muscle Mass", "ideal": "Varies by fitness level" },
-                    { "name": "Bone Density", "ideal": "T-score ≥ -1.0" }
-                ]
-            },
-            {
-                "category": "Mental & Lifestyle",
-                "metrics": [
-                    { "name": "Sleep Duration", "ideal": "7 – 9 hours/night" },
-                    { "name": "Water Intake", "ideal": "2.5 – 3 L/day" },
-                    { "name": "Steps", "ideal": "8,000 – 10,000/day" },
-                    { "name": "Stress Level", "ideal": "< 5 / 10" },
-                    { "name": "Mood", "ideal": "Stable / Positive most days" },
-                    { "name": "Screen Time (Non-Work)", "ideal": "< 2 hours/day" },
-                    { "name": "Caffeine Intake", "ideal": "< 400 mg/day" },
-                    { "name": "Alcohol Consumption", "ideal": "Moderate / Occasional" },
-                    { "name": "Smoking", "ideal": "None" },
-                    { "name": "Work Hours", "ideal": "35 – 45 hrs/week" },
-                    { "name": "Social Interaction", "ideal": "Daily meaningful connection" },
-                    { "name": "Mindfulness / Meditation", "ideal": "≥ 10 mins/day" }
-                ]
-            },
-            {
-                "category": "Reproductive & Hormonal",
-                "metrics": [
-                    { "name": "Testosterone", "ideal": "300 – 1000 ng/dL (men)" },
-                    { "name": "Estrogen", "ideal": "15 – 350 pg/mL (women)" },
-                    { "name": "Progesterone", "ideal": "5 – 20 ng/mL (women)" },
-                    { "name": "FSH", "ideal": "1.5 – 12.4 mIU/mL" },
-                    { "name": "LH", "ideal": "1.7 – 8.6 mIU/mL" },
-                    { "name": "Prolactin", "ideal": "2 – 18 ng/mL" }
-                ]
-            },
-            {
-                "category": "Liver & Kidney Function",
-                "metrics": [
-                    { "name": "ALT (SGPT)", "ideal": "7 – 56 U/L" },
-                    { "name": "AST (SGOT)", "ideal": "10 – 40 U/L" },
-                    { "name": "Bilirubin (Total)", "ideal": "0.1 – 1.2 mg/dL" },
-                    { "name": "Albumin", "ideal": "3.5 – 5.0 g/dL" },
-                    { "name": "Total Protein", "ideal": "6.0 – 8.3 g/dL" },
-                    { "name": "Creatinine", "ideal": "0.7 – 1.3 mg/dL" },
-                    { "name": "Urea", "ideal": "7 – 20 mg/dL" },
-                    { "name": "GFR (Glomerular Filtration Rate)", "ideal": "> 90 mL/min" }
-                ]
-            },
-            {
-                "category": "Organ Function",
-                "metrics": [
-                    { "name": "Liver Enzymes (ALT)", "ideal": "7 – 56 U/L" },
-                    { "name": "Liver Enzymes (AST)", "ideal": "10 – 40 U/L" },
-                    { "name": "GGT", "ideal": "0 – 51 U/L" },
-                    { "name": "Bilirubin", "ideal": "0.1 – 1.2 mg/dL" },
-                    { "name": "Albumin", "ideal": "3.5 – 5.0 g/dL" }
-                ]
-            },
-            {
-                "category": "Vitamins & Minerals",
-                "metrics": [
-                    { "name": "Vitamin A", "ideal": "20 – 60 µg/dL" },
-                    { "name": "Vitamin E", "ideal": "5.5 – 17 µg/mL" },
-                    { "name": "Magnesium", "ideal": "1.7 – 2.3 mg/dL" },
-                    { "name": "Zinc", "ideal": "70 – 120 µg/dL" },
-                    { "name": "Iron", "ideal": "65 – 175 µg/dL (men), 50 – 170 µg/dL (women)" },
-                    { "name": "Ferritin", "ideal": "20 – 500 ng/mL (men), 20 – 200 ng/mL (women)" }
-                ]
-            },
-            {
-                "category": "Immunity & Inflammation",
-                "metrics": [
-                    { "name": "CRP (C-Reactive Protein)", "ideal": "< 1 mg/L (low risk)" },
-                    { "name": "ESR", "ideal": "0 – 20 mm/hr" },
-                    { "name": "IgG", "ideal": "700 – 1600 mg/dL" },
-                    { "name": "IgM", "ideal": "40 – 230 mg/dL" },
-                    { "name": "IgA", "ideal": "70 – 400 mg/dL" }
-                ]
-            }
-        ];
+        {
+          "category": "🧪 Blood Tests",
+          "metrics": [
+            { "name": "🌀 TSH (Thyroid)", "ideal": "0.4 – 4.0 µIU/mL" },
+            { "name": "🔬 T3", "ideal": "80 – 200 ng/dL" },
+            { "name": "🔬 T4", "ideal": "5.0 – 12.0 µg/dL" },
+            { "name": "🍬 Blood Glucose (Fasting)", "ideal": "70 – 99 mg/dL" },
+            { "name": "📊 HbA1c", "ideal": "< 5.7%" },
+            { "name": "🩸 Cholesterol (Total)", "ideal": "< 200 mg/dL" },
+            { "name": "🫀 HDL", "ideal": "> 40 mg/dL (men), > 50 mg/dL (women)" },
+            { "name": "🫀 LDL", "ideal": "< 100 mg/dL" },
+            { "name": "🥓 Triglycerides", "ideal": "< 150 mg/dL" },
+            { "name": "🌞 Vitamin D", "ideal": "30 – 60 ng/mL" },
+            { "name": "💊 Vitamin B12", "ideal": "200 – 900 pg/mL" },
+            { "name": "🧬 Hemoglobin", "ideal": "13–17 g/dL (men), 12–15 g/dL (women)" },
+            { "name": "🦴 Calcium", "ideal": "8.5 – 10.2 mg/dL" },
+            { "name": "🧪 Uric Acid", "ideal": "3.4 – 7.0 mg/dL" },
+            { "name": "🧪 Creatinine", "ideal": "0.7 – 1.3 mg/dL" },
+            { "name": "⚪ WBC Count", "ideal": "4,000 – 11,000 cells/µL" },
+            { "name": "🟡 Platelet Count", "ideal": "150,000 – 450,000 /µL" },
+            { "name": "🔴 RBC Count", "ideal": "4.7 – 6.1 million/µL (men), 4.2 – 5.4 (women)" }
+          ]
+        },
+        {
+          "category": "🏋️ Physical Metrics",
+          "metrics": [
+            { "name": "📏 Height", "ideal": "Static per individual" },
+            { "name": "⚖️ Weight", "ideal": "Depends on BMI" },
+            { "name": "📊 BMI", "ideal": "18.5 – 24.9" },
+            { "name": "📐 Waist Circumference", "ideal": "< 90 cm (men), < 80 cm (women)" },
+            { "name": "❤️ Resting Heart Rate", "ideal": "60 – 80 bpm" },
+            { "name": "🩺 Blood Pressure", "ideal": "~120/80 mmHg" },
+            { "name": "🧍‍♂️ Body Fat %", "ideal": "10–20% (men), 18–28% (women)" },
+            { "name": "🚴 VO2 Max", "ideal": "Higher = Better (varies by age)" },
+            { "name": "🔥 BMR (Basal Metabolic Rate)", "ideal": "Varies by weight, age, gender" },
+            { "name": "💪 Muscle Mass", "ideal": "Varies by fitness level" },
+            { "name": "🦴 Bone Density", "ideal": "T-score ≥ -1.0" }
+          ]
+        },
+        {
+          "category": "🧘 Mental & Lifestyle",
+          "metrics": [
+            { "name": "😴 Sleep Duration", "ideal": "7 – 9 hours/night" },
+            { "name": "💧 Water Intake", "ideal": "2.5 – 3 L/day" },
+            { "name": "🚶 Steps", "ideal": "8,000 – 10,000/day" },
+            { "name": "😰 Stress Level", "ideal": "< 5 / 10" },
+            { "name": "🙂 Mood", "ideal": "Stable / Positive most days" },
+            { "name": "📱 Screen Time (Non-Work)", "ideal": "< 2 hours/day" },
+            { "name": "☕ Caffeine Intake", "ideal": "< 400 mg/day" },
+            { "name": "🍷 Alcohol Consumption", "ideal": "Moderate / Occasional" },
+            { "name": "🚬 Smoking", "ideal": "None" },
+            { "name": "💼 Work Hours", "ideal": "35 – 45 hrs/week" },
+            { "name": "🤝 Social Interaction", "ideal": "Daily meaningful connection" },
+            { "name": "🧘‍♀️ Mindfulness / Meditation", "ideal": "≥ 10 mins/day" }
+          ]
+        },
+        {
+          "category": "🔬 Reproductive & Hormonal",
+          "metrics": [
+            { "name": "🧔 Testosterone", "ideal": "300 – 1000 ng/dL (men)" },
+            { "name": "👩 Estrogen", "ideal": "15 – 350 pg/mL (women)" },
+            { "name": "🤱 Progesterone", "ideal": "5 – 20 ng/mL (women)" },
+            { "name": "🧪 FSH", "ideal": "1.5 – 12.4 mIU/mL" },
+            { "name": "🧪 LH", "ideal": "1.7 – 8.6 mIU/mL" },
+            { "name": "🍼 Prolactin", "ideal": "2 – 18 ng/mL" }
+          ]
+        },
+        {
+          "category": "🧫 Liver & Kidney Function",
+          "metrics": [
+            { "name": "🧪 ALT (SGPT)", "ideal": "7 – 56 U/L" },
+            { "name": "🧪 AST (SGOT)", "ideal": "10 – 40 U/L" },
+            { "name": "🧪 Bilirubin (Total)", "ideal": "0.1 – 1.2 mg/dL" },
+            { "name": "🧪 Albumin", "ideal": "3.5 – 5.0 g/dL" },
+            { "name": "🧪 Total Protein", "ideal": "6.0 – 8.3 g/dL" },
+            { "name": "🧪 Creatinine", "ideal": "0.7 – 1.3 mg/dL" },
+            { "name": "🧪 Urea", "ideal": "7 – 20 mg/dL" },
+            { "name": "🚰 GFR (Glomerular Filtration Rate)", "ideal": "> 90 mL/min" }
+          ]
+        },
+        {
+          "category": "🛡️ Immunity & Inflammation",
+          "metrics": [
+            { "name": "🧪 CRP (C-Reactive Protein)", "ideal": "< 1 mg/L (low risk)" },
+            { "name": "🧪 ESR", "ideal": "0 – 20 mm/hr" },
+            { "name": "🛡️ IgG", "ideal": "700 – 1600 mg/dL" },
+            { "name": "🛡️ IgM", "ideal": "40 – 230 mg/dL" },
+            { "name": "🛡️ IgA", "ideal": "70 – 400 mg/dL" }
+          ]
+        }
+      ];
 
         const { createApp } = Vue;
         createApp({
