@@ -71,7 +71,7 @@
         </div>
         <div>
           <label class="block font-medium mb-1">Withdrawal Rate (%)</label>
-          <input type="number" v-model="withdrawalRate" class="w-full p-2 border rounded" placeholder="e.g. 4" required>
+          <input type="number" readonly v-model="withdrawalRate" class="w-full p-2 border rounded" placeholder="e.g. 4" required>
         </div>
         <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateFIRE">Calculate</button>
       </form>
