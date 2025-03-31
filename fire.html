@@ -54,38 +54,62 @@
       </div>
     </div>
   </section>
+  
 
-  <!-- FIRE Calculator Section with Vue.js -->
-  <section id="calculator" class="bg-orange-100 py-16 px-4" >
-    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow" id="fireApp">
-      <h2 class="text-3xl font-bold text-center mb-6">🎯 FIRE Calculator</h2>
+  <!-- FIRE & SWP Calculator Section with Vue.js -->
+  <section id="calculator" class="bg-orange-100 py-16 px-4">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8" id="fireApp">
 
+    <!-- FIRE Calculator -->
+    <div class="bg-white p-8 rounded-xl shadow">
+      <h2 class="text-2xl font-bold text-center mb-6">🎯 FIRE Calculator</h2>
       <form @submit.prevent class="space-y-4">
         <div>
           <label class="block font-medium mb-1">Monthly Expenses (₹)</label>
           <input type="number" v-model="monthlyExpenses" class="w-full p-2 border rounded" placeholder="e.g. 40000" required>
         </div>
-
         <div>
           <label class="block font-medium mb-1">Withdrawal Rate (%)</label>
           <input type="number" v-model="withdrawalRate" class="w-full p-2 border rounded" placeholder="e.g. 4" required>
         </div>
-
-        <div>
-          <label class="block font-medium mb-1">Expected Annual Return (%)</label>
-          <input type="number" v-model="annualReturn" class="w-full p-2 border rounded" placeholder="e.g. 7" required>
-        </div>
-
         <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateFIRE">Calculate</button>
       </form>
-
       <div v-if="fireNumber" class="mt-8 text-center">
         <h3 class="text-xl font-semibold mb-2">💰 Your FIRE Number:</h3>
         <p class="text-3xl font-bold text-orange-600">₹{{ formattedFireNumber }}</p>
-        <p class="mt-2 text-gray-600">This is the amount you need to retire early and live off your investments.</p>
+        <p class="mt-2 text-gray-600">Corpus needed to retire early.</p>
       </div>
     </div>
-  </section>
+
+    <!-- SWP Calculator -->
+    <div class="bg-white p-8 rounded-xl shadow">
+      <h2 class="text-2xl font-bold text-center mb-6">📤 SWP Calculator</h2>
+      <form @submit.prevent class="space-y-4">
+        <div>
+          <label class="block font-medium mb-1">Corpus Amount (₹)</label>
+          <input type="number" v-model="corpus" class="w-full p-2 border rounded" placeholder="e.g. 12000000" required>
+        </div>
+        <div>
+          <label class="block font-medium mb-1">Expected Annual Return (%)</label>
+          <input type="number" v-model="swpReturn" class="w-full p-2 border rounded" placeholder="e.g. 7" required>
+        </div>
+        <div>
+          <label class="block font-medium mb-1">Duration (Years)</label>
+          <input type="number" v-model="swpYears" class="w-full p-2 border rounded" placeholder="e.g. 25" required>
+        </div>
+        <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateSWP">Calculate</button>
+      </form>
+      <div v-if="swpMonthly" class="mt-8 text-center">
+        <h3 class="text-xl font-semibold mb-2">📅 Monthly Withdrawal Possible:</h3>
+        <p class="text-3xl font-bold text-orange-600">₹{{ formattedSWP }}</p>
+        <p class="mt-2 text-gray-600">This is the monthly income you can withdraw from your corpus.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  
 
   <!-- Resources Section -->
   <section class="py-16 px-6 bg-white">
@@ -104,19 +128,28 @@
   <!-- Vue App Script -->
   <script>
     const { createApp } = Vue;
-
+  
     createApp({
       data() {
         return {
+          // FIRE
           monthlyExpenses: '',
           withdrawalRate: 4,
-          annualReturn: 7,
-          fireNumber: null
-        }
+          fireNumber: null,
+  
+          // SWP
+          corpus: '',
+          swpReturn: 7,
+          swpYears: 25,
+          swpMonthly: null
+        };
       },
       computed: {
         formattedFireNumber() {
           return this.fireNumber ? this.fireNumber.toLocaleString('en-IN') : '';
+        },
+        formattedSWP() {
+          return this.swpMonthly ? this.swpMonthly.toLocaleString('en-IN') : '';
         }
       },
       methods: {
@@ -125,10 +158,17 @@
             const annualExpenses = this.monthlyExpenses * 12;
             this.fireNumber = (annualExpenses * 100) / this.withdrawalRate;
           }
+        },
+        calculateSWP() {
+          if (this.corpus && this.swpReturn && this.swpYears) {
+            const r = this.swpReturn / 100 / 12;
+            const n = this.swpYears * 12;
+            const swp = this.corpus * r / (1 - Math.pow(1 + r, -n));
+            this.swpMonthly = Math.round(swp);
+          }
         }
       }
     }).mount('#fireApp');
   </script>
-
 </body>
 </html>
