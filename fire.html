@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FIRE - Financial Independence, Retire Early</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Hero Section -->
+  <section class="bg-orange-100 py-20 px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">🔥 Financial Independence, Retire Early</h1>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-6">Achieve financial freedom and retire decades early. Plan smart, invest consistently, and live on your own terms.</p>
+    <a href="#calculator" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-xl shadow hover:bg-orange-600">Calculate Your FIRE Number</a>
+  </section>
+
+  <!-- Key Metrics -->
+  <section class="py-12 px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-3xl font-bold text-orange-600">50%</h2>
+        <p class="mt-2 text-gray-700">Savings Rate</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-3xl font-bold text-orange-600">₹2 Crore</h2>
+        <p class="mt-2 text-gray-700">Target Retirement Corpus</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-3xl font-bold text-orange-600">15 Years</h2>
+        <p class="mt-2 text-gray-700">Time to Freedom</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps to FIRE -->
+  <section class="py-16 px-6 bg-white">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-10">🚀 Steps to Achieve FIRE</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div class="bg-orange-50 p-6 rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">1. Track & Optimize Expenses</h3>
+          <p>Analyze where your money goes. Cut unnecessary expenses and increase your savings rate.</p>
+        </div>
+        <div class="bg-orange-50 p-6 rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">2. Invest Aggressively</h3>
+          <p>Invest in diversified portfolios, index funds, or real estate to grow your wealth over time.</p>
+        </div>
+        <div class="bg-orange-50 p-6 rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">3. Define Your FIRE Number</h3>
+          <p>Calculate the total amount needed to cover your annual expenses using the 4% rule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRE Calculator Section with Vue.js -->
+  <section id="calculator" class="bg-orange-100 py-16 px-4" >
+    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow" id="fireApp">
+      <h2 class="text-3xl font-bold text-center mb-6">🎯 FIRE Calculator</h2>
+
+      <form @submit.prevent class="space-y-4">
+        <div>
+          <label class="block font-medium mb-1">Monthly Expenses (₹)</label>
+          <input type="number" v-model="monthlyExpenses" class="w-full p-2 border rounded" placeholder="e.g. 40000" required>
+        </div>
+
+        <div>
+          <label class="block font-medium mb-1">Withdrawal Rate (%)</label>
+          <input type="number" v-model="withdrawalRate" class="w-full p-2 border rounded" placeholder="e.g. 4" required>
+        </div>
+
+        <div>
+          <label class="block font-medium mb-1">Expected Annual Return (%)</label>
+          <input type="number" v-model="annualReturn" class="w-full p-2 border rounded" placeholder="e.g. 7" required>
+        </div>
+
+        <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateFIRE">Calculate</button>
+      </form>
+
+      <div v-if="fireNumber" class="mt-8 text-center">
+        <h3 class="text-xl font-semibold mb-2">💰 Your FIRE Number:</h3>
+        <p class="text-3xl font-bold text-orange-600">₹{{ formattedFireNumber }}</p>
+        <p class="mt-2 text-gray-600">This is the amount you need to retire early and live off your investments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section class="py-16 px-6 bg-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">📚 Recommended Resources</h2>
+      <ul class="list-disc text-left max-w-xl mx-auto text-gray-700 space-y-2">
+        <li><a href="#" class="text-orange-600 hover:underline">Your Money or Your Life - Book</a></li>
+        <li><a href="#" class="text-orange-600 hover:underline">Mr. Money Mustache Blog</a></li>
+        <li><a href="#" class="text-orange-600 hover:underline">FIRE Movement Reddit (/r/financialindependence)</a></li>
+        <li><a href="#" class="text-orange-600 hover:underline">FIRECalc Tool</a></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- Vue App Script -->
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          monthlyExpenses: '',
+          withdrawalRate: 4,
+          annualReturn: 7,
+          fireNumber: null
+        }
+      },
+      computed: {
+        formattedFireNumber() {
+          return this.fireNumber ? this.fireNumber.toLocaleString('en-IN') : '';
+        }
+      },
+      methods: {
+        calculateFIRE() {
+          if (this.monthlyExpenses && this.withdrawalRate) {
+            const annualExpenses = this.monthlyExpenses * 12;
+            this.fireNumber = (annualExpenses * 100) / this.withdrawalRate;
+          }
+        }
+      }
+    }).mount('#fireApp');
+  </script>
+
+</body>
+</html>
