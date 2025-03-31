@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ideal Health Metrics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-400 to-blue-500 text-white py-16 text-center shadow-md">
+        <h1 class="text-4xl font-bold mb-2">💡 Ideal Health Metrics</h1>
+        <p class="text-lg">Track your wellness with science-backed healthy ranges</p>
+    </header>
+
+    <!-- App -->
+    <main id="app" class="max-w-7xl mx-auto px-4 py-12">
+        <div v-for="section in metrics" :key="section.category" class="mb-12">
+            <div class="mb-4">
+                <h2 class="text-2xl font-bold text-gray-700 border-l-4 border-green-500 pl-4">{{ section.category }}
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div v-for="metric in section.metrics" :key="metric.name"
+                    class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-gray-200 backdrop-blur-md">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-900">{{ metric.symbol }} {{ metric.name }}</h3>
+                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Ideal</span>
+                    </div>
+                    <p class="mt-3 text-lg text-green-600 font-bold">{{ metric.ideal }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-sm text-gray-500 py-8">
+        © 2025 Health Reference Dashboard · Built for Wellness Seekers 🌿
+    </footer>
+
+    <!-- Vue App Script -->
+    <script>
+        const metricsData = [
+        {
+          "category": "💰 Income & Earnings",
+          "metrics": [
+            { "name": "🧾 Monthly Net Income", "ideal": "Depends on lifestyle; aim for ≥ 50% savings rate" },
+            { "name": "💼 Active Income", "ideal": "Stable employment or business income" },
+            { "name": "📈 Passive Income", "ideal": "≥ 25% of total expenses covered by passive sources" },
+            { "name": "🪙 Income Diversity", "ideal": "≥ 2–3 reliable income streams" }
+          ]
+        },
+        {
+          "category": "📊 Expenses & Budgeting",
+          "metrics": [
+            { "name": "📉 Monthly Expenses", "ideal": "< 50% of monthly income" },
+            { "name": "📅 Fixed Expenses", "ideal": "< 30% of monthly income" },
+            { "name": "🛍️ Discretionary Spending", "ideal": "< 20% of income" },
+            { "name": "📊 Budgeting Accuracy", "ideal": "Track ≥ 90% of your spend categories" }
+          ]
+        },
+        {
+          "category": "🏦 Savings & Emergency",
+          "metrics": [
+            { "name": "💵 Emergency Fund", "ideal": "3–6 months of expenses saved" },
+            { "name": "💸 Monthly Savings Rate", "ideal": "≥ 30% (target 50%+ for FIRE)" },
+            { "name": "🏦 Cash Reserves", "ideal": "At least 10% of net worth in liquid form" }
+          ]
+        },
+        {
+          "category": "📈 Investments & Growth",
+          "metrics": [
+            { "name": "📊 Investment Allocation", "ideal": "Diversified across equity, debt, real estate, etc." },
+            { "name": "📆 Yearly Return on Investments", "ideal": "≥ Inflation + 3–5%" },
+            { "name": "📉 Portfolio Volatility", "ideal": "Stable or acceptable for risk appetite" },
+            { "name": "📈 SIPs/Recurring Investments", "ideal": "Regular monthly contributions to long-term funds" }
+          ]
+        },
+        {
+          "category": "📉 Debt & Liabilities",
+          "metrics": [
+            { "name": "💳 Credit Card Utilization", "ideal": "< 30% of credit limit" },
+            { "name": "🏠 Debt-to-Income Ratio", "ideal": "< 35%" },
+            { "name": "⏳ Loan Repayment Timeliness", "ideal": "100% on-time" },
+            { "name": "📉 Interest Rates on Debt", "ideal": "< 10% or refinanced regularly" }
+          ]
+        },
+        {
+          "category": "🧾 Taxes & Compliance",
+          "metrics": [
+            { "name": "📄 Tax Filing", "ideal": "Filed before deadline annually" },
+            { "name": "📉 Tax as % of Income", "ideal": "Optimized with exemptions/investments" },
+            { "name": "🏦 Tax-Saving Instruments", "ideal": "Maximize eligible deductions (80C, etc.)" }
+          ]
+        },
+        {
+          "category": "📐 Net Worth & Goals",
+          "metrics": [
+            { "name": "🧮 Net Worth", "ideal": "Positive and increasing YoY" },
+            { "name": "📊 Asset-to-Liability Ratio", "ideal": "≥ 2.0" },
+            { "name": "🎯 Financial Independence Number", "ideal": "25× annual expenses (4% rule)" },
+            { "name": "📅 Retirement Age Goal", "ideal": "< 60 (or based on FIRE plan)" }
+          ]
+        },
+        {
+          "category": "📚 Financial Literacy & Habits",
+          "metrics": [
+            { "name": "📘 Financial Book Reading", "ideal": "1 book/quarter" },
+            { "name": "📈 Net Worth Tracking", "ideal": "Updated monthly" },
+            { "name": "💡 Investment Knowledge", "ideal": "Basic understanding of all owned assets" },
+            { "name": "📆 Financial Review Frequency", "ideal": "Monthly or Quarterly" }
+          ]
+        }
+      ];
+
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    metrics: metricsData
+                };
+            }
+        }).mount("#app");
+    </script>
+
+</body>
+
+</html>
