@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FIRE - Financial Independence, Retire Early</title>
+  <title>Financial Independence, Total Life Freedom</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/vue@3"></script>
 </head>
@@ -11,104 +11,106 @@
 
   <!-- Hero Section -->
   <section class="bg-orange-100 py-20 px-6 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">🔥 Financial Independence, Retire Early</h1>
-    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-6">Achieve financial freedom and retire decades early. Plan smart, invest consistently, and live on your own terms.</p>
-    <a href="#calculator" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-xl shadow hover:bg-orange-600">Calculate Your FIRE Number</a>
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">🔥 Financial Independence, Freedom to Do Whatever You Want</h1>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto mb-6">
+      Imagine waking up with no obligations — only options. Financial independence lets you live life on your terms, not society's.
+    </p>
+    <a href="#calculator" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-xl shadow hover:bg-orange-600">
+      Calculate Your Freedom Number
+    </a>
   </section>
 
-  <!-- Key Metrics -->
+  <!-- Freedom Metrics -->
   <section class="py-12 px-6">
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div class="bg-white p-6 rounded-xl shadow">
         <h2 class="text-3xl font-bold text-orange-600">75%</h2>
-        <p class="mt-2 text-gray-700">Savings Rate</p>
+        <p class="mt-2 text-gray-700">Your Freedom Savings Rate</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow">
         <h2 class="text-3xl font-bold text-orange-600">₹2 Crore</h2>
-        <p class="mt-2 text-gray-700">Target Retirement Corpus</p>
+        <p class="mt-2 text-gray-700">Your Freedom Corpus</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow">
         <h2 class="text-3xl font-bold text-orange-600">7 Years</h2>
-        <p class="mt-2 text-gray-700">Time to Freedom</p>
+        <p class="mt-2 text-gray-700">Time to Total Freedom</p>
       </div>
     </div>
   </section>
-  
 
-  <!-- Steps to FIRE -->
+  <!-- Steps to Financial Freedom -->
   <section class="py-16 px-6 bg-white">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-10">🚀 Steps to Achieve FIRE</h2>
+      <h2 class="text-3xl font-bold mb-10">🚀 How to Achieve Freedom</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
         <div class="bg-orange-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-2">1. Track & Optimize Expenses</h3>
-          <p>Analyze where your money goes. Cut unnecessary expenses and increase your savings rate.</p>
+          <h3 class="text-xl font-semibold mb-2">1. Understand Your Expenses</h3>
+          <p>Know how much you truly need to be free. Awareness is the first step to control.</p>
         </div>
         <div class="bg-orange-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-2">2. Invest Aggressively</h3>
-          <p>Invest in diversified portfolios, index funds, or real estate to grow your wealth over time.</p>
+          <h3 class="text-xl font-semibold mb-2">2. Save & Invest Aggressively</h3>
+          <p>Build a freedom fund that pays you for life. Let your money work harder than you do.</p>
         </div>
         <div class="bg-orange-50 p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-2">3. Define Your FIRE Number</h3>
-          <p>Calculate the total amount needed to cover your annual expenses using the 4% rule.</p>
+          <h3 class="text-xl font-semibold mb-2">3. Know Your Freedom Number</h3>
+          <p>Use the 4% rule to calculate the exact amount that buys you time, peace, and choice.</p>
         </div>
       </div>
     </div>
   </section>
-  
 
-  <!-- FIRE & SWP Calculator Section with Vue.js -->
+  <!-- Freedom Calculator Section -->
   <section id="calculator" class="bg-orange-100 py-16 px-4">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8" id="fireApp">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8" id="fireApp">
 
-    <!-- FIRE Calculator -->
-    <div class="bg-white p-8 rounded-xl shadow">
-      <h2 class="text-2xl font-bold text-center mb-6">🎯 FIRE Calculator</h2>
-      <form @submit.prevent class="space-y-4">
-        <div>
-          <label class="block font-medium mb-1">Monthly Expenses (₹)</label>
-          <input type="number" v-model="monthlyExpenses" class="w-full p-2 border rounded" placeholder="e.g. 40000" required>
+      <!-- FIRE Calculator -->
+      <div class="bg-white p-8 rounded-xl shadow">
+        <h2 class="text-2xl font-bold text-center mb-6">🎯 Freedom Number Calculator</h2>
+        <form @submit.prevent class="space-y-4">
+          <div>
+            <label class="block font-medium mb-1">Monthly Expenses (₹)</label>
+            <input type="number" v-model="monthlyExpenses" class="w-full p-2 border rounded" placeholder="e.g. 40000" required>
+          </div>
+          <div>
+            <label class="block font-medium mb-1">Withdrawal Rate (%)</label>
+            <input type="number" v-model="withdrawalRate" class="w-full p-2 border rounded" placeholder="e.g. 4" required>
+          </div>
+          <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateFIRE">Calculate</button>
+        </form>
+        <div v-if="fireNumber" class="mt-8 text-center">
+          <h3 class="text-xl font-semibold mb-2">💰 Your Freedom Number:</h3>
+          <p class="text-3xl font-bold text-orange-600">₹{{ formattedFireNumber }}</p>
+          <p class="mt-2 text-gray-600">This is the amount you need to do anything you want, for life.</p>
         </div>
-        <div>
-          <label class="block font-medium mb-1">Withdrawal Rate (%)</label>
-          <input type="number" readonly v-model="withdrawalRate" class="w-full p-2 border rounded" placeholder="e.g. 4" required>
-        </div>
-        <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateFIRE">Calculate</button>
-      </form>
-      <div v-if="fireNumber" class="mt-8 text-center">
-        <h3 class="text-xl font-semibold mb-2">💰 Your FIRE Number:</h3>
-        <p class="text-3xl font-bold text-orange-600">₹{{ formattedFireNumber }}</p>
-        <p class="mt-2 text-gray-600">Corpus needed to retire early.</p>
       </div>
-    </div>
 
-    <!-- SWP Calculator -->
-    <div class="bg-white p-8 rounded-xl shadow">
-      <h2 class="text-2xl font-bold text-center mb-6">📤 SWP Calculator</h2>
-      <form @submit.prevent class="space-y-4">
-        <div>
-          <label class="block font-medium mb-1">Corpus Amount (₹)</label>
-          <input type="number" v-model="corpus" class="w-full p-2 border rounded" placeholder="e.g. 12000000" required>
+      <!-- SWP Calculator -->
+      <div class="bg-white p-8 rounded-xl shadow">
+        <h2 class="text-2xl font-bold text-center mb-6">📤 Monthly Freedom Income (SWP)</h2>
+        <form @submit.prevent class="space-y-4">
+          <div>
+            <label class="block font-medium mb-1">Corpus Amount (₹)</label>
+            <input type="number" v-model="corpus" class="w-full p-2 border rounded" placeholder="e.g. 12000000" required>
+          </div>
+          <div>
+            <label class="block font-medium mb-1">Expected Annual Return (%)</label>
+            <input type="number" v-model="swpReturn" class="w-full p-2 border rounded" placeholder="e.g. 7" required>
+          </div>
+          <div>
+            <label class="block font-medium mb-1">Duration (Years)</label>
+            <input type="number" v-model="swpYears" class="w-full p-2 border rounded" placeholder="e.g. 25" required>
+          </div>
+          <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateSWP">Calculate</button>
+        </form>
+        <div v-if="swpMonthly" class="mt-8 text-center">
+          <h3 class="text-xl font-semibold mb-2">📅 Monthly Freedom Flow:</h3>
+          <p class="text-3xl font-bold text-orange-600">₹{{ formattedSWP }}</p>
+          <p class="mt-2 text-gray-600">The amount you can withdraw every month while preserving your lifestyle.</p>
         </div>
-        <div>
-          <label class="block font-medium mb-1">Expected Annual Return (%)</label>
-          <input type="number" v-model="swpReturn" class="w-full p-2 border rounded" placeholder="e.g. 7" required>
-        </div>
-        <div>
-          <label class="block font-medium mb-1">Duration (Years)</label>
-          <input type="number" v-model="swpYears" class="w-full p-2 border rounded" placeholder="e.g. 25" required>
-        </div>
-        <button class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700" @click="calculateSWP">Calculate</button>
-      </form>
-      <div v-if="swpMonthly" class="mt-8 text-center">
-        <h3 class="text-xl font-semibold mb-2">📅 Monthly Withdrawal Possible:</h3>
-        <p class="text-3xl font-bold text-orange-600">₹{{ formattedSWP }}</p>
-        <p class="mt-2 text-gray-600">This is the monthly income you can withdraw from your corpus.</p>
       </div>
-    </div>
 
-  </div>
-</section>
+    </div>
+  </section>
   <!-- Vue App Script -->
   <script>
     const { createApp } = Vue;
