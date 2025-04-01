@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Flashcard App for everyone</title>
+    <title>Dynamic Flashcards for everyone</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -27,25 +27,18 @@
             text-align: center;
         }
 
-        #file-upload, #category-dropdown {
+        #category-dropdown, #upload {
+            position: absolute;
             padding: 12px;
             font-size: 16px;
             border-radius: 10px;
             width: 80%;
-            margin-bottom: 15px;
             border: 1px solid #ccc;
             outline: none;
         }
 
-        #file-upload {
-            background: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
-
-        #file-upload:hover {
-            background: #45a049;
-        }
+        #category-dropdown { top: 17%; }
+        #upload { top: 24%; }
 
         h1 {
             font-size: 26px;
@@ -143,40 +136,11 @@
             transition: all 0.3s;
         }
 
-        .play {
-            background: #FFC107;
-            color: #333;
-        }
-
-        .stop {
-            background: #FF5252;
-            color: #fff;
-        }
+        .play { background: #FFC107; color: #333; }
+        .stop { background: #FF5252; color: #fff; }
 
         button:hover {
             transform: scale(1.05);
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 24px;
-            }
-
-            .flashcard-container {
-                font-size: 24px;
-                height: 220px;
-            }
-
-            .input-group input {
-                width: 70px;
-                padding: 8px;
-                font-size: 14px;
-            }
-
-            button {
-                padding: 12px;
-                font-size: 14px;
-            }
         }
     </style>
 </head>
@@ -186,10 +150,12 @@
         <h1>Dynamic Flashcard App</h1>
     </div>
 
-    <input type="file" id="file-upload" accept="application/json" onchange="handleFileUpload(event)">
+    <input type="file" id="upload" accept="application/json" onchange="handleFileUpload(event)">
+
     <select id="category-dropdown" onchange="showWords()">
-        <option value="">Select a Category</option>
+      <option value="">Select a Category</option>
     </select>
+
 
     <div class="app-container">
         <div class="flashcard-container" id="flashcard">Waiting for content...</div>
