@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandatory Spendings UI</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <div id="app" class="max-w-5xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-bold text-center text-blue-700 mb-10">💰 Mandatory Spendings Overview</h1>
+
+    <div class="space-y-6">
+      <div v-for="(items, category) in spendings" :key="category" class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-blue-800 mb-4">{{ category }}</h2>
+        <ul class="space-y-2">
+          <li v-for="item in items" :key="item" class="flex justify-between items-center">
+            <span class="text-gray-700 w-2/3">{{ item }}</span>
+            <input type="number" v-model.number="amounts[item]" placeholder="₹" class="w-1/3 p-2 border rounded-md text-right" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 bg-white shadow rounded-lg p-6">
+      <h2 class="text-xl font-semibold text-green-700 mb-4">📊 Spendings Summary</h2>
+      <p class="mb-2 text-lg font-medium text-gray-800">Total: ₹{{ total }}</p>
+      <canvas id="spendingChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, onMounted, watch } = Vue
+
+    createApp({
+      data() {
+        return {
+          spendings: {
+            "Housing": [
+              "Rent or Home Loan EMI",
+              "Property Tax",
+              "Maintenance Charges",
+              "Utilities (Water, Electricity, Gas)"
+            ],
+            "Food & Groceries": [
+              "Monthly Groceries",
+              "Fresh Vegetables & Fruits",
+              "Milk & Dairy",
+              "Drinking Water",
+              "Cooking Gas"
+            ],
+            "Transportation": [
+              "Fuel or Public Transport",
+              "Vehicle Maintenance",
+              "Parking Fees",
+              "Insurance (Vehicle)"
+            ],
+            "Healthcare": [
+              "Health Insurance Premium",
+              "Medicines",
+              "Doctor Visits",
+              "Emergency Medical Fund"
+            ],
+            "Education & Childcare": [
+              "School Fees",
+              "Tuition Fees",
+              "Uniforms & Stationery",
+              "Childcare/Daycare"
+            ],
+            "Communication & Internet": [
+              "Mobile Recharge/Postpaid Bill",
+              "Internet Subscription",
+              "Cable/DTH or Streaming Essentials"
+            ],
+            "Savings & Financial Obligations": [
+              "Emergency Fund Savings",
+              "SIP/Recurring Deposit",
+              "Insurance Premiums (Life/Term)",
+              "Debt Repayments (Loans/Credit Card Minimum)"
+            ],
+            "Clothing & Personal Care": [
+              "Basic Clothing",
+              "Personal Hygiene Essentials",
+              "Haircuts/Salon Essentials"
+            ],
+            "Government & Compliance": [
+              "Income Tax (TDS or Advance Tax)",
+              "Mandatory Documentation Fees",
+              "Bank Account Charges"
+            ]
+          },
+          amounts: {},
+          chart: null
+        }
+      },
+      computed: {
+        total() {
+          return Object.values(this.amounts).reduce((sum, val) => sum + (val || 0), 0);
+        },
+        chartDataByCategory() {
+          const data = {};
+          for (const [category, items] of Object.entries(this.spendings)) {
+            data[category] = items.reduce((sum, item) => sum + (this.amounts[item] || 0), 0);
+          }
+          return data;
+        }
+      },
+      methods: {
+        renderChart() {
+          const ctx = document.getElementById('spendingChart').getContext('2d');
+          const data = this.chartDataByCategory;
+          if (this.chart) this.chart.destroy();
+          this.chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: Object.keys(data),
+              datasets: [{
+                label: 'Spendings by Category',
+                data: Object.values(data),
+                backgroundColor: [
+                  '#60a5fa', '#34d399', '#facc15', '#f87171', '#a78bfa', '#fb923c', '#4ade80', '#f472b6', '#cbd5e1'
+                ]
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'right'
+                }
+              }
+            }
+          });
+        }
+      },
+      watch: {
+        amounts: {
+          handler: 'renderChart',
+          deep: true
+        }
+      },
+      mounted() {
+        this.renderChart();
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
