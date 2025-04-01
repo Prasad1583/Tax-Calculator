@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Flashcard App for everyone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #E3F2FD;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #file-upload, #category-dropdown {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        #file-upload {
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        #file-upload:hover {
+            background: #45a049;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #636363;
+            margin-bottom: 20px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 95vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flashcard-container {
+            width: 90%;
+            max-width: 350px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #333;
+            border-radius: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 26px;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.5s ease, background 0.5s ease;
+        }
+
+        #progress {
+            font-size: 16px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .bottom-controls {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 320px;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-weight: 500;
+            font-size: 14px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .input-group input {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            outline: none;
+            background: #fff;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+
+        button {
+            width: 45%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play {
+            background: #FFC107;
+            color: #333;
+        }
+
+        .stop {
+            background: #FF5252;
+            color: #fff;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .flashcard-container {
+                font-size: 24px;
+                height: 220px;
+            }
+
+            .input-group input {
+                width: 70px;
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Dynamic Flashcard App</h1>
+    </div>
+
+    <input type="file" id="file-upload" accept="application/json" onchange="handleFileUpload(event)">
+    <select id="category-dropdown" onchange="showWords()">
+        <option value="">Select a Category</option>
+    </select>
+
+    <div class="app-container">
+        <div class="flashcard-container" id="flashcard">Waiting for content...</div>
+        <p id="progress">Word 0 of 0</p>
+        <div class="bottom-controls">
+            <div class="input-group">
+                <label for="index">Go to Word:</label>
+                <input type="number" id="index" min="1" value="1" onchange="jumpToIndex(this.value)">
+            </div>
+            <div class="input-group">
+                <label for="speed">Speed (Seconds):</label>
+                <input type="number" id="speed" min="1" value="2" onchange="adjustSpeed(this.value)">
+            </div>
+            <div class="button-group">
+                <button class="play" onclick="startAutoPlay()">Play</button>
+                <button class="stop" onclick="stopAutoPlay()">Stop</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        let words = [];
+        let autoPlayInterval = null;
+        let autoPlaySpeed = 2000;
+        let wordData = {};
+
+        const flashcard = document.getElementById("flashcard");
+
+        function createCategoryDropdown() {
+            const dropdown = document.getElementById('category-dropdown');
+            dropdown.innerHTML = '<option value="">Select a Category</option>';
+            for (const category in wordData) {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                dropdown.appendChild(option);
+            }
+        }
+
+        function showWords() {
+            const selectedCategory = document.getElementById('category-dropdown').value;
+            if (!selectedCategory || !wordData[selectedCategory]) return;
+            words = wordData[selectedCategory];
+            currentIndex = 0;
+            updateFlashcard();
+            startAutoPlay();
+        }
+
+        function updateFlashcard() {
+            flashcard.innerHTML = words[currentIndex] || 'No word';
+            document.getElementById("progress").innerText = `Word ${currentIndex + 1} of ${words.length}`;
+            document.getElementById("index").value = currentIndex + 1;
+            speakWord(words[currentIndex]);
+        }
+
+        function jumpToIndex(index) {
+            let newIndex = parseInt(index) - 1;
+            if (newIndex >= 0 && newIndex < words.length) {
+                currentIndex = newIndex;
+                updateFlashcard();
+            }
+        }
+
+        function adjustSpeed(speed) {
+            autoPlaySpeed = parseInt(speed) * 1000;
+        }
+
+        function startAutoPlay() {
+            if (autoPlayInterval || words.length === 0) return;
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % words.length;
+                updateFlashcard();
+            }, autoPlaySpeed);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+
+        function speakWord(word) {
+            if (!word) return;
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                try {
+                    wordData = JSON.parse(e.target.result);
+                    createCategoryDropdown();
+                } catch (err) {
+                    alert('Invalid JSON file');
+                }
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+
+</html>
