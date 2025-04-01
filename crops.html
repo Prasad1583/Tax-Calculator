@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crop Explorer</title>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    .crop-badge {
+      background-color: #d1fae5; /* bg-green-100 */
+      color: #065f46; /* text-green-800 */
+      padding: 0.25rem 0.5rem; /* px-2 py-1 */
+      border-radius: 0.25rem; /* rounded */
+      font-size: 0.75rem; /* text-xs */
+      font-weight: 500; /* font-medium */
+      margin-right: 0.5rem; /* mr-2 */
+      margin-bottom: 0.5rem; /* mb-2 */
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-white min-h-screen text-gray-800 font-sans">
+
+  <div class="max-w-4xl mx-auto py-10 px-6">
+    <h1 class="text-3xl font-bold mb-8 text-center text-green-800">🌱 Explore Crop Categories</h1>
+
+    <div id="cropContainer" class="space-y-6"></div>
+  </div>
+
+  <script>
+    const cropData = {
+        "crop_categories": [
+          {
+            "category": "Food Crops",
+            "subcategories": [
+              {
+                "type": "Cereals",
+                "crops": ["Rice", "Wheat", "Maize", "Jowar", "Bajra", "Ragi", "Barley", "Oats", "Millet"]
+              },
+              {
+                "type": "Pulses",
+                "crops": ["Tur", "Moong", "Urad", "Chana", "Masoor", "Horse Gram", "Rajma", "Lobia", "Field Pea"]
+              },
+              {
+                "type": "Oilseeds",
+                "crops": ["Mustard", "Groundnut", "Soybean", "Sunflower", "Sesame", "Safflower", "Linseed", "Niger"]
+              },
+              {
+                "type": "Tuber Crops",
+                "crops": ["Potato", "Sweet Potato", "Yam", "Cassava", "Colocasia"]
+              }
+            ]
+          },
+          {
+            "category": "Commercial Crops",
+            "subcategories": [
+              {
+                "type": "Cash Crops",
+                "crops": ["Sugarcane", "Cotton", "Tobacco", "Tea", "Coffee", "Rubber"]
+              },
+              {
+                "type": "Industrial Crops",
+                "crops": ["Jute", "Castor", "Linseed", "Soybean", "Mustard", "Ramie", "Kenaf", "Hemp"]
+              }
+            ]
+          },
+          {
+            "category": "Horticultural Crops",
+            "subcategories": [
+              {
+                "type": "Fruits",
+                "crops": ["Mango", "Banana", "Papaya", "Guava", "Pineapple", "Apple", "Orange", "Pomegranate", "Watermelon", "Muskmelon", "Sapota", "Litchi"]
+              },
+              {
+                "type": "Vegetables",
+                "crops": ["Tomato", "Onion", "Potato", "Brinjal", "Carrot", "Cabbage", "Cauliflower", "Peas", "Beans", "Radish", "Bottle Gourd", "Pumpkin"]
+              },
+              {
+                "type": "Spices & Condiments",
+                "crops": ["Chili", "Turmeric", "Ginger", "Garlic", "Coriander", "Pepper", "Cumin", "Fenugreek", "Fennel", "Ajwain"]
+              },
+              {
+                "type": "Plantation Crops",
+                "crops": ["Tea", "Coffee", "Rubber", "Coconut", "Areca Nut", "Betel Leaf", "Oil Palm"]
+              },
+              {
+                "type": "Flowers",
+                "crops": ["Rose", "Marigold", "Chrysanthemum", "Tuberose", "Jasmine", "Orchid", "Gladiolus"]
+              }
+            ]
+          },
+          {
+            "category": "Fodder Crops",
+            "subcategories": [
+              {
+                "type": "Green Fodder",
+                "crops": ["Napier Grass", "Berseem", "Lucerne", "Maize (Fodder)", "Cowpea", "Sorghum (Fodder)", "Oat Grass"]
+              }
+            ]
+          },
+          {
+            "category": "Medicinal & Aromatic Plants",
+            "subcategories": [
+              {
+                "type": "Medicinal",
+                "crops": ["Tulsi", "Ashwagandha", "Aloe Vera", "Neem", "Brahmi", "Shatavari", "Giloy", "Isabgol"]
+              },
+              {
+                "type": "Aromatic",
+                "crops": ["Lemongrass", "Citronella", "Palmarosa", "Vetiver", "Sandalwood", "Rosemary", "Camphor", "Mint"]
+              }
+            ]
+          },
+          {
+            "category": "Ecological & Bioenergy Crops",
+            "subcategories": [
+              {
+                "type": "Bioenergy",
+                "crops": ["Jatropha", "Sweet Sorghum", "Switchgrass", "Miscanthus", "Castor"]
+              },
+              {
+                "type": "Soil Enrichment",
+                "crops": ["Sesbania", "Sunn Hemp", "Dhaincha", "Cowpea (Green Manure)"]
+              }
+            ]
+          }
+        ]
+      };
+
+    const container = document.getElementById("cropContainer");
+
+    cropData.crop_categories.forEach((cat, i) => {
+      const card = document.createElement("div");
+      card.innerHTML = `
+        <div x-data="{ open: ${i === 0 ? 'true' : 'false'} }" class="border border-green-200 bg-white shadow rounded-xl overflow-hidden">
+          <button @click="open = !open" class="w-full flex justify-between items-center px-6 py-4 text-lg font-semibold bg-green-100 text-green-900 hover:bg-green-200 transition">
+            ${cat.category}
+            <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"/></svg>
+            <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>
+          </button>
+          <div x-show="open" x-transition class="p-6 space-y-4 bg-white">
+            ${cat.subcategories.map(sub => `
+              <div>
+                <div class="text-sm text-gray-500 font-semibold mb-1">${sub.type}</div>
+                <div class="flex flex-wrap">
+                  ${sub.crops.map(crop => `<span class="crop-badge">${crop}</span>`).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
