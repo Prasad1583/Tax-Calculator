@@ -52,58 +52,62 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const glossary = {
-                "AI Glossary": {
-                    "Machine Learning": [
-                        { "term": "Supervised Learning", "definition": "A learning method where the model is trained on labeled data." },
-                        { "term": "Unsupervised Learning", "definition": "A method where the model finds patterns in data without labels." },
-                        { "term": "Reinforcement Learning", "definition": "A learning approach where agents learn to make decisions through rewards and punishments." },
-                        { "term": "Overfitting", "definition": "When a model learns noise in the training data and performs poorly on new data." },
-                        { "term": "Underfitting", "definition": "When a model is too simple to capture underlying data patterns." }
-                    ],
-                    "Deep Learning": [
-                        { "term": "Neural Network", "definition": "A network of interconnected nodes inspired by the human brain." },
-                        { "term": "Convolutional Neural Network (CNN)", "definition": "A deep learning model mostly used in image recognition." },
-                        { "term": "Recurrent Neural Network (RNN)", "definition": "A neural network that processes sequential data like text and time series." },
-                        { "term": "Transformer", "definition": "A model architecture based on attention mechanisms, used in NLP." },
-                        { "term": "Backpropagation", "definition": "A method to calculate and minimize errors in neural networks." }
-                    ],
-                    "Natural Language Processing (NLP)": [
-                        { "term": "Tokenization", "definition": "Breaking text into individual words or phrases." },
-                        { "term": "Named Entity Recognition (NER)", "definition": "Identifying proper names of people, places, and things in text." },
-                        { "term": "Sentiment Analysis", "definition": "Detecting emotional tone in text data." },
-                        { "term": "Language Model", "definition": "A model that understands and generates human language." },
-                        { "term": "Text Generation", "definition": "Producing new, coherent text based on input context." }
-                    ],
-                    "Computer Vision": [
-                        { "term": "Image Classification", "definition": "Categorizing images into predefined classes." },
-                        { "term": "Object Detection", "definition": "Identifying objects and their locations within an image." },
-                        { "term": "Segmentation", "definition": "Dividing an image into regions or objects." },
-                        { "term": "OCR (Optical Character Recognition)", "definition": "Converting images of text into machine-readable text." },
-                        { "term": "Facial Recognition", "definition": "Identifying or verifying a person using facial features." }
-                    ],
-                    "Generative AI": [
-                        { "term": "GAN (Generative Adversarial Network)", "definition": "A model that learns to generate data by competing two networks." },
-                        { "term": "Diffusion Model", "definition": "A type of generative model used to produce high-quality images." },
-                        { "term": "Text-to-Image", "definition": "Generating images from textual descriptions." },
-                        { "term": "Prompt Engineering", "definition": "Crafting effective inputs to guide AI models like GPT." },
-                        { "term": "Fine-tuning", "definition": "Customizing a pretrained model using task-specific data." }
-                    ],
-                    "Ethics & Fairness": [
-                        { "term": "Bias in AI", "definition": "Unfair outcomes caused by skewed data or model assumptions." },
-                        { "term": "Explainability", "definition": "Making model decisions understandable to humans." },
-                        { "term": "AI Ethics", "definition": "The study of moral implications of AI systems and decisions." },
-                        { "term": "Transparency", "definition": "Clear understanding of how and why an AI system makes decisions." },
-                        { "term": "Accountability", "definition": "Assigning responsibility for AI decisions and outcomes." }
-                    ],
-                    "AI Infrastructure": [
-                        { "term": "GPU", "definition": "Graphics Processing Unit, essential for parallel AI computation." },
-                        { "term": "Inference", "definition": "The phase where a trained model makes predictions." },
-                        { "term": "Training", "definition": "The process of teaching a model using data." },
-                        { "term": "Dataset", "definition": "A structured collection of data used for training or testing models." },
-                        { "term": "Model Deployment", "definition": "Putting an AI model into production use." }
-                    ]
+                "AI_Glossary": {
+                  "Machine Learning": [
+                    { "term": "Supervised Learning", "definition": "A learning method where the model is trained on labeled data (input-output pairs)." },
+                    { "term": "Unsupervised Learning", "definition": "A method where the model finds hidden patterns in unlabeled data." },
+                    { "term": "Reinforcement Learning", "definition": "An approach where an agent learns by interacting with an environment and receiving rewards/penalties." },
+                    { "term": "Overfitting", "definition": "When a model memorizes training data noise, leading to poor generalization." },
+                    { "term": "Underfitting", "definition": "When a model is too simple to capture data patterns, performing poorly even on training data." },
+                    { "term": "Feature Engineering", "definition": "Process of selecting or transforming raw data into meaningful model inputs." },
+                    { "term": "Hyperparameter Tuning", "definition": "Optimizing model settings (e.g., learning rate) to improve performance." }
+                  ],
+                  "Deep Learning": [
+                    { "term": "Neural Network", "definition": "A computational model inspired by biological neurons, organized in layers." },
+                    { "term": "CNN (Convolutional Neural Network)", "definition": "A neural network designed for grid-like data (e.g., images)." },
+                    { "term": "RNN (Recurrent Neural Network)", "definition": "A network for sequential data, with memory of past inputs." },
+                    { "term": "Transformer", "definition": "An architecture using self-attention, dominant in NLP tasks." },
+                    { "term": "Backpropagation", "definition": "Algorithm to adjust neural network weights by propagating errors backward." },
+                    { "term": "Activation Function", "definition": "A function (e.g., ReLU) that introduces non-linearity to neuron outputs." }
+                  ],
+                  "Natural Language Processing (NLP)": [
+                    { "term": "Tokenization", "definition": "Splitting text into words, subwords, or symbols." },
+                    { "term": "BERT", "definition": "A transformer-based language model pre-trained on bidirectional context." },
+                    { "term": "GPT", "definition": "Generative Pre-trained Transformer, optimized for text generation." },
+                    { "term": "Embedding", "definition": "Representing words or phrases as dense numerical vectors." },
+                    { "term": "Attention Mechanism", "definition": "A technique to focus on relevant parts of input data dynamically." }
+                  ],
+                  "Computer Vision": [
+                    { "term": "Object Detection", "definition": "Identifying and localizing objects in images (e.g., YOLO, Faster R-CNN)." },
+                    { "term": "Semantic Segmentation", "definition": "Classifying each pixel in an image into a category." },
+                    { "term": "Image Augmentation", "definition": "Artificially expanding a dataset by modifying images (e.g., rotation, flipping)." },
+                    { "term": "Face Recognition", "definition": "Identifying individuals from facial features." }
+                  ],
+                  "Generative AI": [
+                    { "term": "GAN (Generative Adversarial Network)", "definition": "A framework where a generator and discriminator compete to create realistic data." },
+                    { "term": "Diffusion Models", "definition": "Models that generate data by gradually denoising random inputs." },
+                    { "term": "LLM (Large Language Model)", "definition": "A massive neural network trained on vast text data for language tasks." },
+                    { "term": "Hallucination", "definition": "When generative models produce false or nonsensical outputs." }
+                  ],
+                  "AI Ethics & Fairness": [
+                    { "term": "Algorithmic Bias", "definition": "Systematic errors in AI outputs that disadvantage certain groups." },
+                    { "term": "Explainable AI (XAI)", "definition": "Methods to make AI decisions interpretable to humans." },
+                    { "term": "Fairness Metrics", "definition": "Quantitative measures (e.g., demographic parity) to evaluate bias." },
+                    { "term": "Data Privacy", "definition": "Protecting sensitive information used in AI systems." }
+                  ],
+                  "AI Infrastructure": [
+                    { "term": "TPU (Tensor Processing Unit)", "definition": "Google’s custom hardware for accelerating ML workloads." },
+                    { "term": "Model Serving", "definition": "Deploying trained models to handle real-world requests." },
+                    { "term": "MLOps", "definition": "Practices to automate and manage ML lifecycle (development to deployment)." },
+                    { "term": "Edge AI", "definition": "Running AI models on local devices (e.g., smartphones) instead of cloud servers." }
+                  ],
+                  "Classic AI Algorithms": [
+                    { "term": "Decision Tree", "definition": "A tree-like model for classification/regression by splitting data on feature values." },
+                    { "term": "k-Nearest Neighbors (k-NN)", "definition": "A lazy learning algorithm that classifies based on closest training examples." },
+                    { "term": "Support Vector Machine (SVM)", "definition": "A classifier finding the optimal hyperplane to separate data classes." }
+                  ]
                 }
-            };
+              };
 
             const categorySelect = document.getElementById("categorySelect");
       const glossaryContent = document.getElementById("glossaryContent");
