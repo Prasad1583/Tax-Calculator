@@ -52,109 +52,164 @@
         document.addEventListener("DOMContentLoaded", () => {
             const glossary = {
                 "AI Glossary": {
-                  "Machine Learning": [
-                    { "term": "Supervised Learning", "definition": "A learning method where the model is trained on labeled data (input-output pairs)." },
-                    { "term": "Unsupervised Learning", "definition": "A method where the model finds hidden patterns in unlabeled data." },
-                    { "term": "Reinforcement Learning", "definition": "An approach where an agent learns by interacting with an environment and receiving rewards/penalties." },
-                    { "term": "Overfitting", "definition": "When a model memorizes training data noise, leading to poor generalization." },
-                    { "term": "Underfitting", "definition": "When a model is too simple to capture data patterns, performing poorly even on training data." },
-                    { "term": "Feature Engineering", "definition": "Process of selecting or transforming raw data into meaningful model inputs." },
-                    { "term": "Hyperparameter Tuning", "definition": "Optimizing model settings (e.g., learning rate) to improve performance." }
-                  ],
-                  "Deep Learning": [
-                    { "term": "Neural Network", "definition": "A computational model inspired by biological neurons, organized in layers." },
-                    { "term": "CNN (Convolutional Neural Network)", "definition": "A neural network designed for grid-like data (e.g., images)." },
-                    { "term": "RNN (Recurrent Neural Network)", "definition": "A network for sequential data, with memory of past inputs." },
-                    { "term": "Transformer", "definition": "An architecture using self-attention, dominant in NLP tasks." },
-                    { "term": "Backpropagation", "definition": "Algorithm to adjust neural network weights by propagating errors backward." },
-                    { "term": "Activation Function", "definition": "A function (e.g., ReLU) that introduces non-linearity to neuron outputs." }
-                  ],
-                  "Natural Language Processing (NLP)": [
-                    { "term": "Tokenization", "definition": "Splitting text into words, subwords, or symbols." },
-                    { "term": "BERT", "definition": "A transformer-based language model pre-trained on bidirectional context." },
-                    { "term": "GPT", "definition": "Generative Pre-trained Transformer, optimized for text generation." },
-                    { "term": "Embedding", "definition": "Representing words or phrases as dense numerical vectors." },
-                    { "term": "Attention Mechanism", "definition": "A technique to focus on relevant parts of input data dynamically." }
-                  ],
-                  "Computer Vision": [
-                    { "term": "Object Detection", "definition": "Identifying and localizing objects in images (e.g., YOLO, Faster R-CNN)." },
-                    { "term": "Semantic Segmentation", "definition": "Classifying each pixel in an image into a category." },
-                    { "term": "Image Augmentation", "definition": "Artificially expanding a dataset by modifying images (e.g., rotation, flipping)." },
-                    { "term": "Face Recognition", "definition": "Identifying individuals from facial features." }
-                  ],
-                  "Generative AI": [
-                    { "term": "GAN (Generative Adversarial Network)", "definition": "A framework where a generator and discriminator compete to create realistic data." },
-                    { "term": "Diffusion Models", "definition": "Models that generate data by gradually denoising random inputs." },
-                    { "term": "LLM (Large Language Model)", "definition": "A massive neural network trained on vast text data for language tasks." },
-                    { "term": "Hallucination", "definition": "When generative models produce false or nonsensical outputs." }
-                  ],
-                  "AI Ethics & Fairness": [
-                    { "term": "Algorithmic Bias", "definition": "Systematic errors in AI outputs that disadvantage certain groups." },
-                    { "term": "Explainable AI (XAI)", "definition": "Methods to make AI decisions interpretable to humans." },
-                    { "term": "Fairness Metrics", "definition": "Quantitative measures (e.g., demographic parity) to evaluate bias." },
-                    { "term": "Data Privacy", "definition": "Protecting sensitive information used in AI systems." }
-                  ],
-                  "AI Infrastructure": [
-                    { "term": "TPU (Tensor Processing Unit)", "definition": "Google’s custom hardware for accelerating ML workloads." },
-                    { "term": "Model Serving", "definition": "Deploying trained models to handle real-world requests." },
-                    { "term": "MLOps", "definition": "Practices to automate and manage ML lifecycle (development to deployment)." },
-                    { "term": "Edge AI", "definition": "Running AI models on local devices (e.g., smartphones) instead of cloud servers." }
-                  ],
-                  "Classic AI Algorithms": [
-                    { "term": "Decision Tree", "definition": "A tree-like model for classification/regression by splitting data on feature values." },
-                    { "term": "k-Nearest Neighbors (k-NN)", "definition": "A lazy learning algorithm that classifies based on closest training examples." },
-                    { "term": "Support Vector Machine (SVM)", "definition": "A classifier finding the optimal hyperplane to separate data classes." }
-                  ]
+                    "Machine Learning": [
+                        { "term": "Supervised Learning", "definition": "Training a model using labeled input-output pairs." },
+                        { "term": "Unsupervised Learning", "definition": "Finding hidden patterns in unlabeled data." },
+                        { "term": "Semi-Supervised Learning", "definition": "Combining labeled and unlabeled data for training." },
+                        { "term": "Reinforcement Learning", "definition": "Learning via rewards/punishments from interactions." },
+                        { "term": "Feature Engineering", "definition": "Transforming raw data into meaningful inputs." },
+                        { "term": "Hyperparameter", "definition": "Configurable settings for model training (e.g., learning rate)." },
+                        { "term": "Loss Function", "definition": "Measures model prediction errors during training." },
+                        { "term": "Cross-Validation", "definition": "Assessing model performance by splitting data into subsets." },
+                        { "term": "Bias-Variance Tradeoff", "definition": "Balancing underfitting and overfitting." },
+                        { "term": "Ensemble Learning", "definition": "Combining multiple models for better predictions (e.g., Random Forest)." }
+                    ],
+                    "Deep Learning": [
+                        { "term": "Neural Network", "definition": "Interconnected nodes mimicking biological neurons." },
+                        { "term": "Backpropagation", "definition": "Algorithm for training neural networks via error minimization." },
+                        { "term": "CNN (Convolutional Neural Network)", "definition": "Specialized for grid-like data (images)." },
+                        { "term": "RNN (Recurrent Neural Network)", "definition": "Handles sequential data with memory." },
+                        { "term": "LSTM (Long Short-Term Memory)", "definition": "RNN variant for long-range dependencies." },
+                        { "term": "Transformer", "definition": "Architecture using self-attention (e.g., BERT, GPT)." },
+                        { "term": "Attention Mechanism", "definition": "Focuses on relevant parts of input dynamically." },
+                        { "term": "Autoencoder", "definition": "Neural network for unsupervised dimensionality reduction." },
+                        { "term": "GAN (Generative Adversarial Network)", "definition": "Generator and discriminator compete to create data." },
+                        { "term": "Diffusion Model", "definition": "Generates data by reversing a noising process." }
+                    ],
+                    "Natural Language Processing (NLP)": [
+                        { "term": "Tokenization", "definition": "Splitting text into words/subwords." },
+                        { "term": "Stemming", "definition": "Reducing words to root form (e.g., 'running' → 'run')." },
+                        { "term": "Lemmatization", "definition": "More sophisticated word normalization than stemming." },
+                        { "term": "Word Embedding", "definition": "Representing words as vectors (e.g., Word2Vec)." },
+                        { "term": "BERT", "definition": "Bidirectional transformer for language understanding." },
+                        { "term": "GPT", "definition": "Generative Pre-trained Transformer for text generation." },
+                        { "term": "Named Entity Recognition (NER)", "definition": "Identifying entities like people, places." },
+                        { "term": "Sentiment Analysis", "definition": "Determining emotional tone in text." },
+                        { "term": "Machine Translation", "definition": "Automated translation between languages." },
+                        { "term": "Text Summarization", "definition": "Condensing long text into shorter versions." }
+                    ],
+                    "Computer Vision": [
+                        { "term": "Image Classification", "definition": "Assigning labels to images." },
+                        { "term": "Object Detection", "definition": "Identifying and locating objects in images." },
+                        { "term": "Semantic Segmentation", "definition": "Pixel-level classification of images." },
+                        { "term": "Instance Segmentation", "definition": "Differentiating between object instances." },
+                        { "term": "YOLO (You Only Look Once)", "definition": "Real-time object detection algorithm." },
+                        { "term": "Optical Character Recognition (OCR)", "definition": "Extracting text from images." },
+                        { "term": "Face Recognition", "definition": "Identifying individuals from facial features." },
+                        { "term": "Pose Estimation", "definition": "Detecting human body positions in images/videos." },
+                        { "term": "Image Augmentation", "definition": "Artificially expanding datasets via transformations." },
+                        { "term": "Style Transfer", "definition": "Applying artistic styles to images." }
+                    ],
+                    "Generative AI": [
+                        { "term": "LLM (Large Language Model)", "definition": "Massive neural networks trained on vast text corpora." },
+                        { "term": "Prompt Engineering", "definition": "Designing inputs to guide AI outputs effectively." },
+                        { "term": "Hallucination", "definition": "AI generating false or nonsensical information." },
+                        { "term": "Text-to-Image", "definition": "Generating images from text prompts (e.g., DALL-E)." },
+                        { "term": "Text-to-Speech (TTS)", "definition": "Converting written text to spoken audio." },
+                        { "term": "Voice Cloning", "definition": "Replicating a person's voice using AI." },
+                        { "term": "Fine-Tuning", "definition": "Adapting pre-trained models to specific tasks." },
+                        { "term": "Retrieval-Augmented Generation (RAG)", "definition": "Enhancing LLMs with external knowledge." },
+                        { "term": "Multimodal AI", "definition": "Models processing multiple data types (text, images, etc.)." },
+                        { "term": "AI Art", "definition": "Art created using generative models." }
+                    ],
+                    "AI Ethics & Fairness": [
+                        { "term": "Algorithmic Bias", "definition": "Unfair outcomes due to skewed data or design." },
+                        { "term": "Explainable AI (XAI)", "definition": "Making AI decisions interpretable to humans." },
+                        { "term": "Fairness Metrics", "definition": "Quantifying bias (e.g., demographic parity)." },
+                        { "term": "Data Privacy", "definition": "Protecting sensitive user information." },
+                        { "term": "GDPR Compliance", "definition": "Adhering to EU data protection regulations." },
+                        { "term": "AI Transparency", "definition": "Clarity in how AI systems make decisions." },
+                        { "term": "Model Auditing", "definition": "Evaluating AI systems for ethical risks." },
+                        { "term": "Responsible AI", "definition": "Developing AI with societal impact in mind." },
+                        { "term": "AI Safety", "definition": "Ensuring AI systems behave as intended." },
+                        { "term": "Value Alignment", "definition": "Aligning AI goals with human values." }
+                    ],
+                    "AI Infrastructure": [
+                        { "term": "GPU (Graphics Processing Unit)", "definition": "Hardware for parallel computing in AI." },
+                        { "term": "TPU (Tensor Processing Unit)", "definition": "Google’s custom AI accelerator." },
+                        { "term": "CUDA", "definition": "NVIDIA’s parallel computing platform." },
+                        { "term": "Model Serving", "definition": "Deploying models for real-world use." },
+                        { "term": "MLOps", "definition": "Practices for automating ML lifecycle management." },
+                        { "term": "Feature Store", "definition": "Centralized repository for ML features." },
+                        { "term": "Data Pipeline", "definition": "Automated workflow for data processing." },
+                        { "term": "Edge AI", "definition": "Running AI models on local devices." },
+                        { "term": "Federated Learning", "definition": "Training models across decentralized devices." },
+                        { "term": "Quantum Machine Learning", "definition": "ML algorithms running on quantum computers." }
+                    ],
+                    "Classic AI Algorithms": [
+                        { "term": "k-Nearest Neighbors (k-NN)", "definition": "Classification based on closest training examples." },
+                        { "term": "Support Vector Machine (SVM)", "definition": "Finds optimal hyperplane for classification." },
+                        { "term": "Decision Tree", "definition": "Tree-like model for classification/regression." },
+                        { "term": "Random Forest", "definition": "Ensemble of decision trees." },
+                        { "term": "k-Means Clustering", "definition": "Unsupervised algorithm for grouping data." },
+                        { "term": "Principal Component Analysis (PCA)", "definition": "Dimensionality reduction technique." },
+                        { "term": "Linear Regression", "definition": "Predicts continuous outputs via linear relationships." },
+                        { "term": "Logistic Regression", "definition": "Used for binary classification." },
+                        { "term": "Naive Bayes", "definition": "Probabilistic classifier based on Bayes’ theorem." },
+                        { "term": "Gradient Boosting", "definition": "Ensemble method building models sequentially." }
+                    ],
+                    "Emerging AI Concepts": [
+                        { "term": "AGI (Artificial General Intelligence)", "definition": "Hypothetical AI with human-like reasoning." },
+                        { "term": "Neuromorphic Computing", "definition": "Hardware mimicking the brain’s architecture." },
+                        { "term": "Swarm Intelligence", "definition": "Collective behavior of decentralized systems." },
+                        { "term": "Bio-Inspired AI", "definition": "Algorithms modeled after biological processes." },
+                        { "term": "Self-Supervised Learning", "definition": "Learning from unlabeled data by generating labels." },
+                        { "term": "Few-Shot Learning", "definition": "Learning from very few examples." },
+                        { "term": "Meta-Learning", "definition": "Learning to learn (e.g., optimizing hyperparameters)." },
+                        { "term": "AI Governance", "definition": "Policies for ethical AI development/deployment." },
+                        { "term": "Digital Twin", "definition": "Virtual replica of a physical system for simulation." },
+                        { "term": "AI Singularity", "definition": "Hypothetical point where AI surpasses human intelligence." }
+                    ]
                 }
-              };
+            };
 
             const categorySelect = document.getElementById("categorySelect");
-      const glossaryContent = document.getElementById("glossaryContent");
+            const glossaryContent = document.getElementById("glossaryContent");
 
-      const categories = glossary["AI Glossary"];
-      const categoryKeys = Object.keys(categories);
-      categoryKeys.forEach(category => {
-        const opt = document.createElement("option");
-        opt.value = category;
-        opt.textContent = category;
-        categorySelect.appendChild(opt);
-      });
+            const categories = glossary["AI Glossary"];
+            const categoryKeys = Object.keys(categories);
+            categoryKeys.forEach(category => {
+                const opt = document.createElement("option");
+                opt.value = category;
+                opt.textContent = category;
+                categorySelect.appendChild(opt);
+            });
 
-      function renderCategory(categoryName) {
-        const terms = glossary["AI Glossary"][categoryName];
-        glossaryContent.innerHTML = "";
-        terms.forEach(item => {
-          const card = document.createElement("div");
-          card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
-          card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
-          glossaryContent.appendChild(card);
+            function renderCategory(categoryName) {
+                const terms = glossary["AI Glossary"][categoryName];
+                glossaryContent.innerHTML = "";
+                terms.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
+                    card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
+                    glossaryContent.appendChild(card);
+                });
+            }
+
+            // Automatically select and render the first category
+            if (categoryKeys.length > 0) {
+                categorySelect.value = categoryKeys[0];
+                renderCategory(categoryKeys[0]);
+            }
+
+            categorySelect.addEventListener("change", () => {
+                renderCategory(categorySelect.value);
+            });
         });
-      }
 
-      // Automatically select and render the first category
-      if (categoryKeys.length > 0) {
-        categorySelect.value = categoryKeys[0];
-        renderCategory(categoryKeys[0]);
-      }
+        categorySelect.addEventListener("change", () => {
+            const selectedCategory = categorySelect.value;
+            const terms = glossary["AI Glossary"][selectedCategory];
 
-      categorySelect.addEventListener("change", () => {
-        renderCategory(categorySelect.value);
-      });
-    });
+            glossaryContent.innerHTML = "";
 
-      categorySelect.addEventListener("change", () => {
-        const selectedCategory = categorySelect.value;
-        const terms = glossary["AI Glossary"][selectedCategory];
-
-        glossaryContent.innerHTML = "";
-
-        terms.forEach(item => {
-          const card = document.createElement("div");
-          card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
-          card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
-          glossaryContent.appendChild(card);
+            terms.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
+                card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
+                glossaryContent.appendChild(card);
+            });
         });
-      });
     </script>
 
 </body>
