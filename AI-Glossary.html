@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>📚 Interactive AI Glossary Reader</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .highlight {
+            background-color: rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
+            transition: all 0.3s ease;
+            transform: scale(1.03);
+            color: crimson;
+        }
+
+        .word-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .word-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2">📚 Interactive AI Glossary Reader</h1>
+            <p class="text-indigo-100 text-sm sm:text-base">Explore categorized AI terms with voice and highlights</p>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <label for="categorySelect" class="block text-sm font-medium text-gray-700 mb-1">Select AI Category:</label>
+            <select id="categorySelect" class="w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm">
+                <option disabled selected>Choose an AI glossary category</option>
+            </select>
+        </div>
+
+        <div id="glossaryContent"
+            class="bg-white rounded-xl shadow-inner border border-gray-200 p-6 max-h-[60vh] overflow-y-auto"></div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const glossary = {
+                "AI Glossary": {
+                    "Machine Learning": [
+                        { "term": "Supervised Learning", "definition": "A learning method where the model is trained on labeled data." },
+                        { "term": "Unsupervised Learning", "definition": "A method where the model finds patterns in data without labels." },
+                        { "term": "Reinforcement Learning", "definition": "A learning approach where agents learn to make decisions through rewards and punishments." },
+                        { "term": "Overfitting", "definition": "When a model learns noise in the training data and performs poorly on new data." },
+                        { "term": "Underfitting", "definition": "When a model is too simple to capture underlying data patterns." }
+                    ],
+                    "Deep Learning": [
+                        { "term": "Neural Network", "definition": "A network of interconnected nodes inspired by the human brain." },
+                        { "term": "Convolutional Neural Network (CNN)", "definition": "A deep learning model mostly used in image recognition." },
+                        { "term": "Recurrent Neural Network (RNN)", "definition": "A neural network that processes sequential data like text and time series." },
+                        { "term": "Transformer", "definition": "A model architecture based on attention mechanisms, used in NLP." },
+                        { "term": "Backpropagation", "definition": "A method to calculate and minimize errors in neural networks." }
+                    ],
+                    "Natural Language Processing (NLP)": [
+                        { "term": "Tokenization", "definition": "Breaking text into individual words or phrases." },
+                        { "term": "Named Entity Recognition (NER)", "definition": "Identifying proper names of people, places, and things in text." },
+                        { "term": "Sentiment Analysis", "definition": "Detecting emotional tone in text data." },
+                        { "term": "Language Model", "definition": "A model that understands and generates human language." },
+                        { "term": "Text Generation", "definition": "Producing new, coherent text based on input context." }
+                    ],
+                    "Computer Vision": [
+                        { "term": "Image Classification", "definition": "Categorizing images into predefined classes." },
+                        { "term": "Object Detection", "definition": "Identifying objects and their locations within an image." },
+                        { "term": "Segmentation", "definition": "Dividing an image into regions or objects." },
+                        { "term": "OCR (Optical Character Recognition)", "definition": "Converting images of text into machine-readable text." },
+                        { "term": "Facial Recognition", "definition": "Identifying or verifying a person using facial features." }
+                    ],
+                    "Generative AI": [
+                        { "term": "GAN (Generative Adversarial Network)", "definition": "A model that learns to generate data by competing two networks." },
+                        { "term": "Diffusion Model", "definition": "A type of generative model used to produce high-quality images." },
+                        { "term": "Text-to-Image", "definition": "Generating images from textual descriptions." },
+                        { "term": "Prompt Engineering", "definition": "Crafting effective inputs to guide AI models like GPT." },
+                        { "term": "Fine-tuning", "definition": "Customizing a pretrained model using task-specific data." }
+                    ],
+                    "Ethics & Fairness": [
+                        { "term": "Bias in AI", "definition": "Unfair outcomes caused by skewed data or model assumptions." },
+                        { "term": "Explainability", "definition": "Making model decisions understandable to humans." },
+                        { "term": "AI Ethics", "definition": "The study of moral implications of AI systems and decisions." },
+                        { "term": "Transparency", "definition": "Clear understanding of how and why an AI system makes decisions." },
+                        { "term": "Accountability", "definition": "Assigning responsibility for AI decisions and outcomes." }
+                    ],
+                    "AI Infrastructure": [
+                        { "term": "GPU", "definition": "Graphics Processing Unit, essential for parallel AI computation." },
+                        { "term": "Inference", "definition": "The phase where a trained model makes predictions." },
+                        { "term": "Training", "definition": "The process of teaching a model using data." },
+                        { "term": "Dataset", "definition": "A structured collection of data used for training or testing models." },
+                        { "term": "Model Deployment", "definition": "Putting an AI model into production use." }
+                    ]
+                }
+            };
+
+            const categorySelect = document.getElementById("categorySelect");
+            const glossaryContent = document.getElementById("glossaryContent");
+
+            const categories = glossary["AI Glossary"];
+            Object.keys(categories).forEach(category => {
+                const opt = document.createElement("option");
+                opt.value = category;
+                opt.textContent = category;
+                categorySelect.appendChild(opt);
+            });
+
+            categorySelect.addEventListener("change", () => {
+                const selectedCategory = categorySelect.value;
+                const terms = glossary["AI Glossary"][selectedCategory];
+
+                glossaryContent.innerHTML = "";
+
+                terms.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
+                    card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
+                    glossaryContent.appendChild(card);
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
