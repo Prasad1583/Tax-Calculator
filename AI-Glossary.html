@@ -106,30 +106,52 @@
             };
 
             const categorySelect = document.getElementById("categorySelect");
-            const glossaryContent = document.getElementById("glossaryContent");
+      const glossaryContent = document.getElementById("glossaryContent");
 
-            const categories = glossary["AI Glossary"];
-            Object.keys(categories).forEach(category => {
-                const opt = document.createElement("option");
-                opt.value = category;
-                opt.textContent = category;
-                categorySelect.appendChild(opt);
-            });
+      const categories = glossary["AI Glossary"];
+      const categoryKeys = Object.keys(categories);
+      categoryKeys.forEach(category => {
+        const opt = document.createElement("option");
+        opt.value = category;
+        opt.textContent = category;
+        categorySelect.appendChild(opt);
+      });
 
-            categorySelect.addEventListener("change", () => {
-                const selectedCategory = categorySelect.value;
-                const terms = glossary["AI Glossary"][selectedCategory];
-
-                glossaryContent.innerHTML = "";
-
-                terms.forEach(item => {
-                    const card = document.createElement("div");
-                    card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
-                    card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
-                    glossaryContent.appendChild(card);
-                });
-            });
+      function renderCategory(categoryName) {
+        const terms = glossary["AI Glossary"][categoryName];
+        glossaryContent.innerHTML = "";
+        terms.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
+          card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
+          glossaryContent.appendChild(card);
         });
+      }
+
+      // Automatically select and render the first category
+      if (categoryKeys.length > 0) {
+        categorySelect.value = categoryKeys[0];
+        renderCategory(categoryKeys[0]);
+      }
+
+      categorySelect.addEventListener("change", () => {
+        renderCategory(categorySelect.value);
+      });
+    });
+
+      categorySelect.addEventListener("change", () => {
+        const selectedCategory = categorySelect.value;
+        const terms = glossary["AI Glossary"][selectedCategory];
+
+        glossaryContent.innerHTML = "";
+
+        terms.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "word-card bg-gray-100 p-4 mb-4 rounded-lg shadow";
+          card.innerHTML = `<h3 class="text-lg font-semibold text-indigo-700 mb-1">${item.term}</h3><p class="text-sm text-gray-700">${item.definition}</p>`;
+          glossaryContent.appendChild(card);
+        });
+      });
     </script>
 
 </body>
