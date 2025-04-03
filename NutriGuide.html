@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrient Guide</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .nutrient-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .nutrient-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .vitamin-card {
+            border-left-color: #3B82F6;
+        }
+        .mineral-card {
+            border-left-color: #10B981;
+        }
+        .macro-card {
+            border-left-color: #8B5CF6;
+        }
+        .tab-button {
+            transition: all 0.2s ease;
+        }
+        .tab-button.active {
+            border-bottom: 3px solid;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <div id="app" class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-3">
+                <span class="text-blue-600">Nutri</span><span class="text-emerald-600">Guide</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Your comprehensive guide to essential nutrients for optimal health
+            </p>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="flex justify-center mb-10">
+            <div class="inline-flex rounded-md shadow-sm">
+                <button 
+                    @click="activeTab = 'macronutrients'"
+                    :class="{'bg-blue-600 text-white': activeTab === 'macronutrients', 'bg-white text-gray-700 hover:bg-gray-100': activeTab !== 'macronutrients'}"
+                    class="px-6 py-3 text-sm font-medium rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                >
+                    Macronutrients
+                </button>
+                <button 
+                    @click="activeTab = 'micronutrients'"
+                    :class="{'bg-emerald-600 text-white': activeTab === 'micronutrients', 'bg-white text-gray-700 hover:bg-gray-100': activeTab !== 'micronutrients'}"
+                    class="px-6 py-3 text-sm font-medium border-l border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+                >
+                    Micronutrients
+                </button>
+                <button 
+                    @click="activeTab = 'water'"
+                    :class="{'bg-indigo-600 text-white': activeTab === 'water', 'bg-white text-gray-700 hover:bg-gray-100': activeTab !== 'water'}"
+                    class="px-6 py-3 text-sm font-medium rounded-r-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                >
+                    Water & Fiber
+                </button>
+            </div>
+        </div>
+
+        <!-- Macronutrients Section -->
+        <section v-if="activeTab === 'macronutrients'" class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                <i class="fas fa-fire text-purple-600 mr-2"></i> Macronutrients
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div 
+                    v-for="(item, index) in macronutrients" 
+                    :key="index" 
+                    class="macro-card bg-white rounded-xl shadow-md overflow-hidden nutrient-card p-6"
+                >
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600 mr-4">
+                            <i :class="getMacroIcon(item.name)" class="text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">{{ item.name }}</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">{{ item.description }}</p>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                        <h4 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-utensils text-gray-500 mr-2"></i> Food Sources
+                        </h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span v-for="(example, exIndex) in item.examples" :key="exIndex" class="bg-white px-3 py-1 rounded-full text-sm shadow-sm">
+                                {{ example }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-blue-700 mb-1 flex items-center">
+                            <i class="fas fa-chart-line text-blue-500 mr-2"></i> Recommended Intake
+                        </h4>
+                        <p class="text-blue-800">{{ item.recommended_intake }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Micronutrients Section -->
+        <section v-if="activeTab === 'micronutrients'">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                <i class="fas fa-microscope text-blue-600 mr-2"></i> Micronutrients
+            </h2>
+            
+            <!-- Vitamins -->
+            <div class="mb-12">
+                <h3 class="text-xl font-bold text-blue-700 mb-6 flex items-center">
+                    <i class="fas fa-capsules text-blue-500 mr-3"></i> Vitamins
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div 
+                        v-for="(vitamin, index) in micronutrients.find(m => m.name === 'Vitamins').subitems" 
+                        :key="'vitamin-'+index"
+                        class="vitamin-card bg-white rounded-xl shadow-md overflow-hidden nutrient-card p-6"
+                    >
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">{{ vitamin.name }}</h4>
+                        <p class="text-gray-600 text-sm mb-4">{{ vitamin.description }}</p>
+                        
+                        <div class="mb-3">
+                            <h5 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Sources</h5>
+                            <div class="flex flex-wrap gap-1">
+                                <span v-for="(example, exIndex) in vitamin.examples.slice(0, 4)" :key="exIndex" class="bg-gray-100 px-2 py-1 rounded text-xs">
+                                    {{ example }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto pt-2">
+                            <h5 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Daily Intake</h5>
+                            <p class="text-sm font-medium text-blue-600">{{ vitamin.recommended_intake }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Minerals -->
+            <div>
+                <h3 class="text-xl font-bold text-emerald-700 mb-6 flex items-center">
+                    <i class="fas fa-gem text-emerald-500 mr-3"></i> Minerals
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div 
+                        v-for="(mineral, index) in micronutrients.find(m => m.name === 'Minerals').subitems" 
+                        :key="'mineral-'+index"
+                        class="mineral-card bg-white rounded-xl shadow-md overflow-hidden nutrient-card p-6"
+                    >
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">{{ mineral.name }}</h4>
+                        <p class="text-gray-600 text-sm mb-4">{{ mineral.description }}</p>
+                        
+                        <div class="mb-3">
+                            <h5 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Sources</h5>
+                            <div class="flex flex-wrap gap-1">
+                                <span v-for="(example, exIndex) in mineral.examples.slice(0, 4)" :key="exIndex" class="bg-gray-100 px-2 py-1 rounded text-xs">
+                                    {{ example }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto pt-2">
+                            <h5 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Daily Intake</h5>
+                            <p class="text-sm font-medium text-emerald-600">{{ mineral.recommended_intake }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Water & Fiber Section -->
+        <section v-if="activeTab === 'water'" class="max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                <i class="fas fa-tint text-indigo-600 mr-2"></i> Water & Fiber
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 mb-8">
+                <div class="flex items-start">
+                    <div class="p-3 rounded-full bg-indigo-100 text-indigo-600 mr-4">
+                        <i class="fas fa-tint text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Water</h3>
+                        <p class="text-gray-600 mb-4">Essential for all bodily functions, including temperature regulation, nutrient transport, and waste removal.</p>
+                        
+                        <div class="bg-indigo-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-indigo-700 mb-1">Recommended Intake</h4>
+                            <p class="text-indigo-800">About 3.7 liters (125 oz) for men and 2.7 liters (91 oz) for women daily from all beverages and foods</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden p-6">
+                <div class="flex items-start">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600 mr-4">
+                        <i class="fas fa-seedling text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Dietary Fiber</h3>
+                        <p class="text-gray-600 mb-4">Important for digestive health, blood sugar control, and maintaining healthy cholesterol levels.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-green-700 mb-1">Soluble Fiber</h4>
+                                <p class="text-green-800 text-sm">Dissolves in water (oats, beans, apples)</p>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-yellow-700 mb-1">Insoluble Fiber</h4>
+                                <p class="text-yellow-800 text-sm">Doesn't dissolve (whole grains, vegetables)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-700 mb-1">Recommended Intake</h4>
+                            <p class="text-blue-800">25-30 grams per day for adults</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-gray-500 text-sm">
+            <p>© 2023 NutriGuide. All information is for educational purposes only.</p>
+            <p class="mt-2">Consult a healthcare professional for personalized dietary advice.</p>
+        </footer>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    activeTab: 'macronutrients',
+                    "macronutrients": [
+                      {
+                        "name": "Carbohydrates",
+                        "description": "The body's primary source of energy.",
+                        "examples": ["Rice", "Bread", "Pasta", "Potatoes", "Fruits", "Vegetables"],
+                        "recommended_intake": "45-65% of total calories"
+                      },
+                      {
+                        "name": "Proteins",
+                        "description": "Essential for the growth and repair of tissues.",
+                        "examples": ["Chicken", "Fish", "Eggs", "Beans", "Lentils", "Tofu"],
+                        "recommended_intake": "10-35% of total calories"
+                      },
+                      {
+                        "name": "Fats",
+                        "description": "Provide energy, store vitamins, and protect organs.",
+                        "examples": ["Olive oil", "Butter", "Nuts", "Avocados", "Cheese"],
+                        "recommended_intake": "20-35% of total calories"
+                      }
+                    ],
+                    "micronutrients": [
+                      {
+                        "name": "Vitamins",
+                        "description": "Vitamins are essential for various body functions.",
+                        "subitems": [
+                          {
+                            "name": "Vitamin A",
+                            "description": "Supports vision, immune system, and skin health.",
+                            "examples": ["Carrots", "Sweet potatoes", "Spinach"],
+                            "recommended_intake": "900 mcg for men, 700 mcg for women"
+                          },
+                          {
+                            "name": "Vitamin C",
+                            "description": "Boosts the immune system, helps absorb iron.",
+                            "examples": ["Citrus fruits", "Strawberries", "Bell peppers"],
+                            "recommended_intake": "90 mg for men, 75 mg for women"
+                          },
+                          {
+                            "name": "Vitamin D",
+                            "description": "Helps the body absorb calcium, promotes bone health.",
+                            "examples": ["Sunlight", "Egg yolks", "Fortified milk"],
+                            "recommended_intake": "600 IU for adults"
+                          },
+                          {
+                            "name": "Vitamin B12",
+                            "description": "Supports nerve function and the production of DNA and red blood cells.",
+                            "examples": ["Meat", "Fish", "Dairy products", "Fortified cereals"],
+                            "recommended_intake": "2.4 mcg"
+                          },
+                          {
+                            "name": "Vitamin E",
+                            "description": "Acts as an antioxidant and supports immune function.",
+                            "examples": ["Nuts", "Seeds", "Spinach", "Broccoli"],
+                            "recommended_intake": "15 mg"
+                          },
+                          {
+                            "name": "Vitamin K",
+                            "description": "Plays a key role in blood clotting and bone health.",
+                            "examples": ["Leafy green vegetables", "Broccoli", "Brussels sprouts"],
+                            "recommended_intake": "90 mcg for men, 75 mcg for women"
+                          },
+                          {
+                            "name": "Vitamin B1 (Thiamine)",
+                            "description": "Helps convert nutrients into energy and supports nerve function.",
+                            "examples": ["Whole grains", "Pork", "Beans", "Nuts"],
+                            "recommended_intake": "1.2 mg for men, 1.1 mg for women"
+                          },
+                          {
+                            "name": "Vitamin B2 (Riboflavin)",
+                            "description": "Supports energy production and cellular function.",
+                            "examples": ["Dairy products", "Eggs", "Lean meats", "Green vegetables"],
+                            "recommended_intake": "1.3 mg for men, 1.1 mg for women"
+                          },
+                          {
+                            "name": "Vitamin B3 (Niacin)",
+                            "description": "Important for metabolism and skin health.",
+                            "examples": ["Chicken", "Tuna", "Lentils", "Peanuts"],
+                            "recommended_intake": "16 mg for men, 14 mg for women"
+                          },
+                          {
+                            "name": "Vitamin B5 (Pantothenic Acid)",
+                            "description": "Helps produce hormones and cholesterol.",
+                            "examples": ["Chicken", "Beef", "Potatoes", "Oats", "Tomatoes"],
+                            "recommended_intake": "5 mg for adults"
+                          },
+                          {
+                            "name": "Vitamin B6 (Pyridoxine)",
+                            "description": "Supports brain health and red blood cell production.",
+                            "examples": ["Chickpeas", "Salmon", "Potatoes", "Bananas"],
+                            "recommended_intake": "1.3–1.7 mg for adults"
+                          },
+                          {
+                            "name": "Vitamin B7 (Biotin)",
+                            "description": "Supports hair, skin, and nail health.",
+                            "examples": ["Eggs", "Almonds", "Spinach", "Sweet potatoes"],
+                            "recommended_intake": "30 mcg for adults"
+                          },
+                          {
+                            "name": "Vitamin B9 (Folate/Folic Acid)",
+                            "description": "Crucial for DNA synthesis and fetal development.",
+                            "examples": ["Leafy greens", "Beans", "Citrus fruits", "Fortified grains"],
+                            "recommended_intake": "400 mcg for adults (600 mcg for pregnant women)"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Minerals",
+                        "description": "Minerals are essential for bone health and other body functions.",
+                        "subitems": [
+                          {
+                            "name": "Iron",
+                            "description": "Essential for blood production.",
+                            "examples": ["Red meat", "Beans", "Spinach", "Tofu"],
+                            "recommended_intake": "8 mg for men, 18 mg for women"
+                          },
+                          {
+                            "name": "Calcium",
+                            "description": "Important for bone and teeth health.",
+                            "examples": ["Milk", "Cheese", "Yogurt", "Leafy greens"],
+                            "recommended_intake": "1000 mg for adults"
+                          },
+                          {
+                            "name": "Magnesium",
+                            "description": "Helps regulate muscle and nerve function, blood sugar, and blood pressure.",
+                            "examples": ["Almonds", "Spinach", "Black beans", "Avocados"],
+                            "recommended_intake": "400-420 mg for men, 310-320 mg for women"
+                          },
+                          {
+                            "name": "Potassium",
+                            "description": "Helps regulate fluid balance and muscle and nerve function.",
+                            "examples": ["Bananas", "Potatoes", "Spinach", "Tomatoes"],
+                            "recommended_intake": "3500 mg for adults"
+                          },
+                          {
+                            "name": "Zinc",
+                            "description": "Supports immune function and DNA synthesis.",
+                            "examples": ["Meat", "Shellfish", "Legumes", "Seeds"],
+                            "recommended_intake": "11 mg for men, 8 mg for women"
+                          },
+                          {
+                            "name": "Sodium",
+                            "description": "Helps maintain fluid balance and blood pressure.",
+                            "examples": ["Salt", "Processed foods", "Canned soups", "Cheese"],
+                            "recommended_intake": "Less than 2300 mg for adults"
+                          },
+                          {
+                            "name": "Phosphorus",
+                            "description": "Important for bones, teeth, and energy production.",
+                            "examples": ["Dairy", "Meat", "Fish", "Nuts", "Beans"],
+                            "recommended_intake": "700 mg for adults"
+                          },
+                          {
+                            "name": "Selenium",
+                            "description": "Acts as an antioxidant and supports thyroid function.",
+                            "examples": ["Brazil nuts", "Seafood", "Eggs", "Sunflower seeds"],
+                            "recommended_intake": "55 mcg for adults"
+                          },
+                          {
+                            "name": "Copper",
+                            "description": "Helps with iron metabolism and nerve function.",
+                            "examples": ["Shellfish", "Nuts", "Seeds", "Whole grains"],
+                            "recommended_intake": "900 mcg for adults"
+                          },
+                          {
+                            "name": "Manganese",
+                            "description": "Supports bone formation and metabolism.",
+                            "examples": ["Whole grains", "Nuts", "Leafy greens", "Tea"],
+                            "recommended_intake": "2.3 mg for men, 1.8 mg for women"
+                          },
+                          {
+                            "name": "Chromium",
+                            "description": "Helps regulate blood sugar levels.",
+                            "examples": ["Broccoli", "Grapes", "Whole grains", "Meat"],
+                            "recommended_intake": "35 mcg for men, 25 mcg for women"
+                          },
+                          {
+                            "name": "Fluoride",
+                            "description": "Strengthens teeth and prevents cavities.",
+                            "examples": ["Fluoridated water", "Tea", "Fish"],
+                            "recommended_intake": "3–4 mg for adults"
+                          },
+                          {
+                            "name": "Iodine",
+                            "description": "Essential for thyroid hormone production.",
+                            "examples": ["Iodized salt", "Seaweed", "Fish", "Dairy"],
+                            "recommended_intake": "150 mcg for adults"
+                          }
+                        ]
+                      }
+                    ]
+                  };
+            },
+            methods: {
+                getMacroIcon(macroName) {
+                    const icons = {
+                        'Carbohydrates': 'fas fa-bread-slice',
+                        'Proteins': 'fas fa-drumstick-bite',
+                        'Fats': 'fas fa-bacon'
+                    };
+                    return icons[macroName] || 'fas fa-question';
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+
+</body>
+
+</html>
