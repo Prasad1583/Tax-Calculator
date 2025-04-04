@@ -44,240 +44,35 @@
         const open = reactive([]);
 
         const data = {
-            "core_components": {
-              "sales_cloud": [
-                "Leads",
-                "Opportunities",
-                "Accounts",
-                "Contacts",
-                "Forecasting",
-                "Quotes",
-                "Products",
-                "Price Books"
-              ],
-              "service_cloud": [
-                "Cases",
-                "Knowledge Base",
-                "Omni-Channel",
-                "Service Console",
-                "Live Agent",
-                "Field Service",
-                "SLA Management"
-              ],
-              "marketing_cloud": [
-                "Email Studio",
-                "Journey Builder",
-                "Advertising Studio",
-                "Social Studio",
-                "Mobile Studio",
-                "DMP"
-              ],
-              "platform": [
-                "AppExchange",
-                "Lightning Platform",
-                "Heroku",
-                "MuleSoft",
-                "Tableau CRM",
-                "Einstein Analytics"
-              ]
-            },
-          
-            "technical_components": {
-              "customization": [
-                "Objects",
-                "Fields",
-                "Record Types",
-                "Page Layouts",
-                "Validation Rules",
-                "Workflow Rules",
-                "Process Builder",
-                "Flows"
-              ],
-              "development": [
-                "Apex",
-                "Visualforce",
-                "Lightning Web Components",
-                "Aura Components",
-                "SOQL",
-                "SOSL",
-                "REST API",
-                "Bulk API"
-              ],
-              "integration": [
-                "Connected Apps",
-                "OAuth",
-                "Platform Events",
-                "Change Data Capture",
-                "Outbound Messages",
-                "Middleware",
-                "ETL"
-              ]
-            },
-          
-            "salesforce_tools": [
-              "Salesforce DX",
-              "CLI",
-              "Workbench",
-              "Data Loader",
-              "Sandbox",
-              "Dev Hub",
-              "Change Sets",
-              "Metadata API"
-            ],
-          
-            "administration": [
-              "Profiles",
-              "Permission Sets",
-              "Roles",
-              "Sharing Settings",
-              "Org-Wide Defaults",
-              "Login Policies",
-              "Audit Trail",
-              "Health Check"
-            ],
-          
-            "ai_features": [
-              "Einstein AI",
-              "Predictive Scoring",
-              "Next Best Action",
-              "Einstein Discovery",
-              "Einstein Vision",
-              "Einstein Language",
-              "Einstein Bots"
-            ],
-          
-            "collaboration_tools": [
-              "Chatter",
-              "Quip",
-              "Slack Integration",
-              "Communities",
-              "Experience Cloud",
-              "Partner Portal",
-              "Customer Portal"
-            ],
-          
-            "data_management": [
-              "Data Import",
-              "Data Export",
-              "Data Cleansing",
-              "Duplicate Management",
-              "Big Objects",
-              "External Objects",
-              "Data Migration"
-            ],
-          
-            "mobile_solutions": [
-              "Salesforce Mobile",
-              "Lightning Mobile",
-              "Offline Access",
-              "Mobile Publisher",
-              "Mobile SDK",
-              "PWA for Salesforce"
-            ],
-          
-            "industries": [
-              "Financial Services Cloud",
-              "Health Cloud",
-              "Manufacturing Cloud",
-              "Consumer Goods Cloud",
-              "Education Cloud",
-              "Nonprofit Cloud"
-            ],
-          
-            "certifications": [
-              "Administrator",
-              "Advanced Administrator",
-              "Platform Developer",
-              "App Builder",
-              "Sales Cloud Consultant",
-              "Service Cloud Consultant",
-              "Marketing Cloud Consultant"
-            ],
-          
-            "implementation": [
-              "Salesforce Org",
-              "Multi-Org Strategy",
-              "Release Management",
-              "Governance Model",
-              "Adoption Framework",
-              "Training",
-              "User Onboarding"
-            ],
-          
-            "analytics": [
-              "Reports",
-              "Dashboards",
-              "Lenses",
-              "Dashboards",
-              "Wave Analytics",
-              "Einstein Analytics",
-              "CRM Analytics"
-            ],
-          
-            "security": [
-              "Field-Level Security",
-              "Object Permissions",
-              "IP Restrictions",
-              "Two-Factor Authentication",
-              "Single Sign-On",
-              "Shield Platform Encryption",
-              "Event Monitoring"
-            ],
-          
-            "best_practices": [
-              "Governor Limits",
-              "Bulkification",
-              "Test Coverage",
-              "Design Patterns",
-              "Lightning Best Practices",
-              "Performance Optimization"
-            ],
-          
-            "emerging_features": [
-              "Hyperforce",
-              "Slack-First CRM",
-              "Blockchain for Salesforce",
-              "IoT Cloud",
-              "Sustainability Cloud",
-              "Net Zero Cloud"
-            ],
-          
-            "partner_ecosystem": [
-              "ISV",
-              "OEM",
-              "Consulting Partner",
-              "Implementation Partner",
-              "AppExchange Products",
-              "Trailhead"
-            ],
-          
-            "learning_resources": [
-              "Trailhead",
-              "Trailblazer Community",
-              "Developer Forums",
-              "Salesforce Documentation",
-              "Webinars",
-              "Dreamforce"
-            ],
-          
-            "release_management": [
-              "Release Cycles",
-              "Sandbox Strategy",
-              "Change Management",
-              "Release Preview",
-              "Critical Updates",
-              "Patch Orgs"
-            ],
-          
-            "licensing": [
-              "User Licenses",
-              "Permission Set Licenses",
-              "Feature Licenses",
-              "Platform Licenses",
-              "Community Licenses",
-              "API Limits"
-            ]
-          };
+          core_components: {
+            sales_cloud: ["Leads", "Opportunities", "Accounts", "Contacts", "Forecasting", "Quotes", "Products", "Price Books"],
+            service_cloud: ["Cases", "Knowledge Base", "Omni-Channel", "Service Console", "Live Agent", "Field Service", "SLA Management"],
+            marketing_cloud: ["Email Studio", "Journey Builder", "Advertising Studio", "Social Studio", "Mobile Studio", "DMP"],
+            platform: ["AppExchange", "Lightning Platform", "Heroku", "MuleSoft", "Tableau CRM", "Einstein Analytics"]
+          },
+          technical_components: {
+            customization: ["Objects", "Fields", "Record Types", "Page Layouts", "Validation Rules", "Workflow Rules", "Process Builder", "Flows"],
+            development: ["Apex", "Visualforce", "Lightning Web Components", "Aura Components", "SOQL", "SOSL", "REST API", "Bulk API"],
+            integration: ["Connected Apps", "OAuth", "Platform Events", "Change Data Capture", "Outbound Messages", "Middleware", "ETL"]
+          },
+          salesforce_tools: ["Salesforce DX", "CLI", "Workbench", "Data Loader", "Sandbox", "Dev Hub", "Change Sets", "Metadata API"],
+          administration: ["Profiles", "Permission Sets", "Roles", "Sharing Settings", "Org-Wide Defaults", "Login Policies", "Audit Trail", "Health Check"],
+          ai_features: ["Einstein AI", "Predictive Scoring", "Next Best Action", "Einstein Discovery", "Einstein Vision", "Einstein Language", "Einstein Bots"],
+          collaboration_tools: ["Chatter", "Quip", "Slack Integration", "Communities", "Experience Cloud", "Partner Portal", "Customer Portal"],
+          data_management: ["Data Import", "Data Export", "Data Cleansing", "Duplicate Management", "Big Objects", "External Objects", "Data Migration"],
+          mobile_solutions: ["Salesforce Mobile", "Lightning Mobile", "Offline Access", "Mobile Publisher", "Mobile SDK", "PWA for Salesforce"],
+          industries: ["Financial Services Cloud", "Health Cloud", "Manufacturing Cloud", "Consumer Goods Cloud", "Education Cloud", "Nonprofit Cloud"],
+          certifications: ["Administrator", "Advanced Administrator", "Platform Developer", "App Builder", "Sales Cloud Consultant", "Service Cloud Consultant", "Marketing Cloud Consultant"],
+          implementation: ["Salesforce Org", "Multi-Org Strategy", "Release Management", "Governance Model", "Adoption Framework", "Training", "User Onboarding"],
+          analytics: ["Reports", "Dashboards", "Lenses", "Wave Analytics", "Einstein Analytics", "CRM Analytics"],
+          security: ["Field-Level Security", "Object Permissions", "IP Restrictions", "Two-Factor Authentication", "Single Sign-On", "Shield Platform Encryption", "Event Monitoring"],
+          best_practices: ["Governor Limits", "Bulkification", "Test Coverage", "Design Patterns", "Lightning Best Practices", "Performance Optimization"],
+          emerging_features: ["Hyperforce", "Slack-First CRM", "Blockchain for Salesforce", "IoT Cloud", "Sustainability Cloud", "Net Zero Cloud"],
+          partner_ecosystem: ["ISV", "OEM", "Consulting Partner", "Implementation Partner", "AppExchange Products", "Trailhead"],
+          learning_resources: ["Trailhead", "Trailblazer Community", "Developer Forums", "Salesforce Documentation", "Webinars", "Dreamforce"],
+          release_management: ["Release Cycles", "Sandbox Strategy", "Change Management", "Release Preview", "Critical Updates", "Patch Orgs"],
+          licensing: ["User Licenses", "Permission Set Licenses", "Feature Licenses", "Platform Licenses", "Community Licenses", "API Limits"]
+        };
 
         const toggle = (key) => {
           const idx = open.indexOf(key);
