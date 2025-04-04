@@ -40,13 +40,25 @@
           <i :class="{'transform rotate-180': isOpen(category)}" class="fas fa-chevron-down transition-transform"></i>
         </button>
         <div v-show="isOpen(category)" class="p-4 bg-gray-50 border-t">
-          <div v-for="(subItems, subKey) in items" :key="subKey" class="mb-4 last:mb-0">
-            <h3 v-if="typeof subItems !== 'string'" class="text-md font-semibold text-gray-700 mb-2 pl-2 border-l-4 border-blue-500">
+          <!-- Handle array case (like salesforce_tools) -->
+          <ul v-if="Array.isArray(items)" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+            <li 
+              v-for="item in items" 
+              :key="item" 
+              class="p-3 bg-white rounded border hover:bg-blue-50 transition-colors"
+            >
+              {{ item }}
+            </li>
+          </ul>
+          
+          <!-- Handle object case (nested categories) -->
+          <div v-else v-for="(subItems, subKey) in items" :key="subKey" class="mb-4 last:mb-0">
+            <h3 class="text-md font-semibold text-gray-700 mb-2 pl-2 border-l-4 border-blue-500">
               {{ formatCategory(subKey) }}
             </h3>
             <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               <li 
-                v-for="item in (typeof subItems === 'string' ? items : subItems)" 
+                v-for="item in subItems" 
                 :key="item" 
                 class="p-3 bg-white rounded border hover:bg-blue-50 transition-colors"
               >
@@ -68,77 +80,300 @@
         const open = reactive([]);
 
         const data = {
-          core_components: {
-            sales_cloud: ["Leads", "Opportunities", "Accounts", "Contacts", "Forecasting", "Quotes", "Products", "Price Books"],
-            service_cloud: ["Cases", "Knowledge Base", "Omni-Channel", "Service Console", "Live Agent", "Field Service", "SLA Management"],
-            marketing_cloud: ["Email Studio", "Journey Builder", "Advertising Studio", "Social Studio", "Mobile Studio", "DMP"],
-            platform: ["AppExchange", "Lightning Platform", "Heroku", "MuleSoft", "Tableau CRM", "Einstein Analytics"]
+          "core_components": {
+            "sales_cloud": [
+              "Leads",
+              "Opportunities",
+              "Accounts",
+              "Contacts",
+              "Forecasting",
+              "Quotes",
+              "Products",
+              "Price Books"
+            ],
+            "service_cloud": [
+              "Cases",
+              "Knowledge Base",
+              "Omni-Channel",
+              "Service Console",
+              "Live Agent",
+              "Field Service",
+              "SLA Management"
+            ],
+            "marketing_cloud": [
+              "Email Studio",
+              "Journey Builder",
+              "Advertising Studio",
+              "Social Studio",
+              "Mobile Studio",
+              "DMP"
+            ],
+            "platform": [
+              "AppExchange",
+              "Lightning Platform",
+              "Heroku",
+              "MuleSoft",
+              "Tableau CRM",
+              "Einstein Analytics"
+            ]
           },
-          technical_components: {
-            customization: ["Objects", "Fields", "Record Types", "Page Layouts", "Validation Rules", "Workflow Rules", "Process Builder", "Flows"],
-            development: ["Apex", "Visualforce", "Lightning Web Components", "Aura Components", "SOQL", "SOSL", "REST API", "Bulk API"],
-            integration: ["Connected Apps", "OAuth", "Platform Events", "Change Data Capture", "Outbound Messages", "Middleware", "ETL"]
+        
+          "technical_components": {
+            "customization": [
+              "Objects",
+              "Fields",
+              "Record Types",
+              "Page Layouts",
+              "Validation Rules",
+              "Workflow Rules",
+              "Process Builder",
+              "Flows"
+            ],
+            "development": [
+              "Apex",
+              "Visualforce",
+              "Lightning Web Components",
+              "Aura Components",
+              "SOQL",
+              "SOSL",
+              "REST API",
+              "Bulk API"
+            ],
+            "integration": [
+              "Connected Apps",
+              "OAuth",
+              "Platform Events",
+              "Change Data Capture",
+              "Outbound Messages",
+              "Middleware",
+              "ETL"
+            ]
           },
-          salesforce_tools: ["Salesforce DX", "CLI", "Workbench", "Data Loader", "Sandbox", "Dev Hub", "Change Sets", "Metadata API"],
-          administration: ["Profiles", "Permission Sets", "Roles", "Sharing Settings", "Org-Wide Defaults", "Login Policies", "Audit Trail", "Health Check"],
-          ai_features: ["Einstein AI", "Predictive Scoring", "Next Best Action", "Einstein Discovery", "Einstein Vision", "Einstein Language", "Einstein Bots"],
-          collaboration_tools: ["Chatter", "Quip", "Slack Integration", "Communities", "Experience Cloud", "Partner Portal", "Customer Portal"],
-          data_management: ["Data Import", "Data Export", "Data Cleansing", "Duplicate Management", "Big Objects", "External Objects", "Data Migration"],
-          mobile_solutions: ["Salesforce Mobile", "Lightning Mobile", "Offline Access", "Mobile Publisher", "Mobile SDK", "PWA for Salesforce"],
-          industries: ["Financial Services Cloud", "Health Cloud", "Manufacturing Cloud", "Consumer Goods Cloud", "Education Cloud", "Nonprofit Cloud"],
-          certifications: ["Administrator", "Advanced Administrator", "Platform Developer", "App Builder", "Sales Cloud Consultant", "Service Cloud Consultant", "Marketing Cloud Consultant"],
-          implementation: ["Salesforce Org", "Multi-Org Strategy", "Release Management", "Governance Model", "Adoption Framework", "Training", "User Onboarding"],
-          analytics: ["Reports", "Dashboards", "Lenses", "Wave Analytics", "Einstein Analytics", "CRM Analytics"],
-          security: ["Field-Level Security", "Object Permissions", "IP Restrictions", "Two-Factor Authentication", "Single Sign-On", "Shield Platform Encryption", "Event Monitoring"],
-          best_practices: ["Governor Limits", "Bulkification", "Test Coverage", "Design Patterns", "Lightning Best Practices", "Performance Optimization"],
-          emerging_features: ["Hyperforce", "Slack-First CRM", "Blockchain for Salesforce", "IoT Cloud", "Sustainability Cloud", "Net Zero Cloud"],
-          partner_ecosystem: ["ISV", "OEM", "Consulting Partner", "Implementation Partner", "AppExchange Products", "Trailhead"],
-          learning_resources: ["Trailhead", "Trailblazer Community", "Developer Forums", "Salesforce Documentation", "Webinars", "Dreamforce"],
-          release_management: ["Release Cycles", "Sandbox Strategy", "Change Management", "Release Preview", "Critical Updates", "Patch Orgs"],
-          licensing: ["User Licenses", "Permission Set Licenses", "Feature Licenses", "Platform Licenses", "Community Licenses", "API Limits"]
+        
+          "salesforce_tools": [
+            "Salesforce DX",
+            "CLI",
+            "Workbench",
+            "Data Loader",
+            "Sandbox",
+            "Dev Hub",
+            "Change Sets",
+            "Metadata API"
+          ],
+        
+          "administration": [
+            "Profiles",
+            "Permission Sets",
+            "Roles",
+            "Sharing Settings",
+            "Org-Wide Defaults",
+            "Login Policies",
+            "Audit Trail",
+            "Health Check"
+          ],
+        
+          "ai_features": [
+            "Einstein AI",
+            "Predictive Scoring",
+            "Next Best Action",
+            "Einstein Discovery",
+            "Einstein Vision",
+            "Einstein Language",
+            "Einstein Bots"
+          ],
+        
+          "collaboration_tools": [
+            "Chatter",
+            "Quip",
+            "Slack Integration",
+            "Communities",
+            "Experience Cloud",
+            "Partner Portal",
+            "Customer Portal"
+          ],
+        
+          "data_management": [
+            "Data Import",
+            "Data Export",
+            "Data Cleansing",
+            "Duplicate Management",
+            "Big Objects",
+            "External Objects",
+            "Data Migration"
+          ],
+        
+          "mobile_solutions": [
+            "Salesforce Mobile",
+            "Lightning Mobile",
+            "Offline Access",
+            "Mobile Publisher",
+            "Mobile SDK",
+            "PWA for Salesforce"
+          ],
+        
+          "industries": [
+            "Financial Services Cloud",
+            "Health Cloud",
+            "Manufacturing Cloud",
+            "Consumer Goods Cloud",
+            "Education Cloud",
+            "Nonprofit Cloud"
+          ],
+        
+          "certifications": [
+            "Administrator",
+            "Advanced Administrator",
+            "Platform Developer",
+            "App Builder",
+            "Sales Cloud Consultant",
+            "Service Cloud Consultant",
+            "Marketing Cloud Consultant"
+          ],
+        
+          "implementation": [
+            "Salesforce Org",
+            "Multi-Org Strategy",
+            "Release Management",
+            "Governance Model",
+            "Adoption Framework",
+            "Training",
+            "User Onboarding"
+          ],
+        
+          "analytics": [
+            "Reports",
+            "Dashboards",
+            "Lenses",
+            "Dashboards",
+            "Wave Analytics",
+            "Einstein Analytics",
+            "CRM Analytics"
+          ],
+        
+          "security": [
+            "Field-Level Security",
+            "Object Permissions",
+            "IP Restrictions",
+            "Two-Factor Authentication",
+            "Single Sign-On",
+            "Shield Platform Encryption",
+            "Event Monitoring"
+          ],
+        
+          "best_practices": [
+            "Governor Limits",
+            "Bulkification",
+            "Test Coverage",
+            "Design Patterns",
+            "Lightning Best Practices",
+            "Performance Optimization"
+          ],
+        
+          "emerging_features": [
+            "Hyperforce",
+            "Slack-First CRM",
+            "Blockchain for Salesforce",
+            "IoT Cloud",
+            "Sustainability Cloud",
+            "Net Zero Cloud"
+          ],
+        
+          "partner_ecosystem": [
+            "ISV",
+            "OEM",
+            "Consulting Partner",
+            "Implementation Partner",
+            "AppExchange Products",
+            "Trailhead"
+          ],
+        
+          "learning_resources": [
+            "Trailhead",
+            "Trailblazer Community",
+            "Developer Forums",
+            "Salesforce Documentation",
+            "Webinars",
+            "Dreamforce"
+          ],
+        
+          "release_management": [
+            "Release Cycles",
+            "Sandbox Strategy",
+            "Change Management",
+            "Release Preview",
+            "Critical Updates",
+            "Patch Orgs"
+          ],
+        
+          "licensing": [
+            "User Licenses",
+            "Permission Set Licenses",
+            "Feature Licenses",
+            "Platform Licenses",
+            "Community Licenses",
+            "API Limits"
+          ]
         };
 
         const toggle = (key) => {
-          const idx = open.indexOf(key);
-          if (idx > -1) open.splice(idx, 1);
-          else open.push(key);
-        };
+      const idx = open.indexOf(key);
+      if (idx > -1) open.splice(idx, 1);
+      else open.push(key);
+    };
 
-        const isOpen = (key) => open.includes(key);
+    const isOpen = (key) => open.includes(key);
 
-        const formatCategory = (key) =>
-          key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    const formatCategory = (key) =>
+      key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
-        const filterValues = (obj) => {
-          const result = {};
-          for (const [k, v] of Object.entries(obj)) {
-            if (Array.isArray(v)) {
-              const filtered = v.filter((item) => 
-                item.toLowerCase().includes(search.text.toLowerCase())
-              );
-              if (filtered.length) result[k] = filtered;
-            } else if (typeof v === "object") {
-              const nested = filterValues(v);
-              if (Object.keys(nested).length > 0) result[k] = nested;
-            }
+    const filterValues = (obj) => {
+      const result = {};
+      for (const [k, v] of Object.entries(obj)) {
+        if (Array.isArray(v)) {
+          const filtered = v.filter((item) => 
+            item.toLowerCase().includes(search.text.toLowerCase())
+          );
+          if (filtered.length) result[k] = filtered;
+        } else if (typeof v === "object" && v !== null) {
+          const nested = filterValues(v);
+          if (Object.keys(nested).length > 0) {
+            result[k] = nested;
           }
-          return result;
-        };
-
-        const filteredData = computed(() => {
-          return search.text ? filterValues(data) : data;
-        });
-
-        return {
-          search: search.text,
-          open,
-          toggle,
-          isOpen,
-          formatCategory,
-          filteredData
-        };
+        }
       }
-    }).mount("#app");
+      return result;
+    };
+
+    const filteredData = computed(() => {
+      if (!search.text) return data;
+      
+      const filtered = filterValues(data);
+      
+      // Handle flat arrays (like salesforce_tools) differently
+      Object.entries(data).forEach(([key, value]) => {
+        if (Array.isArray(value) && !filtered[key]) {
+          const filteredArray = value.filter(item => 
+            item.toLowerCase().includes(search.text.toLowerCase())
+          );
+          if (filteredArray.length) {
+            filtered[key] = filteredArray;
+          }
+        }
+      });
+      
+      return filtered;
+    });
+
+    return {
+      search: search.text,
+      open,
+      toggle,
+      isOpen,
+      formatCategory,
+      filteredData
+    };
+  }
+}).mount("#app");
   </script>
 </body>
 </html>
