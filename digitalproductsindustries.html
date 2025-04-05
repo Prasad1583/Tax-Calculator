@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Global Product Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.4.15/dist/vue.global.prod.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <div id="app" class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">🌍 Global Digital Products industries</h1>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div v-for="category in productCategories" :key="category"
+                class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+                <span class="text-gray-800 font-medium">📦 {{ category }}</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const productCategories = ref([
+                    "Software Development",
+                    "Mobile App Development",
+                    "Cloud Computing",
+                    "SaaS (Software as a Service)",
+                    "E-learning & EdTech",
+                    "Game Development",
+                    "Digital Media & Entertainment",
+                    "Music Streaming",
+                    "Video Streaming",
+                    "Publishing & Digital Magazines",
+                    "E-books & Audiobooks",
+                    "Digital Marketing",
+                    "SEO & Analytics Tools",
+                    "Social Media Platforms",
+                    "Content Creation & Creator Economy",
+                    "Design & Creative Tools",
+                    "Web Development & Hosting",
+                    "Virtual Reality (VR)",
+                    "Augmented Reality (AR)",
+                    "Metaverse Platforms",
+                    "NFT Marketplaces",
+                    "Blockchain & Crypto Products",
+                    "Fintech & Digital Banking",
+                    "Digital Payments & Wallets",
+                    "Productivity Software",
+                    "Collaboration & Remote Work Tools",
+                    "CRM & Sales Automation",
+                    "ERP & Business Management",
+                    "Cybersecurity & Privacy Tools",
+                    "Virtual Events & Conferencing",
+                    "Digital Health & Telemedicine",
+                    "AI & Machine Learning Platforms",
+                    "API Marketplaces",
+                    "Digital Advertising Platforms",
+                    "Virtual Assistants & Chatbots",
+                    "Digital Publishing Platforms",
+                    "Cloud Storage & File Sharing",
+                    "Data Science & Big Data Tools",
+                    "Digital Animation & VFX",
+                    "Photo & Video Editing Tools",
+                    "Voice & Speech Technology",
+                    "Translation & Localization Services",
+                    "Digital Twin & Simulation",
+                    "Digital Comics & Webtoons",
+                    "Email Marketing Services",
+                    "Online Surveys & Form Builders",
+                    "Subscription Management Platforms",
+                    "Digital Real Estate & Virtual Land",
+                    "Digital Identity & Access Management",
+                    "Open Source & Code Distribution",
+                    "Online Ticketing & Booking",
+                    "Digital Retail & E-commerce SaaS"
+                ]);
+                return { productCategories };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

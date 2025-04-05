@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Global Product Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.4.15/dist/vue.global.prod.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <div id="app" class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">🌍 Global Physical Products industries</h1>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div v-for="category in productCategories" :key="category"
+                class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+                <span class="text-gray-800 font-medium">📦 {{ category }}</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const productCategories = ref([
+                    "Consumer Electronics",
+    "Home Appliances",
+    "Computer Hardware",
+    "Telecommunications Equipment",
+    "Automotive Manufacturing",
+    "Aerospace & Defense",
+    "Furniture & Home Furnishings",
+    "Textiles & Apparel",
+    "Footwear Industry",
+    "Jewelry & Accessories",
+    "Cosmetics & Personal Care",
+    "Pharmaceuticals",
+    "Healthcare Equipment",
+    "Medical Devices",
+    "Construction Materials",
+    "Paints & Coatings",
+    "Plastics & Polymers",
+    "Chemicals & Petrochemicals",
+    "Packaging Industry",
+    "Printing & Paper Products",
+    "Books & Publishing",
+    "Food & Beverage",
+    "Processed Foods",
+    "Bakery & Confectionery",
+    "Beverages (Non-alcoholic)",
+    "Alcoholic Beverages",
+    "Dairy Industry",
+    "Meat & Seafood Processing",
+    "Agriculture & Farming Equipment",
+    "Horticulture & Gardening Products",
+    "Tools & Hardware",
+    "Machinery & Equipment",
+    "Power Tools",
+    "Textbooks & Educational Materials",
+    "Toys & Games",
+    "Sports Goods",
+    "Musical Instruments",
+    "Pet Supplies",
+    "Baby Products",
+    "Stationery & Office Supplies",
+    "Household Cleaning Products",
+    "Laundry & Detergents",
+    "Luggage & Travel Gear",
+    "Eyewear Industry",
+    "Real Estate (Construction Materials)",
+    "Energy Equipment (Solar, Wind)",
+    "Bicycles & Accessories",
+    "Motorcycles & Scooters",
+    "Industrial Automation Equipment",
+    "HVAC (Heating, Ventilation, Air Conditioning)",
+    "Lighting Products",
+    "Security & Surveillance Equipment",
+    "Marine & Shipping Equipment",
+    "Railway Equipment Manufacturing",
+    "Mining & Quarrying Equipment",
+    "Fire Safety & Protection Equipment",
+    "Glass & Ceramics",
+    "Luxury Goods",
+    "Fast-Moving Consumer Goods (FMCG)",
+    "Retail & Wholesale Distribution",
+    "Apparel Manufacturing",
+    "Metallurgical Products (Steel, Iron, etc.)",
+    "Leather Products Industry",
+    "Textile Manufacturing",
+    "Watchmaking Industry",
+    "Building Automation Systems",
+    "Agricultural Commodities",
+    "Forestry Products",
+    "Water Filtration Equipment",
+    "Packaging Machinery"
+                ]);
+                return { productCategories };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
