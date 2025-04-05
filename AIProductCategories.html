@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Global Product Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.4.15/dist/vue.global.prod.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <div id="app" class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">🌍 AI Product Categories</h1>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div v-for="category in productCategories" :key="category"
+                class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+                <span class="text-gray-800 font-medium">📦 {{ category }}</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const productCategories = ref([
+                    "AI Chatbots",
+                    "AI Virtual Assistants",
+                    "Conversational AI Platforms",
+                    "Natural Language Processing (NLP) Tools",
+                    "Speech Recognition Systems",
+                    "Text-to-Speech (TTS) Tools",
+                    "Voice Assistants",
+                    "Machine Translation Tools",
+                    "Sentiment Analysis Tools",
+                    "Grammar & Writing Assistants",
+                    "AI Content Generators",
+                    "AI Image Generators",
+                    "AI Video Generators",
+                    "AI Music Generators",
+                    "AI Art Tools",
+                    "AI Animation Tools",
+                    "Facial Recognition Systems",
+                    "Object Detection & Tracking Tools",
+                    "Optical Character Recognition (OCR)",
+                    "Computer Vision Platforms",
+                    "Predictive Analytics Tools",
+                    "Recommendation Engines",
+                    "AI-Powered Search Engines",
+                    "Fraud Detection Systems",
+                    "AI in Cybersecurity",
+                    "AI Document Analysis Tools",
+                    "Autonomous Vehicles & Navigation AI",
+                    "Robotics & Automation AI",
+                    "AI for Supply Chain Optimization",
+                    "AI for Finance & Trading",
+                    "AI in Healthcare & Diagnostics",
+                    "Medical Imaging AI",
+                    "AI Personal Health Assistants",
+                    "AI Legal Assistants",
+                    "AI HR & Recruitment Tools",
+                    "AI in Education & Tutoring",
+                    "AI Exam Proctoring Tools",
+                    "AI Marketing Automation",
+                    "AI Sales Intelligence Tools",
+                    "AI Design Assistants",
+                    "AI Photo Editors",
+                    "AI Video Editors",
+                    "AI Music Mixing Tools",
+                    "Generative Design Tools",
+                    "AI Logo & Branding Generators",
+                    "AI Coding Assistants",
+                    "AI Code Review Tools",
+                    "AutoML Platforms",
+                    "MLOps Tools",
+                    "AI Infrastructure Platforms",
+                    "AI Model Hubs",
+                    "Synthetic Data Generators",
+                    "AI Knowledge Graphs",
+                    "AI-powered Data Labeling Tools",
+                    "AI for Customer Support",
+                    "AI Translation APIs",
+                    "AI Surveillance Systems",
+                    "AI Content Moderation Tools",
+                    "AI for Game Development",
+                    "AI for Retail & Ecommerce",
+                    "AI Forecasting Tools",
+                    "AI-driven ERP Systems",
+                    "AI in CRM Platforms",
+                    "AI Writing Detectors",
+                    "Explainable AI (XAI) Tools",
+                    "AI Ethics & Bias Auditing Tools",
+                    "AI Governance Platforms",
+                    "AI Workflow Automation"
+                ]);
+                return { productCategories };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
