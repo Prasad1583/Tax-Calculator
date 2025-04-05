@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Global Product Categories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3.4.15/dist/vue.global.prod.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div id="app" class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">🌍 Global Product Categories</h1>
+    
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div 
+        v-for="category in productCategories" 
+        :key="category" 
+        class="bg-white rounded-lg shadow p-4 hover:shadow-md transition"
+      >
+        <span class="text-gray-800 font-medium">📦 {{ category }}</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const productCategories = ref([
+          "Electronics", "Mobile Phones", "Computers & Tablets", "TV & Home Entertainment",
+          "Audio Equipment", "Cameras & Photography", "Wearables", "Home Appliances",
+          "Kitchen Appliances", "Furniture", "Home Decor", "Lighting", "Bedding & Mattresses",
+          "Cookware & Tableware", "Tools & Hardware", "Cleaning Supplies", "Men's Fashion",
+          "Women's Fashion", "Kids' Fashion", "Footwear", "Bags & Luggage", "Watches", "Jewelry",
+          "Eyewear", "Beauty Products", "Skincare", "Haircare", "Makeup", "Fragrances", 
+          "Personal Care", "Health & Wellness", "Fitness Equipment", "Supplements", 
+          "Medical Equipment", "Pharmaceuticals", "Food & Beverages", "Grocery", 
+          "Packaged Foods", "Fresh Produce", "Dairy Products", "Bakery Items", 
+          "Meat & Seafood", "Snacks", "Tea & Coffee", "Soft Drinks & Juices", 
+          "Alcohol & Spirits", "Baby Products", "Diapers & Wipes", "Baby Food", 
+          "Strollers & Carriers", "Toys & Games", "Board Games", "STEM & Educational Toys", 
+          "Outdoor Play", "Books", "Magazines", "Stationery", "Office Supplies", "Art & Craft", 
+          "Pet Food", "Pet Accessories", "Pet Care", "Automobiles", "Auto Parts", "Motorcycles", 
+          "Bicycles", "Tires & Batteries", "Home Services", "Construction Materials", 
+          "Gardening", "Outdoor Equipment", "Camping & Hiking", "Sports Gear", 
+          "Footwear & Activewear", "Musical Instruments", "Games & Consoles", "Software", 
+          "Apps & Subscriptions", "Streaming Services", "E-learning & Courses", 
+          "Digital Products", "Crafts & DIY", "Gifts & Occasions", "Seasonal Products", 
+          "Religious Items", "Travel Accessories", "Industrial Supplies", 
+          "Machinery & Equipment", "Safety & Security", "Lab Equipment", "Chemicals", 
+          "Packaging", "Real Estate", "Financial Products", "Insurance", 
+          "Educational Products", "Event Supplies"
+        ]);
+        return { productCategories };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
