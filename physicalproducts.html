@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Global Product Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.4.15/dist/vue.global.prod.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <div id="app" class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">🌍 Global Physical Product Categories</h1>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div v-for="category in productCategories" :key="category"
+                class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+                <span class="text-gray-800 font-medium">📦 {{ category }}</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const productCategories = ref([
+                    "Mobile Phones",
+                    "Smartphones",
+                    "Tablets",
+                    "Laptops",
+                    "Desktops",
+                    "Monitors",
+                    "Printers & Scanners",
+                    "Keyboards & Mice",
+                    "TVs",
+                    "Home Theater Systems",
+                    "Speakers",
+                    "Headphones",
+                    "Cameras",
+                    "Smartwatches",
+                    "Fitness Bands",
+                    "Kitchen Appliances",
+                    "Refrigerators",
+                    "Microwaves",
+                    "Mixers & Grinders",
+                    "Coffee Makers",
+                    "Toasters",
+                    "Blenders",
+                    "Air Conditioners",
+                    "Washing Machines",
+                    "Vacuum Cleaners",
+                    "Water Purifiers",
+                    "Furniture",
+                    "Beds",
+                    "Sofas",
+                    "Chairs",
+                    "Tables",
+                    "Wardrobes",
+                    "Mattresses",
+                    "Home Decor",
+                    "Curtains",
+                    "Clocks",
+                    "Paintings",
+                    "Wall Art",
+                    "Lamps & Lighting",
+                    "Men's Clothing",
+                    "Women's Clothing",
+                    "Kids' Clothing",
+                    "Footwear",
+                    "Watches",
+                    "Jewelry",
+                    "Bags & Wallets",
+                    "Eyewear",
+                    "Beauty Products",
+                    "Skin Care",
+                    "Hair Care",
+                    "Fragrances",
+                    "Makeup",
+                    "Grooming Tools",
+                    "Health Supplements",
+                    "Medical Equipment",
+                    "First Aid Supplies",
+                    "Fitness Equipment",
+                    "Protein Powders",
+                    "Vitamins & Minerals",
+                    "Grocery",
+                    "Vegetables",
+                    "Fruits",
+                    "Dairy Products",
+                    "Meat & Seafood",
+                    "Snacks & Beverages",
+                    "Cereals & Pulses",
+                    "Packaged Foods",
+                    "Bakery Items",
+                    "Baby Food",
+                    "Diapers",
+                    "Strollers",
+                    "Toys & Games",
+                    "Board Games",
+                    "Educational Toys",
+                    "Action Figures",
+                    "Outdoor Toys",
+                    "Books",
+                    "Stationery",
+                    "Notebooks",
+                    "Pens & Pencils",
+                    "Office Supplies",
+                    "Pet Food",
+                    "Pet Toys",
+                    "Pet Beds",
+                    "Cars",
+                    "Bikes",
+                    "Bicycles",
+                    "Tyres",
+                    "Helmets",
+                    "Car Accessories",
+                    "Building Materials",
+                    "Gardening Tools",
+                    "Power Tools",
+                    "Hand Tools",
+                    "Paints & Chemicals",
+                    "Camping Gear",
+                    "Tents",
+                    "Sleeping Bags",
+                    "Sports Gear",
+                    "Footballs",
+                    "Cricket Bats",
+                    "Badminton Rackets",
+                    "Musical Instruments",
+                    "Guitars",
+                    "Drums",
+                    "Keyboards",
+                    "Flutes",
+                    "Luggage",
+                    "Backpacks",
+                    "Travel Bags",
+                    "Umbrellas",
+                    "Home Safety Equipment",
+                    "Locks",
+                    "Surveillance Cameras",
+                    "Fire Extinguishers",
+                    "Packaging Supplies",
+                    "Glassware",
+                    "Cookware",
+                    "Cutlery",
+                    "Dinner Sets"
+                ]);
+                return { productCategories };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

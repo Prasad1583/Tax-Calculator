@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Global Product Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.4.15/dist/vue.global.prod.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-6">
+    <div id="app" class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-indigo-700">🌍 Global Digital Product Categories</h1>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div v-for="category in productCategories" :key="category"
+                class="bg-white rounded-lg shadow p-4 hover:shadow-md transition">
+                <span class="text-gray-800 font-medium">📦 {{ category }}</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                const productCategories = ref([
+                    "Software",
+                    "Mobile Apps",
+                    "Desktop Applications",
+                    "Cloud Applications (SaaS)",
+                    "Operating Systems",
+                    "Antivirus & Security Tools",
+                    "Design Tools",
+                    "Video Editing Software",
+                    "Audio Editing Software",
+                    "3D Modeling Software",
+                    "CAD Software",
+                    "Developer Tools & IDEs",
+                    "Database Management Systems",
+                    "Plugins & Extensions",
+                    "Browser Extensions",
+                    "Digital Downloads",
+                    "E-books",
+                    "Audiobooks",
+                    "Stock Photos",
+                    "Stock Videos",
+                    "Stock Audio & Music",
+                    "Graphics & Icons",
+                    "Fonts & Typography",
+                    "Templates & Themes",
+                    "Website Templates",
+                    "Presentation Templates",
+                    "Resumes & CV Templates",
+                    "Online Courses",
+                    "Webinars & Recordings",
+                    "E-learning Modules",
+                    "Certifications",
+                    "Virtual Goods in Games",
+                    "Game Keys & Digital Licenses",
+                    "In-game Currency",
+                    "NFTs (Non-Fungible Tokens)",
+                    "Digital Art",
+                    "Animations & Motion Graphics",
+                    "Streaming Subscriptions",
+                    "Music Streaming",
+                    "Video Streaming",
+                    "News Subscriptions",
+                    "Magazines & Journals (Digital)",
+                    "Email Marketing Tools",
+                    "SEO Tools",
+                    "Social Media Management Tools",
+                    "Project Management Software",
+                    "CRM Systems",
+                    "ERP Systems",
+                    "Accounting & Finance Software",
+                    "Payment Gateway Services",
+                    "Cloud Storage Services",
+                    "Domain Names",
+                    "Web Hosting Services",
+                    "VPN Services",
+                    "Proxy Services",
+                    "AI Tools & APIs",
+                    "API Access & Subscriptions",
+                    "Chatbots",
+                    "Language Translation Services",
+                    "Voice-to-Text Tools",
+                    "Code Snippets & Scripts",
+                    "Automation Bots",
+                    "Virtual Events & Tickets",
+                    "Virtual Reality Experiences",
+                    "Augmented Reality Filters & Assets",
+                    "Digital Twin Models",
+                    "SaaS Subscriptions",
+                    "Virtual Assistant Services",
+                    "UI/UX Kits",
+                    "Motion Packs & Transitions",
+                    "Email Templates",
+                    "Data Packs & Datasets",
+                    "Digital Comics & Webtoons",
+                    "Online Newspapers",
+                    "Interactive PDFs & Forms"
+                ]);
+                return { productCategories };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
