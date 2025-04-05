@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills with Icons</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="module">
+    import { createIcons, icons } from 'https://unpkg.com/lucide@latest/dist/esm/lucide.js';
+    window.addEventListener('DOMContentLoaded', () => {
+      createIcons({ icons });
+    });
+  </script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div id="app" class="max-w-6xl mx-auto space-y-8">
+    <!-- Cards will be injected here -->
+  </div>
+
+  <script>
+    const skillsData = {
+      "Communication Skills": [
+        { name: "Verbal Communication", icon: "Mic" },
+        { name: "Nonverbal Communication", icon: "Smile" },
+        { name: "Written Communication", icon: "FileText" },
+        { name: "Listening Skills", icon: "Ear" },
+        { name: "Presentation Skills", icon: "Monitor" },
+        { name: "Persuasion & Influence", icon: "ThumbsUp" },
+        { name: "Public Speaking", icon: "Volume2" }
+      ],
+      "Thinking & Reasoning Skills": [
+        { name: "Logical Thinking", icon: "Code" },
+        { name: "Analytical Thinking", icon: "BarChart2" },
+        { name: "Critical Thinking", icon: "Brain" },
+        { name: "Creative Thinking", icon: "PenTool" },
+        { name: "Strategic Thinking", icon: "Compass" },
+        { name: "Systems Thinking", icon: "Layers" },
+        { name: "Decision Making", icon: "CheckCircle2" }
+      ],
+      "Subject Matter Expertise (SME)": [
+        { name: "Domain Knowledge", icon: "BookOpenCheck" },
+        { name: "Research Skills", icon: "Search" },
+        { name: "Technical Writing", icon: "FileSignature" },
+        { name: "Mentorship & Training", icon: "Users" },
+        { name: "Problem Diagnosis", icon: "Bug" }
+      ],
+      "Interpersonal & Collaborative Skills": [
+        { name: "Teamwork", icon: "UserCheck" },
+        { name: "Conflict Resolution", icon: "Handshake" },
+        { name: "Empathy", icon: "Heart" },
+        { name: "Negotiation", icon: "Scales" },
+        { name: "Leadership", icon: "Award" }
+      ],
+      "Cognitive & Metacognitive Skills": [
+        { name: "Reasoning", icon: "Activity" },
+        { name: "Memory & Recall", icon: "ArchiveRestore" },
+        { name: "Focus & Attention", icon: "Eye" },
+        { name: "Metacognition", icon: "Circle" },
+        { name: "Adaptability", icon: "RefreshCw" }
+      ]
+    };
+
+    const app = document.getElementById('app');
+
+    Object.entries(skillsData).forEach(([category, skills]) => {
+      const section = document.createElement('div');
+      section.className = "bg-white shadow rounded-lg p-6";
+
+      const title = `<h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">${category}</h2>`;
+      const list = `
+        <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
+          ${skills.map(skill => `
+            <li class="flex items-center space-x-3 bg-gray-50 hover:bg-gray-100 rounded p-3 shadow-sm transition">
+              <i data-lucide="${skill.icon}" class="w-5 h-5 text-indigo-600"></i>
+              <span>${skill.name}</span>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+
+      section.innerHTML = title + list;
+      app.appendChild(section);
+    });
+
+    // Re-render Lucide icons
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
