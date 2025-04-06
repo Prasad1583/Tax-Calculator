@@ -5,21 +5,26 @@
   <title>Verb Forms for Kids</title>
   <script src="https://unpkg.com/vue@3"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="bg-rose-50 font-sans">
-  <div id="app" class="p-6 max-w-7xl mx-auto">
-    <h1 class="text-4xl font-extrabold text-center text-rose-600 mb-10">🎓 Verb Forms for Kids</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  <div id="app" class="p-4 sm:p-6 md:p-10 max-w-7xl mx-auto">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-center text-rose-600 mb-6 sm:mb-10">
+      🎓 Verb Forms for Kids
+    </h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
       <div 
         v-for="(verb, index) in verbs" 
         :key="index"
-        class="bg-white shadow-lg rounded-xl p-4 border-4 border-indigo-100 hover:border-indigo-300 transition-all duration-200"
+        class="bg-white shadow-lg rounded-xl p-4 sm:p-5 border-2 border-indigo-100 hover:border-indigo-300 transition-all duration-200"
       >
-        <h2 class="text-2xl font-bold text-indigo-600 mb-2 text-center capitalize">{{ verb.base }}</h2>
-        <ul class="text-gray-700 space-y-1 text-center">
-          <li><span class="font-medium text-green-600">Past:</span> {{ verb.past }}</li>
-          <li><span class="font-medium text-blue-600">Present Participle:</span> {{ verb.presentParticiple }}</li>
-          <li><span class="font-medium text-purple-600">Past Participle:</span> {{ verb.pastParticiple }}</li>
+        <h2 class="text-xl sm:text-2xl font-bold text-indigo-600 mb-3 text-center capitalize">
+          {{ verb.base }}
+        </h2>
+        <ul class="text-gray-700 space-y-1 text-sm sm:text-base text-center">
+          <li><span class="font-semibold text-green-600">Past:</span> {{ verb.past }}</li>
+          <li><span class="font-semibold text-blue-600">Present Participle:</span> {{ verb.presentParticiple }}</li>
+          <li><span class="font-semibold text-purple-600">Past Participle:</span> {{ verb.pastParticiple }}</li>
         </ul>
       </div>
     </div>
@@ -35,10 +40,10 @@
         };
       },
       created() {
-        fetch('https://ornate-frangollo-d46c3a.netlify.app/verbForms.json') // You can change this path to local
+        fetch('https://ornate-frangollo-d46c3a.netlify.app/verbForms.json') // or your local path
           .then(response => response.json())
           .then(data => {
-            this.verbs = data.verbForms; // Show first 100 for now
+            this.verbs = data.verbForms;
           });
       }
     }).mount('#app');
