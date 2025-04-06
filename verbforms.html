@@ -69,7 +69,7 @@
         fetch('https://ornate-frangollo-d46c3a.netlify.app/verbForms.json') // Place your JSON in the same folder
           .then(res => res.json())
           .then(data => {
-            this.verbs = data.verbForms.slice(0, 100); // Limit for kids; you can load more
+            this.verbs = data.verbForms; // Limit for kids; you can load more
           });
       },
       methods: {
