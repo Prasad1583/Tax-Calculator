@@ -3185,6 +3185,524 @@
         "past": "swung",
         "presentParticiple": "swinging",
         "pastParticiple": "swung"
+      },
+      {
+        "base": "arise",
+        "past": "arose",
+        "past_participle": "arisen",
+        "present_participle": "arising",
+        "third_person_singular": "arises"
+      },
+      {
+        "base": "awake",
+        "past": "awoke",
+        "past_participle": "awoken",
+        "present_participle": "awaking",
+        "third_person_singular": "awakes"
+      },
+      {
+        "base": "bend",
+        "past": "bent",
+        "past_participle": "bent",
+        "present_participle": "bending",
+        "third_person_singular": "bends"
+      },
+      {
+        "base": "burst",
+        "past": "burst",
+        "past_participle": "burst",
+        "present_participle": "bursting",
+        "third_person_singular": "bursts"
+      },
+      {
+        "base": "cling",
+        "past": "clung",
+        "past_participle": "clung",
+        "present_participle": "clinging",
+        "third_person_singular": "clings"
+      },
+      {
+        "base": "creep",
+        "past": "crept",
+        "past_participle": "crept",
+        "present_participle": "creeping",
+        "third_person_singular": "creeps"
+      },
+      {
+        "base": "deal",
+        "past": "dealt",
+        "past_participle": "dealt",
+        "present_participle": "dealing",
+        "third_person_singular": "deals"
+      },
+      {
+        "base": "dive",
+        "past": "dived",
+        "past_participle": "dived",
+        "present_participle": "diving",
+        "third_person_singular": "dives"
+      },
+      {
+        "base": "flee",
+        "past": "fled",
+        "past_participle": "fled",
+        "present_participle": "fleeing",
+        "third_person_singular": "flees"
+      },
+      {
+        "base": "leap",
+        "past": "leapt",
+        "past_participle": "leapt",
+        "present_participle": "leaping",
+        "third_person_singular": "leaps"
+      },
+      {
+        "base": "sew",
+        "past": "sewed",
+        "past_participle": "sewn",
+        "present_participle": "sewing",
+        "third_person_singular": "sews"
+      },
+      {
+        "base": "shed",
+        "past": "shed",
+        "past_participle": "shed",
+        "present_participle": "shedding",
+        "third_person_singular": "sheds"
+      },
+      {
+        "base": "sling",
+        "past": "slung",
+        "past_participle": "slung",
+        "present_participle": "slinging",
+        "third_person_singular": "slings"
+      },
+      {
+        "base": "sting",
+        "past": "stung",
+        "past_participle": "stung",
+        "present_participle": "stinging",
+        "third_person_singular": "stings"
+      },
+      {
+        "base": "weep",
+        "past": "wept",
+        "past_participle": "wept",
+        "present_participle": "weeping",
+        "third_person_singular": "weeps"
+      },
+      {
+        "base": "abide",
+        "past": "abode",
+        "past_participle": "abode",
+        "present_participle": "abiding",
+        "third_person_singular": "abides"
+      },
+      {
+        "base": "behold",
+        "past": "beheld",
+        "past_participle": "beheld",
+        "present_participle": "beholding",
+        "third_person_singular": "beholds"
+      },
+      {
+        "base": "bet",
+        "past": "bet",
+        "past_participle": "bet",
+        "present_participle": "betting",
+        "third_person_singular": "bets"
+      },
+      {
+        "base": "broadcast",
+        "past": "broadcast",
+        "past_participle": "broadcast",
+        "present_participle": "broadcasting",
+        "third_person_singular": "broadcasts"
+      },
+      {
+        "base": "cast",
+        "past": "cast",
+        "past_participle": "cast",
+        "present_participle": "casting",
+        "third_person_singular": "casts"
+      },
+      {
+        "base": "foresee",
+        "past": "foresaw",
+        "past_participle": "foreseen",
+        "present_participle": "foreseeing",
+        "third_person_singular": "foresees"
+      },
+      {
+        "base": "knead",
+        "past": "kneaded",
+        "past_participle": "kneaded",
+        "present_participle": "kneading",
+        "third_person_singular": "kneads"
+      },
+      {
+        "base": "mislead",
+        "past": "misled",
+        "past_participle": "misled",
+        "present_participle": "misleading",
+        "third_person_singular": "misleads"
+      },
+      {
+        "base": "mow",
+        "past": "mowed",
+        "past_participle": "mown",
+        "present_participle": "mowing",
+        "third_person_singular": "mows"
+      },
+      {
+        "base": "overtake",
+        "past": "overtook",
+        "past_participle": "overtaken",
+        "present_participle": "overtaking",
+        "third_person_singular": "overtakes"
+      },
+      {
+        "base": "plead",
+        "past": "pleaded",
+        "past_participle": "pleaded",
+        "present_participle": "pleading",
+        "third_person_singular": "pleads"
+      },
+      {
+        "base": "quit",
+        "past": "quit",
+        "past_participle": "quit",
+        "present_participle": "quitting",
+        "third_person_singular": "quits"
+      },
+      {
+        "base": "saw",
+        "past": "sawed",
+        "past_participle": "sawn",
+        "present_participle": "sawing",
+        "third_person_singular": "saws"
+      },
+      {
+        "base": "slit",
+        "past": "slit",
+        "past_participle": "slit",
+        "present_participle": "slitting",
+        "third_person_singular": "slits"
+      },
+      {
+        "base": "sow",
+        "past": "sowed",
+        "past_participle": "sown",
+        "present_participle": "sowing",
+        "third_person_singular": "sows"
+      },
+      {
+        "base": "speed",
+        "past": "sped",
+        "past_participle": "sped",
+        "present_participle": "speeding",
+        "third_person_singular": "speeds"
+      },
+      {
+        "base": "split",
+        "past": "split",
+        "past_participle": "split",
+        "present_participle": "splitting",
+        "third_person_singular": "splits"
+      },
+      {
+        "base": "strive",
+        "past": "strove",
+        "past_participle": "striven",
+        "present_participle": "striving",
+        "third_person_singular": "strives"
+      },
+      {
+        "base": "swell",
+        "past": "swelled",
+        "past_participle": "swollen",
+        "present_participle": "swelling",
+        "third_person_singular": "swells"
+      },
+      {
+        "base": "thrive",
+        "past": "thrived",
+        "past_participle": "thrived",
+        "present_participle": "thriving",
+        "third_person_singular": "thrives"
+      },
+      {
+        "base": "tread",
+        "past": "trod",
+        "past_participle": "trodden",
+        "present_participle": "treading",
+        "third_person_singular": "treads"
+      },
+      {
+        "base": "undergo",
+        "past": "underwent",
+        "past_participle": "undergone",
+        "present_participle": "undergoing",
+        "third_person_singular": "undergoes"
+      },
+      {
+        "base": "undermine",
+        "past": "undermined",
+        "past_participle": "undermined",
+        "present_participle": "undermining",
+        "third_person_singular": "undermines"
+      },
+      {
+        "base": "undo",
+        "past": "undid",
+        "past_participle": "undone",
+        "present_participle": "undoing",
+        "third_person_singular": "undoes"
+      },
+      {
+        "base": "upset",
+        "past": "upset",
+        "past_participle": "upset",
+        "present_participle": "upsetting",
+        "third_person_singular": "upsets"
+      },
+      {
+        "base": "withdraw",
+        "past": "withdrew",
+        "past_participle": "withdrawn",
+        "present_participle": "withdrawing",
+        "third_person_singular": "withdraws"
+      },
+      {
+        "base": "withstand",
+        "past": "withstood",
+        "past_participle": "withstood",
+        "present_participle": "withstanding",
+        "third_person_singular": "withstands"
+      },
+      {
+        "base": "wring",
+        "past": "wrung",
+        "past_participle": "wrung",
+        "present_participle": "wringing",
+        "third_person_singular": "wrings"
+      },
+      {
+        "base": "zap",
+        "past": "zapped",
+        "past_participle": "zapped",
+        "present_participle": "zapping",
+        "third_person_singular": "zaps"
+      },
+      {
+        "base": "yank",
+        "past": "yanked",
+        "past_participle": "yanked",
+        "present_participle": "yanking",
+        "third_person_singular": "yanks"
+      },
+      {
+        "base": "yearn",
+        "past": "yearned",
+        "past_participle": "yearned",
+        "present_participle": "yearning",
+        "third_person_singular": "yearns"
+      },
+      {
+        "base": "whirl",
+        "past": "whirled",
+        "past_participle": "whirled",
+        "present_participle": "whirling",
+        "third_person_singular": "whirls"
+      },
+      {
+        "base": "whistle",
+        "past": "whistled",
+        "past_participle": "whistled",
+        "present_participle": "whistling",
+        "third_person_singular": "whistles"
+      },
+      {
+        "base": "wither",
+        "past": "withered",
+        "past_participle": "withered",
+        "present_participle": "withering",
+        "third_person_singular": "withers"
+      },
+      {
+        "base": "worship",
+        "past": "worshipped",
+        "past_participle": "worshipped",
+        "present_participle": "worshipping",
+        "third_person_singular": "worships"
+      },
+      {
+        "base": "wander",
+        "past": "wandered",
+        "past_participle": "wandered",
+        "present_participle": "wandering",
+        "third_person_singular": "wanders"
+      },
+      {
+        "base": "whip",
+        "past": "whipped",
+        "past_participle": "whipped",
+        "present_participle": "whipping",
+        "third_person_singular": "whips"
+      },
+      {
+        "base": "vomit",
+        "past": "vomited",
+        "past_participle": "vomited",
+        "present_participle": "vomiting",
+        "third_person_singular": "vomits"
+      },
+      {
+        "base": "verify",
+        "past": "verified",
+        "past_participle": "verified",
+        "present_participle": "verifying",
+        "third_person_singular": "verifies"
+      },
+      {
+        "base": "vanish",
+        "past": "vanished",
+        "past_participle": "vanished",
+        "present_participle": "vanishing",
+        "third_person_singular": "vanishes"
+      },
+      {
+        "base": "utter",
+        "past": "uttered",
+        "past_participle": "uttered",
+        "present_participle": "uttering",
+        "third_person_singular": "utters"
+      },
+      {
+        "base": "uncover",
+        "past": "uncovered",
+        "past_participle": "uncovered",
+        "present_participle": "uncovering",
+        "third_person_singular": "uncovers"
+      },
+      {
+        "base": "transport",
+        "past": "transported",
+        "past_participle": "transported",
+        "present_participle": "transporting",
+        "third_person_singular": "transports"
+      },
+      {
+        "base": "tremble",
+        "past": "trembled",
+        "past_participle": "trembled",
+        "present_participle": "trembling",
+        "third_person_singular": "trembles"
+      },
+      {
+        "base": "twist",
+        "past": "twisted",
+        "past_participle": "twisted",
+        "present_participle": "twisting",
+        "third_person_singular": "twists"
+      },
+      {
+        "base": "update",
+        "past": "updated",
+        "past_participle": "updated",
+        "present_participle": "updating",
+        "third_person_singular": "updates"
+      },
+      {
+        "base": "urge",
+        "past": "urged",
+        "past_participle": "urged",
+        "present_participle": "urging",
+        "third_person_singular": "urges"
+      },
+      {
+        "base": "value",
+        "past": "valued",
+        "past_participle": "valued",
+        "present_participle": "valuing",
+        "third_person_singular": "values"
+      },
+      {
+        "base": "vary",
+        "past": "varied",
+        "past_participle": "varied",
+        "present_participle": "varying",
+        "third_person_singular": "varies"
+      },
+      {
+        "base": "view",
+        "past": "viewed",
+        "past_participle": "viewed",
+        "present_participle": "viewing",
+        "third_person_singular": "views"
+      },
+      {
+        "base": "wave",
+        "past": "waved",
+        "past_participle": "waved",
+        "present_participle": "waving",
+        "third_person_singular": "waves"
+      },
+      {
+        "base": "welcome",
+        "past": "welcomed",
+        "past_participle": "welcomed",
+        "present_participle": "welcoming",
+        "third_person_singular": "welcomes"
+      },
+      {
+        "base": "whisper",
+        "past": "whispered",
+        "past_participle": "whispered",
+        "present_participle": "whispering",
+        "third_person_singular": "whispers"
+      },
+      {
+        "base": "widen",
+        "past": "widened",
+        "past_participle": "widened",
+        "present_participle": "widening",
+        "third_person_singular": "widens"
+      },
+      {
+        "base": "wrap",
+        "past": "wrapped",
+        "past_participle": "wrapped",
+        "present_participle": "wrapping",
+        "third_person_singular": "wraps"
+      },
+      {
+        "base": "wobble",
+        "past": "wobbled",
+        "past_participle": "wobbled",
+        "present_participle": "wobbling",
+        "third_person_singular": "wobbles"
+      },
+      {
+        "base": "imitate",
+        "past": "imitated",
+        "past_participle": "imitated",
+        "present_participle": "imitating",
+        "third_person_singular": "imitates"
+      },
+      {
+        "base": "march",
+        "past": "marched",
+        "past_participle": "marched",
+        "present_participle": "marching",
+        "third_person_singular": "marches"
+      },
+      {
+        "base": "react",
+        "past": "reacted",
+        "past_participle": "reacted",
+        "present_participle": "reacting",
+        "third_person_singular": "reacts"
       }
     ]
   }
