@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verb Forms for Kids</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .flip-card {
+      perspective: 1000px;
+    }
+    .flip-inner {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+    }
+    .flip-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-yellow-50 text-gray-800 font-sans">
+  <div id="app" class="p-6 max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center text-purple-700 mb-8">🎲 Learn Verb Forms!</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div 
+        v-for="(verb, index) in verbs" 
+        :key="index"
+        class="flip-card w-full h-48 cursor-pointer"
+        @click="toggle(index)"
+        :class="{ 'flipped': flippedIndex === index }"
+      >
+        <div class="flip-inner relative w-full h-full">
+          <!-- Front -->
+          <div class="flip-front bg-pink-200 shadow-lg flex items-center justify-center text-2xl font-bold p-4">
+            {{ verb.base }}
+          </div>
+          <!-- Back -->
+          <div class="flip-back bg-green-100 shadow-lg flex flex-col items-center justify-center p-4 text-center text-lg font-medium">
+            <div><strong>Past:</strong> {{ verb.past }}</div>
+            <div><strong>Present Participle:</strong> {{ verb.presentParticiple }}</div>
+            <div><strong>Past Participle:</strong> {{ verb.pastParticiple }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          flippedIndex: null,
+          verbs: [] // Will be populated from JSON
+        };
+      },
+      created() {
+        fetch('https://ornate-frangollo-d46c3a.netlify.app/verbForms.json') // Place your JSON in the same folder
+          .then(res => res.json())
+          .then(data => {
+            this.verbs = data.verbForms.slice(0, 100); // Limit for kids; you can load more
+          });
+      },
+      methods: {
+        toggle(index) {
+          this.flippedIndex = this.flippedIndex === index ? null : index;
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

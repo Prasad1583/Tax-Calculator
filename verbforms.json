@@ -1,0 +1,3190 @@
+{
+    "verbForms": [
+      {
+        "base": "be",
+        "past": "was/were",
+        "presentParticiple": "being",
+        "pastParticiple": "been"
+      },
+      {
+        "base": "have",
+        "past": "had",
+        "presentParticiple": "having",
+        "pastParticiple": "had"
+      },
+      {
+        "base": "do",
+        "past": "did",
+        "presentParticiple": "doing",
+        "pastParticiple": "done"
+      },
+      {
+        "base": "say",
+        "past": "said",
+        "presentParticiple": "saying",
+        "pastParticiple": "said"
+      },
+      {
+        "base": "go",
+        "past": "went",
+        "presentParticiple": "going",
+        "pastParticiple": "gone"
+      },
+      {
+        "base": "get",
+        "past": "got",
+        "presentParticiple": "getting",
+        "pastParticiple": "gotten"
+      },
+      {
+        "base": "make",
+        "past": "made",
+        "presentParticiple": "making",
+        "pastParticiple": "made"
+      },
+      {
+        "base": "know",
+        "past": "knew",
+        "presentParticiple": "knowing",
+        "pastParticiple": "known"
+      },
+      {
+        "base": "think",
+        "past": "thought",
+        "presentParticiple": "thinking",
+        "pastParticiple": "thought"
+      },
+      {
+        "base": "take",
+        "past": "took",
+        "presentParticiple": "taking",
+        "pastParticiple": "taken"
+      },
+      {
+        "base": "see",
+        "past": "saw",
+        "presentParticiple": "seeing",
+        "pastParticiple": "seen"
+      },
+      {
+        "base": "come",
+        "past": "came",
+        "presentParticiple": "coming",
+        "pastParticiple": "come"
+      },
+      {
+        "base": "want",
+        "past": "wanted",
+        "presentParticiple": "wanting",
+        "pastParticiple": "wanted"
+      },
+      {
+        "base": "look",
+        "past": "looked",
+        "presentParticiple": "looking",
+        "pastParticiple": "looked"
+      },
+      {
+        "base": "use",
+        "past": "used",
+        "presentParticiple": "using",
+        "pastParticiple": "used"
+      },
+      {
+        "base": "find",
+        "past": "found",
+        "presentParticiple": "finding",
+        "pastParticiple": "found"
+      },
+      {
+        "base": "give",
+        "past": "gave",
+        "presentParticiple": "giving",
+        "pastParticiple": "given"
+      },
+      {
+        "base": "tell",
+        "past": "told",
+        "presentParticiple": "telling",
+        "pastParticiple": "told"
+      },
+      {
+        "base": "work",
+        "past": "worked",
+        "presentParticiple": "working",
+        "pastParticiple": "worked"
+      },
+      {
+        "base": "call",
+        "past": "called",
+        "presentParticiple": "calling",
+        "pastParticiple": "called"
+      },
+      {
+        "base": "try",
+        "past": "tried",
+        "presentParticiple": "trying",
+        "pastParticiple": "tried"
+      },
+      {
+        "base": "ask",
+        "past": "asked",
+        "presentParticiple": "asking",
+        "pastParticiple": "asked"
+      },
+      {
+        "base": "need",
+        "past": "needed",
+        "presentParticiple": "needing",
+        "pastParticiple": "needed"
+      },
+      {
+        "base": "feel",
+        "past": "felt",
+        "presentParticiple": "feeling",
+        "pastParticiple": "felt"
+      },
+      {
+        "base": "become",
+        "past": "became",
+        "presentParticiple": "becoming",
+        "pastParticiple": "become"
+      },
+      {
+        "base": "leave",
+        "past": "left",
+        "presentParticiple": "leaving",
+        "pastParticiple": "left"
+      },
+      {
+        "base": "put",
+        "past": "put",
+        "presentParticiple": "putting",
+        "pastParticiple": "put"
+      },
+      {
+        "base": "mean",
+        "past": "meant",
+        "presentParticiple": "meaning",
+        "pastParticiple": "meant"
+      },
+      {
+        "base": "keep",
+        "past": "kept",
+        "presentParticiple": "keeping",
+        "pastParticiple": "kept"
+      },
+      {
+        "base": "let",
+        "past": "let",
+        "presentParticiple": "letting",
+        "pastParticiple": "let"
+      },
+      {
+        "base": "begin",
+        "past": "began",
+        "presentParticiple": "beginning",
+        "pastParticiple": "begun"
+      },
+      {
+        "base": "seem",
+        "past": "seemed",
+        "presentParticiple": "seeming",
+        "pastParticiple": "seemed"
+      },
+      {
+        "base": "help",
+        "past": "helped",
+        "presentParticiple": "helping",
+        "pastParticiple": "helped"
+      },
+      {
+        "base": "talk",
+        "past": "talked",
+        "presentParticiple": "talking",
+        "pastParticiple": "talked"
+      },
+      {
+        "base": "turn",
+        "past": "turned",
+        "presentParticiple": "turning",
+        "pastParticiple": "turned"
+      },
+      {
+        "base": "start",
+        "past": "started",
+        "presentParticiple": "starting",
+        "pastParticiple": "started"
+      },
+      {
+        "base": "show",
+        "past": "showed",
+        "presentParticiple": "showing",
+        "pastParticiple": "shown"
+      },
+      {
+        "base": "hear",
+        "past": "heard",
+        "presentParticiple": "hearing",
+        "pastParticiple": "heard"
+      },
+      {
+        "base": "play",
+        "past": "played",
+        "presentParticiple": "playing",
+        "pastParticiple": "played"
+      },
+      {
+        "base": "run",
+        "past": "ran",
+        "presentParticiple": "running",
+        "pastParticiple": "run"
+      },
+      {
+        "base": "move",
+        "past": "moved",
+        "presentParticiple": "moving",
+        "pastParticiple": "moved"
+      },
+      {
+        "base": "live",
+        "past": "lived",
+        "presentParticiple": "living",
+        "pastParticiple": "lived"
+      },
+      {
+        "base": "believe",
+        "past": "believed",
+        "presentParticiple": "believing",
+        "pastParticiple": "believed"
+      },
+      {
+        "base": "bring",
+        "past": "brought",
+        "presentParticiple": "bringing",
+        "pastParticiple": "brought"
+      },
+      {
+        "base": "happen",
+        "past": "happened",
+        "presentParticiple": "happening",
+        "pastParticiple": "happened"
+      },
+      {
+        "base": "write",
+        "past": "wrote",
+        "presentParticiple": "writing",
+        "pastParticiple": "written"
+      },
+      {
+        "base": "provide",
+        "past": "provided",
+        "presentParticiple": "providing",
+        "pastParticiple": "provided"
+      },
+      {
+        "base": "sit",
+        "past": "sat",
+        "presentParticiple": "sitting",
+        "pastParticiple": "sat"
+      },
+      {
+        "base": "stand",
+        "past": "stood",
+        "presentParticiple": "standing",
+        "pastParticiple": "stood"
+      },
+      {
+        "base": "lose",
+        "past": "lost",
+        "presentParticiple": "losing",
+        "pastParticiple": "lost"
+      },
+      {
+        "base": "cut",
+        "past": "cut",
+        "presentParticiple": "cutting",
+        "pastParticiple": "cut"
+      },
+      {
+        "base": "pay",
+        "past": "paid",
+        "presentParticiple": "paying",
+        "pastParticiple": "paid"
+      },
+      {
+        "base": "read",
+        "past": "read",
+        "presentParticiple": "reading",
+        "pastParticiple": "read"
+      },
+      {
+        "base": "change",
+        "past": "changed",
+        "presentParticiple": "changing",
+        "pastParticiple": "changed"
+      },
+      {
+        "base": "follow",
+        "past": "followed",
+        "presentParticiple": "following",
+        "pastParticiple": "followed"
+      },
+      {
+        "base": "stop",
+        "past": "stopped",
+        "presentParticiple": "stopping",
+        "pastParticiple": "stopped"
+      },
+      {
+        "base": "create",
+        "past": "created",
+        "presentParticiple": "creating",
+        "pastParticiple": "created"
+      },
+      {
+        "base": "open",
+        "past": "opened",
+        "presentParticiple": "opening",
+        "pastParticiple": "opened"
+      },
+      {
+        "base": "walk",
+        "past": "walked",
+        "presentParticiple": "walking",
+        "pastParticiple": "walked"
+      },
+      {
+        "base": "win",
+        "past": "won",
+        "presentParticiple": "winning",
+        "pastParticiple": "won"
+      },
+      {
+        "base": "offer",
+        "past": "offered",
+        "presentParticiple": "offering",
+        "pastParticiple": "offered"
+      },
+      {
+        "base": "remember",
+        "past": "remembered",
+        "presentParticiple": "remembering",
+        "pastParticiple": "remembered"
+      },
+      {
+        "base": "love",
+        "past": "loved",
+        "presentParticiple": "loving",
+        "pastParticiple": "loved"
+      },
+      {
+        "base": "consider",
+        "past": "considered",
+        "presentParticiple": "considering",
+        "pastParticiple": "considered"
+      },
+      {
+        "base": "appear",
+        "past": "appeared",
+        "presentParticiple": "appearing",
+        "pastParticiple": "appeared"
+      },
+      {
+        "base": "buy",
+        "past": "bought",
+        "presentParticiple": "buying",
+        "pastParticiple": "bought"
+      },
+      {
+        "base": "wait",
+        "past": "waited",
+        "presentParticiple": "waiting",
+        "pastParticiple": "waited"
+      },
+      {
+        "base": "serve",
+        "past": "served",
+        "presentParticiple": "serving",
+        "pastParticiple": "served"
+      },
+      {
+        "base": "die",
+        "past": "died",
+        "presentParticiple": "dying",
+        "pastParticiple": "died"
+      },
+      {
+        "base": "send",
+        "past": "sent",
+        "presentParticiple": "sending",
+        "pastParticiple": "sent"
+      },
+      {
+        "base": "expect",
+        "past": "expected",
+        "presentParticiple": "expecting",
+        "pastParticiple": "expected"
+      },
+      {
+        "base": "build",
+        "past": "built",
+        "presentParticiple": "building",
+        "pastParticiple": "built"
+      },
+      {
+        "base": "stay",
+        "past": "stayed",
+        "presentParticiple": "staying",
+        "pastParticiple": "stayed"
+      },
+      {
+        "base": "fall",
+        "past": "fell",
+        "presentParticiple": "falling",
+        "pastParticiple": "fallen"
+      },
+      {
+        "base": "agree",
+        "past": "agreed",
+        "presentParticiple": "agreeing",
+        "pastParticiple": "agreed"
+      },
+      {
+        "base": "allow",
+        "past": "allowed",
+        "presentParticiple": "allowing",
+        "pastParticiple": "allowed"
+      },
+      {
+        "base": "apply",
+        "past": "applied",
+        "presentParticiple": "applying",
+        "pastParticiple": "applied"
+      },
+      {
+        "base": "arrive",
+        "past": "arrived",
+        "presentParticiple": "arriving",
+        "pastParticiple": "arrived"
+      },
+      {
+        "base": "avoid",
+        "past": "avoided",
+        "presentParticiple": "avoiding",
+        "pastParticiple": "avoided"
+      },
+      {
+        "base": "beat",
+        "past": "beat",
+        "presentParticiple": "beating",
+        "pastParticiple": "beaten"
+      },
+      {
+        "base": "belong",
+        "past": "belonged",
+        "presentParticiple": "belonging",
+        "pastParticiple": "belonged"
+      },
+      {
+        "base": "break",
+        "past": "broke",
+        "presentParticiple": "breaking",
+        "pastParticiple": "broken"
+      },
+      {
+        "base": "carry",
+        "past": "carried",
+        "presentParticiple": "carrying",
+        "pastParticiple": "carried"
+      },
+      {
+        "base": "catch",
+        "past": "caught",
+        "presentParticiple": "catching",
+        "pastParticiple": "caught"
+      },
+      {
+        "base": "choose",
+        "past": "chose",
+        "presentParticiple": "choosing",
+        "pastParticiple": "chosen"
+      },
+      {
+        "base": "clean",
+        "past": "cleaned",
+        "presentParticiple": "cleaning",
+        "pastParticiple": "cleaned"
+      },
+      {
+        "base": "climb",
+        "past": "climbed",
+        "presentParticiple": "climbing",
+        "pastParticiple": "climbed"
+      },
+      {
+        "base": "close",
+        "past": "closed",
+        "presentParticiple": "closing",
+        "pastParticiple": "closed"
+      },
+      {
+        "base": "cook",
+        "past": "cooked",
+        "presentParticiple": "cooking",
+        "pastParticiple": "cooked"
+      },
+      {
+        "base": "cry",
+        "past": "cried",
+        "presentParticiple": "crying",
+        "pastParticiple": "cried"
+      },
+      {
+        "base": "dance",
+        "past": "danced",
+        "presentParticiple": "dancing",
+        "pastParticiple": "danced"
+      },
+      {
+        "base": "decide",
+        "past": "decided",
+        "presentParticiple": "deciding",
+        "pastParticiple": "decided"
+      },
+      {
+        "base": "describe",
+        "past": "described",
+        "presentParticiple": "describing",
+        "pastParticiple": "described"
+      },
+      {
+        "base": "destroy",
+        "past": "destroyed",
+        "presentParticiple": "destroying",
+        "pastParticiple": "destroyed"
+      },
+      {
+        "base": "develop",
+        "past": "developed",
+        "presentParticiple": "developing",
+        "pastParticiple": "developed"
+      },
+      {
+        "base": "draw",
+        "past": "drew",
+        "presentParticiple": "drawing",
+        "pastParticiple": "drawn"
+      },
+      {
+        "base": "dream",
+        "past": "dreamed",
+        "presentParticiple": "dreaming",
+        "pastParticiple": "dreamed"
+      },
+      {
+        "base": "dress",
+        "past": "dressed",
+        "presentParticiple": "dressing",
+        "pastParticiple": "dressed"
+      },
+      {
+        "base": "drink",
+        "past": "drank",
+        "presentParticiple": "drinking",
+        "pastParticiple": "drunk"
+      },
+      {
+        "base": "drive",
+        "past": "drove",
+        "presentParticiple": "driving",
+        "pastParticiple": "driven"
+      },
+      {
+        "base": "drop",
+        "past": "dropped",
+        "presentParticiple": "dropping",
+        "pastParticiple": "dropped"
+      },
+      {
+        "base": "eat",
+        "past": "ate",
+        "presentParticiple": "eating",
+        "pastParticiple": "eaten"
+      },
+      {
+        "base": "end",
+        "past": "ended",
+        "presentParticiple": "ending",
+        "pastParticiple": "ended"
+      },
+      {
+        "base": "enjoy",
+        "past": "enjoyed",
+        "presentParticiple": "enjoying",
+        "pastParticiple": "enjoyed"
+      },
+      {
+        "base": "explain",
+        "past": "explained",
+        "presentParticiple": "explaining",
+        "pastParticiple": "explained"
+      },
+      {
+        "base": "feed",
+        "past": "fed",
+        "presentParticiple": "feeding",
+        "pastParticiple": "fed"
+      },
+      {
+        "base": "fight",
+        "past": "fought",
+        "presentParticiple": "fighting",
+        "pastParticiple": "fought"
+      },
+      {
+        "base": "fill",
+        "past": "filled",
+        "presentParticiple": "filling",
+        "pastParticiple": "filled"
+      },
+      {
+        "base": "finish",
+        "past": "finished",
+        "presentParticiple": "finishing",
+        "pastParticiple": "finished"
+      },
+      {
+        "base": "fix",
+        "past": "fixed",
+        "presentParticiple": "fixing",
+        "pastParticiple": "fixed"
+      },
+      {
+        "base": "fly",
+        "past": "flew",
+        "presentParticiple": "flying",
+        "pastParticiple": "flown"
+      },
+      {
+        "base": "forget",
+        "past": "forgot",
+        "presentParticiple": "forgetting",
+        "pastParticiple": "forgotten"
+      },
+      {
+        "base": "forgive",
+        "past": "forgave",
+        "presentParticiple": "forgiving",
+        "pastParticiple": "forgiven"
+      },
+      {
+        "base": "freeze",
+        "past": "froze",
+        "presentParticiple": "freezing",
+        "pastParticiple": "frozen"
+      },
+      {
+        "base": "grow",
+        "past": "grew",
+        "presentParticiple": "growing",
+        "pastParticiple": "grown"
+      },
+      {
+        "base": "guess",
+        "past": "guessed",
+        "presentParticiple": "guessing",
+        "pastParticiple": "guessed"
+      },
+      {
+        "base": "handle",
+        "past": "handled",
+        "presentParticiple": "handling",
+        "pastParticiple": "handled"
+      },
+      {
+        "base": "hang",
+        "past": "hung",
+        "presentParticiple": "hanging",
+        "pastParticiple": "hung"
+      },
+      {
+        "base": "hate",
+        "past": "hated",
+        "presentParticiple": "hating",
+        "pastParticiple": "hated"
+      },
+      {
+        "base": "hide",
+        "past": "hid",
+        "presentParticiple": "hiding",
+        "pastParticiple": "hidden"
+      },
+      {
+        "base": "hit",
+        "past": "hit",
+        "presentParticiple": "hitting",
+        "pastParticiple": "hit"
+      },
+      {
+        "base": "hold",
+        "past": "held",
+        "presentParticiple": "holding",
+        "pastParticiple": "held"
+      },
+      {
+        "base": "hope",
+        "past": "hoped",
+        "presentParticiple": "hoping",
+        "pastParticiple": "hoped"
+      },
+      {
+        "base": "hug",
+        "past": "hugged",
+        "presentParticiple": "hugging",
+        "pastParticiple": "hugged"
+      },
+      {
+        "base": "hurt",
+        "past": "hurt",
+        "presentParticiple": "hurting",
+        "pastParticiple": "hurt"
+      },
+      {
+        "base": "identify",
+        "past": "identified",
+        "presentParticiple": "identifying",
+        "pastParticiple": "identified"
+      },
+      {
+        "base": "imagine",
+        "past": "imagined",
+        "presentParticiple": "imagining",
+        "pastParticiple": "imagined"
+      },
+      {
+        "base": "improve",
+        "past": "improved",
+        "presentParticiple": "improving",
+        "pastParticiple": "improved"
+      },
+      {
+        "base": "include",
+        "past": "included",
+        "presentParticiple": "including",
+        "pastParticiple": "included"
+      },
+      {
+        "base": "increase",
+        "past": "increased",
+        "presentParticiple": "increasing",
+        "pastParticiple": "increased"
+      },
+      {
+        "base": "inform",
+        "past": "informed",
+        "presentParticiple": "informing",
+        "pastParticiple": "informed"
+      },
+      {
+        "base": "introduce",
+        "past": "introduced",
+        "presentParticiple": "introducing",
+        "pastParticiple": "introduced"
+      },
+      {
+        "base": "invite",
+        "past": "invited",
+        "presentParticiple": "inviting",
+        "pastParticiple": "invited"
+      },
+      {
+        "base": "join",
+        "past": "joined",
+        "presentParticiple": "joining",
+        "pastParticiple": "joined"
+      },
+      {
+        "base": "jump",
+        "past": "jumped",
+        "presentParticiple": "jumping",
+        "pastParticiple": "jumped"
+      },
+      {
+        "base": "kick",
+        "past": "kicked",
+        "presentParticiple": "kicking",
+        "pastParticiple": "kicked"
+      },
+      {
+        "base": "kill",
+        "past": "killed",
+        "presentParticiple": "killing",
+        "pastParticiple": "killed"
+      },
+      {
+        "base": "kiss",
+        "past": "kissed",
+        "presentParticiple": "kissing",
+        "pastParticiple": "kissed"
+      },
+      {
+        "base": "knock",
+        "past": "knocked",
+        "presentParticiple": "knocking",
+        "pastParticiple": "knocked"
+      },
+      {
+        "base": "laugh",
+        "past": "laughed",
+        "presentParticiple": "laughing",
+        "pastParticiple": "laughed"
+      },
+      {
+        "base": "lay",
+        "past": "laid",
+        "presentParticiple": "laying",
+        "pastParticiple": "laid"
+      },
+      {
+        "base": "lead",
+        "past": "led",
+        "presentParticiple": "leading",
+        "pastParticiple": "led"
+      },
+      {
+        "base": "learn",
+        "past": "learned",
+        "presentParticiple": "learning",
+        "pastParticiple": "learned"
+      },
+      {
+        "base": "lend",
+        "past": "lent",
+        "presentParticiple": "lending",
+        "pastParticiple": "lent"
+      },
+      {
+        "base": "like",
+        "past": "liked",
+        "presentParticiple": "liking",
+        "pastParticiple": "liked"
+      },
+      {
+        "base": "listen",
+        "past": "listened",
+        "presentParticiple": "listening",
+        "pastParticiple": "listened"
+      },
+      {
+        "base": "manage",
+        "past": "managed",
+        "presentParticiple": "managing",
+        "pastParticiple": "managed"
+      },
+      {
+        "base": "mark",
+        "past": "marked",
+        "presentParticiple": "marking",
+        "pastParticiple": "marked"
+      },
+      {
+        "base": "marry",
+        "past": "married",
+        "presentParticiple": "marrying",
+        "pastParticiple": "married"
+      },
+      {
+        "base": "meet",
+        "past": "met",
+        "presentParticiple": "meeting",
+        "pastParticiple": "met"
+      },
+      {
+        "base": "mention",
+        "past": "mentioned",
+        "presentParticiple": "mentioning",
+        "pastParticiple": "mentioned"
+      },
+      {
+        "base": "miss",
+        "past": "missed",
+        "presentParticiple": "missing",
+        "pastParticiple": "missed"
+      },
+      {
+        "base": "mix",
+        "past": "mixed",
+        "presentParticiple": "mixing",
+        "pastParticiple": "mixed"
+      },
+      {
+        "base": "notice",
+        "past": "noticed",
+        "presentParticiple": "noticing",
+        "pastParticiple": "noticed"
+      },
+      {
+        "base": "obtain",
+        "past": "obtained",
+        "presentParticiple": "obtaining",
+        "pastParticiple": "obtained"
+      },
+      {
+        "base": "observe",
+        "past": "observed",
+        "presentParticiple": "observing",
+        "pastParticiple": "observed"
+      },
+      {
+        "base": "occur",
+        "past": "occurred",
+        "presentParticiple": "occurring",
+        "pastParticiple": "occurred"
+      },
+      {
+        "base": "order",
+        "past": "ordered",
+        "presentParticiple": "ordering",
+        "pastParticiple": "ordered"
+      },
+      {
+        "base": "organize",
+        "past": "organized",
+        "presentParticiple": "organizing",
+        "pastParticiple": "organized"
+      },
+      {
+        "base": "own",
+        "past": "owned",
+        "presentParticiple": "owning",
+        "pastParticiple": "owned"
+      },
+      {
+        "base": "paint",
+        "past": "painted",
+        "presentParticiple": "painting",
+        "pastParticiple": "painted"
+      },
+      {
+        "base": "park",
+        "past": "parked",
+        "presentParticiple": "parking",
+        "pastParticiple": "parked"
+      },
+      {
+        "base": "pass",
+        "past": "passed",
+        "presentParticiple": "passing",
+        "pastParticiple": "passed"
+      },
+      {
+        "base": "perform",
+        "past": "performed",
+        "presentParticiple": "performing",
+        "pastParticiple": "performed"
+      },
+      {
+        "base": "permit",
+        "past": "permitted",
+        "presentParticiple": "permitting",
+        "pastParticiple": "permitted"
+      },
+      {
+        "base": "pick",
+        "past": "picked",
+        "presentParticiple": "picking",
+        "pastParticiple": "picked"
+      },
+      {
+        "base": "plan",
+        "past": "planned",
+        "presentParticiple": "planning",
+        "pastParticiple": "planned"
+      },
+      {
+        "base": "plant",
+        "past": "planted",
+        "presentParticiple": "planting",
+        "pastParticiple": "planted"
+      },
+      {
+        "base": "point",
+        "past": "pointed",
+        "presentParticiple": "pointing",
+        "pastParticiple": "pointed"
+      },
+      {
+        "base": "prefer",
+        "past": "preferred",
+        "presentParticiple": "preferring",
+        "pastParticiple": "preferred"
+      },
+      {
+        "base": "prepare",
+        "past": "prepared",
+        "presentParticiple": "preparing",
+        "pastParticiple": "prepared"
+      },
+      {
+        "base": "present",
+        "past": "presented",
+        "presentParticiple": "presenting",
+        "pastParticiple": "presented"
+      },
+      {
+        "base": "press",
+        "past": "pressed",
+        "presentParticiple": "pressing",
+        "pastParticiple": "pressed"
+      },
+      {
+        "base": "prevent",
+        "past": "prevented",
+        "presentParticiple": "preventing",
+        "pastParticiple": "prevented"
+      },
+      {
+        "base": "print",
+        "past": "printed",
+        "presentParticiple": "printing",
+        "pastParticiple": "printed"
+      },
+      {
+        "base": "produce",
+        "past": "produced",
+        "presentParticiple": "producing",
+        "pastParticiple": "produced"
+      },
+      {
+        "base": "promise",
+        "past": "promised",
+        "presentParticiple": "promising",
+        "pastParticiple": "promised"
+      },
+      {
+        "base": "protect",
+        "past": "protected",
+        "presentParticiple": "protecting",
+        "pastParticiple": "protected"
+      },
+      {
+        "base": "prove",
+        "past": "proved",
+        "presentParticiple": "proving",
+        "pastParticiple": "proven"
+      },
+      {
+        "base": "pull",
+        "past": "pulled",
+        "presentParticiple": "pulling",
+        "pastParticiple": "pulled"
+      },
+      {
+        "base": "push",
+        "past": "pushed",
+        "presentParticiple": "pushing",
+        "pastParticiple": "pushed"
+      },
+      {
+        "base": "raise",
+        "past": "raised",
+        "presentParticiple": "raising",
+        "pastParticiple": "raised"
+      },
+      {
+        "base": "reach",
+        "past": "reached",
+        "presentParticiple": "reaching",
+        "pastParticiple": "reached"
+      },
+      {
+        "base": "realize",
+        "past": "realized",
+        "presentParticiple": "realizing",
+        "pastParticiple": "realized"
+      },
+      {
+        "base": "receive",
+        "past": "received",
+        "presentParticiple": "receiving",
+        "pastParticiple": "received"
+      },
+      {
+        "base": "recognize",
+        "past": "recognized",
+        "presentParticiple": "recognizing",
+        "pastParticiple": "recognized"
+      },
+      {
+        "base": "record",
+        "past": "recorded",
+        "presentParticiple": "recording",
+        "pastParticiple": "recorded"
+      },
+      {
+        "base": "reduce",
+        "past": "reduced",
+        "presentParticiple": "reducing",
+        "pastParticiple": "reduced"
+      },
+      {
+        "base": "refer",
+        "past": "referred",
+        "presentParticiple": "referring",
+        "pastParticiple": "referred"
+      },
+      {
+        "base": "reflect",
+        "past": "reflected",
+        "presentParticiple": "reflecting",
+        "pastParticiple": "reflected"
+      },
+      {
+        "base": "refuse",
+        "past": "refused",
+        "presentParticiple": "refusing",
+        "pastParticiple": "refused"
+      },
+      {
+        "base": "regret",
+        "past": "regretted",
+        "presentParticiple": "regretting",
+        "pastParticiple": "regretted"
+      },
+      {
+        "base": "relate",
+        "past": "related",
+        "presentParticiple": "relating",
+        "pastParticiple": "related"
+      },
+      {
+        "base": "relax",
+        "past": "relaxed",
+        "presentParticiple": "relaxing",
+        "pastParticiple": "relaxed"
+      },
+      {
+        "base": "release",
+        "past": "released",
+        "presentParticiple": "releasing",
+        "pastParticiple": "released"
+      },
+      {
+        "base": "remain",
+        "past": "remained",
+        "presentParticiple": "remaining",
+        "pastParticiple": "remained"
+      },
+      {
+        "base": "remove",
+        "past": "removed",
+        "presentParticiple": "removing",
+        "pastParticiple": "removed"
+      },
+      {
+        "base": "repeat",
+        "past": "repeated",
+        "presentParticiple": "repeating",
+        "pastParticiple": "repeated"
+      },
+      {
+        "base": "replace",
+        "past": "replaced",
+        "presentParticiple": "replacing",
+        "pastParticiple": "replaced"
+      },
+      {
+        "base": "reply",
+        "past": "replied",
+        "presentParticiple": "replying",
+        "pastParticiple": "replied"
+      },
+      {
+        "base": "report",
+        "past": "reported",
+        "presentParticiple": "reporting",
+        "pastParticiple": "reported"
+      },
+      {
+        "base": "request",
+        "past": "requested",
+        "presentParticiple": "requesting",
+        "pastParticiple": "requested"
+      },
+      {
+        "base": "rescue",
+        "past": "rescued",
+        "presentParticiple": "rescuing",
+        "pastParticiple": "rescued"
+      },
+      {
+        "base": "retire",
+        "past": "retired",
+        "presentParticiple": "retiring",
+        "pastParticiple": "retired"
+      },
+      {
+        "base": "return",
+        "past": "returned",
+        "presentParticiple": "returning",
+        "pastParticiple": "returned"
+      },
+      {
+        "base": "reveal",
+        "past": "revealed",
+        "presentParticiple": "revealing",
+        "pastParticiple": "revealed"
+      },
+      {
+        "base": "ride",
+        "past": "rode",
+        "presentParticiple": "riding",
+        "pastParticiple": "ridden"
+      },
+      {
+        "base": "ring",
+        "past": "rang",
+        "presentParticiple": "ringing",
+        "pastParticiple": "rung"
+      },
+      {
+        "base": "rise",
+        "past": "rose",
+        "presentParticiple": "rising",
+        "pastParticiple": "risen"
+      },
+      {
+        "base": "roll",
+        "past": "rolled",
+        "presentParticiple": "rolling",
+        "pastParticiple": "rolled"
+      },
+      {
+        "base": "sail",
+        "past": "sailed",
+        "presentParticiple": "sailing",
+        "pastParticiple": "sailed"
+      },
+      {
+        "base": "save",
+        "past": "saved",
+        "presentParticiple": "saving",
+        "pastParticiple": "saved"
+      },
+      {
+        "base": "scream",
+        "past": "screamed",
+        "presentParticiple": "screaming",
+        "pastParticiple": "screamed"
+      },
+      {
+        "base": "search",
+        "past": "searched",
+        "presentParticiple": "searching",
+        "pastParticiple": "searched"
+      },
+      {
+        "base": "sell",
+        "past": "sold",
+        "presentParticiple": "selling",
+        "pastParticiple": "sold"
+      },
+      {
+        "base": "set",
+        "past": "set",
+        "presentParticiple": "setting",
+        "pastParticiple": "set"
+      },
+      {
+        "base": "settle",
+        "past": "settled",
+        "presentParticiple": "settling",
+        "pastParticiple": "settled"
+      },
+      {
+        "base": "shake",
+        "past": "shook",
+        "presentParticiple": "shaking",
+        "pastParticiple": "shaken"
+      },
+      {
+        "base": "share",
+        "past": "shared",
+        "presentParticiple": "sharing",
+        "pastParticiple": "shared"
+      },
+      {
+        "base": "shoot",
+        "past": "shot",
+        "presentParticiple": "shooting",
+        "pastParticiple": "shot"
+      },
+      {
+        "base": "shout",
+        "past": "shouted",
+        "presentParticiple": "shouting",
+        "pastParticiple": "shouted"
+      },
+      {
+        "base": "shut",
+        "past": "shut",
+        "presentParticiple": "shutting",
+        "pastParticiple": "shut"
+      },
+      {
+        "base": "sing",
+        "past": "sang",
+        "presentParticiple": "singing",
+        "pastParticiple": "sung"
+      },
+      {
+        "base": "sink",
+        "past": "sank",
+        "presentParticiple": "sinking",
+        "pastParticiple": "sunk"
+      },
+      {
+        "base": "sleep",
+        "past": "slept",
+        "presentParticiple": "sleeping",
+        "pastParticiple": "slept"
+      },
+      {
+        "base": "smell",
+        "past": "smelled",
+        "presentParticiple": "smelling",
+        "pastParticiple": "smelled"
+      },
+      {
+        "base": "smile",
+        "past": "smiled",
+        "presentParticiple": "smiling",
+        "pastParticiple": "smiled"
+      },
+      {
+        "base": "solve",
+        "past": "solved",
+        "presentParticiple": "solving",
+        "pastParticiple": "solved"
+      },
+      {
+        "base": "speak",
+        "past": "spoke",
+        "presentParticiple": "speaking",
+        "pastParticiple": "spoken"
+      },
+      {
+        "base": "spend",
+        "past": "spent",
+        "presentParticiple": "spending",
+        "pastParticiple": "spent"
+      },
+      {
+        "base": "spill",
+        "past": "spilled",
+        "presentParticiple": "spilling",
+        "pastParticiple": "spilled"
+      },
+      {
+        "base": "steal",
+        "past": "stole",
+        "presentParticiple": "stealing",
+        "pastParticiple": "stolen"
+      },
+      {
+        "base": "study",
+        "past": "studied",
+        "presentParticiple": "studying",
+        "pastParticiple": "studied"
+      },
+      {
+        "base": "succeed",
+        "past": "succeeded",
+        "presentParticiple": "succeeding",
+        "pastParticiple": "succeeded"
+      },
+      {
+        "base": "suggest",
+        "past": "suggested",
+        "presentParticiple": "suggesting",
+        "pastParticiple": "suggested"
+      },
+      {
+        "base": "supply",
+        "past": "supplied",
+        "presentParticiple": "supplying",
+        "pastParticiple": "supplied"
+      },
+      {
+        "base": "support",
+        "past": "supported",
+        "presentParticiple": "supporting",
+        "pastParticiple": "supported"
+      },
+      {
+        "base": "suppose",
+        "past": "supposed",
+        "presentParticiple": "supposing",
+        "pastParticiple": "supposed"
+      },
+      {
+        "base": "surprise",
+        "past": "surprised",
+        "presentParticiple": "surprising",
+        "pastParticiple": "surprised"
+      },
+      {
+        "base": "surround",
+        "past": "surrounded",
+        "presentParticiple": "surrounding",
+        "pastParticiple": "surrounded"
+      },
+      {
+        "base": "survive",
+        "past": "survived",
+        "presentParticiple": "surviving",
+        "pastParticiple": "survived"
+      },
+      {
+        "base": "swear",
+        "past": "swore",
+        "presentParticiple": "swearing",
+        "pastParticiple": "sworn"
+      },
+      {
+        "base": "sweep",
+        "past": "swept",
+        "presentParticiple": "sweeping",
+        "pastParticiple": "swept"
+      },
+      {
+        "base": "swim",
+        "past": "swam",
+        "presentParticiple": "swimming",
+        "pastParticiple": "swum"
+      },
+      {
+        "base": "switch",
+        "past": "switched",
+        "presentParticiple": "switching",
+        "pastParticiple": "switched"
+      },
+      {
+        "base": "taste",
+        "past": "tasted",
+        "presentParticiple": "tasting",
+        "pastParticiple": "tasted"
+      },
+      {
+        "base": "teach",
+        "past": "taught",
+        "presentParticiple": "teaching",
+        "pastParticiple": "taught"
+      },
+      {
+        "base": "tear",
+        "past": "tore",
+        "presentParticiple": "tearing",
+        "pastParticiple": "torn"
+      },
+      {
+        "base": "thank",
+        "past": "thanked",
+        "presentParticiple": "thanking",
+        "pastParticiple": "thanked"
+      },
+      {
+        "base": "throw",
+        "past": "threw",
+        "presentParticiple": "throwing",
+        "pastParticiple": "thrown"
+      },
+      {
+        "base": "touch",
+        "past": "touched",
+        "presentParticiple": "touching",
+        "pastParticiple": "touched"
+      },
+      {
+        "base": "train",
+        "past": "trained",
+        "presentParticiple": "training",
+        "pastParticiple": "trained"
+      },
+      {
+        "base": "travel",
+        "past": "traveled",
+        "presentParticiple": "traveling",
+        "pastParticiple": "traveled"
+      },
+      {
+        "base": "treat",
+        "past": "treated",
+        "presentParticiple": "treating",
+        "pastParticiple": "treated"
+      },
+      {
+        "base": "trust",
+        "past": "trusted",
+        "presentParticiple": "trusting",
+        "pastParticiple": "trusted"
+      },
+      {
+        "base": "understand",
+        "past": "understood",
+        "presentParticiple": "understanding",
+        "pastParticiple": "understood"
+      },
+      {
+        "base": "visit",
+        "past": "visited",
+        "presentParticiple": "visiting",
+        "pastParticiple": "visited"
+      },
+      {
+        "base": "vote",
+        "past": "voted",
+        "presentParticiple": "voting",
+        "pastParticiple": "voted"
+      },
+      {
+        "base": "wake",
+        "past": "woke",
+        "presentParticiple": "waking",
+        "pastParticiple": "woken"
+      },
+      {
+        "base": "warn",
+        "past": "warned",
+        "presentParticiple": "warning",
+        "pastParticiple": "warned"
+      },
+      {
+        "base": "wash",
+        "past": "washed",
+        "presentParticiple": "washing",
+        "pastParticiple": "washed"
+      },
+      {
+        "base": "watch",
+        "past": "watched",
+        "presentParticiple": "watching",
+        "pastParticiple": "watched"
+      },
+      {
+        "base": "wear",
+        "past": "wore",
+        "presentParticiple": "wearing",
+        "pastParticiple": "worn"
+      },
+      {
+        "base": "wish",
+        "past": "wished",
+        "presentParticiple": "wishing",
+        "pastParticiple": "wished"
+      },
+      {
+        "base": "wonder",
+        "past": "wondered",
+        "presentParticiple": "wondering",
+        "pastParticiple": "wondered"
+      },
+      {
+        "base": "worry",
+        "past": "worried",
+        "presentParticiple": "worrying",
+        "pastParticiple": "worried"
+      },
+      {
+        "base": "yawn",
+        "past": "yawned",
+        "presentParticiple": "yawning",
+        "pastParticiple": "yawned"
+      },
+      {
+        "base": "yell",
+        "past": "yelled",
+        "presentParticiple": "yelling",
+        "pastParticiple": "yelled"
+      },
+      {
+        "base": "zip",
+        "past": "zipped",
+        "presentParticiple": "zipping",
+        "pastParticiple": "zipped"
+      },
+      {
+        "base": "zoom",
+        "past": "zoomed",
+        "presentParticiple": "zooming",
+        "pastParticiple": "zoomed"
+      },
+      {
+        "base": "approve",
+        "past": "approved",
+        "presentParticiple": "approving",
+        "pastParticiple": "approved"
+      },
+      {
+        "base": "bake",
+        "past": "baked",
+        "presentParticiple": "baking",
+        "pastParticiple": "baked"
+      },
+      {
+        "base": "behave",
+        "past": "behaved",
+        "presentParticiple": "behaving",
+        "pastParticiple": "behaved"
+      },
+      {
+        "base": "blink",
+        "past": "blinked",
+        "presentParticiple": "blinking",
+        "pastParticiple": "blinked"
+      },
+      {
+        "base": "boil",
+        "past": "boiled",
+        "presentParticiple": "boiling",
+        "pastParticiple": "boiled"
+      },
+      {
+        "base": "bounce",
+        "past": "bounced",
+        "presentParticiple": "bouncing",
+        "pastParticiple": "bounced"
+      },
+      {
+        "base": "brush",
+        "past": "brushed",
+        "presentParticiple": "brushing",
+        "pastParticiple": "brushed"
+      },
+      {
+        "base": "burn",
+        "past": "burned",
+        "presentParticiple": "burning",
+        "pastParticiple": "burned"
+      },
+      {
+        "base": "calculate",
+        "past": "calculated",
+        "presentParticiple": "calculating",
+        "pastParticiple": "calculated"
+      },
+      {
+        "base": "cheer",
+        "past": "cheered",
+        "presentParticiple": "cheering",
+        "pastParticiple": "cheered"
+      },
+      {
+        "base": "choke",
+        "past": "choked",
+        "presentParticiple": "choking",
+        "pastParticiple": "choked"
+      },
+      {
+        "base": "clap",
+        "past": "clapped",
+        "presentParticiple": "clapping",
+        "pastParticiple": "clapped"
+      },
+      {
+        "base": "collect",
+        "past": "collected",
+        "presentParticiple": "collecting",
+        "pastParticiple": "collected"
+      },
+      {
+        "base": "color",
+        "past": "colored",
+        "presentParticiple": "coloring",
+        "pastParticiple": "colored"
+      },
+      {
+        "base": "compare",
+        "past": "compared",
+        "presentParticiple": "comparing",
+        "pastParticiple": "compared"
+      },
+      {
+        "base": "complain",
+        "past": "complained",
+        "presentParticiple": "complaining",
+        "pastParticiple": "complained"
+      },
+      {
+        "base": "complete",
+        "past": "completed",
+        "presentParticiple": "completing",
+        "pastParticiple": "completed"
+      },
+      {
+        "base": "concentrate",
+        "past": "concentrated",
+        "presentParticiple": "concentrating",
+        "pastParticiple": "concentrated"
+      },
+      {
+        "base": "confess",
+        "past": "confessed",
+        "presentParticiple": "confessing",
+        "pastParticiple": "confessed"
+      },
+      {
+        "base": "connect",
+        "past": "connected",
+        "presentParticiple": "connecting",
+        "pastParticiple": "connected"
+      },
+      {
+        "base": "continue",
+        "past": "continued",
+        "presentParticiple": "continuing",
+        "pastParticiple": "continued"
+      },
+      {
+        "base": "correct",
+        "past": "corrected",
+        "presentParticiple": "correcting",
+        "pastParticiple": "corrected"
+      },
+      {
+        "base": "cough",
+        "past": "coughed",
+        "presentParticiple": "coughing",
+        "pastParticiple": "coughed"
+      },
+      {
+        "base": "count",
+        "past": "counted",
+        "presentParticiple": "counting",
+        "pastParticiple": "counted"
+      },
+      {
+        "base": "crack",
+        "past": "cracked",
+        "presentParticiple": "cracking",
+        "pastParticiple": "cracked"
+      },
+      {
+        "base": "crash",
+        "past": "crashed",
+        "presentParticiple": "crashing",
+        "pastParticiple": "crashed"
+      },
+      {
+        "base": "crawl",
+        "past": "crawled",
+        "presentParticiple": "crawling",
+        "pastParticiple": "crawled"
+      },
+      {
+        "base": "cross",
+        "past": "crossed",
+        "presentParticiple": "crossing",
+        "pastParticiple": "crossed"
+      },
+      {
+        "base": "crush",
+        "past": "crushed",
+        "presentParticiple": "crushing",
+        "pastParticiple": "crushed"
+      },
+      {
+        "base": "cycle",
+        "past": "cycled",
+        "presentParticiple": "cycling",
+        "pastParticiple": "cycled"
+      },
+      {
+        "base": "damaged",
+        "past": "damaged",
+        "presentParticiple": "damaging",
+        "pastParticiple": "damaged"
+      },
+      {
+        "base": "decorate",
+        "past": "decorated",
+        "presentParticiple": "decorating",
+        "pastParticiple": "decorated"
+      },
+      {
+        "base": "delay",
+        "past": "delayed",
+        "presentParticiple": "delaying",
+        "pastParticiple": "delayed"
+      },
+      {
+        "base": "deliver",
+        "past": "delivered",
+        "presentParticiple": "delivering",
+        "pastParticiple": "delivered"
+      },
+      {
+        "base": "depend",
+        "past": "depended",
+        "presentParticiple": "depending",
+        "pastParticiple": "depended"
+      },
+      {
+        "base": "deserve",
+        "past": "deserved",
+        "presentParticiple": "deserving",
+        "pastParticiple": "deserved"
+      },
+      {
+        "base": "dig",
+        "past": "dug",
+        "presentParticiple": "digging",
+        "pastParticiple": "dug"
+      },
+      {
+        "base": "disagree",
+        "past": "disagreed",
+        "presentParticiple": "disagreeing",
+        "pastParticiple": "disagreed"
+      },
+      {
+        "base": "discover",
+        "past": "discovered",
+        "presentParticiple": "discovering",
+        "pastParticiple": "discovered"
+      },
+      {
+        "base": "discuss",
+        "past": "discussed",
+        "presentParticiple": "discussing",
+        "pastParticiple": "discussed"
+      },
+      {
+        "base": "dislike",
+        "past": "disliked",
+        "presentParticiple": "disliking",
+        "pastParticiple": "disliked"
+      },
+      {
+        "base": "divide",
+        "past": "divided",
+        "presentParticiple": "dividing",
+        "pastParticiple": "divided"
+      },
+      {
+        "base": "double",
+        "past": "doubled",
+        "presentParticiple": "doubling",
+        "pastParticiple": "doubled"
+      },
+      {
+        "base": "drag",
+        "past": "dragged",
+        "presentParticiple": "dragging",
+        "pastParticiple": "dragged"
+      },
+      {
+        "base": "dry",
+        "past": "dried",
+        "presentParticiple": "drying",
+        "pastParticiple": "dried"
+      },
+      {
+        "base": "educate",
+        "past": "educated",
+        "presentParticiple": "educating",
+        "pastParticiple": "educated"
+      },
+      {
+        "base": "embarrass",
+        "past": "embarrassed",
+        "presentParticiple": "embarrassing",
+        "pastParticiple": "embarrassed"
+      },
+      {
+        "base": "encourage",
+        "past": "encouraged",
+        "presentParticiple": "encouraging",
+        "pastParticiple": "encouraged"
+      },
+      {
+        "base": "enter",
+        "past": "entered",
+        "presentParticiple": "entering",
+        "pastParticiple": "entered"
+      },
+      {
+        "base": "escape",
+        "past": "escaped",
+        "presentParticiple": "escaping",
+        "pastParticiple": "escaped"
+      },
+      {
+        "base": "estimate",
+        "past": "estimated",
+        "presentParticiple": "estimating",
+        "pastParticiple": "estimated"
+      },
+      {
+        "base": "examine",
+        "past": "examined",
+        "presentParticiple": "examining",
+        "pastParticiple": "examined"
+      },
+      {
+        "base": "excite",
+        "past": "excited",
+        "presentParticiple": "exciting",
+        "pastParticiple": "excited"
+      },
+      {
+        "base": "exercise",
+        "past": "exercised",
+        "presentParticiple": "exercising",
+        "pastParticiple": "exercised"
+      },
+      {
+        "base": "exist",
+        "past": "existed",
+        "presentParticiple": "existing",
+        "pastParticiple": "existed"
+      },
+      {
+        "base": "expand",
+        "past": "expanded",
+        "presentParticiple": "expanding",
+        "pastParticiple": "expanded"
+      },
+      {
+        "base": "explode",
+        "past": "exploded",
+        "presentParticiple": "exploding",
+        "pastParticiple": "exploded"
+      },
+      {
+        "base": "express",
+        "past": "expressed",
+        "presentParticiple": "expressing",
+        "pastParticiple": "expressed"
+      },
+      {
+        "base": "face",
+        "past": "faced",
+        "presentParticiple": "facing",
+        "pastParticiple": "faced"
+      },
+      {
+        "base": "fail",
+        "past": "failed",
+        "presentParticiple": "failing",
+        "pastParticiple": "failed"
+      },
+      {
+        "base": "fasten",
+        "past": "fastened",
+        "presentParticiple": "fastening",
+        "pastParticiple": "fastened"
+      },
+      {
+        "base": "fax",
+        "past": "faxed",
+        "presentParticiple": "faxing",
+        "pastParticiple": "faxed"
+      },
+      {
+        "base": "fear",
+        "past": "feared",
+        "presentParticiple": "fearing",
+        "pastParticiple": "feared"
+      },
+      {
+        "base": "fetch",
+        "past": "fetched",
+        "presentParticiple": "fetching",
+        "pastParticiple": "fetched"
+      },
+      {
+        "base": "file",
+        "past": "filed",
+        "presentParticiple": "filing",
+        "pastParticiple": "filed"
+      },
+      {
+        "base": "film",
+        "past": "filmed",
+        "presentParticiple": "filming",
+        "pastParticiple": "filmed"
+      },
+      {
+        "base": "fish",
+        "past": "fished",
+        "presentParticiple": "fishing",
+        "pastParticiple": "fished"
+      },
+      {
+        "base": "fit",
+        "past": "fit",
+        "presentParticiple": "fitting",
+        "pastParticiple": "fit"
+      },
+      {
+        "base": "flap",
+        "past": "flapped",
+        "presentParticiple": "flapping",
+        "pastParticiple": "flapped"
+      },
+      {
+        "base": "flash",
+        "past": "flashed",
+        "presentParticiple": "flashing",
+        "pastParticiple": "flashed"
+      },
+      {
+        "base": "float",
+        "past": "floated",
+        "presentParticiple": "floating",
+        "pastParticiple": "floated"
+      },
+      {
+        "base": "flood",
+        "past": "flooded",
+        "presentParticiple": "flooding",
+        "pastParticiple": "flooded"
+      },
+      {
+        "base": "flow",
+        "past": "flowed",
+        "presentParticiple": "flowing",
+        "pastParticiple": "flowed"
+      },
+      {
+        "base": "fold",
+        "past": "folded",
+        "presentParticiple": "folding",
+        "pastParticiple": "folded"
+      },
+      {
+        "base": "fool",
+        "past": "fooled",
+        "presentParticiple": "fooling",
+        "pastParticiple": "fooled"
+      },
+      {
+        "base": "force",
+        "past": "forced",
+        "presentParticiple": "forcing",
+        "pastParticiple": "forced"
+      },
+      {
+        "base": "form",
+        "past": "formed",
+        "presentParticiple": "forming",
+        "pastParticiple": "formed"
+      },
+      {
+        "base": "found",
+        "past": "founded",
+        "presentParticiple": "founding",
+        "pastParticiple": "founded"
+      },
+      {
+        "base": "frame",
+        "past": "framed",
+        "presentParticiple": "framing",
+        "pastParticiple": "framed"
+      },
+      {
+        "base": "frighten",
+        "past": "frightened",
+        "presentParticiple": "frightening",
+        "pastParticiple": "frightened"
+      },
+      {
+        "base": "fry",
+        "past": "fried",
+        "presentParticiple": "frying",
+        "pastParticiple": "fried"
+      },
+      {
+        "base": "gather",
+        "past": "gathered",
+        "presentParticiple": "gathering",
+        "pastParticiple": "gathered"
+      },
+      {
+        "base": "gaze",
+        "past": "gazed",
+        "presentParticiple": "gazing",
+        "pastParticiple": "gazed"
+      },
+      {
+        "base": "giggle",
+        "past": "giggled",
+        "presentParticiple": "giggling",
+        "pastParticiple": "giggled"
+      },
+      {
+        "base": "glow",
+        "past": "glowed",
+        "presentParticiple": "glowing",
+        "pastParticiple": "glowed"
+      },
+      {
+        "base": "grab",
+        "past": "grabbed",
+        "presentParticiple": "grabbing",
+        "pastParticiple": "grabbed"
+      },
+      {
+        "base": "grate",
+        "past": "grated",
+        "presentParticiple": "grating",
+        "pastParticiple": "grated"
+      },
+      {
+        "base": "grease",
+        "past": "greased",
+        "presentParticiple": "greasing",
+        "pastParticiple": "greased"
+      },
+      {
+        "base": "greet",
+        "past": "greeted",
+        "presentParticiple": "greeting",
+        "pastParticiple": "greeted"
+      },
+      {
+        "base": "grin",
+        "past": "grinned",
+        "presentParticiple": "grinning",
+        "pastParticiple": "grinned"
+      },
+      {
+        "base": "grind",
+        "past": "ground",
+        "presentParticiple": "grinding",
+        "pastParticiple": "ground"
+      },
+      {
+        "base": "guide",
+        "past": "guided",
+        "presentParticiple": "guiding",
+        "pastParticiple": "guided"
+      },
+      {
+        "base": "harass",
+        "past": "harassed",
+        "presentParticiple": "harassing",
+        "pastParticiple": "harassed"
+      },
+      {
+        "base": "harm",
+        "past": "harmed",
+        "presentParticiple": "harming",
+        "pastParticiple": "harmed"
+      },
+      {
+        "base": "haul",
+        "past": "hauled",
+        "presentParticiple": "hauling",
+        "pastParticiple": "hauled"
+      },
+      {
+        "base": "heal",
+        "past": "healed",
+        "presentParticiple": "healing",
+        "pastParticiple": "healed"
+      },
+      {
+        "base": "heat",
+        "past": "heated",
+        "presentParticiple": "heating",
+        "pastParticiple": "heated"
+      },
+      {
+        "base": "hesitate",
+        "past": "hesitated",
+        "presentParticiple": "hesitating",
+        "pastParticiple": "hesitated"
+      },
+      {
+        "base": "highlight",
+        "past": "highlighted",
+        "presentParticiple": "highlighting",
+        "pastParticiple": "highlighted"
+      },
+      {
+        "base": "hike",
+        "past": "hiked",
+        "presentParticiple": "hiking",
+        "pastParticiple": "hiked"
+      },
+      {
+        "base": "hinder",
+        "past": "hindered",
+        "presentParticiple": "hindering",
+        "pastParticiple": "hindered"
+      },
+      {
+        "base": "hire",
+        "past": "hired",
+        "presentParticiple": "hiring",
+        "pastParticiple": "hired"
+      },
+      {
+        "base": "hop",
+        "past": "hopped",
+        "presentParticiple": "hopping",
+        "pastParticiple": "hopped"
+      },
+      {
+        "base": "hum",
+        "past": "hummed",
+        "presentParticiple": "humming",
+        "pastParticiple": "hummed"
+      },
+      {
+        "base": "hunt",
+        "past": "hunted",
+        "presentParticiple": "hunting",
+        "pastParticiple": "hunted"
+      },
+      {
+        "base": "hurry",
+        "past": "hurried",
+        "presentParticiple": "hurrying",
+        "pastParticiple": "hurried"
+      },
+      {
+        "base": "ignore",
+        "past": "ignored",
+        "presentParticiple": "ignoring",
+        "pastParticiple": "ignored"
+      },
+      {
+        "base": "illustrate",
+        "past": "illustrated",
+        "presentParticiple": "illustrating",
+        "pastParticiple": "illustrated"
+      },
+      {
+        "base": "implement",
+        "past": "implemented",
+        "presentParticiple": "implementing",
+        "pastParticiple": "implemented"
+      },
+      {
+        "base": "impress",
+        "past": "impressed",
+        "presentParticiple": "impressing",
+        "pastParticiple": "impressed"
+      },
+      {
+        "base": "indicate",
+        "past": "indicated",
+        "presentParticiple": "indicating",
+        "pastParticiple": "indicated"
+      },
+      {
+        "base": "inhale",
+        "past": "inhaled",
+        "presentParticiple": "inhaling",
+        "pastParticiple": "inhaled"
+      },
+      {
+        "base": "initiate",
+        "past": "initiated",
+        "presentParticiple": "initiating",
+        "pastParticiple": "initiated"
+      },
+      {
+        "base": "inject",
+        "past": "injected",
+        "presentParticiple": "injecting",
+        "pastParticiple": "injected"
+      },
+      {
+        "base": "injure",
+        "past": "injured",
+        "presentParticiple": "injuring",
+        "pastParticiple": "injured"
+      },
+      {
+        "base": "inspire",
+        "past": "inspired",
+        "presentParticiple": "inspiring",
+        "pastParticiple": "inspired"
+      },
+      {
+        "base": "install",
+        "past": "installed",
+        "presentParticiple": "installing",
+        "pastParticiple": "installed"
+      },
+      {
+        "base": "instruct",
+        "past": "instructed",
+        "presentParticiple": "instructing",
+        "pastParticiple": "instructed"
+      },
+      {
+        "base": "integrate",
+        "past": "integrated",
+        "presentParticiple": "integrating",
+        "pastParticiple": "integrated"
+      },
+      {
+        "base": "invest",
+        "past": "invested",
+        "presentParticiple": "investing",
+        "pastParticiple": "invested"
+      },
+      {
+        "base": "iron",
+        "past": "ironed",
+        "presentParticiple": "ironing",
+        "pastParticiple": "ironed"
+      },
+      {
+        "base": "irritate",
+        "past": "irritated",
+        "presentParticiple": "irritating",
+        "pastParticiple": "irritated"
+      },
+      {
+        "base": "isolate",
+        "past": "isolated",
+        "presentParticiple": "isolating",
+        "pastParticiple": "isolated"
+      },
+      {
+        "base": "issue",
+        "past": "issued",
+        "presentParticiple": "issuing",
+        "pastParticiple": "issued"
+      },
+      {
+        "base": "itch",
+        "past": "itched",
+        "presentParticiple": "itching",
+        "pastParticiple": "itched"
+      },
+      {
+        "base": "jail",
+        "past": "jailed",
+        "presentParticiple": "jailing",
+        "pastParticiple": "jailed"
+      },
+      {
+        "base": "jam",
+        "past": "jammed",
+        "presentParticiple": "jamming",
+        "pastParticiple": "jammed"
+      },
+      {
+        "base": "jog",
+        "past": "jogged",
+        "presentParticiple": "jogging",
+        "pastParticiple": "jogged"
+      },
+      {
+        "base": "joke",
+        "past": "joked",
+        "presentParticiple": "joking",
+        "pastParticiple": "joked"
+      },
+      {
+        "base": "judge",
+        "past": "judged",
+        "presentParticiple": "judging",
+        "pastParticiple": "judged"
+      },
+      {
+        "base": "justify",
+        "past": "justified",
+        "presentParticiple": "justifying",
+        "pastParticiple": "justified"
+      },
+      {
+        "base": "kneel",
+        "past": "knelt",
+        "presentParticiple": "kneeling",
+        "pastParticiple": "knelt"
+      },
+      {
+        "base": "knit",
+        "past": "knit",
+        "presentParticiple": "knitting",
+        "pastParticiple": "knit"
+      },
+      {
+        "base": "label",
+        "past": "labeled",
+        "presentParticiple": "labeling",
+        "pastParticiple": "labeled"
+      },
+      {
+        "base": "land",
+        "past": "landed",
+        "presentParticiple": "landing",
+        "pastParticiple": "landed"
+      },
+      {
+        "base": "last",
+        "past": "lasted",
+        "presentParticiple": "lasting",
+        "pastParticiple": "lasted"
+      },
+      {
+        "base": "launch",
+        "past": "launched",
+        "presentParticiple": "launching",
+        "pastParticiple": "launched"
+      },
+      {
+        "base": "leak",
+        "past": "leaked",
+        "presentParticiple": "leaking",
+        "pastParticiple": "leaked"
+      },
+      {
+        "base": "level",
+        "past": "leveled",
+        "presentParticiple": "leveling",
+        "pastParticiple": "leveled"
+      },
+      {
+        "base": "lick",
+        "past": "licked",
+        "presentParticiple": "licking",
+        "pastParticiple": "licked"
+      },
+      {
+        "base": "lie",
+        "past": "lay",
+        "presentParticiple": "lying",
+        "pastParticiple": "lain"
+      },
+      {
+        "base": "lift",
+        "past": "lifted",
+        "presentParticiple": "lifting",
+        "pastParticiple": "lifted"
+      },
+      {
+        "base": "light",
+        "past": "lit",
+        "presentParticiple": "lighting",
+        "pastParticiple": "lit"
+      },
+      {
+        "base": "limit",
+        "past": "limited",
+        "presentParticiple": "limiting",
+        "pastParticiple": "limited"
+      },
+      {
+        "base": "link",
+        "past": "linked",
+        "presentParticiple": "linking",
+        "pastParticiple": "linked"
+      },
+      {
+        "base": "list",
+        "past": "listed",
+        "presentParticiple": "listing",
+        "pastParticiple": "listed"
+      },
+      {
+        "base": "load",
+        "past": "loaded",
+        "presentParticiple": "loading",
+        "pastParticiple": "loaded"
+      },
+      {
+        "base": "lock",
+        "past": "locked",
+        "presentParticiple": "locking",
+        "pastParticiple": "locked"
+      },
+      {
+        "base": "maintain",
+        "past": "maintained",
+        "presentParticiple": "maintaining",
+        "pastParticiple": "maintained"
+      },
+      {
+        "base": "match",
+        "past": "matched",
+        "presentParticiple": "matching",
+        "pastParticiple": "matched"
+      },
+      {
+        "base": "matter",
+        "past": "mattered",
+        "presentParticiple": "mattering",
+        "pastParticiple": "mattered"
+      },
+      {
+        "base": "measure",
+        "past": "measured",
+        "presentParticiple": "measuring",
+        "pastParticiple": "measured"
+      },
+      {
+        "base": "modify",
+        "past": "modified",
+        "presentParticiple": "modifying",
+        "pastParticiple": "modified"
+      },
+      {
+        "base": "murder",
+        "past": "murdered",
+        "presentParticiple": "murdering",
+        "pastParticiple": "murdered"
+      },
+      {
+        "base": "name",
+        "past": "named",
+        "presentParticiple": "naming",
+        "pastParticiple": "named"
+      },
+      {
+        "base": "nod",
+        "past": "nodded",
+        "presentParticiple": "nodding",
+        "pastParticiple": "nodded"
+      },
+      {
+        "base": "note",
+        "past": "noted",
+        "presentParticiple": "noting",
+        "pastParticiple": "noted"
+      },
+      {
+        "base": "obey",
+        "past": "obeyed",
+        "presentParticiple": "obeying",
+        "pastParticiple": "obeyed"
+      },
+      {
+        "base": "object",
+        "past": "objected",
+        "presentParticiple": "objecting",
+        "pastParticiple": "objected"
+      },
+      {
+        "base": "operate",
+        "past": "operated",
+        "presentParticiple": "operating",
+        "pastParticiple": "operated"
+      },
+      {
+        "base": "overcome",
+        "past": "overcame",
+        "presentParticiple": "overcoming",
+        "pastParticiple": "overcome"
+      },
+      {
+        "base": "owe",
+        "past": "owed",
+        "presentParticiple": "owing",
+        "pastParticiple": "owed"
+      },
+      {
+        "base": "pack",
+        "past": "packed",
+        "presentParticiple": "packing",
+        "pastParticiple": "packed"
+      },
+      {
+        "base": "participate",
+        "past": "participated",
+        "presentParticiple": "participating",
+        "pastParticiple": "participated"
+      },
+      {
+        "base": "pause",
+        "past": "paused",
+        "presentParticiple": "pausing",
+        "pastParticiple": "paused"
+      },
+      {
+        "base": "phone",
+        "past": "phoned",
+        "presentParticiple": "phoning",
+        "pastParticiple": "phoned"
+      },
+      {
+        "base": "place",
+        "past": "placed",
+        "presentParticiple": "placing",
+        "pastParticiple": "placed"
+      },
+      {
+        "base": "please",
+        "past": "pleased",
+        "presentParticiple": "pleasing",
+        "pastParticiple": "pleased"
+      },
+      {
+        "base": "plug",
+        "past": "plugged",
+        "presentParticiple": "plugging",
+        "pastParticiple": "plugged"
+      },
+      {
+        "base": "possess",
+        "past": "possessed",
+        "presentParticiple": "possessing",
+        "pastParticiple": "possessed"
+      },
+      {
+        "base": "post",
+        "past": "posted",
+        "presentParticiple": "posting",
+        "pastParticiple": "posted"
+      },
+      {
+        "base": "pour",
+        "past": "poured",
+        "presentParticiple": "pouring",
+        "pastParticiple": "poured"
+      },
+      {
+        "base": "practice",
+        "past": "practiced",
+        "presentParticiple": "practicing",
+        "pastParticiple": "practiced"
+      },
+      {
+        "base": "praise",
+        "past": "praised",
+        "presentParticiple": "praising",
+        "pastParticiple": "praised"
+      },
+      {
+        "base": "pretend",
+        "past": "pretended",
+        "presentParticiple": "pretending",
+        "pastParticiple": "pretended"
+      },
+      {
+        "base": "promote",
+        "past": "promoted",
+        "presentParticiple": "promoting",
+        "pastParticiple": "promoted"
+      },
+      {
+        "base": "question",
+        "past": "questioned",
+        "presentParticiple": "questioning",
+        "pastParticiple": "questioned"
+      },
+      {
+        "base": "race",
+        "past": "raced",
+        "presentParticiple": "racing",
+        "pastParticiple": "raced"
+      },
+      {
+        "base": "rain",
+        "past": "rained",
+        "presentParticiple": "raining",
+        "pastParticiple": "rained"
+      },
+      {
+        "base": "recommend",
+        "past": "recommended",
+        "presentParticiple": "recommending",
+        "pastParticiple": "recommended"
+      },
+      {
+        "base": "rely",
+        "past": "relied",
+        "presentParticiple": "relying",
+        "pastParticiple": "relied"
+      },
+      {
+        "base": "repair",
+        "past": "repaired",
+        "presentParticiple": "repairing",
+        "pastParticiple": "repaired"
+      },
+      {
+        "base": "resign",
+        "past": "resigned",
+        "presentParticiple": "resigning",
+        "pastParticiple": "resigned"
+      },
+      {
+        "base": "resist",
+        "past": "resisted",
+        "presentParticiple": "resisting",
+        "pastParticiple": "resisted"
+      },
+      {
+        "base": "resolve",
+        "past": "resolved",
+        "presentParticiple": "resolving",
+        "pastParticiple": "resolved"
+      },
+      {
+        "base": "rest",
+        "past": "rested",
+        "presentParticiple": "resting",
+        "pastParticiple": "rested"
+      },
+      {
+        "base": "restore",
+        "past": "restored",
+        "presentParticiple": "restoring",
+        "pastParticiple": "restored"
+      },
+      {
+        "base": "restrict",
+        "past": "restricted",
+        "presentParticiple": "restricting",
+        "pastParticiple": "restricted"
+      },
+      {
+        "base": "result",
+        "past": "resulted",
+        "presentParticiple": "resulting",
+        "pastParticiple": "resulted"
+      },
+      {
+        "base": "resume",
+        "past": "resumed",
+        "presentParticiple": "resuming",
+        "pastParticiple": "resumed"
+      },
+      {
+        "base": "review",
+        "past": "reviewed",
+        "presentParticiple": "reviewing",
+        "pastParticiple": "reviewed"
+      },
+      {
+        "base": "revise",
+        "past": "revised",
+        "presentParticiple": "revising",
+        "pastParticiple": "revised"
+      },
+      {
+        "base": "risk",
+        "past": "risked",
+        "presentParticiple": "risking",
+        "pastParticiple": "risked"
+      },
+      {
+        "base": "roar",
+        "past": "roared",
+        "presentParticiple": "roaring",
+        "pastParticiple": "roared"
+      },
+      {
+        "base": "rot",
+        "past": "rotted",
+        "presentParticiple": "rotting",
+        "pastParticiple": "rotted"
+      },
+      {
+        "base": "rub",
+        "past": "rubbed",
+        "presentParticiple": "rubbing",
+        "pastParticiple": "rubbed"
+      },
+      {
+        "base": "ruin",
+        "past": "ruined",
+        "presentParticiple": "ruining",
+        "pastParticiple": "ruined"
+      },
+      {
+        "base": "rule",
+        "past": "ruled",
+        "presentParticiple": "ruling",
+        "pastParticiple": "ruled"
+      },
+      {
+        "base": "rush",
+        "past": "rushed",
+        "presentParticiple": "rushing",
+        "pastParticiple": "rushed"
+      },
+      {
+        "base": "sack",
+        "past": "sacked",
+        "presentParticiple": "sacking",
+        "pastParticiple": "sacked"
+      },
+      {
+        "base": "satisfy",
+        "past": "satisfied",
+        "presentParticiple": "satisfying",
+        "pastParticiple": "satisfied"
+      },
+      {
+        "base": "scare",
+        "past": "scared",
+        "presentParticiple": "scaring",
+        "pastParticiple": "scared"
+      },
+      {
+        "base": "scatter",
+        "past": "scattered",
+        "presentParticiple": "scattering",
+        "pastParticiple": "scattered"
+      },
+      {
+        "base": "schedule",
+        "past": "scheduled",
+        "presentParticiple": "scheduling",
+        "pastParticiple": "scheduled"
+      },
+      {
+        "base": "score",
+        "past": "scored",
+        "presentParticiple": "scoring",
+        "pastParticiple": "scored"
+      },
+      {
+        "base": "scratch",
+        "past": "scratched",
+        "presentParticiple": "scratching",
+        "pastParticiple": "scratched"
+      },
+      {
+        "base": "screw",
+        "past": "screwed",
+        "presentParticiple": "screwing",
+        "pastParticiple": "screwed"
+      },
+      {
+        "base": "select",
+        "past": "selected",
+        "presentParticiple": "selecting",
+        "pastParticiple": "selected"
+      },
+      {
+        "base": "sense",
+        "past": "sensed",
+        "presentParticiple": "sensing",
+        "pastParticiple": "sensed"
+      },
+      {
+        "base": "separate",
+        "past": "separated",
+        "presentParticiple": "separating",
+        "pastParticiple": "separated"
+      },
+      {
+        "base": "shave",
+        "past": "shaved",
+        "presentParticiple": "shaving",
+        "pastParticiple": "shaved"
+      },
+      {
+        "base": "shine",
+        "past": "shone",
+        "presentParticiple": "shining",
+        "pastParticiple": "shone"
+      },
+      {
+        "base": "shiver",
+        "past": "shivered",
+        "presentParticiple": "shivering",
+        "pastParticiple": "shivered"
+      },
+      {
+        "base": "shock",
+        "past": "shocked",
+        "presentParticiple": "shocking",
+        "pastParticiple": "shocked"
+      },
+      {
+        "base": "shop",
+        "past": "shopped",
+        "presentParticiple": "shopping",
+        "pastParticiple": "shopped"
+      },
+      {
+        "base": "shrink",
+        "past": "shrank",
+        "presentParticiple": "shrinking",
+        "pastParticiple": "shrunk"
+      },
+      {
+        "base": "sigh",
+        "past": "sighed",
+        "presentParticiple": "sighing",
+        "pastParticiple": "sighed"
+      },
+      {
+        "base": "sign",
+        "past": "signed",
+        "presentParticiple": "signing",
+        "pastParticiple": "signed"
+      },
+      {
+        "base": "signal",
+        "past": "signaled",
+        "presentParticiple": "signaling",
+        "pastParticiple": "signaled"
+      },
+      {
+        "base": "sip",
+        "past": "sipped",
+        "presentParticiple": "sipping",
+        "pastParticiple": "sipped"
+      },
+      {
+        "base": "ski",
+        "past": "skied",
+        "presentParticiple": "skiing",
+        "pastParticiple": "skied"
+      },
+      {
+        "base": "skip",
+        "past": "skipped",
+        "presentParticiple": "skipping",
+        "pastParticiple": "skipped"
+      },
+      {
+        "base": "slam",
+        "past": "slammed",
+        "presentParticiple": "slamming",
+        "pastParticiple": "slammed"
+      },
+      {
+        "base": "slap",
+        "past": "slapped",
+        "presentParticiple": "slapping",
+        "pastParticiple": "slapped"
+      },
+      {
+        "base": "slide",
+        "past": "slid",
+        "presentParticiple": "sliding",
+        "pastParticiple": "slid"
+      },
+      {
+        "base": "slip",
+        "past": "slipped",
+        "presentParticiple": "slipping",
+        "pastParticiple": "slipped"
+      },
+      {
+        "base": "slow",
+        "past": "slowed",
+        "presentParticiple": "slowing",
+        "pastParticiple": "slowed"
+      },
+      {
+        "base": "smoke",
+        "past": "smoked",
+        "presentParticiple": "smoking",
+        "pastParticiple": "smoked"
+      },
+      {
+        "base": "snatch",
+        "past": "snatched",
+        "presentParticiple": "snatching",
+        "pastParticiple": "snatched"
+      },
+      {
+        "base": "sneeze",
+        "past": "sneezed",
+        "presentParticiple": "sneezing",
+        "pastParticiple": "sneezed"
+      },
+      {
+        "base": "snore",
+        "past": "snored",
+        "presentParticiple": "snoring",
+        "pastParticiple": "snored"
+      },
+      {
+        "base": "snow",
+        "past": "snowed",
+        "presentParticiple": "snowing",
+        "pastParticiple": "snowed"
+      },
+      {
+        "base": "sort",
+        "past": "sorted",
+        "presentParticiple": "sorting",
+        "pastParticiple": "sorted"
+      },
+      {
+        "base": "sound",
+        "past": "sounded",
+        "presentParticiple": "sounding",
+        "pastParticiple": "sounded"
+      },
+      {
+        "base": "spare",
+        "past": "spared",
+        "presentParticiple": "sparing",
+        "pastParticiple": "spared"
+      },
+      {
+        "base": "spark",
+        "past": "sparked",
+        "presentParticiple": "sparking",
+        "pastParticiple": "sparked"
+      },
+      {
+        "base": "specify",
+        "past": "specified",
+        "presentParticiple": "specifying",
+        "pastParticiple": "specified"
+      },
+      {
+        "base": "spin",
+        "past": "spun",
+        "presentParticiple": "spinning",
+        "pastParticiple": "spun"
+      },
+      {
+        "base": "spoil",
+        "past": "spoiled",
+        "presentParticiple": "spoiling",
+        "pastParticiple": "spoiled"
+      },
+      {
+        "base": "spread",
+        "past": "spread",
+        "presentParticiple": "spreading",
+        "pastParticiple": "spread"
+      },
+      {
+        "base": "spring",
+        "past": "sprang",
+        "presentParticiple": "springing",
+        "pastParticiple": "sprung"
+      },
+      {
+        "base": "spy",
+        "past": "spied",
+        "presentParticiple": "spying",
+        "pastParticiple": "spied"
+      },
+      {
+        "base": "squeeze",
+        "past": "squeezed",
+        "presentParticiple": "squeezing",
+        "pastParticiple": "squeezed"
+      },
+      {
+        "base": "stab",
+        "past": "stabbed",
+        "presentParticiple": "stabbing",
+        "pastParticiple": "stabbed"
+      },
+      {
+        "base": "stare",
+        "past": "stared",
+        "presentParticiple": "staring",
+        "pastParticiple": "stared"
+      },
+      {
+        "base": "state",
+        "past": "stated",
+        "presentParticiple": "stating",
+        "pastParticiple": "stated"
+      },
+      {
+        "base": "step",
+        "past": "stepped",
+        "presentParticiple": "stepping",
+        "pastParticiple": "stepped"
+      },
+      {
+        "base": "stick",
+        "past": "stuck",
+        "presentParticiple": "sticking",
+        "pastParticiple": "stuck"
+      },
+      {
+        "base": "stimulate",
+        "past": "stimulated",
+        "presentParticiple": "stimulating",
+        "pastParticiple": "stimulated"
+      },
+      {
+        "base": "stir",
+        "past": "stirred",
+        "presentParticiple": "stirring",
+        "pastParticiple": "stirred"
+      },
+      {
+        "base": "store",
+        "past": "stored",
+        "presentParticiple": "storing",
+        "pastParticiple": "stored"
+      },
+      {
+        "base": "strain",
+        "past": "strained",
+        "presentParticiple": "straining",
+        "pastParticiple": "strained"
+      },
+      {
+        "base": "stretch",
+        "past": "stretched",
+        "presentParticiple": "stretching",
+        "pastParticiple": "stretched"
+      },
+      {
+        "base": "strike",
+        "past": "struck",
+        "presentParticiple": "striking",
+        "pastParticiple": "struck"
+      },
+      {
+        "base": "struggle",
+        "past": "struggled",
+        "presentParticiple": "struggling",
+        "pastParticiple": "struggled"
+      },
+      {
+        "base": "submit",
+        "past": "submitted",
+        "presentParticiple": "submitting",
+        "pastParticiple": "submitted"
+      },
+      {
+        "base": "suffer",
+        "past": "suffered",
+        "presentParticiple": "suffering",
+        "pastParticiple": "suffered"
+      },
+      {
+        "base": "suit",
+        "past": "suited",
+        "presentParticiple": "suiting",
+        "pastParticiple": "suited"
+      },
+      {
+        "base": "suspect",
+        "past": "suspected",
+        "presentParticiple": "suspecting",
+        "pastParticiple": "suspected"
+      },
+      {
+        "base": "suspend",
+        "past": "suspended",
+        "presentParticiple": "suspending",
+        "pastParticiple": "suspended"
+      },
+      {
+        "base": "swing",
+        "past": "swung",
+        "presentParticiple": "swinging",
+        "pastParticiple": "swung"
+      }
+    ]
+  }
