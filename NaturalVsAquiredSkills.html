@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Spectrum - Natural vs. Acquired</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.37/vue.global.prod.min.js"></script>
+  <style>
+    .bounce-in {
+      animation: bounce-in 0.5s;
+    }
+    @keyframes bounce-in {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .transition-height {
+      transition: max-height 0.5s ease-in-out;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div id="app" class="min-h-screen">
+    <header class="bg-gradient-to-r from-blue-900 to-purple-900 text-white shadow-lg">
+      <div class="container mx-auto py-6 px-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-center">Skills Spectrum: Natural vs. Acquired</h1>
+        <p class="text-center mt-2 text-blue-100">Exploring the continuum between innate abilities and learned competencies</p>
+      </div>
+    </header>
+    
+    <main class="container mx-auto py-8 px-4">
+      <!-- Dashboard Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+          <div class="text-4xl font-bold text-blue-600">{{ totalNaturalSkills }}</div>
+          <div class="text-gray-500">Natural Skills</div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+          <div class="text-4xl font-bold text-purple-600">{{ totalAcquiredSkills }}</div>
+          <div class="text-gray-500">Acquired Skills</div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+          <div class="text-4xl font-bold text-green-600">{{ categoryCount }}</div>
+          <div class="text-gray-500">Categories</div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4 flex flex-col items-center">
+          <div class="text-4xl font-bold text-yellow-600">{{ selectedSkills.length }}</div>
+          <div class="text-gray-500">Selected Skills</div>
+        </div>
+      </div>
+
+      <!-- Search and Filter -->
+      <div class="mb-8 bg-white rounded-lg shadow p-4">
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1">
+            <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search Skills</label>
+            <input 
+              id="search" 
+              v-model="searchQuery" 
+              type="text" 
+              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Type to search skills..."
+            >
+          </div>
+          <div class="md:w-1/4">
+            <label for="filter" class="block text-sm font-medium text-gray-700 mb-1">Filter By</label>
+            <select 
+              id="filter" 
+              v-model="activeFilter"
+              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="all">All Skills</option>
+              <option value="natural">Natural Skills</option>
+              <option value="acquired">Acquired Skills</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills View Toggle -->
+      <div class="mb-6 flex justify-center space-x-4">
+        <button @click="viewMode = 'categories'" 
+          class="px-4 py-2 rounded-lg" 
+          :class="viewMode === 'categories' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'">
+          Category View
+        </button>
+        <button @click="viewMode = 'comparison'" 
+          class="px-4 py-2 rounded-lg" 
+          :class="viewMode === 'comparison' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'">
+          Comparison View
+        </button>
+      </div>
+
+      <!-- Category View -->
+      <div v-if="viewMode === 'categories'" class="space-y-6">
+        <!-- Natural Skills Section -->
+        <section v-if="activeFilter !== 'acquired'" class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-blue-800 mb-4">Natural Skills</h2>
+          <p class="text-blue-700 mb-6">These are abilities or tendencies individuals are generally born with, though they can be nurtured further.</p>
+          
+          <div class="space-y-4">
+            <div v-for="(category, index) in filteredNaturalCategories" :key="'nat-'+index" class="bg-white rounded-lg shadow">
+              <div 
+                @click="toggleCategory('natural', index)" 
+                class="flex justify-between items-center p-4 cursor-pointer hover:bg-blue-50"
+              >
+                <h3 class="text-xl font-semibold text-blue-900">{{ category.name }}</h3>
+                <span class="text-blue-500">
+                  <svg v-if="!category.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                  </svg>
+                </span>
+              </div>
+              <div v-show="category.isOpen" class="transition-height p-4 bg-blue-50 rounded-b-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div 
+                    v-for="skill in filteredSkills(category.skills)" 
+                    :key="skill.id"
+                    @click="toggleSkillSelection(skill)"
+                    class="flex items-center p-2 rounded cursor-pointer transition-all"
+                    :class="isSelected(skill) ? 'bg-blue-200 shadow-md' : 'bg-white hover:bg-blue-100'"
+                  >
+                    <span class="w-6 h-6 flex items-center justify-center rounded-full mr-2"
+                      :class="isSelected(skill) ? 'bg-blue-500 text-white' : 'bg-gray-200'">
+                      <svg v-if="isSelected(skill)" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>{{ skill.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Acquired Skills Section -->
+        <section v-if="activeFilter !== 'natural'" class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-purple-800 mb-4">Acquired Skills</h2>
+          <p class="text-purple-700 mb-6">These are abilities developed through education, training, or experience over time.</p>
+          
+          <div class="space-y-4">
+            <div v-for="(category, index) in filteredAcquiredCategories" :key="'acq-'+index" class="bg-white rounded-lg shadow">
+              <div 
+                @click="toggleCategory('acquired', index)" 
+                class="flex justify-between items-center p-4 cursor-pointer hover:bg-purple-50"
+              >
+                <h3 class="text-xl font-semibold text-purple-900">{{ category.name }}</h3>
+                <span class="text-purple-500">
+                  <svg v-if="!category.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                  </svg>
+                </span>
+              </div>
+              <div v-show="category.isOpen" class="transition-height p-4 bg-purple-50 rounded-b-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  <div 
+                    v-for="skill in filteredSkills(category.skills)" 
+                    :key="skill.id"
+                    @click="toggleSkillSelection(skill)"
+                    class="flex items-center p-2 rounded cursor-pointer transition-all"
+                    :class="isSelected(skill) ? 'bg-purple-200 shadow-md' : 'bg-white hover:bg-purple-100'"
+                  >
+                    <span class="w-6 h-6 flex items-center justify-center rounded-full mr-2"
+                      :class="isSelected(skill) ? 'bg-purple-500 text-white' : 'bg-gray-200'">
+                      <svg v-if="isSelected(skill)" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span>{{ skill.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Comparison View -->
+      <div v-if="viewMode === 'comparison'" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Natural Skills Column -->
+        <div v-if="activeFilter !== 'acquired'" class="bg-gradient-to-b from-blue-50 to-blue-100 rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-blue-800 mb-4 text-center">Natural Skills</h2>
+          <div class="bg-white rounded-lg shadow p-4 mb-4">
+            <p class="text-blue-700">Abilities or tendencies individuals are generally born with, though they can be nurtured further.</p>
+          </div>
+          
+          <div class="space-y-3">
+            <div 
+              v-for="skill in allNaturalSkillsFlat.filter(s => matchesSearch(s.name))" 
+              :key="skill.id"
+              @click="toggleSkillSelection(skill)"
+              class="flex items-center p-3 rounded cursor-pointer transition-all"
+              :class="isSelected(skill) ? 'bg-blue-200 shadow-md' : 'bg-white hover:bg-blue-100'"
+            >
+              <span class="w-6 h-6 flex items-center justify-center rounded-full mr-2"
+                :class="isSelected(skill) ? 'bg-blue-500 text-white' : 'bg-gray-200'">
+                <svg v-if="isSelected(skill)" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div>
+                <span class="font-medium">{{ skill.name }}</span>
+                <span class="text-xs text-gray-500 block">{{ skill.category }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acquired Skills Column -->
+        <div v-if="activeFilter !== 'natural'" class="bg-gradient-to-b from-purple-50 to-purple-100 rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-bold text-purple-800 mb-4 text-center">Acquired Skills</h2>
+          <div class="bg-white rounded-lg shadow p-4 mb-4">
+            <p class="text-purple-700">Abilities developed through education, training, or experience over time.</p>
+          </div>
+          
+          <div class="space-y-3">
+            <div 
+              v-for="skill in allAcquiredSkillsFlat.filter(s => matchesSearch(s.name))" 
+              :key="skill.id"
+              @click="toggleSkillSelection(skill)"
+              class="flex items-center p-3 rounded cursor-pointer transition-all"
+              :class="isSelected(skill) ? 'bg-purple-200 shadow-md' : 'bg-white hover:bg-purple-100'"
+            >
+              <span class="w-6 h-6 flex items-center justify-center rounded-full mr-2"
+                :class="isSelected(skill) ? 'bg-purple-500 text-white' : 'bg-gray-200'">
+                <svg v-if="isSelected(skill)" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <div>
+                <span class="font-medium">{{ skill.name }}</span>
+                <span class="text-xs text-gray-500 block">{{ skill.category }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Skills Panel -->
+      <div v-if="selectedSkills.length > 0" class="mt-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Selected Skills</h2>
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="flex flex-wrap gap-2">
+            <div 
+              v-for="skill in selectedSkills" 
+              :key="skill.id"
+              class="bounce-in rounded-full px-4 py-2 flex items-center gap-2 cursor-pointer"
+              :class="skill.type === 'natural' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'"
+              @click="toggleSkillSelection(skill)"
+            >
+              <span>{{ skill.name }}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-end">
+            <button 
+              @click="clearSelectedSkills"
+              class="bg-red-100 text-red-700 hover:bg-red-200 px-4 py-2 rounded-lg text-sm font-medium"
+            >
+              Clear Selection
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2025 Skills Spectrum Dashboard</p>
+        <p class="text-gray-400 mt-2 text-sm">Explore the continuum between innate abilities and learned competencies</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const { createApp, ref, computed } = Vue;
+    
+createApp({
+  setup() {
+    const searchQuery = ref('');
+    const activeFilter = ref('all');
+    const viewMode = ref('categories');
+    const selectedSkills = ref([]);
+    
+    // Natural Skills Data
+    const naturalCategories = ref([
+      {
+        name: "Cognitive & Mental",
+        isOpen: false,
+        skills: [
+          { id: 'n1', name: "Pattern recognition", category: "Cognitive & Mental" },
+          { id: 'n2', name: "Intuition", category: "Cognitive & Mental" },
+          { id: 'n3', name: "Curiosity", category: "Cognitive & Mental" },
+          { id: 'n4', name: "Imagination", category: "Cognitive & Mental" },
+          { id: 'n5', name: "Emotional sensitivity", category: "Cognitive & Mental" },
+          { id: 'n6', name: "Creativity", category: "Cognitive & Mental" },
+          { id: 'n7', name: "Spatial awareness", category: "Cognitive & Mental" },
+          { id: 'n8', name: "Sense of rhythm", category: "Cognitive & Mental" },
+          { id: 'n9', name: "Fast reflexes", category: "Cognitive & Mental" },
+          { id: 'n10', name: "Memory capacity", category: "Cognitive & Mental" },
+          { id: 'n11', name: "Focus ability", category: "Cognitive & Mental" },
+          { id: 'n12', name: "Abstract thinking", category: "Cognitive & Mental" }
+        ]
+      },
+      {
+        name: "Social & Emotional",
+        isOpen: false,
+        skills: [
+          { id: 'n13', name: "Empathy", category: "Social & Emotional" },
+          { id: 'n14', name: "Charisma", category: "Social & Emotional" },
+          { id: 'n15', name: "Leadership presence", category: "Social & Emotional" },
+          { id: 'n16', name: "Social awareness", category: "Social & Emotional" },
+          { id: 'n17', name: "Calm under pressure", category: "Social & Emotional" },
+          { id: 'n18', name: "Moral compass", category: "Social & Emotional" },
+          { id: 'n19', name: "Resilience", category: "Social & Emotional" },
+          { id: 'n20', name: "Instinct to protect", category: "Social & Emotional" },
+          { id: 'n21', name: "Natural humor", category: "Social & Emotional" },
+          { id: 'n22', name: "Emotional intelligence", category: "Social & Emotional" },
+          { id: 'n23', name: "Adaptability", category: "Social & Emotional" },
+          { id: 'n24', name: "Relationship intuition", category: "Social & Emotional" }
+        ]
+      },
+      {
+        name: "Physical & Sensory",
+        isOpen: false,
+        skills: [
+          { id: 'n25', name: "Hand-eye coordination", category: "Physical & Sensory" },
+          { id: 'n26', name: "Sense of balance", category: "Physical & Sensory" },
+          { id: 'n27', name: "Visual acuity", category: "Physical & Sensory" },
+          { id: 'n28', name: "Auditory perception", category: "Physical & Sensory" },
+          { id: 'n29', name: "Taste/smell sensitivity", category: "Physical & Sensory" },
+          { id: 'n30', name: "Physical strength (genetic)", category: "Physical & Sensory" },
+          { id: 'n31', name: "Speed (base potential)", category: "Physical & Sensory" },
+          { id: 'n32', name: "Flexibility", category: "Physical & Sensory" },
+          { id: 'n33', name: "Ambidexterity", category: "Physical & Sensory" },
+          { id: 'n34', name: "Stamina (base level)", category: "Physical & Sensory" },
+          { id: 'n35', name: "Fine motor control", category: "Physical & Sensory" },
+          { id: 'n36', name: "Kinesthetic intelligence", category: "Physical & Sensory" }
+        ]
+      },
+      {
+        name: "Personality Traits",
+        isOpen: false,
+        skills: [
+          { id: 'n37', name: "Introversion / extroversion", category: "Personality Traits" },
+          { id: 'n38', name: "Optimism / pessimism", category: "Personality Traits" },
+          { id: 'n39', name: "Risk-taking behavior", category: "Personality Traits" },
+          { id: 'n40', name: "Patience / impulsiveness", category: "Personality Traits" },
+          { id: 'n41', name: "Motivation drive", category: "Personality Traits" },
+          { id: 'n42', name: "Self-discipline", category: "Personality Traits" },
+          { id: 'n43', name: "Conscientiousness", category: "Personality Traits" },
+          { id: 'n44', name: "Openness to experience", category: "Personality Traits" },
+          { id: 'n45', name: "Neuroticism/emotional stability", category: "Personality Traits" },
+          { id: 'n46', name: "Agreeableness", category: "Personality Traits" }
+        ]
+      },
+      {
+        name: "Cognitive Preferences",
+        isOpen: false,
+        skills: [
+          { id: 'n47', name: "Visual learning preference", category: "Cognitive Preferences" },
+          { id: 'n48', name: "Auditory learning preference", category: "Cognitive Preferences" },
+          { id: 'n49', name: "Kinesthetic learning preference", category: "Cognitive Preferences" },
+          { id: 'n50', name: "Analytical thinking tendency", category: "Cognitive Preferences" },
+          { id: 'n51', name: "Holistic thinking tendency", category: "Cognitive Preferences" },
+          { id: 'n52', name: "Verbal reasoning aptitude", category: "Cognitive Preferences" },
+          { id: 'n53', name: "Mathematical reasoning aptitude", category: "Cognitive Preferences" }
+        ]
+      }
+    ]);
+
+    // Acquired Skills Data
+    const acquiredCategories = ref([
+      {
+        name: "Academic & Intellectual",
+        isOpen: false,
+        skills: [
+          { id: 'a1', name: "Reading and writing", category: "Academic & Intellectual" },
+          { id: 'a2', name: "Mathematics", category: "Academic & Intellectual" },
+          { id: 'a3', name: "Critical thinking", category: "Academic & Intellectual" },
+          { id: 'a4', name: "Scientific reasoning", category: "Academic & Intellectual" },
+          { id: 'a5', name: "Foreign languages", category: "Academic & Intellectual" },
+          { id: 'a6', name: "Research skills", category: "Academic & Intellectual" },
+          { id: 'a7', name: "Data analysis", category: "Academic & Intellectual" },
+          { id: 'a8', name: "Logical deduction", category: "Academic & Intellectual" },
+          { id: 'a9', name: "Philosophy", category: "Academic & Intellectual" },
+          { id: 'a10', name: "History knowledge", category: "Academic & Intellectual" },
+          { id: 'a11', name: "Literary analysis", category: "Academic & Intellectual" },
+          { id: 'a12', name: "Academic writing", category: "Academic & Intellectual" }
+        ]
+      },
+      {
+        name: "Professional & Technical",
+        isOpen: false,
+        skills: [
+          { id: 'a13', name: "Programming", category: "Professional & Technical" },
+          { id: 'a14', name: "Public speaking", category: "Professional & Technical" },
+          { id: 'a15', name: "Design (graphic/UI/UX)", category: "Professional & Technical" },
+          { id: 'a16', name: "Engineering", category: "Professional & Technical" },
+          { id: 'a17', name: "Accounting & finance", category: "Professional & Technical" },
+          { id: 'a18', name: "Legal interpretation", category: "Professional & Technical" },
+          { id: 'a19', name: "Project management", category: "Professional & Technical" },
+          { id: 'a20', name: "Negotiation", category: "Professional & Technical" },
+          { id: 'a21', name: "Data visualization", category: "Professional & Technical" },
+          { id: 'a22', name: "Machine operation", category: "Professional & Technical" },
+          { id: 'a23', name: "Technical writing", category: "Professional & Technical" },
+          { id: 'a24', name: "Strategic planning", category: "Professional & Technical" },
+          { id: 'a25', name: "Sales techniques", category: "Professional & Technical" },
+          { id: 'a26', name: "Business analysis", category: "Professional & Technical" }
+        ]
+      },
+      {
+        name: "Creative & Artistic",
+        isOpen: false,
+        skills: [
+          { id: 'a27', name: "Playing musical instruments", category: "Creative & Artistic" },
+          { id: 'a28', name: "Painting/drawing", category: "Creative & Artistic" },
+          { id: 'a29', name: "Singing techniques", category: "Creative & Artistic" },
+          { id: 'a30', name: "Dance forms", category: "Creative & Artistic" },
+          { id: 'a31', name: "Creative writing", category: "Creative & Artistic" },
+          { id: 'a32', name: "Photography", category: "Creative & Artistic" },
+          { id: 'a33', name: "Filmmaking", category: "Creative & Artistic" },
+          { id: 'a34', name: "Animation", category: "Creative & Artistic" },
+          { id: 'a35', name: "Sculpture", category: "Creative & Artistic" },
+          { id: 'a36', name: "Fashion design", category: "Creative & Artistic" },
+          { id: 'a37', name: "Interior design", category: "Creative & Artistic" },
+          { id: 'a38', name: "Composition (music)", category: "Creative & Artistic" },
+          { id: 'a39', name: "Culinary arts", category: "Creative & Artistic" }
+        ]
+      },
+      {
+        name: "Social & Leadership",
+        isOpen: false,
+        skills: [
+          { id: 'a40', name: "Communication skills", category: "Social & Leadership" },
+          { id: 'a41', name: "Conflict resolution", category: "Social & Leadership" },
+          { id: 'a42', name: "Time management", category: "Social & Leadership" },
+          { id: 'a43', name: "Decision-making", category: "Social & Leadership" },
+          { id: 'a44', name: "Coaching/mentoring", category: "Social & Leadership" },
+          { id: 'a45', name: "Networking", category: "Social & Leadership" },
+          { id: 'a46', name: "Collaboration techniques", category: "Social & Leadership" },
+          { id: 'a47', name: "Cultural etiquette", category: "Social & Leadership" },
+          { id: 'a48', name: "Team building", category: "Social & Leadership" },
+          { id: 'a49', name: "Delegation skills", category: "Social & Leadership" },
+          { id: 'a50', name: "Change management", category: "Social & Leadership" },
+          { id: 'a51', name: "Emotional regulation", category: "Social & Leadership" },
+          { id: 'a52', name: "Active listening", category: "Social & Leadership" }
+        ]
+      },
+      {
+        name: "Physical & Manual",
+        isOpen: false,
+        skills: [
+          { id: 'a53', name: "Martial arts", category: "Physical & Manual" },
+          { id: 'a54', name: "Yoga", category: "Physical & Manual" },
+          { id: 'a55', name: "Sports techniques", category: "Physical & Manual" },
+          { id: 'a56', name: "Driving", category: "Physical & Manual" },
+          { id: 'a57', name: "Cooking", category: "Physical & Manual" },
+          { id: 'a58', name: "Craftsmanship", category: "Physical & Manual" },
+          { id: 'a59', name: "Typing speed", category: "Physical & Manual" },
+          { id: 'a60', name: "Fitness training", category: "Physical & Manual" },
+          { id: 'a61', name: "Swimming", category: "Physical & Manual" },
+          { id: 'a62', name: "Dancing technique", category: "Physical & Manual" },
+          { id: 'a63', name: "Musical instrument dexterity", category: "Physical & Manual" },
+          { id: 'a64', name: "Gardening", category: "Physical & Manual" },
+          { id: 'a65', name: "First aid", category: "Physical & Manual" }
+        ]
+      },
+      {
+        name: "Digital & Technological",
+        isOpen: false,
+        skills: [
+          { id: 'a66', name: "Software use", category: "Digital & Technological" },
+          { id: 'a67', name: "Video editing", category: "Digital & Technological" },
+          { id: 'a68', name: "Cybersecurity practices", category: "Digital & Technological" },
+          { id: 'a69', name: "Web development", category: "Digital & Technological" },
+          { id: 'a70', name: "Social media marketing", category: "Digital & Technological" },
+          { id: 'a71', name: "Cloud computing", category: "Digital & Technological" },
+          { id: 'a72', name: "AI/ML tools", category: "Digital & Technological" },
+          { id: 'a73', name: "Hardware troubleshooting", category: "Digital & Technological" },
+          { id: 'a74', name: "Digital illustration", category: "Digital & Technological" },
+          { id: 'a75', name: "3D modeling", category: "Digital & Technological" },
+          { id: 'a76', name: "Database management", category: "Digital & Technological" },
+          { id: 'a77', name: "UX/UI design", category: "Digital & Technological" },
+          { id: 'a78', name: "SEO optimization", category: "Digital & Technological" }
+        ]
+      },
+      {
+        name: "Personal Development",
+        isOpen: false,
+        skills: [
+          { id: 'a79', name: "Mindfulness practice", category: "Personal Development" },
+          { id: 'a80', name: "Goal setting", category: "Personal Development" },
+          { id: 'a81', name: "Self-reflection", category: "Personal Development" },
+          { id: 'a82', name: "Habit formation", category: "Personal Development" },
+          { id: 'a83', name: "Stress management", category: "Personal Development" },
+          { id: 'a84', name: "Financial literacy", category: "Personal Development" },
+          { id: 'a85', name: "Career planning", category: "Personal Development" },
+          { id: 'a86', name: "Personal branding", category: "Personal Development" },
+          { id: 'a87', name: "Speed reading", category: "Personal Development" },
+          { id: 'a88', name: "Memory techniques", category: "Personal Development" }
+        ]
+      }
+    ]);
+
+    // Computed properties
+    const totalNaturalSkills = computed(() => {
+      return naturalCategories.value.reduce((total, category) => total + category.skills.length, 0);
+    });
+
+    const totalAcquiredSkills = computed(() => {
+      return acquiredCategories.value.reduce((total, category) => total + category.skills.length, 0);
+    });
+
+    const categoryCount = computed(() => {
+      return naturalCategories.value.length + acquiredCategories.value.length;
+    });
+
+    const filteredNaturalCategories = computed(() => {
+      if (!searchQuery.value) return naturalCategories.value;
+      
+      return naturalCategories.value.map(category => {
+        const matchingSkills = category.skills.filter(skill => 
+          skill.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        );
+        
+        if (matchingSkills.length > 0) {
+          return {
+            ...category,
+            skills: matchingSkills
+          };
+        }
+        return null;
+      }).filter(Boolean);
+    });
+
+    const filteredAcquiredCategories = computed(() => {
+      if (!searchQuery.value) return acquiredCategories.value;
+      
+      return acquiredCategories.value.map(category => {
+        const matchingSkills = category.skills.filter(skill => 
+          skill.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        );
+        
+        if (matchingSkills.length > 0) {
+          return {
+            ...category,
+            skills: matchingSkills
+          };
+        }
+        return null;
+      }).filter(Boolean);
+    });
+
+    const allNaturalSkillsFlat = computed(() => {
+      return naturalCategories.value.flatMap(category => 
+        category.skills.map(skill => ({
+          ...skill,
+          type: 'natural'
+        }))
+      );
+    });
+
+    const allAcquiredSkillsFlat = computed(() => {
+      return acquiredCategories.value.flatMap(category => 
+        category.skills.map(skill => ({
+          ...skill,
+          type: 'acquired'
+        }))
+      );
+    });
+
+    // Methods
+    const toggleCategory = (type, index) => {
+      if (type === 'natural') {
+        naturalCategories.value[index].isOpen = !naturalCategories.value[index].isOpen;
+      } else {
+        acquiredCategories.value[index].isOpen = !acquiredCategories.value[index].isOpen;
+      }
+    };
+
+    const toggleSkillSelection = (skill) => {
+      const index = selectedSkills.value.findIndex(s => s.id === skill.id);
+      if (index === -1) {
+        // Add the skill with its type
+        const skillWithType = {
+          ...skill,
+          type: skill.id.startsWith('n') ? 'natural' : 'acquired'
+        };
+        selectedSkills.value.push(skillWithType);
+      } else {
+        // Remove the skill
+        selectedSkills.value.splice(index, 1);
+      }
+    };
+
+    const isSelected = (skill) => {
+      return selectedSkills.value.some(s => s.id === skill.id);
+    };
+
+    const clearSelectedSkills = () => {
+      selectedSkills.value = [];
+    };
+
+    const matchesSearch = (text) => {
+      if (!searchQuery.value) return true;
+      return text.toLowerCase().includes(searchQuery.value.toLowerCase());
+    };
+
+    const filteredSkills = (skills) => {
+      if (!searchQuery.value) return skills;
+      
+      return skills.filter(skill => 
+        skill.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      );
+    };
+
+    return {
+      searchQuery,
+      activeFilter,
+      viewMode,
+      selectedSkills,
+      naturalCategories,
+      acquiredCategories,
+      totalNaturalSkills,
+      totalAcquiredSkills,
+      categoryCount,
+      filteredNaturalCategories,
+      filteredAcquiredCategories,
+      allNaturalSkillsFlat,
+      allAcquiredSkillsFlat,
+      toggleCategory,
+      toggleSkillSelection,
+      isSelected,
+      clearSelectedSkills,
+      matchesSearch,
+      filteredSkills
+    };
+  }
+}).mount('#app');
+</script>
+
+  <style>
+    .bounce-in {
+      animation: bounce-in 0.5s ease-in-out;
+    }
+
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
