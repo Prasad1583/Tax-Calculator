@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Galaxy - Interactive Visualization</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .skill-pill {
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .skill-pill:hover {
+      transform: scale(1.1);
+      z-index: 10;
+    }
+    .category-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .category-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .glow {
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 0.5s ease;
+    }
+    .fade-enter-from,
+    .fade-leave-to {
+      opacity: 0;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <div id="app" class="min-h-screen">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 opacity-90"></div>
+      <div v-for="i in 30" :key="'star-'+i" 
+           class="absolute rounded-full bg-white"
+           :style="{
+             width: Math.random() * 3 + 1 + 'px',
+             height: Math.random() * 3 + 1 + 'px',
+             left: Math.random() * 100 + '%',
+             top: Math.random() * 100 + '%',
+             opacity: Math.random() * 0.8 + 0.2,
+             animation: `twinkle ${Math.random() * 5 + 3}s infinite ${Math.random() * 2}s alternate`
+           }"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="pt-12 pb-6 px-6 text-center relative">
+      <h1 class="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500">
+        Skills Galaxy
+      </h1>
+      <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+        Explore 500+ in-demand skills across 16 futuristic categories in this interactive visualization
+      </p>
+      <div class="mt-8 flex justify-center space-x-4">
+        <button @click="viewMode = 'galaxy'" 
+                :class="{'bg-indigo-600 text-white': viewMode === 'galaxy', 'bg-gray-800 text-gray-300': viewMode !== 'galaxy'}"
+                class="px-6 py-2 rounded-full transition-all">
+          <i class="fas fa-star mr-2"></i> Galaxy View
+        </button>
+        <button @click="viewMode = 'categories'"
+                :class="{'bg-indigo-600 text-white': viewMode === 'categories', 'bg-gray-800 text-gray-300': viewMode !== 'categories'}"
+                class="px-6 py-2 rounded-full transition-all">
+          <i class="fas fa-layer-group mr-2"></i> Categories
+        </button>
+        <button @click="viewMode = 'search'"
+                :class="{'bg-indigo-600 text-white': viewMode === 'search', 'bg-gray-800 text-gray-300': viewMode !== 'search'}"
+                class="px-6 py-2 rounded-full transition-all">
+          <i class="fas fa-search mr-2"></i> Search All
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 relative">
+      <!-- Galaxy View -->
+      <transition name="fade">
+        <div v-if="viewMode === 'galaxy'" class="relative h-[600px] w-full rounded-xl overflow-hidden">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="relative w-full h-full">
+              <!-- Central Sphere -->
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg shadow-purple-500/30 floating"></div>
+              
+              <!-- Orbiting Categories -->
+              <div v-for="(category, index) in Object.keys(skillsData)" :key="'orbit-'+index"
+                   class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                   :style="{
+                     width: `${150 + index * 60}px`,
+                     height: `${150 + index * 60}px`,
+                     animation: `orbit ${15 + index * 2}s linear infinite`
+                   }">
+                <div @click="selectCategory(category)"
+                     class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white shadow-lg cursor-pointer hover:glow transition-all duration-300 flex items-center justify-center"
+                     :style="{ backgroundColor: categoryColors[index % categoryColors.length] }">
+                  <span class="text-xs font-bold text-center text-white">{{ category.split(' ')[0] }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- Categories View -->
+      <transition name="fade">
+        <div v-if="viewMode === 'categories'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div v-for="(category, index) in Object.keys(skillsData)" 
+               :key="'cat-'+index"
+               @click="selectCategory(category)"
+               class="category-card bg-gray-800 bg-opacity-70 backdrop-blur-sm rounded-xl p-6 cursor-pointer border border-gray-700 hover:border-indigo-400"
+               :style="{ borderBottom: `4px solid ${categoryColors[index % categoryColors.length]}` }">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mr-3"
+                   :style="{ backgroundColor: categoryColors[index % categoryColors.length] }">
+                <i :class="categoryIcons[index % categoryIcons.length]" class="text-white"></i>
+              </div>
+              <h3 class="text-xl font-bold">{{ category }}</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span v-for="(skill, skillIndex) in skillsData[category].slice(0, 5)" 
+                    :key="'preview-'+skillIndex"
+                    class="text-xs px-2 py-1 rounded-full bg-gray-700">
+                {{ skill }}
+              </span>
+              <span class="text-xs px-2 py-1 rounded-full bg-gray-700">
+                +{{ skillsData[category].length - 5 }} more
+              </span>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <!-- Search View -->
+      <transition name="fade">
+        <div v-if="viewMode === 'search'" class="max-w-4xl mx-auto">
+          <div class="relative mb-8">
+            <input v-model="searchQuery" 
+                   type="text" 
+                   placeholder="Search across 500+ skills..." 
+                   class="w-full bg-gray-800 bg-opacity-70 border border-gray-700 rounded-full py-4 px-6 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+            <i class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+          
+          <div v-if="filteredSkills.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div v-for="skill in filteredSkills" 
+                 :key="skill.name"
+                 class="bg-gray-800 bg-opacity-70 rounded-lg p-4 border-l-4"
+                 :style="{ borderLeftColor: categoryColors[Object.keys(skillsData).indexOf(skill.category) % categoryColors.length] }">
+              <div class="flex justify-between items-start">
+                <h4 class="font-medium">{{ skill.name }}</h4>
+                <span class="text-xs px-2 py-1 rounded-full bg-gray-700 ml-2">{{ skill.category }}</span>
+              </div>
+            </div>
+          </div>
+          <div v-else class="text-center py-12 text-gray-400">
+            <i class="fas fa-search fa-3x mb-4"></i>
+            <p>No skills found matching your search</p>
+          </div>
+        </div>
+      </transition>
+
+      <!-- Skill Detail Modal -->
+      <transition name="fade">
+        <div v-if="selectedCategory" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
+          <div class="bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            <div class="flex justify-between items-center p-6 border-b border-gray-700">
+              <h2 class="text-2xl font-bold flex items-center">
+                <span class="w-8 h-8 rounded-full flex items-center justify-center mr-3"
+                      :style="{ backgroundColor: categoryColors[Object.keys(skillsData).indexOf(selectedCategory) % categoryColors.length] }">
+                  <i :class="categoryIcons[Object.keys(skillsData).indexOf(selectedCategory) % categoryIcons.length]" class="text-white text-sm"></i>
+                </span>
+                {{ selectedCategory }}
+              </h2>
+              <button @click="selectedCategory = null" class="text-gray-400 hover:text-white">
+                <i class="fas fa-times fa-lg"></i>
+              </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-grow">
+              <div class="flex flex-wrap gap-3">
+                <div v-for="(skill, index) in skillsData[selectedCategory]" 
+                     :key="'skill-'+index"
+                     class="skill-pill px-4 py-2 rounded-full text-sm font-medium"
+                     :class="{
+                       'bg-indigo-900 text-indigo-100': index % 3 === 0,
+                       'bg-purple-900 text-purple-100': index % 3 === 1,
+                       'bg-blue-900 text-blue-100': index % 3 === 2
+                     }"
+                     @mouseenter="animatePill($event)"
+                     @mouseleave="resetPill($event)">
+                  {{ skill }}
+                </div>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-900 text-center text-sm text-gray-400">
+              Showing {{ skillsData[selectedCategory].length }} skills in this category
+            </div>
+          </div>
+        </div>
+      </transition>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm">
+      <p>Interactive Skills Galaxy Visualization | 500+ In-Demand Skills</p>
+      <p class="mt-2">Hover, click, and explore the future of work</p>
+    </footer>
+  </div>
+
+  <script>
+    const { createApp, ref, computed, onMounted } = Vue;
+    
+    // Skills data from your JSON
+    const skillsData = {
+        "Technical & IT Skills": [
+          "Python Programming", "JavaScript (ES6+)", "TypeScript", "Java Development", "C#/.NET",
+          "Go (Golang)", "Rust Programming", "Swift Development", "Kotlin Development", "Ruby on Rails",
+          "PHP Development", "SQL & Database Design", "NoSQL (MongoDB, Cassandra)", "GraphQL", "RESTful APIs",
+          "Docker & Containers", "Kubernetes", "AWS Cloud Services", "Azure Cloud", "Google Cloud Platform",
+          "Terraform", "Ansible", "CI/CD Pipelines", "Git & Version Control", "Linux Administration",
+          "Windows Server", "Network Security", "Ethical Hacking", "Penetration Testing", "Blockchain Development",
+          "Smart Contracts", "Solidity", "Data Engineering", "ETL Processes", "Apache Spark",
+          "Hadoop Ecosystem", "Machine Learning", "Deep Learning (TensorFlow, PyTorch)", "Computer Vision", "NLP",
+          "Data Mining", "Big Data Analytics", "Quantum Computing", "IoT Development", "Embedded Systems",
+          "AR/VR Development", "Unity 3D", "Unreal Engine", "Cybersecurity Analysis", "Incident Response",
+          "DevSecOps", "Microservices Architecture", "Serverless Computing", "Mainframe Systems", "SAP ERP",
+          "Salesforce Development", "ServiceNow", "ITIL Framework", "Agile Methodologies", "Scrum Master"
+        ],
+      
+        "Data & Analytics": [
+          "Advanced Excel", "Power BI", "Tableau", "Looker", "Qlik Sense",
+          "Data Visualization", "Statistical Analysis", "Predictive Modeling", "A/B Testing", "Business Intelligence",
+          "Google Analytics", "Adobe Analytics", "Mixpanel", "SQL Optimization", "Data Warehousing",
+          "Snowflake", "Redshift", "BigQuery", "Data Governance", "Data Quality",
+          "R Programming", "SAS", "MATLAB", "Jupyter Notebooks", "Data Storytelling",
+          "Experimental Design", "Causal Inference", "Time Series Analysis", "Survival Analysis", "Bayesian Statistics",
+          "Market Basket Analysis", "Cluster Analysis", "Dimensionality Reduction", "Feature Engineering", "MLOps",
+          "Model Deployment", "AI Ethics", "Explainable AI", "Data Privacy (GDPR, CCPA)", "Data Compliance"
+        ],
+      
+        "Business & Finance": [
+          "Financial Modeling", "Valuation Techniques", "Mergers & Acquisitions", "Corporate Finance", "Investment Banking",
+          "Private Equity", "Venture Capital", "Financial Planning", "Risk Management", "Derivatives Trading",
+          "Algorithmic Trading", "Quantitative Finance", "Fintech Solutions", "Cryptocurrency Markets", "Regulatory Compliance",
+          "SOX Compliance", "Audit Procedures", "Cost Accounting", "Managerial Accounting", "Tax Strategy",
+          "Business Valuation", "Pitch Deck Creation", "Startup Fundraising", "IPO Preparation", "ESG Investing",
+          "Real Estate Finance", "Supply Chain Finance", "Treasury Management", "FX Risk Management", "Credit Analysis",
+          "Financial Reporting (IFRS, GAAP)", "Business Process Improvement", "Lean Six Sigma", "OKR Implementation", "Balanced Scorecard",
+          "Market Research", "Competitive Analysis", "SWOT Analysis", "Porter's Five Forces", "Business Development",
+          "Sales Forecasting", "CRM Strategy", "Key Account Management", "Channel Management", "Partnership Development"
+        ],
+      
+        "Digital Marketing": [
+          "SEO Strategy", "Technical SEO", "Local SEO", "Content Marketing", "Inbound Marketing",
+          "Growth Hacking", "Conversion Rate Optimization", "Landing Page Optimization", "Email Marketing", "Marketing Automation",
+          "HubSpot", "Marketo", "Pardot", "Google Ads", "Facebook Ads",
+          "Programmatic Advertising", "Display Advertising", "Native Advertising", "Influencer Marketing", "Affiliate Marketing",
+          "Social Media Strategy", "Community Management", "Brand Management", "Reputation Management", "Crisis Communications",
+          "PR Strategy", "Media Buying", "Marketing Analytics", "Customer Journey Mapping", "Personalization Strategies",
+          "Video Marketing", "Podcast Marketing", "Webinar Production", "UX Writing", "Copywriting",
+          "Chatbot Marketing", "Voice Search Optimization", "Metaverse Marketing", "NFT Marketing", "Web3 Strategy"
+        ],
+      
+        "Design & Creativity": [
+          "UI/UX Design", "Design Systems", "Figma", "Adobe XD", "Sketch",
+          "Prototyping", "User Research", "Usability Testing", "Information Architecture", "Interaction Design",
+          "Motion Design", "Illustration", "Brand Identity", "Packaging Design", "Typography",
+          "Color Theory", "Design Thinking", "Service Design", "Industrial Design", "3D Modeling",
+          "Blender", "Maya", "Cinema 4D", "CAD Design", "Fashion Design",
+          "Interior Design", "Environmental Graphics", "Game Design", "AR/VR Design", "Sound Design",
+          "Creative Direction", "Art Direction", "Photography", "Videography", "Video Editing",
+          "After Effects", "Premiere Pro", "DaVinci Resolve", "Storyboarding", "Concept Art"
+        ],
+      
+        "Engineering & Manufacturing": [
+          "Mechanical Engineering", "CAD/CAM", "SolidWorks", "AutoCAD", "Finite Element Analysis",
+          "Thermodynamics", "Fluid Mechanics", "Mechatronics", "Robotics", "PLC Programming",
+          "Industrial Automation", "CNC Programming", "Additive Manufacturing", "Quality Control", "Lean Manufacturing",
+          "Supply Chain Optimization", "Logistics Management", "Inventory Control", "Production Planning", "Six Sigma",
+          "Reliability Engineering", "Failure Analysis", "Materials Science", "Nanotechnology", "Biomedical Engineering",
+          "Civil Engineering", "Structural Analysis", "Geotechnical Engineering", "Construction Management", "HVAC Design",
+          "Electrical Engineering", "Circuit Design", "Power Systems", "Renewable Energy", "Smart Grid Technology",
+          "Chemical Engineering", "Process Engineering", "Petroleum Engineering", "Pharmaceutical Manufacturing", "Food Technology"
+        ],
+      
+        "Healthcare & Life Sciences": [
+          "Clinical Research", "Drug Development", "Regulatory Affairs", "Medical Writing", "Biostatistics",
+          "Epidemiology", "Public Health", "Health Informatics", "Telemedicine", "Medical Coding",
+          "ICD-10 Coding", "Healthcare Analytics", "Patient Safety", "Quality Improvement", "Healthcare Compliance",
+          "Medical Device Development", "Biotechnology", "Genomics", "CRISPR", "Stem Cell Research",
+          "Neuroscience", "Pharmacology", "Toxicology", "Clinical Trials", "Good Clinical Practice",
+          "Nursing Care", "Physical Therapy", "Occupational Therapy", "Speech Therapy", "Mental Health Counseling",
+          "Healthcare Administration", "Hospital Management", "Health Policy", "Global Health", "Pandemic Response"
+        ],
+      
+        "Legal & Compliance": [
+          "Contract Law", "Corporate Law", "M&A Law", "Securities Regulation", "Intellectual Property",
+          "Patent Law", "Trademark Law", "Copyright Law", "Data Privacy Law", "Cybersecurity Law",
+          "Employment Law", "Labor Relations", "Immigration Law", "Tax Law", "International Law",
+          "Environmental Law", "Healthcare Law", "Real Estate Law", "Litigation", "Arbitration",
+          "Regulatory Compliance", "Anti-Money Laundering", "KYC Procedures", "GDPR Compliance", "CCPA Compliance",
+          "Risk Assessment", "Corporate Governance", "Ethics & Compliance", "Whistleblower Programs", "Investigative Due Diligence"
+        ],
+      
+        "Education & Training": [
+          "Curriculum Design", "E-Learning Development", "Instructional Design", "Adult Learning Theory", "Competency-Based Education",
+          "STEM Education", "Literacy Instruction", "Special Education", "Gifted Education", "Classroom Technology",
+          "Learning Management Systems", "Educational Assessment", "Teacher Training", "Academic Coaching", "Career Counseling",
+          "Corporate Training", "Leadership Development", "Diversity Training", "Compliance Training", "Technical Training",
+          "Language Instruction", "ESL Teaching", "Early Childhood Education", "Montessori Method", "Waldorf Education"
+        ],
+      
+        "Creative & Media Production": [
+          "Screenwriting", "Film Production", "Audio Production", "Music Composition", "Sound Engineering",
+          "Podcast Production", "Broadcast Journalism", "Animation", "Motion Graphics", "Visual Effects",
+          "Game Development", "Narrative Design", "Content Strategy", "Editorial Planning", "Fact-Checking",
+          "Publishing", "Literary Agency", "Art Curation", "Museum Studies", "Cultural Heritage Management"
+        ],
+      
+        "Sustainability & Environmental": [
+          "Carbon Accounting", "Life Cycle Assessment", "Circular Economy", "Sustainable Agriculture", "Renewable Energy",
+          "Energy Efficiency", "Water Conservation", "Waste Management", "Environmental Policy", "Corporate Sustainability",
+          "ESG Reporting", "Green Building", "LEED Certification", "Climate Risk Assessment", "Biodiversity Conservation"
+        ],
+      
+        "Hospitality & Service": [
+          "Hotel Management", "Restaurant Management", "Culinary Arts", "Sommelier", "Event Planning",
+          "Tourism Development", "Customer Experience", "Revenue Management", "Food Safety", "Hospitality Technology"
+        ],
+      
+        "Interpersonal & Soft Skills": [
+          "Emotional Intelligence", "Active Listening", "Conflict Resolution", "Negotiation", "Persuasion",
+          "Public Speaking", "Storytelling", "Cross-Cultural Communication", "Team Leadership", "Collaboration",
+          "Adaptability", "Resilience", "Critical Thinking", "Problem Solving", "Decision Making",
+          "Time Management", "Productivity Systems", "Remote Collaboration", "Networking", "Mentoring"
+        ],
+      
+        "Emerging Technologies": [
+          "Generative AI", "Large Language Models", "AI Ethics", "Robotic Process Automation", "Computer Vision",
+          "Autonomous Systems", "Edge Computing", "5G Technology", "Digital Twins", "Smart Cities",
+          "Biometric Systems", "Brain-Computer Interfaces", "Space Technologies", "Drone Operations", "Vertical Farming"
+        ],
+      
+        "Specialized Trades": [
+          "Electrician", "Plumbing", "HVAC", "Welding", "Carpentry",
+          "Masonry", "Auto Mechanics", "Aircraft Maintenance", "Marine Engineering", "Rail Systems",
+          "Pharmacy Technician", "Surgical Technology", "Dental Hygiene", "Veterinary Technology", "Forensic Science"
+        ]
+      };
+
+    createApp({
+      setup() {
+        // State
+        const viewMode = ref('galaxy');
+        const selectedCategory = ref(null);
+        const searchQuery = ref('');
+        
+        // Color scheme for categories
+        const categoryColors = [
+          '#6366F1', '#8B5CF6', '#EC4899', '#F59E0B', '#10B981',
+          '#3B82F6', '#F97316', '#EF4444', '#84CC16', '#06B6D4',
+          '#A855F7', '#F43F5E', '#14B8A6', '#64748B', '#D946EF',
+          '#F59E0B'
+        ];
+        
+        // Icons for categories
+        const categoryIcons = [
+          'fas fa-code', 'fas fa-database', 'fas fa-chart-line', 'fas fa-bullhorn', 'fas fa-paint-brush',
+          'fas fa-cogs', 'fas fa-heartbeat', 'fas fa-gavel', 'fas fa-graduation-cap', 'fas fa-film',
+          'fas fa-leaf', 'fas fa-utensils', 'fas fa-users', 'fas fa-robot', 'fas fa-tools',
+          'fas fa-microchip'
+        ];
+        
+        // Prepare flattened skills for search
+        const allSkills = computed(() => {
+          let skills = [];
+          for (const category in skillsData) {
+            skills = skills.concat(skillsData[category].map(skill => ({
+              name: skill,
+              category: category
+            })));
+          }
+          return skills;
+        });
+        
+        // Filter skills based on search query
+        const filteredSkills = computed(() => {
+          if (!searchQuery.value) return [];
+          const query = searchQuery.value.toLowerCase();
+          return allSkills.value.filter(skill => 
+            skill.name.toLowerCase().includes(query) || 
+            skill.category.toLowerCase().includes(query)
+          );
+        });
+        
+        // Methods
+        const selectCategory = (category) => {
+          selectedCategory.value = category;
+        };
+        
+        const animatePill = (event) => {
+          gsap.to(event.target, {
+            scale: 1.15,
+            boxShadow: '0 0 15px rgba(99, 102, 241, 0.5)',
+            duration: 0.3
+          });
+        };
+        
+        const resetPill = (event) => {
+          gsap.to(event.target, {
+            scale: 1,
+            boxShadow: 'none',
+            duration: 0.3
+          });
+        };
+        
+        // Initialize animations
+        onMounted(() => {
+          // Add orbit animation to styles
+          const style = document.createElement('style');
+          style.textContent = `
+            @keyframes orbit {
+              from { transform: translate(-50%, -50%) rotate(0deg) translateX(${window.innerWidth/4}px) rotate(0deg); }
+              to { transform: translate(-50%, -50%) rotate(360deg) translateX(${window.innerWidth/4}px) rotate(-360deg); }
+            }
+            @keyframes twinkle {
+              0%, 100% { opacity: 0.2; }
+              50% { opacity: 1; }
+            }
+          `;
+          document.head.appendChild(style);
+        });
+        
+        return {
+          skillsData,
+          viewMode,
+          selectedCategory,
+          searchQuery,
+          categoryColors,
+          categoryIcons,
+          filteredSkills,
+          selectCategory,
+          animatePill,
+          resetPill
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
