@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Categories Directory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #searchInput {
+            width: 70%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        #searchInput:focus {
+            outline: none;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .categories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-header {
+            padding: 15px 20px;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: white;
+        }
+        
+        .category-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .shops-list {
+            padding: 15px 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .shop-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .shop-item:last-child {
+            border-bottom: none;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            grid-column: 1 / -1;
+            color: #666;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .categories-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Shop Categories Directory</h1>
+            <p class="subtitle">Browse through our comprehensive list of shop categories</p>
+        </header>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for a shop or category...">
+        </div>
+        
+        <div class="categories-container" id="categoriesContainer">
+            <!-- Category cards will be dynamically inserted here -->
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Shop Categories Directory. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Shop categories data
+        const categories = {
+            "Food & Grocery": [
+                "Grocery & Supermarket",
+                "Mini Mart / Convenience Store",
+                "General Store / Kirana",
+                "Wholesale Grocery / Distributor",
+                "Fruit & Vegetable Shop",
+                "Meat & Fish Shop",
+                "Poultry Shop",
+                "Dairy & Milk Booth",
+                "Bakery",
+                "Sweet Shop / Mithaiwala",
+                "Snacks & Namkeen Shop",
+                "Tea / Coffee Stall",
+                "Juice Center / Shake Bar",
+                "Ice Cream Parlor",
+                "Restaurant / Cafe",
+                "Fast Food Center",
+                "Catering Service Outlet",
+                "Food Truck / Street Food Vendor",
+                "Tiffin Service",
+                "Organic / Health Food Store",
+                "Fast Food Cart / Stall",
+                "Station Canteen / School Canteen",
+                "Paan Shop",
+                "Cigarette / Tobacco Shop",
+                "Liquor / Wine Shop",
+                "Bar / Lounge",
+                "Club / Disco (licensed commercial outlet)"
+            ],
+            "Health & Medical": [
+                "Medical Store / Pharmacy / Chemist",
+                "24x7 Chemist",
+                "Ayurvedic Store",
+                "Homeopathy Store",
+                "Medical Equipment Store",
+                "Optical Store / Eye Care",
+                "Clinic / Diagnostic Center",
+                "Pathology Lab",
+                "Dentist Clinic",
+                "Veterinary Clinic / Pet Hospital",
+                "Cosmetic Surgery / Beauty Clinic",
+                "Hearing Aid / Medical Device Shop",
+                "Medical Uniform / PPE Store",
+                "Diagnostic Equipment Dealer",
+                "Optical Lens Workshop"
+            ],
+            "Beauty & Personal Care": [
+                "Salon / Beauty Parlor",
+                "Men's Barber Shop",
+                "Spa & Massage Center",
+                "Tattoo Studio",
+                "Tattoo & Piercing Studio",
+                "Cosmetics & Beauty Products Store",
+                "Perfume / Fragrance Store"
+            ],
+            "Jewelry & Watches": [
+                "Jewellery Shop",
+                "Imitation / Fashion Jewellery Store",
+                "Watch & Accessories Shop",
+                "Watch Repair",
+                "Goldsmith / Jeweler Workshop",
+                "Watch Showroom"
+            ],
+            "Fashion & Apparel": [
+                "Clothing & Apparel Store",
+                "Tailor / Boutique",
+                "Uniform Shop",
+                "Lingerie / Innerwear Store",
+                "Shoe / Footwear Store",
+                "Bags / Luggage Shop",
+                "Boutique Tailoring Studio",
+                "Footwear Repair Shop",
+                "Tailoring Material Store",
+                "Embroidery / Fabric Store"
+            ],
+            "Baby, Toys & Sports": [
+                "Toy Store",
+                "Baby Products Store",
+                "Sports & Fitness Store",
+                "Gym Equipment Store",
+                "Cycle Store",
+                "Cycle Repair Shop"
+            ],
+            "Electronics & IT": [
+                "Mobile Phone Shop",
+                "Computer / Laptop Store",
+                "Electronics & Appliances Store",
+                "Electronics Accessories Shop",
+                "TV / AC / Appliance Repair Center",
+                "Mobile / Laptop Repair Shop",
+                "Electricals & Lighting Store",
+                "CCTV / Surveillance Shop",
+                "Security Equipment Store",
+                "Camera & Lens Store",
+                "Printing Ink / Cartridge Shop",
+                "Drone Shop / Repair Center",
+                "Internet / Mobile Recharge Shop"
+            ],
+            "Home & Living": [
+                "Furniture Store",
+                "Mattress & Bedding Shop",
+                "Home Decor & Interior Store",
+                "Curtain / Furnishing Store",
+                "Kitchenware & Utensil Store",
+                "Plastic / Household Items Shop",
+                "Photo Frame / Art Supply Store",
+                "Glass & Mirror Store",
+                "Ceramics / Pottery Store"
+            ],
+            "Building & Construction": [
+                "Hardware / Tools Store",
+                "Plumbing & Sanitary Store",
+                "Paint & Home Improvement Store",
+                "Tiles / Marble / Flooring Store",
+                "Construction Material Store",
+                "Cement / Steel Dealer",
+                "Wood / Plywood Store",
+                "Paint & Hardware Distributor",
+                "Tool Rental / Construction Equipment Hire",
+                "Industrial Parts Dealer"
+            ],
+            "Repairs & Services": [
+                "Repair & Services Hub (Multi Service)",
+                "Shoe Repair / Key Maker",
+                "Locksmith Shop",
+                "E-waste Collection / Repair Center",
+                "Water Purifier / RO Shop"
+            ],
+            "Stationery, Books & Printing": [
+                "Stationery & Bookstore",
+                "Printing / Photocopy / Lamination Shop",
+                "Wedding Card / Invitation Printing",
+                "Printing Press / Newspaper Office",
+                "Stationery Wholesale Market",
+                "Photocopy / Cyber Cafe"
+            ],
+            "Gifts, Flowers & Hobbies": [
+                "Gift Shop",
+                "Flower Shop / Florist",
+                "Handicrafts / Souvenir Shop",
+                "Antique Store",
+                "Artificial Flower / Decor Shop",
+                "Event Decor & Party Supplies",
+                "Sound & DJ Equipment Rental",
+                "Music / Instrument Shop",
+                "Music CD / Record Store (Legacy)"
+            ],
+            "Pets, Agriculture & Gardening": [
+                "Pet Shop",
+                "Aquarium / Fish Store",
+                "Plant Nursery / Garden Center",
+                "Agricultural Equipment Store",
+                "Seeds & Fertilizer Shop",
+                "Agro Chemicals Store",
+                "Feed & Veterinary Products Shop"
+            ],
+            "Automotive & Fuel": [
+                "Car Repair Garage",
+                "Bike Repair Workshop",
+                "Auto Spare Parts Shop",
+                "Car Accessories Shop",
+                "Car Wash / Detailing Center",
+                "Fuel Station / Petrol Pump",
+                "Tyre Shop / Wheel Alignment Center",
+                "Bike / Scooter Dealership",
+                "Car Showroom",
+                "Used Car / Bike Dealer",
+                "Electric Vehicle Showroom",
+                "Electric Vehicle Charging Booth"
+            ],
+            "Travel, Courier & Logistics": [
+                "Travel Agency / Tour Operator",
+                "Airline / Train Ticket Office",
+                "Courier / Parcel Service",
+                "Courier Franchise Outlet",
+                "Packers & Movers Office",
+                "Logistics / Transport Booking Office",
+                "Bike Rental / Car Rental Outlet"
+            ],
+            "Finance, Government & Utilities": [
+                "Bank Branch",
+                "ATM / Cash Deposit Kiosk",
+                "ATM / Bank Mini Branch",
+                "ATM / Payment Service Point",
+                "Insurance Agency Office",
+                "Property Tax / Utility Payment Kiosk",
+                "Government Fair Price Shop (Ration)",
+                "Tatkal Center / Passport Photo Booth",
+                "Community Convenience Kiosk",
+                "Pawn / Finance Shop",
+                "Pawn Broker / Money Lender",
+                "Real Estate / Property Dealer",
+                "NGO / Charity Outlet (Donation Store)"
+            ],
+            "Education & Training": [
+                "Coaching / Tuition Center (Shopfront)",
+                "Music / Dance Academy (Shop Unit)"
+            ],
+            "Religion & Culture": [
+                "Temple / Religious Item Shop",
+                "Idol / Pooja Material Store"
+            ],
+            "Media & Photography": [
+                "Photo Studio"
+            ],
+            "Energy & Power": [
+                "Solar Energy Products Store",
+                "Electrical Battery & Inverter Shop"
+            ],
+            "Entertainment & Experiences": [
+                "Gaming / Esports Cafe",
+                "VR / AR Experience Center",
+                "Co-working Café"
+            ],
+            "Wholesale & Trade": [
+                "Plastic / Paper Bag Wholesaler"
+            ],
+            "Recycling & Scrap": [
+                "Scrap Dealer / Kabadiwala",
+                "Recycling Collection Point"
+            ]
+        };
+
+        // Display categories
+        function displayCategories(categoriesToShow = categories) {
+            const categoriesContainer = document.getElementById('categoriesContainer');
+            categoriesContainer.innerHTML = '';
+            
+            if (Object.keys(categoriesToShow).length === 0) {
+                categoriesContainer.innerHTML = '<div class="no-results">No categories found matching your search.</div>';
+                return;
+            }
+            
+            Object.keys(categoriesToShow).forEach(categoryName => {
+                const shops = categoriesToShow[categoryName];
+                
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card';
+                
+                categoryCard.innerHTML = `
+                    <div class="category-header">
+                        <div class="category-name">${categoryName}</div>
+                    </div>
+                    <div class="shops-list">
+                        ${shops.map(shop => `<div class="shop-item">${shop}</div>`).join('')}
+                    </div>
+                `;
+                
+                categoriesContainer.appendChild(categoryCard);
+            });
+        }
+
+        // Filter categories by search
+        function filterCategories() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                displayCategories(categories);
+                return;
+            }
+            
+            const filteredCategories = {};
+            
+            Object.keys(categories).forEach(categoryName => {
+                // Check if category name matches
+                const categoryMatches = categoryName.toLowerCase().includes(searchTerm);
+                
+                // Check if any shops in this category match
+                const matchingShops = categories[categoryName].filter(shop => 
+                    shop.toLowerCase().includes(searchTerm)
+                );
+                
+                // If either category name matches or there are matching shops, include this category
+                if (categoryMatches || matchingShops.length > 0) {
+                    // If category name matches, show all shops
+                    // If only shops match, show only the matching shops
+                    filteredCategories[categoryName] = categoryMatches ? 
+                        categories[categoryName] : matchingShops;
+                }
+            });
+            
+            displayCategories(filteredCategories);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            displayCategories();
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', filterCategories);
+        });
+    </script>
+</body>
+</html>
