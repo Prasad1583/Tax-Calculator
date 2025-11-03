@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Categories Directory</title>
+    <title>Business Categories in India - Complete Directory</title>
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --info: #17a2b8;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -21,436 +32,594 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
         
         header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        h1 {
+        header h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
         
-        .subtitle {
-            font-size: 1.1rem;
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
             opacity: 0.9;
         }
         
         .search-container {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin: 1.5rem auto;
+            max-width: 800px;
         }
         
         #searchInput {
-            width: 70%;
-            max-width: 500px;
+            width: 100%;
             padding: 12px 20px;
-            border: none;
+            border: 2px solid #ddd;
             border-radius: 50px;
             font-size: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
         
         #searchInput:focus {
+            border-color: var(--secondary);
             outline: none;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
         
-        .categories-container {
+        .sectors-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
-        .category-card {
+        .sector-card {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         
-        .category-card:hover {
+        .sector-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .category-header {
-            padding: 15px 20px;
-            background: linear-gradient(to right, #4b6cb7, #182848);
+        .sector-header {
+            padding: 1.5rem;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .category-name {
+        .sector-primary {
+            background-color: var(--success);
+        }
+        
+        .sector-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .sector-tertiary {
+            background-color: var(--warning);
+        }
+        
+        .sector-quaternary {
+            background-color: var(--info);
+        }
+        
+        .sector-icon {
+            font-size: 1.8rem;
+        }
+        
+        .sector-title {
             font-size: 1.3rem;
             font-weight: 600;
         }
         
-        .shops-list {
-            padding: 15px 20px;
-            max-height: 300px;
-            overflow-y: auto;
+        .sector-body {
+            padding: 1.5rem;
         }
         
-        .shop-item {
+        .sector-definition {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .industries-list {
+            list-style-type: none;
+        }
+        
+        .industry-item {
             padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .shop-item:last-child {
+        .industry-item:last-child {
             border-bottom: none;
+        }
+        
+        .industry-icon {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .subcategories {
+            margin-left: 20px;
+            margin-top: 5px;
+            list-style-type: none;
+        }
+        
+        .subcategory {
+            padding: 5px 0;
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .subcategory::before {
+            content: "•";
+            color: var(--secondary);
+        }
+        
+        .hidden {
+            display: none;
         }
         
         .no-results {
             text-align: center;
-            padding: 40px;
-            grid-column: 1 / -1;
+            padding: 2rem;
             color: #666;
+            font-size: 1.1rem;
         }
         
         footer {
+            background-color: var(--dark);
+            color: white;
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
         }
         
         @media (max-width: 768px) {
-            .categories-container {
+            .sectors-container {
                 grid-template-columns: 1fr;
             }
             
-            h1 {
+            header h1 {
                 font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Business Categories in India</h1>
+            <p>A comprehensive directory of all business sectors and industries in the Indian economy</p>
+        </div>
+    </header>
+    
     <div class="container">
-        <header>
-            <h1>Shop Categories Directory</h1>
-            <p class="subtitle">Browse through our comprehensive list of shop categories</p>
-        </header>
-        
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for a shop or category...">
+            <input type="text" id="searchInput" placeholder="Search for industries, sectors, or specific business types...">
         </div>
         
-        <div class="categories-container" id="categoriesContainer">
-            <!-- Category cards will be dynamically inserted here -->
+        <div id="sectorsList">
+            <!-- Sectors will be populated by JavaScript -->
         </div>
         
-        <footer>
-            <p>&copy; 2023 Shop Categories Directory. All rights reserved.</p>
-        </footer>
+        <div id="noResults" class="no-results hidden">
+            <h3>No matching results found</h3>
+            <p>Try adjusting your search terms or browse the categories below</p>
+        </div>
     </div>
+    
+    <footer>
+        <div class="container footer-content">
+            <p>Business Categories Directory &copy; 2023 - Based on NIC, GST, and Industry Classifications</p>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Shop categories data
-        const categories = {
-            "Food & Grocery": [
-                "Grocery & Supermarket",
-                "Mini Mart / Convenience Store",
-                "General Store / Kirana",
-                "Wholesale Grocery / Distributor",
-                "Fruit & Vegetable Shop",
-                "Meat & Fish Shop",
-                "Poultry Shop",
-                "Dairy & Milk Booth",
-                "Bakery",
-                "Sweet Shop / Mithaiwala",
-                "Snacks & Namkeen Shop",
-                "Tea / Coffee Stall",
-                "Juice Center / Shake Bar",
-                "Ice Cream Parlor",
-                "Restaurant / Cafe",
-                "Fast Food Center",
-                "Catering Service Outlet",
-                "Food Truck / Street Food Vendor",
-                "Tiffin Service",
-                "Organic / Health Food Store",
-                "Fast Food Cart / Stall",
-                "Station Canteen / School Canteen",
-                "Paan Shop",
-                "Cigarette / Tobacco Shop",
-                "Liquor / Wine Shop",
-                "Bar / Lounge",
-                "Club / Disco (licensed commercial outlet)"
-            ],
-            "Health & Medical": [
-                "Medical Store / Pharmacy / Chemist",
-                "24x7 Chemist",
-                "Ayurvedic Store",
-                "Homeopathy Store",
-                "Medical Equipment Store",
-                "Optical Store / Eye Care",
-                "Clinic / Diagnostic Center",
-                "Pathology Lab",
-                "Dentist Clinic",
-                "Veterinary Clinic / Pet Hospital",
-                "Cosmetic Surgery / Beauty Clinic",
-                "Hearing Aid / Medical Device Shop",
-                "Medical Uniform / PPE Store",
-                "Diagnostic Equipment Dealer",
-                "Optical Lens Workshop"
-            ],
-            "Beauty & Personal Care": [
-                "Salon / Beauty Parlor",
-                "Men's Barber Shop",
-                "Spa & Massage Center",
-                "Tattoo Studio",
-                "Tattoo & Piercing Studio",
-                "Cosmetics & Beauty Products Store",
-                "Perfume / Fragrance Store"
-            ],
-            "Jewelry & Watches": [
-                "Jewellery Shop",
-                "Imitation / Fashion Jewellery Store",
-                "Watch & Accessories Shop",
-                "Watch Repair",
-                "Goldsmith / Jeweler Workshop",
-                "Watch Showroom"
-            ],
-            "Fashion & Apparel": [
-                "Clothing & Apparel Store",
-                "Tailor / Boutique",
-                "Uniform Shop",
-                "Lingerie / Innerwear Store",
-                "Shoe / Footwear Store",
-                "Bags / Luggage Shop",
-                "Boutique Tailoring Studio",
-                "Footwear Repair Shop",
-                "Tailoring Material Store",
-                "Embroidery / Fabric Store"
-            ],
-            "Baby, Toys & Sports": [
-                "Toy Store",
-                "Baby Products Store",
-                "Sports & Fitness Store",
-                "Gym Equipment Store",
-                "Cycle Store",
-                "Cycle Repair Shop"
-            ],
-            "Electronics & IT": [
-                "Mobile Phone Shop",
-                "Computer / Laptop Store",
-                "Electronics & Appliances Store",
-                "Electronics Accessories Shop",
-                "TV / AC / Appliance Repair Center",
-                "Mobile / Laptop Repair Shop",
-                "Electricals & Lighting Store",
-                "CCTV / Surveillance Shop",
-                "Security Equipment Store",
-                "Camera & Lens Store",
-                "Printing Ink / Cartridge Shop",
-                "Drone Shop / Repair Center",
-                "Internet / Mobile Recharge Shop"
-            ],
-            "Home & Living": [
-                "Furniture Store",
-                "Mattress & Bedding Shop",
-                "Home Decor & Interior Store",
-                "Curtain / Furnishing Store",
-                "Kitchenware & Utensil Store",
-                "Plastic / Household Items Shop",
-                "Photo Frame / Art Supply Store",
-                "Glass & Mirror Store",
-                "Ceramics / Pottery Store"
-            ],
-            "Building & Construction": [
-                "Hardware / Tools Store",
-                "Plumbing & Sanitary Store",
-                "Paint & Home Improvement Store",
-                "Tiles / Marble / Flooring Store",
-                "Construction Material Store",
-                "Cement / Steel Dealer",
-                "Wood / Plywood Store",
-                "Paint & Hardware Distributor",
-                "Tool Rental / Construction Equipment Hire",
-                "Industrial Parts Dealer"
-            ],
-            "Repairs & Services": [
-                "Repair & Services Hub (Multi Service)",
-                "Shoe Repair / Key Maker",
-                "Locksmith Shop",
-                "E-waste Collection / Repair Center",
-                "Water Purifier / RO Shop"
-            ],
-            "Stationery, Books & Printing": [
-                "Stationery & Bookstore",
-                "Printing / Photocopy / Lamination Shop",
-                "Wedding Card / Invitation Printing",
-                "Printing Press / Newspaper Office",
-                "Stationery Wholesale Market",
-                "Photocopy / Cyber Cafe"
-            ],
-            "Gifts, Flowers & Hobbies": [
-                "Gift Shop",
-                "Flower Shop / Florist",
-                "Handicrafts / Souvenir Shop",
-                "Antique Store",
-                "Artificial Flower / Decor Shop",
-                "Event Decor & Party Supplies",
-                "Sound & DJ Equipment Rental",
-                "Music / Instrument Shop",
-                "Music CD / Record Store (Legacy)"
-            ],
-            "Pets, Agriculture & Gardening": [
-                "Pet Shop",
-                "Aquarium / Fish Store",
-                "Plant Nursery / Garden Center",
-                "Agricultural Equipment Store",
-                "Seeds & Fertilizer Shop",
-                "Agro Chemicals Store",
-                "Feed & Veterinary Products Shop"
-            ],
-            "Automotive & Fuel": [
-                "Car Repair Garage",
-                "Bike Repair Workshop",
-                "Auto Spare Parts Shop",
-                "Car Accessories Shop",
-                "Car Wash / Detailing Center",
-                "Fuel Station / Petrol Pump",
-                "Tyre Shop / Wheel Alignment Center",
-                "Bike / Scooter Dealership",
-                "Car Showroom",
-                "Used Car / Bike Dealer",
-                "Electric Vehicle Showroom",
-                "Electric Vehicle Charging Booth"
-            ],
-            "Travel, Courier & Logistics": [
-                "Travel Agency / Tour Operator",
-                "Airline / Train Ticket Office",
-                "Courier / Parcel Service",
-                "Courier Franchise Outlet",
-                "Packers & Movers Office",
-                "Logistics / Transport Booking Office",
-                "Bike Rental / Car Rental Outlet"
-            ],
-            "Finance, Government & Utilities": [
-                "Bank Branch",
-                "ATM / Cash Deposit Kiosk",
-                "ATM / Bank Mini Branch",
-                "ATM / Payment Service Point",
-                "Insurance Agency Office",
-                "Property Tax / Utility Payment Kiosk",
-                "Government Fair Price Shop (Ration)",
-                "Tatkal Center / Passport Photo Booth",
-                "Community Convenience Kiosk",
-                "Pawn / Finance Shop",
-                "Pawn Broker / Money Lender",
-                "Real Estate / Property Dealer",
-                "NGO / Charity Outlet (Donation Store)"
-            ],
-            "Education & Training": [
-                "Coaching / Tuition Center (Shopfront)",
-                "Music / Dance Academy (Shop Unit)"
-            ],
-            "Religion & Culture": [
-                "Temple / Religious Item Shop",
-                "Idol / Pooja Material Store"
-            ],
-            "Media & Photography": [
-                "Photo Studio"
-            ],
-            "Energy & Power": [
-                "Solar Energy Products Store",
-                "Electrical Battery & Inverter Shop"
-            ],
-            "Entertainment & Experiences": [
-                "Gaming / Esports Cafe",
-                "VR / AR Experience Center",
-                "Co-working Café"
-            ],
-            "Wholesale & Trade": [
-                "Plastic / Paper Bag Wholesaler"
-            ],
-            "Recycling & Scrap": [
-                "Scrap Dealer / Kabadiwala",
-                "Recycling Collection Point"
-            ]
+        // Business categories data
+        const businessData = {
+            "Global_Business_Taxonomy": {
+                "1. Primary Sector (Natural Resources)": {
+                    "Definition": "Businesses involved in extraction, cultivation, or production of natural resources and raw materials.",
+                    "Industries": {
+                        "Agriculture & Allied Activities": [
+                            "Crop Production (Cereals, Pulses, Horticulture, Floriculture)",
+                            "Dairy Farming and Production",
+                            "Poultry & Livestock Farming",
+                            "Fishing and Aquaculture",
+                            "Forestry and Logging",
+                            "Plantations (Tea, Coffee, Rubber)",
+                            "Agricultural Support Services (Warehousing, Cold Storage)"
+                        ],
+                        "Mining & Quarrying": [
+                            "Coal Mining",
+                            "Crude Oil & Natural Gas Extraction",
+                            "Metal Ore Mining (Iron, Bauxite, Copper, Zinc, etc.)",
+                            "Quarrying of Stone, Sand, and Clay"
+                        ]
+                    }
+                },
+
+                "2. Secondary Sector (Manufacturing & Production)": {
+                    "Definition": "Businesses that process raw materials into finished or semi-finished products.",
+                    "Industries": {
+                        "Food & Beverage Processing": [
+                            "Grain Mill Products, Starches",
+                            "Dairy Products",
+                            "Bakery & Confectionery",
+                            "Meat & Fish Processing",
+                            "Fruit & Vegetable Preserving",
+                            "Edible Oils & Fats",
+                            "Soft Drinks & Bottled Water"
+                        ],
+                        "Textiles & Apparel": [
+                            "Spinning, Weaving, Finishing of Textiles",
+                            "Apparel & Garment Manufacturing",
+                            "Carpet and Rug Manufacturing",
+                            "Technical Textiles"
+                        ],
+                        "Leather & Related Products": [
+                            "Tanning and Finishing of Leather",
+                            "Footwear Manufacturing",
+                            "Luggage, Handbags, Saddlery & Harness"
+                        ],
+                        "Wood & Paper Products": [
+                            "Wood Products, Veneer, Plywood",
+                            "Pulp, Paper & Paperboard",
+                            "Printing & Publishing"
+                        ],
+                        "Chemicals & Chemical Products": [
+                            "Basic Chemicals, Fertilizers, Nitrogen Compounds",
+                            "Paints, Varnishes, Soaps, Detergents",
+                            "Pharmaceuticals & Medicinal Chemicals",
+                            "Cosmetics & Toiletries"
+                        ],
+                        "Rubber & Plastics": [
+                            "Tyres and Tubes",
+                            "Plastic Packaging Goods",
+                            "Other Plastic Products"
+                        ],
+                        "Metals & Metal Products": [
+                            "Basic Iron & Steel",
+                            "Non-ferrous Metals (Aluminium, Copper, Zinc)",
+                            "Fabricated Metal Products (Hardware, Tanks, Cutlery)"
+                        ],
+                        "Computer, Electronics & Optical Products": [
+                            "Computers & Peripheral Equipment",
+                            "Communication Equipment",
+                            "Consumer Electronics",
+                            "Medical, Precision & Optical Instruments"
+                        ],
+                        "Electrical Equipment": [
+                            "Electric Motors, Generators, Transformers",
+                            "Batteries & Accumulators",
+                            "Wiring & Electrical Components"
+                        ],
+                        "Machinery & Equipment": [
+                            "General Purpose Machinery",
+                            "Special Purpose Machinery (Agriculture, Construction, Manufacturing)"
+                        ],
+                        "Transport Equipment": [
+                            "Automobiles & Auto Components",
+                            "Ships & Boats",
+                            "Railway Locomotives & Rolling Stock",
+                            "Aircraft and Spacecraft"
+                        ],
+                        "Other Manufacturing": [
+                            "Furniture Manufacturing",
+                            "Jewellery & Related Articles",
+                            "Musical Instruments, Sports Goods, Games & Toys"
+                        ]
+                    }
+                },
+
+                "3. Tertiary Sector (Services)": {
+                    "Definition": "Businesses that provide services rather than goods — serving individuals or other enterprises.",
+                    "Industries": {
+                        "Wholesale & Retail Trade": [
+                            "Wholesale Trade (B2B)",
+                            "Retail Trade (Physical & E-commerce)",
+                            "Repair of Motor Vehicles & Motorcycles"
+                        ],
+                        "Transportation & Storage": [
+                            "Land Transport (Logistics, Trucking, Courier)",
+                            "Water Transport (Shipping, Ports)",
+                            "Air Transport (Passenger & Cargo)",
+                            "Warehousing & Storage Services"
+                        ],
+                        "Accommodation & Food Services": [
+                            "Hotels, Resorts, Guest Houses",
+                            "Restaurants, Cafes, Catering Services",
+                            "Event Management & Banquet Halls"
+                        ],
+                        "Information & Communication": [
+                            "Software Publishing & IT Services",
+                            "Telecommunications (Mobile, Internet, Landline)",
+                            "Film, Music & TV Production",
+                            "Broadcasting (Radio, Television)",
+                            "Online Portals, Web Search, Data Processing"
+                        ],
+                        "Finance & Insurance": [
+                            "Banking (Commercial, Cooperative)",
+                            "Non-Banking Financial Companies (NBFCs)",
+                            "Insurance (Life, Health, General)",
+                            "Stock Broking & Portfolio Management",
+                            "Peer-to-Peer Lending & FinTech"
+                        ],
+                        "Real Estate": [
+                            "Buying, Selling, Renting of Properties",
+                            "Real Estate Development & Construction",
+                            "Real Estate Brokerage & Agencies"
+                        ],
+                        "Professional, Scientific & Technical Services": [
+                            "Legal Services",
+                            "Accounting, Bookkeeping & Auditing",
+                            "Management Consulting",
+                            "Architectural & Engineering Services",
+                            "Scientific Research & Development",
+                            "Advertising & Market Research"
+                        ],
+                        "Administrative & Support Services": [
+                            "Call Centers, BPO/KPO",
+                            "Rental & Leasing Services",
+                            "Employment & HR Agencies",
+                            "Security & Investigation Services",
+                            "Facility Management (Housekeeping, Pest Control)"
+                        ],
+                        "Education": [
+                            "Schools, Colleges & Universities",
+                            "Coaching Institutes & Tutoring",
+                            "Computer Training Institutes",
+                            "Online Education Platforms"
+                        ],
+                        "Human Health & Social Work": [
+                            "Hospitals, Nursing Homes, Diagnostic Labs",
+                            "Medical & Dental Practices",
+                            "Ayurveda, Yoga, Unani, Siddha, Homeopathy Clinics",
+                            "Social Work (Orphanages, Old Age Homes)"
+                        ],
+                        "Arts, Entertainment & Recreation": [
+                            "Creative & Performing Arts",
+                            "Libraries, Archives & Museums",
+                            "Sports & Fitness Clubs, Gyms",
+                            "Amusement & Theme Parks"
+                        ],
+                        "Other Service Activities": [
+                            "Personal Services (Salons, Dry Cleaners, Laundry)",
+                            "Repair of Computers & Household Goods",
+                            "Membership Organizations (Religious, Political, Professional)",
+                            "Domestic Staff & Home Services"
+                        ]
+                    }
+                },
+
+                "4. Quaternary Sector (Knowledge-Based Services)": {
+                    "Definition": "Knowledge-intensive industries that deal with information, innovation, and intellectual capital.",
+                    "Industries": {
+                        "Information Technology (IT) & IT-Enabled Services (ITeS)": [
+                            "Software Development",
+                            "Cloud Computing Services",
+                            "Data Analytics & Big Data",
+                            "Cybersecurity Services",
+                            "Artificial Intelligence & Machine Learning"
+                        ],
+                        "Research & Development (R&D)": [
+                            "Biotechnology Research",
+                            "Pharmaceutical R&D",
+                            "Engineering & Product Development R&D"
+                        ],
+                        "Consulting & Strategic Services": [
+                            "High-Level Management Consulting",
+                            "Financial Strategy Consulting",
+                            "Public Policy & Economic Advisory"
+                        ]
+                    }
+                }
+            }
         };
 
-        // Display categories
-        function displayCategories(categoriesToShow = categories) {
-            const categoriesContainer = document.getElementById('categoriesContainer');
-            categoriesContainer.innerHTML = '';
+        // Function to render sectors
+        function renderSectors(data) {
+            const sectorsList = document.getElementById('sectorsList');
+            sectorsList.innerHTML = '';
             
-            if (Object.keys(categoriesToShow).length === 0) {
-                categoriesContainer.innerHTML = '<div class="no-results">No categories found matching your search.</div>';
-                return;
-            }
+            const sectors = data.Global_Business_Taxonomy;
+            let sectorIndex = 0;
             
-            Object.keys(categoriesToShow).forEach(categoryName => {
-                const shops = categoriesToShow[categoryName];
+            for (const [sectorName, sectorData] of Object.entries(sectors)) {
+                const sectorCard = document.createElement('div');
+                sectorCard.className = 'sector-card';
                 
-                const categoryCard = document.createElement('div');
-                categoryCard.className = 'category-card';
+                // Determine sector class for styling
+                let sectorClass = '';
+                if (sectorIndex === 0) sectorClass = 'sector-primary';
+                else if (sectorIndex === 1) sectorClass = 'sector-secondary';
+                else if (sectorIndex === 2) sectorClass = 'sector-tertiary';
+                else sectorClass = 'sector-quaternary';
                 
-                categoryCard.innerHTML = `
-                    <div class="category-header">
-                        <div class="category-name">${categoryName}</div>
+                sectorCard.innerHTML = `
+                    <div class="sector-header ${sectorClass}">
+                        <div class="sector-icon">${getSectorIcon(sectorIndex)}</div>
+                        <div class="sector-title">${sectorName}</div>
                     </div>
-                    <div class="shops-list">
-                        ${shops.map(shop => `<div class="shop-item">${shop}</div>`).join('')}
+                    <div class="sector-body">
+                        <p class="sector-definition">${sectorData.Definition}</p>
+                        <ul class="industries-list">
+                            ${Object.entries(sectorData.Industries).map(([industry, subcategories]) => `
+                                <li class="industry-item">
+                                    <span class="industry-icon">▶</span>
+                                    <span class="industry-name">${industry}</span>
+                                </li>
+                                <ul class="subcategories">
+                                    ${subcategories.map(subcategory => `
+                                        <li class="subcategory">${subcategory}</li>
+                                    `).join('')}
+                                </ul>
+                            `).join('')}
+                        </ul>
                     </div>
                 `;
                 
-                categoriesContainer.appendChild(categoryCard);
-            });
+                sectorsList.appendChild(sectorCard);
+                sectorIndex++;
+            }
         }
 
-        // Filter categories by search
-        function filterCategories() {
+        // Function to get appropriate icon for each sector
+        function getSectorIcon(index) {
+            const icons = ['🌱', '🏭', '💼', '🧠'];
+            return icons[index] || '📊';
+        }
+
+        // Function to handle search
+        function handleSearch() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const noResults = document.getElementById('noResults');
+            const sectorsList = document.getElementById('sectorsList');
             
             if (!searchTerm) {
-                displayCategories(categories);
+                renderSectors(businessData);
+                noResults.classList.add('hidden');
                 return;
             }
             
-            const filteredCategories = {};
+            // Filter data based on search term
+            const filteredData = { Global_Business_Taxonomy: {} };
+            const sectors = businessData.Global_Business_Taxonomy;
             
-            Object.keys(categories).forEach(categoryName => {
-                // Check if category name matches
-                const categoryMatches = categoryName.toLowerCase().includes(searchTerm);
-                
-                // Check if any shops in this category match
-                const matchingShops = categories[categoryName].filter(shop => 
-                    shop.toLowerCase().includes(searchTerm)
-                );
-                
-                // If either category name matches or there are matching shops, include this category
-                if (categoryMatches || matchingShops.length > 0) {
-                    // If category name matches, show all shops
-                    // If only shops match, show only the matching shops
-                    filteredCategories[categoryName] = categoryMatches ? 
-                        categories[categoryName] : matchingShops;
+            for (const [sectorName, sectorData] of Object.entries(sectors)) {
+                // Check if sector name matches
+                if (sectorName.toLowerCase().includes(searchTerm)) {
+                    filteredData.Global_Business_Taxonomy[sectorName] = sectorData;
+                    continue;
                 }
-            });
+                
+                // Check industries and subcategories
+                const filteredIndustries = {};
+                for (const [industry, subcategories] of Object.entries(sectorData.Industries)) {
+                    // Check if industry name matches
+                    if (industry.toLowerCase().includes(searchTerm)) {
+                        filteredIndustries[industry] = subcategories;
+                        continue;
+                    }
+                    
+                    // Check subcategories
+                    const filteredSubcategories = subcategories.filter(subcategory => 
+                        subcategory.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    if (filteredSubcategories.length > 0) {
+                        filteredIndustries[industry] = filteredSubcategories;
+                    }
+                }
+                
+                // If any industries matched, add the sector
+                if (Object.keys(filteredIndustries).length > 0) {
+                    filteredData.Global_Business_Taxonomy[sectorName] = {
+                        Definition: sectorData.Definition,
+                        Industries: filteredIndustries
+                    };
+                }
+            }
             
-            displayCategories(filteredCategories);
+            // Display results or no results message
+            if (Object.keys(filteredData.Global_Business_Taxonomy).length > 0) {
+                renderSectors(filteredData);
+                noResults.classList.add('hidden');
+            } else {
+                sectorsList.innerHTML = '';
+                noResults.classList.remove('hidden');
+            }
         }
 
         // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            displayCategories();
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSectors(businessData);
             
-            // Search functionality
-            document.getElementById('searchInput').addEventListener('input', filterCategories);
+            // Add event listener for search
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            
+            // Add event listeners for industry items to toggle subcategories
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('industry-item') || 
+                    e.target.classList.contains('industry-name') ||
+                    e.target.classList.contains('industry-icon')) {
+                    
+                    const industryItem = e.target.closest('.industry-item');
+                    const subcategories = industryItem.nextElementSibling;
+                    
+                    if (subcategories && subcategories.classList.contains('subcategories')) {
+                        subcategories.classList.toggle('hidden');
+                        
+                        // Toggle icon
+                        const icon = industryItem.querySelector('.industry-icon');
+                        if (subcategories.classList.contains('hidden')) {
+                            icon.textContent = '▶';
+                        } else {
+                            icon.textContent = '▼';
+                        }
+                    }
+                }
+            });
         });
     </script>
 </body>
