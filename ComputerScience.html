@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Knowledge Map</title>
+    <style>
+        :root {
+            --layer1: #e3f2fd;
+            --layer2: #e8f5e9;
+            --layer3: #fff3e0;
+            --layer4: #fce4ec;
+            --layer5: #f3e5f5;
+            --layer6: #e0f2f1;
+            --layer7: #fff8e1;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .layer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .layer {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .layer:hover {
+            transform: translateY(-5px);
+        }
+        
+        .layer-header {
+            padding: 15px 20px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .layer-content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .category {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .category h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        .concepts {
+            list-style-type: none;
+        }
+        
+        .concepts li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .concepts li:before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Layer-specific colors */
+        .layer-1 .layer-header { background-color: #1976d2; }
+        .layer-1 { background-color: var(--layer1); }
+        
+        .layer-2 .layer-header { background-color: #388e3c; }
+        .layer-2 { background-color: var(--layer2); }
+        
+        .layer-3 .layer-header { background-color: #f57c00; }
+        .layer-3 { background-color: var(--layer3); }
+        
+        .layer-4 .layer-header { background-color: #c2185b; }
+        .layer-4 { background-color: var(--layer4); }
+        
+        .layer-5 .layer-header { background-color: #7b1fa2; }
+        .layer-5 { background-color: var(--layer5); }
+        
+        .layer-6 .layer-header { background-color: #0097a7; }
+        .layer-6 { background-color: var(--layer6); }
+        
+        .layer-7 .layer-header { background-color: #ffa000; }
+        .layer-7 { background-color: var(--layer7); }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .layer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Computer Science Knowledge Map</h1>
+        <p class="description">A comprehensive overview of computer science domains, from theoretical foundations to applied technologies</p>
+    </header>
+    
+    <div class="layer-container">
+        <!-- Layer 1 -->
+        <div class="layer layer-1">
+            <div class="layer-header">
+                <span>🧩 1️⃣ Foundational Layer — Theoretical Roots</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>Mathematics for CS</h3>
+                    <ul class="concepts">
+                        <li>Logic</li>
+                        <li>Set theory</li>
+                        <li>Number theory</li>
+                        <li>Algebra</li>
+                        <li>Graph theory</li>
+                        <li>Probability</li>
+                        <li>Calculus</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Discrete Structures</h3>
+                    <ul class="concepts">
+                        <li>Relations</li>
+                        <li>Functions</li>
+                        <li>Graphs</li>
+                        <li>Trees</li>
+                        <li>Combinatorics</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Formal Logic & Computation Theory</h3>
+                    <ul class="concepts">
+                        <li>Propositional logic</li>
+                        <li>Predicate logic</li>
+                        <li>Boolean algebra</li>
+                        <li>Automata theory</li>
+                        <li>Grammars</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Theory of Computation</h3>
+                    <ul class="concepts">
+                        <li>Turing machines</li>
+                        <li>Regular languages</li>
+                        <li>Context-free languages</li>
+                        <li>Decidability</li>
+                        <li>Complexity classes (P, NP, etc.)</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Information Theory</h3>
+                    <ul class="concepts">
+                        <li>Entropy</li>
+                        <li>Compression</li>
+                        <li>Coding theory</li>
+                        <li>Data transmission</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Algorithmic Foundations</h3>
+                    <ul class="concepts">
+                        <li>Algorithm analysis</li>
+                        <li>Big-O notation</li>
+                        <li>Time/space complexity</li>
+                        <li>Recursion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 2 -->
+        <div class="layer layer-2">
+            <div class="layer-header">
+                <span>🧠 2️⃣ Systems Layer — Hardware & Architecture</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>Digital Logic Design</h3>
+                    <ul class="concepts">
+                        <li>Logic gates</li>
+                        <li>Combinational circuits</li>
+                        <li>Sequential circuits</li>
+                        <li>Flip-flops</li>
+                        <li>FSMs</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Computer Architecture</h3>
+                    <ul class="concepts">
+                        <li>CPU design</li>
+                        <li>ALU</li>
+                        <li>Registers</li>
+                        <li>Pipelining</li>
+                        <li>Cache</li>
+                        <li>Instruction set</li>
+                        <li>Microarchitecture</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Operating Systems</h3>
+                    <ul class="concepts">
+                        <li>Processes</li>
+                        <li>Threads</li>
+                        <li>Scheduling</li>
+                        <li>Memory management</li>
+                        <li>File systems</li>
+                        <li>I/O</li>
+                        <li>Virtualization</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Embedded Systems</h3>
+                    <ul class="concepts">
+                        <li>Microcontrollers</li>
+                        <li>Real-time systems</li>
+                        <li>Firmware design</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Networking Basics</h3>
+                    <ul class="concepts">
+                        <li>OSI model</li>
+                        <li>TCP/IP</li>
+                        <li>Routing</li>
+                        <li>Switching</li>
+                        <li>DNS</li>
+                        <li>HTTP</li>
+                        <li>Security layers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 3 -->
+        <div class="layer layer-3">
+            <div class="layer-header">
+                <span>⚙️ 3️⃣ Software Layer — Core Programming & Abstraction</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>Programming Fundamentals</h3>
+                    <ul class="concepts">
+                        <li>Variables</li>
+                        <li>Control flow</li>
+                        <li>Data types</li>
+                        <li>Functions</li>
+                        <li>Recursion</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Programming Paradigms</h3>
+                    <ul class="concepts">
+                        <li>Imperative</li>
+                        <li>Object-Oriented</li>
+                        <li>Functional</li>
+                        <li>Logic programming</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Data Structures</h3>
+                    <ul class="concepts">
+                        <li>Arrays</li>
+                        <li>Linked lists</li>
+                        <li>Stacks</li>
+                        <li>Queues</li>
+                        <li>Trees</li>
+                        <li>Heaps</li>
+                        <li>Graphs</li>
+                        <li>Hash tables</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Algorithms</h3>
+                    <ul class="concepts">
+                        <li>Sorting</li>
+                        <li>Searching</li>
+                        <li>Graph algorithms</li>
+                        <li>Dynamic programming</li>
+                        <li>Divide & conquer</li>
+                        <li>Greedy</li>
+                        <li>Backtracking</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Compilers & Language Theory</h3>
+                    <ul class="concepts">
+                        <li>Lexical analysis</li>
+                        <li>Parsing</li>
+                        <li>Syntax trees</li>
+                        <li>Intermediate code</li>
+                        <li>Optimization</li>
+                        <li>Code generation</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Software Engineering</h3>
+                    <ul class="concepts">
+                        <li>SDLC</li>
+                        <li>Design patterns</li>
+                        <li>Version control</li>
+                        <li>Testing</li>
+                        <li>Agile/DevOps</li>
+                        <li>CI/CD</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Databases</h3>
+                    <ul class="concepts">
+                        <li>Relational model</li>
+                        <li>SQL</li>
+                        <li>Indexing</li>
+                        <li>Transactions</li>
+                        <li>Normalization</li>
+                        <li>NoSQL</li>
+                        <li>Distributed DBs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 4 -->
+        <div class="layer layer-4">
+            <div class="layer-header">
+                <span>🌐 4️⃣ Systems & Infrastructure Layer — Distributed and Scalable Systems</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>Distributed Systems</h3>
+                    <ul class="concepts">
+                        <li>Consensus algorithms</li>
+                        <li>CAP theorem</li>
+                        <li>Fault tolerance</li>
+                        <li>Replication</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Cloud Computing</h3>
+                    <ul class="concepts">
+                        <li>Virtualization</li>
+                        <li>Containers</li>
+                        <li>Orchestration (Kubernetes)</li>
+                        <li>Serverless</li>
+                        <li>SaaS/PaaS/IaaS</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Computer Networks (Advanced)</h3>
+                    <ul class="concepts">
+                        <li>SDN</li>
+                        <li>BGP</li>
+                        <li>Network security</li>
+                        <li>Load balancing</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Security & Cryptography</h3>
+                    <ul class="concepts">
+                        <li>Encryption</li>
+                        <li>Authentication</li>
+                        <li>Authorization</li>
+                        <li>PKI</li>
+                        <li>Hashing</li>
+                        <li>Zero trust</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Storage Systems</h3>
+                    <ul class="concepts">
+                        <li>File systems</li>
+                        <li>Block/object storage</li>
+                        <li>RAID</li>
+                        <li>Caching</li>
+                        <li>Datacenter design</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Performance & Reliability Engineering</h3>
+                    <ul class="concepts">
+                        <li>Monitoring</li>
+                        <li>Observability</li>
+                        <li>Scalability patterns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 5 -->
+        <div class="layer layer-5">
+            <div class="layer-header">
+                <span>💡 5️⃣ Intelligent Systems — AI & Data Era</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>Artificial Intelligence</h3>
+                    <ul class="concepts">
+                        <li>Knowledge representation</li>
+                        <li>Search algorithms</li>
+                        <li>Logic inference</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Machine Learning</h3>
+                    <ul class="concepts">
+                        <li>Supervised/Unsupervised learning</li>
+                        <li>Regression</li>
+                        <li>Classification</li>
+                        <li>Clustering</li>
+                        <li>Neural networks</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Deep Learning</h3>
+                    <ul class="concepts">
+                        <li>CNN</li>
+                        <li>RNN</li>
+                        <li>LSTM</li>
+                        <li>Transformer architectures</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Natural Language Processing</h3>
+                    <ul class="concepts">
+                        <li>Tokenization</li>
+                        <li>Embeddings</li>
+                        <li>Sequence models</li>
+                        <li>Attention</li>
+                        <li>LLMs</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Computer Vision</h3>
+                    <ul class="concepts">
+                        <li>Image processing</li>
+                        <li>Object detection</li>
+                        <li>Segmentation</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Reinforcement Learning</h3>
+                    <ul class="concepts">
+                        <li>Agents</li>
+                        <li>Rewards</li>
+                        <li>Policies</li>
+                        <li>Q-learning</li>
+                        <li>Environment interaction</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Data Science</h3>
+                    <ul class="concepts">
+                        <li>Statistics</li>
+                        <li>Data wrangling</li>
+                        <li>Visualization</li>
+                        <li>Feature engineering</li>
+                        <li>Model evaluation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 6 -->
+        <div class="layer layer-6">
+            <div class="layer-header">
+                <span>🏗️ 6️⃣ Applied & Emerging Domains</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>Software Systems</h3>
+                    <ul class="concepts">
+                        <li>Web development</li>
+                        <li>Mobile apps</li>
+                        <li>Game engines</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Cybersecurity</h3>
+                    <ul class="concepts">
+                        <li>Threat models</li>
+                        <li>Pen testing</li>
+                        <li>Incident response</li>
+                        <li>Cryptanalysis</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Internet of Things (IoT)</h3>
+                    <ul class="concepts">
+                        <li>Sensors</li>
+                        <li>Edge computing</li>
+                        <li>Smart devices</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Blockchain & Cryptoeconomics</h3>
+                    <ul class="concepts">
+                        <li>Distributed ledgers</li>
+                        <li>Consensus</li>
+                        <li>Smart contracts</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Quantum Computing</h3>
+                    <ul class="concepts">
+                        <li>Qubits</li>
+                        <li>Quantum gates</li>
+                        <li>Quantum algorithms</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Human-Computer Interaction</h3>
+                    <ul class="concepts">
+                        <li>UX/UI</li>
+                        <li>Accessibility</li>
+                        <li>Interaction design</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Bioinformatics & Computational Biology</h3>
+                    <ul class="concepts">
+                        <li>DNA sequencing algorithms</li>
+                        <li>Protein folding</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Ethical Computing & AI Governance</h3>
+                    <ul class="concepts">
+                        <li>Bias</li>
+                        <li>Transparency</li>
+                        <li>Fairness</li>
+                        <li>Alignment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Layer 7 -->
+        <div class="layer layer-7">
+            <div class="layer-header">
+                <span>🧩 7️⃣ Meta Layer — Computation Ecosystem & Evolution</span>
+            </div>
+            <div class="layer-content">
+                <div class="category">
+                    <h3>CS History & Paradigms</h3>
+                    <ul class="concepts">
+                        <li>Evolution of computing</li>
+                        <li>From ENIAC to LLMs</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Philosophy of Computation</h3>
+                    <ul class="concepts">
+                        <li>What is computation?</li>
+                        <li>Limits</li>
+                        <li>Emergence</li>
+                        <li>Consciousness</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Knowledge Graphs & Ontologies</h3>
+                    <ul class="concepts">
+                        <li>Semantic web</li>
+                        <li>Linked data</li>
+                        <li>Taxonomies of technology</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Computational Complexity</h3>
+                    <ul class="concepts">
+                        <li>Reduction proofs</li>
+                        <li>Intractability</li>
+                        <li>Approximation algorithms</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <h3>Research Methodology</h3>
+                    <ul class="concepts">
+                        <li>Experimental design</li>
+                        <li>Reproducibility</li>
+                        <li>Academic writing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Computer Science Knowledge Map - A comprehensive overview of CS domains</p>
+    </footer>
+</body>
+</html>
